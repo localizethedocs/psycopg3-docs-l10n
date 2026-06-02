@@ -1,0 +1,23 @@
+{
+  "po" : 
+  {
+    "en_US" : 
+    {
+      "tag" : ""
+    },
+    "zh_CN" : 
+    {
+      "tag" : ""
+    },
+    "zh_TW" : 
+    {
+      "tag" : ""
+    }
+  },
+  "pot" : 
+  {
+    "tag" : "3.3.4"
+  },
+  "type" : "tag",
+  "version" : "stable"
+}
