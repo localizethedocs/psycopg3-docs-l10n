@@ -1,0 +1,1523 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../news.rst:8
+msgid "``psycopg`` release notes"
+msgstr ""
+
+#: ../../../news.rst:11
+msgid "Future releases"
+msgstr ""
+
+#: ../../../news.rst:14
+msgid "Psycopg 3.3.5 (unreleased)"
+msgstr ""
+
+#: ../../../news.rst:16
+msgid ""
+"Discard prepared statements upon :sql:`ALTER *` or `DISCARD *` (:ticket:"
+"`#1307`)."
+msgstr ""
+
+#: ../../../news.rst:21
+msgid "Current release"
+msgstr ""
+
+#: ../../../news.rst:24
+msgid "Psycopg 3.3.4"
+msgstr ""
+
+#: ../../../news.rst:26
+msgid ""
+"Fix possible spurious connection timeout in systems with very long uptimes "
+"in C extension (:ticket:`#1280`)."
+msgstr ""
+
+#: ../../../news.rst:28
+msgid ""
+"Fix client-side adaptation of enums whose name require quotes (:ticket:"
+"`#1298`)."
+msgstr ""
+
+#: ../../../news.rst:30
+msgid ""
+"Consistently populate `~Cursor.statusmessage` after `~Cursor.executemany()` "
+"(:ticket:`#1302`)."
+msgstr ""
+
+#: ../../../news.rst:35
+msgid "Psycopg 3.3.3"
+msgstr ""
+
+#: ../../../news.rst:37
+msgid ""
+"Retain `Error.pgconn` when raising a single exception for multiple "
+"connection attempt errors (:ticket:`#1246`)."
+msgstr ""
+
+#: ../../../news.rst:39
+msgid ""
+"Return a proper error when server sends ``ErrorResponse`` for a ``Sync`` "
+"after a ``Parse`` (:ticket:`#1260`)."
+msgstr ""
+
+#: ../../../news.rst:44
+msgid "Psycopg 3.3.2"
+msgstr ""
+
+#: ../../../news.rst:46
+msgid "Fix race condition in adapters at startup (:ticket:`#1230`)."
+msgstr ""
+
+#: ../../../news.rst:50
+msgid "Psycopg 3.3.1"
+msgstr ""
+
+#: ../../../news.rst:52
+msgid "Fix iteration on server-side cursors (:ticket:`#1226`)."
+msgstr ""
+
+#: ../../../news.rst:56
+msgid "Psycopg 3.3.0"
+msgstr ""
+
+#: ../../../news.rst:59 ../../../news.rst:279
+msgid "New top-level features"
+msgstr ""
+
+#: ../../../news.rst:60
+msgid ""
+"Add :ref:`template strings queries <template-strings>` (:ticket:`#1054`)."
+msgstr ""
+
+#: ../../../news.rst:61
+msgid ""
+"More flexible :ref:`composite adaptation<adapt-composite>`: it is now "
+"possible to adapt Python objects to PostgreSQL composites and back even if "
+"they are not sequences or if they take keyword arguments (:ticket:`#932`, :"
+"ticket:`#1202`)."
+msgstr ""
+
+#: ../../../news.rst:64
+msgid ""
+"Cursors are now iterators_, not just iterables_. This means you can call "
+"`next`\\ ``(cur)`` or `anext`\\ ``(cur)``, which is useful as a :ref:`type-"
+"safe expression <typing-fetchone>` (:ticket:`#1064`)."
+msgstr ""
+
+#: ../../../news.rst:67
+msgid ""
+"Add `Cursor.set_result()` and `Cursor.results()` to move across the result "
+"sets of queries executed though `~Cursor.executemany()` or `~Cursor."
+"execute()` with multiple statements (:tickets:`#1080, #1170`)."
+msgstr ""
+
+#: ../../../news.rst:70
+msgid ""
+"Add :ref:`transaction-status` to report the status during and after a "
+"`~Connection.transaction()` block (:ticket:`#969`)."
+msgstr ""
+
+#: ../../../news.rst:72
+msgid ""
+"Allow to change loaders using `~adapt.AdaptersMap.register_loader()` on "
+"`Cursor.adapters` after a query result has been already returned (:ticket:"
+"`#884`)."
+msgstr ""
+
+#: ../../../news.rst:77 ../../../news.rst:301
+msgid "New libpq wrapper features"
+msgstr ""
+
+#: ../../../news.rst:78
+msgid ""
+"Add `pq.PGconn.used_gssapi` attribute and `Capabilities.has_used_gssapi()` "
+"function (:ticket:`#1138`)."
+msgstr ""
+
+#: ../../../news.rst:80
+msgid ""
+"Add `ConnectionInfo.full_protocol_version` attribute, `Capabilities."
+"has_full_protocol_version()` function (:ticket:`#1079`)."
+msgstr ""
+
+#: ../../../news.rst:84 ../../../news.rst:312
+msgid "Other changes"
+msgstr ""
+
+#: ../../../news.rst:85
+msgid ""
+"Disable default GSSAPI preferential connection in the binary package (:"
+"ticket:`#1136`)."
+msgstr ""
+
+#: ../../../news.rst:90
+msgid ""
+"Please explicitly set the gssencmode_ connection parameter or the :envvar:"
+"`PGGSSENCMODE` environment variable to interact reliably with the GSSAPI."
+msgstr ""
+
+#: ../../../news.rst:94
+msgid "Drop support for Python 3.8 (:ticket:`#976`) and 3.9 (:ticket:`#1056`)."
+msgstr ""
+
+#: ../../../news.rst:101
+msgid "Psycopg 3.2.13"
+msgstr ""
+
+#: ../../../news.rst:103
+msgid ""
+"Show the host name in the error message in case of name resolution error (:"
+"ticket:`#1205`)."
+msgstr ""
+
+#: ../../../news.rst:105
+msgid ""
+"Fix `Cursor.copy()` and `AsyncCursor.copy()` to hold the connection lock for "
+"the entire operation, preventing concurrent access issues (:ticket:`#1210`)."
+msgstr ""
+
+#: ../../../news.rst:107
+msgid ""
+"Fix GSSAPI check with C extension built with libpq < v16 (:ticket:`#1216`)."
+msgstr ""
+
+#: ../../../news.rst:111
+msgid "Psycopg 3.2.12"
+msgstr ""
+
+#: ../../../news.rst:113
+msgid ""
+"Allow copy to pass different types per column, as long as the database can "
+"convert them. Regression introduced in 3.2.11 (:ticket:`#1192`)."
+msgstr ""
+
+#: ../../../news.rst:118
+msgid "Psycopg 3.2.11"
+msgstr ""
+
+#: ../../../news.rst:120
+msgid ""
+"Fix spurious readiness flags in some of the wait functions (:ticket:`#1141`)."
+msgstr ""
+
+#: ../../../news.rst:121
+msgid ""
+"Fix high CPU usage using the ``wait_c`` function on Windows (:ticket:`#645`)."
+msgstr ""
+
+#: ../../../news.rst:122
+msgid "Fix bad data on error in binary copy (:ticket:`#1147`)."
+msgstr ""
+
+#: ../../../news.rst:123
+msgid ""
+"Respect `Copy.set_types()` in TEXT copy in C version, consistently with the "
+"Python version (:ticket:`#1153`)."
+msgstr ""
+
+#: ../../../news.rst:125
+msgid ""
+"Don't raise warning, and don't leak resources, if a builtin function is used "
+"as JSON dumper/loader function (:ticket:`#1165`)."
+msgstr ""
+
+#: ../../../news.rst:127
+msgid ""
+"Improve performance of Python conversion on results loading (:ticket:"
+"`#1155`)."
+msgstr ""
+
+#: ../../../news.rst:133
+msgid "Psycopg 3.2.10"
+msgstr ""
+
+#: ../../../news.rst:135
+msgid ""
+"Fix `!TypeError` shadowing `~asyncio.CancelledError` upon task cancellation "
+"during pipeline execution (:ticket:`#1005`)."
+msgstr ""
+
+#: ../../../news.rst:137
+msgid ""
+"Fix memory leak when lambda/local functions are used as argument for `~."
+"psycopg.types.json.set_json_dumps()`, `~.psycopg.types.json."
+"set_json_loads()` (:ticket:`#1108`)."
+msgstr ""
+
+#: ../../../news.rst:140
+msgid ""
+"Fix coordination of `~Cursor.executemany()` with other concurrent operations "
+"on other cursors (:ticket:`#1130`)."
+msgstr ""
+
+#: ../../../news.rst:142
+msgid ""
+"Fix leak receiving notifications if the `~Connection.notifies()` generator "
+"is not called (:ticket:`#1091`)."
+msgstr ""
+
+#: ../../../news.rst:147
+msgid ""
+"This bugfix required the introduction of a change in :ref:`notifies "
+"reception <async-notify>` behaviour."
+msgstr ""
+
+#: ../../../news.rst:150
+msgid ""
+"If a notification is received when a handler is registered via `~Connection."
+"add_notify_handler()` and the `~Connection.notifies()` generator is not "
+"running the notification will not be yielded by the generator. This is a "
+"behaviour similar to before `Psycopg 3.2.4`_, but *notifications are not "
+"lost if no handler is registered*."
+msgstr ""
+
+#: ../../../news.rst:156
+msgid ""
+"Using both the generator and handlers to receive notifications on the same "
+"connection is therefore deprecated and will now generate a runtime warning."
+msgstr ""
+
+#: ../../../news.rst:160
+msgid "Add support for Python 3.14 (:ticket:`#1053`)."
+msgstr ""
+
+#: ../../../news.rst:161
+msgid "Fix `psycopg_binary.__version__`."
+msgstr ""
+
+#: ../../../news.rst:162
+msgid ""
+"Raise a warning if a GSSAPI connection is obtained using the "
+"``gssencmode=prefer`` libpq default (see :ticket:`#1136`)."
+msgstr ""
+
+#: ../../../news.rst:167
+msgid ""
+"In a future Psycopg version the default in the binary package will be "
+"changed to ``disable``. If you need to interact with the GSSAPI reliably you "
+"should explicitly set the gssencmode_ parameter in the connection string or "
+"the :envvar:`PGGSSENCMODE` environment variable to ``prefer`` or ``require``."
+msgstr ""
+
+#: ../../../news.rst:177
+msgid "Psycopg 3.2.9"
+msgstr ""
+
+#: ../../../news.rst:179
+msgid ""
+"Revert the libpq included in the binary packages from conda forge to vcpkg "
+"because GSS connection crashes (:ticket:`#1088`)."
+msgstr ""
+
+#: ../../../news.rst:184
+msgid "Psycopg 3.2.8"
+msgstr ""
+
+#: ../../../news.rst:186
+msgid ""
+"Fix `DateFromTicks` and `TimeFromTicks` return values to return a date and a "
+"time referred to the UTC timezone rather than to the local timezone. For "
+"consistency, `TimestampFromTicks` to return a datetime in UTC rather than in "
+"the local timezone (:ticket:`#1058`)."
+msgstr ""
+
+#: ../../../news.rst:190
+msgid ""
+"Fix `~Cursor.rownumber` after using `~AsyncServerCursor.scroll()` on "
+"`AsyncServerCursor` (:ticket:`#1066`)."
+msgstr ""
+
+#: ../../../news.rst:192
+msgid ""
+"Fix interval parsing with days or other parts and negative time in C module "
+"(:ticket:`#1071`)."
+msgstr ""
+
+#: ../../../news.rst:194
+msgid ""
+"Don't process further connection attempts after Ctrl-C (:ticket:`#1077`)."
+msgstr ""
+
+#: ../../../news.rst:195
+msgid ""
+"Fix cursors to correctly iterate over rows even if their row factory returns "
+"`None` (:ticket:`#1073`)."
+msgstr ""
+
+#: ../../../news.rst:197
+msgid ""
+"Fix `ConnectionInfo.port` when the port is specified as an empty string (:"
+"ticket:`#1078`)."
+msgstr ""
+
+#: ../../../news.rst:199
+msgid ""
+"Report all the attempts error messages in the exception raised for a "
+"connection failure (:ticket:`#1069`)."
+msgstr ""
+
+#: ../../../news.rst:201
+msgid "Improve logging on connection (:ticket:`#1085`)."
+msgstr ""
+
+#: ../../../news.rst:202
+msgid "Add support for PostgreSQL 18 libpq (:ticket:`#1082`)."
+msgstr ""
+
+#: ../../../news.rst:206
+msgid "Psycopg 3.2.7"
+msgstr ""
+
+#: ../../../news.rst:208
+msgid "Add SRID support to shapely dumpers/loaders (:ticket:`#1028`)."
+msgstr ""
+
+#: ../../../news.rst:209
+msgid "Add support for binary hstore (:ticket:`#1030`)."
+msgstr ""
+
+#: ../../../news.rst:213
+msgid "Psycopg 3.2.6"
+msgstr ""
+
+#: ../../../news.rst:215
+msgid ""
+"Fix connection semantic when using ``target_session_attrs=prefer-standby`` (:"
+"ticket:`#1021`)."
+msgstr ""
+
+#: ../../../news.rst:220
+msgid "Psycopg 3.2.5"
+msgstr ""
+
+#: ../../../news.rst:222
+msgid ""
+"3x faster UUID loading thanks to C implementation (:tickets:`#447, #998`)."
+msgstr ""
+
+#: ../../../news.rst:228
+msgid "Psycopg 3.2.4"
+msgstr ""
+
+#: ../../../news.rst:230
+msgid ""
+"Don't lose notifies received whilst the `~Connection.notifies()` iterator is "
+"not running (:ticket:`#962`)."
+msgstr ""
+
+#: ../../../news.rst:235
+msgid ""
+"If you were using notifications to bridge the time between issuing a LISTEN "
+"on a channel and starting the iterator you might receive duplicate "
+"notifications."
+msgstr ""
+
+#: ../../../news.rst:239
+msgid ""
+"Make sure that the notifies callback is called during the use of the "
+"`~Connection.notifies()` generator (:ticket:`#972`)."
+msgstr ""
+
+#: ../../../news.rst:241
+msgid ""
+"Raise the correct error returned by the database (such as `!AdminShutdown` "
+"or `!IdleInTransactionSessionTimeout`) instead of a generic "
+"`OperationalError` when a server error causes a client disconnection (:"
+"ticket:`#988`)."
+msgstr ""
+
+#: ../../../news.rst:245
+msgid ""
+"Build macOS dependencies from sources instead using the Homebrew versions in "
+"order to avoid problems with ``MACOSX_DEPLOYMENT_TARGET`` (:ticket:`#858`)."
+msgstr ""
+
+#: ../../../news.rst:247
+msgid "Bump libpq to 17.2 in Linux and macOS binary packages."
+msgstr ""
+
+#: ../../../news.rst:248
+msgid ""
+"Bump libpq to 16.4 in Windows binary packages, using the `vcpkg library`__ (:"
+"ticket:`#966`)."
+msgstr ""
+
+#: ../../../news.rst:255
+msgid "Psycopg 3.2.3"
+msgstr ""
+
+#: ../../../news.rst:257
+msgid "Release binary packages including PostgreSQL 17 libpq (:ticket:`#852`)."
+msgstr ""
+
+#: ../../../news.rst:261
+msgid "Psycopg 3.2.2"
+msgstr ""
+
+#: ../../../news.rst:263
+msgid ""
+"Drop `!TypeDef` specifications as string from public modules, as they cannot "
+"be composed by users as `!typing` objects previously could (:ticket:`#860`)."
+msgstr ""
+
+#: ../../../news.rst:265
+msgid "Release Python 3.13 binary packages."
+msgstr ""
+
+#: ../../../news.rst:269
+msgid "Psycopg 3.2.1"
+msgstr ""
+
+#: ../../../news.rst:271
+msgid ""
+"Fix packaging metadata breaking ``[c]``, ``[binary]`` dependencies (:ticket:"
+"`#853`)."
+msgstr ""
+
+#: ../../../news.rst:276
+msgid "Psycopg 3.2"
+msgstr ""
+
+#: ../../../news.rst:280
+msgid ""
+"Add support for integer, floating point, boolean `NumPy scalar types`__ (:"
+"ticket:`#332`)."
+msgstr ""
+
+#: ../../../news.rst:282
+msgid ""
+"Add `!timeout` and `!stop_after` parameters to `Connection.notifies()` (:"
+"ticket:`340`)."
+msgstr ""
+
+#: ../../../news.rst:284
+msgid ""
+"Allow dumpers to return `!None`, to be converted to NULL (:ticket:`#377`)."
+msgstr ""
+
+#: ../../../news.rst:285
+msgid ""
+"Add :ref:`raw-query-cursors` to execute queries using placeholders in "
+"PostgreSQL format (`$1`, `$2`...) (:tickets:`#560, #839`)."
+msgstr ""
+
+#: ../../../news.rst:287
+msgid ""
+"Add `capabilities` object to :ref:`inspect the libpq capabilities "
+"<capabilities>` (:ticket:`#772`)."
+msgstr ""
+
+#: ../../../news.rst:289
+msgid ""
+"Add `~rows.scalar_row` to return scalar values from a query (:ticket:`#723`)."
+msgstr ""
+
+#: ../../../news.rst:290
+msgid ""
+"Add `~Connection.cancel_safe()` for encrypted and non-blocking cancellation "
+"when using libpq v17. Use such method internally to implement `!"
+"KeyboardInterrupt` and `~cursor.copy` termination (:ticket:`#754`)."
+msgstr ""
+
+#: ../../../news.rst:293
+msgid ""
+"The `!context` parameter of `sql` objects `~sql.Composable.as_string()` and "
+"`~sql.Composable.as_bytes()` methods is now optional (:ticket:`#716`)."
+msgstr ""
+
+#: ../../../news.rst:295
+msgid ""
+"Add `~Connection.set_autocommit()` on sync connections, and similar "
+"transaction control methods available on the async connections."
+msgstr ""
+
+#: ../../../news.rst:297
+msgid ""
+"Add a `size` parameter to `~Cursor.stream()` to enable results retrieval in "
+"chunks instead of row-by-row (:ticket:`#794`)."
+msgstr ""
+
+#: ../../../news.rst:302
+msgid ""
+"Add support for libpq functions to close prepared statements and portals "
+"introduced in libpq v17 (:ticket:`#603`)."
+msgstr ""
+
+#: ../../../news.rst:304
+msgid ""
+"Add support for libpq encrypted and non-blocking query cancellation "
+"functions introduced in libpq v17 (:ticket:`#754`)."
+msgstr ""
+
+#: ../../../news.rst:306
+msgid ""
+"Add support for libpq function to retrieve results in chunks introduced in "
+"libpq v17 (:ticket:`#793`)."
+msgstr ""
+
+#: ../../../news.rst:308
+msgid ""
+"Add support for libpq function to change role passwords introduced in libpq "
+"v17 (:ticket:`#818`)."
+msgstr ""
+
+#: ../../../news.rst:313
+msgid "Drop support for Python 3.7."
+msgstr ""
+
+#: ../../../news.rst:314
+msgid ""
+"Prepared statements are now :ref:`compatible with PgBouncer <pgbouncer>`. (:"
+"ticket:`#589`)."
+msgstr ""
+
+#: ../../../news.rst:316
+msgid ""
+"Disable receiving more than one result on the same cursor in pipeline mode, "
+"to iterate through `~Cursor.nextset()`. The behaviour was different than in "
+"non-pipeline mode and not totally reliable (:ticket:`#604`). The `Cursor` "
+"now only preserves the results set of the last `~Cursor.execute()`, "
+"consistently with non-pipeline mode."
+msgstr ""
+
+#: ../../../news.rst:326
+msgid "Psycopg 3.1.20"
+msgstr ""
+
+#: ../../../news.rst:328
+msgid ""
+"Use the simple query protocol to execute COMMIT/ROLLBACK when possible. This "
+"should make querying the PgBouncer admin database easier (:ticket:`#820`)."
+msgstr ""
+
+#: ../../../news.rst:331
+msgid ""
+"Avoid unneeded escaping checks and memory over-allocation in text copy (:"
+"ticket:`#829`)."
+msgstr ""
+
+#: ../../../news.rst:333
+msgid "Bundle binary package with OpenSSL 3.3.x (:ticket:`#847`)."
+msgstr ""
+
+#: ../../../news.rst:334
+msgid ""
+"Drop macOS ARM64 binary packages for macOS versions before 14.0 and Python "
+"before 3.10 (not for our choice but for the lack of available CI runners; :"
+"ticket:`#858`)"
+msgstr ""
+
+#: ../../../news.rst:340
+msgid "Psycopg 3.1.19"
+msgstr ""
+
+#: ../../../news.rst:342
+msgid ""
+"Fix unaligned access undefined behaviour in C extension (:ticket:`#734`)."
+msgstr ""
+
+#: ../../../news.rst:343
+msgid "Fix excessive stripping of error message prefixes (:ticket:`#752`)."
+msgstr ""
+
+#: ../../../news.rst:344
+msgid ""
+"Allow to specify the ``connect_timeout`` connection parameter as float (:"
+"ticket:`#796`)."
+msgstr ""
+
+#: ../../../news.rst:346
+msgid "Improve COPY performance on macOS (:ticket:`#745`)."
+msgstr ""
+
+#: ../../../news.rst:350
+msgid "Psycopg 3.1.18"
+msgstr ""
+
+#: ../../../news.rst:352
+msgid "Fix possible deadlock on pipeline exit (:ticket:`#685`)."
+msgstr ""
+
+#: ../../../news.rst:353
+msgid "Fix overflow loading large intervals in C module (:ticket:`#719`)."
+msgstr ""
+
+#: ../../../news.rst:354
+msgid ""
+"Fix compatibility with musl libc distributions affected by `CPython issue "
+"#65821`__ (:ticket:`#725`)."
+msgstr ""
+
+#: ../../../news.rst:361
+msgid "Psycopg 3.1.17"
+msgstr ""
+
+#: ../../../news.rst:363
+msgid ""
+"Fix multiple connection attempts when a host name resolve to multiple IP "
+"addresses (:ticket:`#699`)."
+msgstr ""
+
+#: ../../../news.rst:365
+msgid ""
+"Use `typing.Self` as a more correct return value annotation of context "
+"managers and other self-returning methods (see :ticket:`#708`)."
+msgstr ""
+
+#: ../../../news.rst:370
+msgid "Psycopg 3.1.16"
+msgstr ""
+
+#: ../../../news.rst:372
+msgid ""
+"Fix empty ports handling in async multiple connection attempts (:ticket:"
+"`#703`)."
+msgstr ""
+
+#: ../../../news.rst:377
+msgid "Psycopg 3.1.15"
+msgstr ""
+
+#: ../../../news.rst:379
+msgid ""
+"Fix use of ``service`` in connection string (regression in 3.1.13, :ticket:"
+"`#694`)."
+msgstr ""
+
+#: ../../../news.rst:381
+msgid ""
+"Fix async connection to hosts resolving to multiple IP addresses (regression "
+"in 3.1.13, :ticket:`#695`)."
+msgstr ""
+
+#: ../../../news.rst:383
+msgid ""
+"Respect the :envvar:`PGCONNECT_TIMEOUT` environment variable to determine "
+"the connection timeout."
+msgstr ""
+
+#: ../../../news.rst:388
+msgid "Psycopg 3.1.14"
+msgstr ""
+
+#: ../../../news.rst:390
+msgid "Fix :ref:`interaction with gevent <gevent>` (:ticket:`#527`)."
+msgstr ""
+
+#: ../../../news.rst:391
+msgid "Add support for PyPy (:ticket:`#686`)."
+msgstr ""
+
+#: ../../../news.rst:397
+msgid "Psycopg 3.1.13"
+msgstr ""
+
+#: ../../../news.rst:399
+msgid ""
+"Raise `DataError` instead of whatever internal failure trying to dump a "
+"`~datetime.time` object with with a `!tzinfo` specified as `~zoneinfo."
+"ZoneInfo` (ambiguous offset, see :ticket:`#652`)."
+msgstr ""
+
+#: ../../../news.rst:402
+msgid ""
+"Handle gracefully EINTR on signals instead of raising `InterruptedError`, "
+"consistently with :pep:`475` guideline (:ticket:`#667`)."
+msgstr ""
+
+#: ../../../news.rst:404
+msgid ""
+"Fix support for connection strings with multiple hosts/ports and for the "
+"``load_balance_hosts`` connection parameter (:ticket:`#674`)."
+msgstr ""
+
+#: ../../../news.rst:406
+msgid ""
+"Fix memory leak receiving notifications in Python implementation (:ticket:"
+"`#679`)."
+msgstr ""
+
+#: ../../../news.rst:411
+msgid "Psycopg 3.1.12"
+msgstr ""
+
+#: ../../../news.rst:413
+msgid ""
+"Fix possible hanging if a connection is closed while querying (:ticket:"
+"`#608`)."
+msgstr ""
+
+#: ../../../news.rst:414
+msgid ""
+"Fix memory leak when `~register_*()` functions are called repeatedly (:"
+"ticket:`#647`)."
+msgstr ""
+
+#: ../../../news.rst:416
+msgid "Release Python 3.12 binary packages."
+msgstr ""
+
+#: ../../../news.rst:420
+msgid "Psycopg 3.1.11"
+msgstr ""
+
+#: ../../../news.rst:422
+msgid ""
+"Avoid caching the parsing results of large queries to avoid excessive memory "
+"usage (:ticket:`#628`)."
+msgstr ""
+
+#: ../../../news.rst:424
+msgid ""
+"Fix integer overflow in C/binary extension with OID > 2^31 (:ticket:`#630`)."
+msgstr ""
+
+#: ../../../news.rst:425
+msgid ""
+"Fix loading of intervals with days and months or years (:ticket:`#643`)."
+msgstr ""
+
+#: ../../../news.rst:426
+msgid ""
+"Work around excessive CPU usage on Windows (reported in :ticket:`#645`)."
+msgstr ""
+
+#: ../../../news.rst:427
+msgid "Fix building on Solaris and derivatives (:ticket:`#632`)."
+msgstr ""
+
+#: ../../../news.rst:428
+msgid ""
+"Fix possible lack of critical section guard in async `~AsyncCursor."
+"executemany()`."
+msgstr ""
+
+#: ../../../news.rst:430
+msgid "Fix missing pipeline fetch in async `~AsyncCursor.scroll()`."
+msgstr ""
+
+#: ../../../news.rst:431
+msgid ""
+"Build binary packages with libpq 15.4, which allows group-readable "
+"permissions on the SSL certificate on the client (:ticket:`#528`)."
+msgstr ""
+
+#: ../../../news.rst:436
+msgid "Psycopg 3.1.10"
+msgstr ""
+
+#: ../../../news.rst:438
+msgid ""
+"Allow JSON dumpers to dump `bytes` directly instead of `str`, for better "
+"compatibility with libraries like orjson and msgspec (:ticket:`#569`)"
+msgstr ""
+
+#: ../../../news.rst:441
+msgid ""
+"Fix prepared statement cache validation when exiting pipeline mode (or "
+"`~Cursor.executemany()`) in case an error occurred within the pipeline (:"
+"ticket:`#585`)."
+msgstr ""
+
+#: ../../../news.rst:444
+msgid ""
+"Fix `connect()` to avoid \"leaking\" an open `~pq.PGconn` attached to the "
+"`OperationalError` in case of connection failure. `Error.pgconn` is now a "
+"shallow copy of the real libpq connection, and the latter is closed before "
+"the exception propagates (:ticket:`#565`)."
+msgstr ""
+
+#: ../../../news.rst:448
+msgid "Fix possible (ignored) exception on objects deletion (:ticket:`#591`)."
+msgstr ""
+
+#: ../../../news.rst:449
+msgid ""
+"Don't clobber a Python exception raised during COPY FROM with the resulting "
+"`!QueryCanceled` raised as a consequence (:ticket:`#593`)."
+msgstr ""
+
+#: ../../../news.rst:451
+msgid ""
+"Fix resetting `Connection.read_only` and `~Connection.deferrable` to their "
+"default value using `!None` (:ticket:`#612`)."
+msgstr ""
+
+#: ../../../news.rst:453
+msgid "Add support for Python 3.12."
+msgstr ""
+
+#: ../../../news.rst:457
+msgid "Psycopg 3.1.9"
+msgstr ""
+
+#: ../../../news.rst:459
+msgid ""
+"Fix `TypeInfo.fetch()` using a connection in `!sql_ascii` encoding (:ticket:"
+"`#503`)."
+msgstr ""
+
+#: ../../../news.rst:461
+msgid ""
+"Fix \"filedescriptor out of range\" using a large number of files open in "
+"Python implementation (:ticket:`#532`)."
+msgstr ""
+
+#: ../../../news.rst:463
+msgid ""
+"Allow JSON dumpers to be registered on `!dict` or any other object, as was "
+"possible in psycopg2 (:ticket:`#541`)."
+msgstr ""
+
+#: ../../../news.rst:465
+msgid ""
+"Fix canceling running queries on process interruption in async connections (:"
+"ticket:`#543`)."
+msgstr ""
+
+#: ../../../news.rst:467
+msgid ""
+"Fix loading ROW values with different types in the same query using the "
+"binary protocol (:ticket:`#545`)."
+msgstr ""
+
+#: ../../../news.rst:469
+msgid "Fix dumping recursive composite types (:ticket:`#547`)."
+msgstr ""
+
+#: ../../../news.rst:473
+msgid "Psycopg 3.1.8"
+msgstr ""
+
+#: ../../../news.rst:475
+msgid ""
+"Don't pollute server logs when types looked for by `TypeInfo.fetch()` are "
+"not found (:ticket:`#473`)."
+msgstr ""
+
+#: ../../../news.rst:477
+msgid ""
+"Set `Cursor.rowcount` to the number of rows of each result set from `~Cursor."
+"executemany()` when called with `!returning=True` (:ticket:`#479`)."
+msgstr ""
+
+#: ../../../news.rst:479
+msgid "Fix `TypeInfo.fetch()` when used with `ClientCursor` (:ticket:`#484`)."
+msgstr ""
+
+#: ../../../news.rst:483
+msgid "Psycopg 3.1.7"
+msgstr ""
+
+#: ../../../news.rst:485
+msgid "Fix server-side cursors using row factories (:ticket:`#464`)."
+msgstr ""
+
+#: ../../../news.rst:489
+msgid "Psycopg 3.1.6"
+msgstr ""
+
+#: ../../../news.rst:491
+msgid "Fix `cursor.copy()` with cursors using row factories (:ticket:`#460`)."
+msgstr ""
+
+#: ../../../news.rst:495
+msgid "Psycopg 3.1.5"
+msgstr ""
+
+#: ../../../news.rst:497
+msgid "Fix array loading slowness compared to psycopg2 (:ticket:`#359`)."
+msgstr ""
+
+#: ../../../news.rst:498
+msgid "Improve performance around network communication (:ticket:`#414`)."
+msgstr ""
+
+#: ../../../news.rst:499
+msgid ""
+"Return `!bytes` instead of `!memoryview` from `pq.Encoding` methods (:ticket:"
+"`#422`)."
+msgstr ""
+
+#: ../../../news.rst:501
+msgid ""
+"Fix `Cursor.rownumber` to return `!None` when the result has no row to fetch "
+"(:ticket:`#437`)."
+msgstr ""
+
+#: ../../../news.rst:503
+msgid ""
+"Avoid error in Pyright caused by aliasing `!TypeAlias` (:ticket:`#439`)."
+msgstr ""
+
+#: ../../../news.rst:504
+msgid ""
+"Fix `Copy.set_types()` used with `varchar` and `name` types (:ticket:`#452`)."
+msgstr ""
+
+#: ../../../news.rst:505
+msgid "Improve performance using :ref:`row-factories` (:ticket:`#457`)."
+msgstr ""
+
+#: ../../../news.rst:509
+msgid "Psycopg 3.1.4"
+msgstr ""
+
+#: ../../../news.rst:511
+msgid ""
+"Include :ref:`error classes <sqlstate-exceptions>` defined in PostgreSQL 15."
+msgstr ""
+
+#: ../../../news.rst:512
+msgid "Add support for Python 3.11 (:ticket:`#305`)."
+msgstr ""
+
+#: ../../../news.rst:513
+msgid "Build binary packages with libpq from PostgreSQL 15.0."
+msgstr ""
+
+#: ../../../news.rst:517
+msgid "Psycopg 3.1.3"
+msgstr ""
+
+#: ../../../news.rst:519
+msgid ""
+"Restore the state of the connection if `Cursor.stream()` is terminated "
+"prematurely (:ticket:`#382`)."
+msgstr ""
+
+#: ../../../news.rst:521
+msgid ""
+"Fix regression introduced in 3.1 with different named tuples mangling rules "
+"for non-ascii attribute names (:ticket:`#386`)."
+msgstr ""
+
+#: ../../../news.rst:523
+msgid ""
+"Fix handling of queries with escaped percent signs (``%%``) in "
+"`ClientCursor` (:ticket:`#399`)."
+msgstr ""
+
+#: ../../../news.rst:525
+msgid ""
+"Fix possible duplicated BEGIN statements emitted in pipeline mode (:ticket:"
+"`#401`)."
+msgstr ""
+
+#: ../../../news.rst:530
+msgid "Psycopg 3.1.2"
+msgstr ""
+
+#: ../../../news.rst:532
+msgid ""
+"Fix handling of certain invalid time zones causing problems on Windows (:"
+"ticket:`#371`)."
+msgstr ""
+
+#: ../../../news.rst:534
+msgid ""
+"Fix segfault occurring when a loader fails initialization (:ticket:`#372`)."
+msgstr ""
+
+#: ../../../news.rst:535
+msgid ""
+"Fix invalid SAVEPOINT issued when entering `Connection.transaction()` within "
+"a pipeline using an implicit transaction (:ticket:`#374`)."
+msgstr ""
+
+#: ../../../news.rst:537
+msgid ""
+"Fix queries with repeated named parameters in `ClientCursor` (:ticket:"
+"`#378`)."
+msgstr ""
+
+#: ../../../news.rst:538
+msgid "Distribute macOS arm64 (Apple M1) binary packages (:ticket:`#344`)."
+msgstr ""
+
+#: ../../../news.rst:542
+msgid "Psycopg 3.1.1"
+msgstr ""
+
+#: ../../../news.rst:544
+msgid ""
+"Work around broken Homebrew installation of the libpq in a non-standard path "
+"(:ticket:`#364`)"
+msgstr ""
+
+#: ../../../news.rst:546
+msgid ""
+"Fix possible \"unrecognized service\" error in async connection when no port "
+"is specified (:ticket:`#366`)."
+msgstr ""
+
+#: ../../../news.rst:551
+msgid "Psycopg 3.1"
+msgstr ""
+
+#: ../../../news.rst:553
+msgid "Add :ref:`Pipeline mode <pipeline-mode>` (:ticket:`#74`)."
+msgstr ""
+
+#: ../../../news.rst:554
+msgid "Add :ref:`client-side-binding-cursors` (:ticket:`#101`)."
+msgstr ""
+
+#: ../../../news.rst:555
+msgid ""
+"Add `CockroachDB <https://www.cockroachlabs.com/>`__ support in `psycopg."
+"crdb` (:ticket:`#313`)."
+msgstr ""
+
+#: ../../../news.rst:557
+msgid "Add :ref:`Two-Phase Commit <two-phase-commit>` support (:ticket:`#72`)."
+msgstr ""
+
+#: ../../../news.rst:558
+msgid "Add :ref:`adapt-enum` (:ticket:`#274`)."
+msgstr ""
+
+#: ../../../news.rst:559
+msgid ""
+"Add ``returning`` parameter to `~Cursor.executemany()` to retrieve query "
+"results (:ticket:`#164`)."
+msgstr ""
+
+#: ../../../news.rst:561
+msgid ""
+"`~Cursor.executemany()` performance improved by using batch mode internally "
+"(:ticket:`#145`)."
+msgstr ""
+
+#: ../../../news.rst:563
+msgid "Add parameters to `~Cursor.copy()`."
+msgstr ""
+
+#: ../../../news.rst:564
+msgid "Add :ref:`COPY Writer objects <copy-writers>`."
+msgstr ""
+
+#: ../../../news.rst:565
+msgid ""
+"Resolve domain names asynchronously in `AsyncConnection.connect()` (:ticket:"
+"`#259`)."
+msgstr ""
+
+#: ../../../news.rst:567
+msgid "Add `pq.PGconn.trace()` and related trace functions (:ticket:`#167`)."
+msgstr ""
+
+#: ../../../news.rst:568
+msgid ""
+"Add ``prepare_threshold`` parameter to `Connection` init (:ticket:`#200`)."
+msgstr ""
+
+#: ../../../news.rst:569
+msgid "Add ``cursor_factory`` parameter to `Connection` init."
+msgstr ""
+
+#: ../../../news.rst:570
+msgid "Add `Error.pgconn` and `Error.pgresult` attributes (:ticket:`#242`)."
+msgstr ""
+
+#: ../../../news.rst:571
+msgid ""
+"Restrict queries to be `~typing.LiteralString` as per :pep:`675` (:ticket:"
+"`#323`)."
+msgstr ""
+
+#: ../../../news.rst:573
+msgid ""
+"Add explicit type cast to values converted by `sql.Literal` (:ticket:`#205`)."
+msgstr ""
+
+#: ../../../news.rst:574
+msgid "Drop support for Python 3.6."
+msgstr ""
+
+#: ../../../news.rst:578
+msgid "Psycopg 3.0.17"
+msgstr ""
+
+#: ../../../news.rst:580
+msgid ""
+"Fix segfaults on fork on some Linux systems using `ctypes` implementation (:"
+"ticket:`#300`)."
+msgstr ""
+
+#: ../../../news.rst:582
+msgid "Load bytea as bytes, not memoryview, using `ctypes` implementation."
+msgstr ""
+
+#: ../../../news.rst:586
+msgid "Psycopg 3.0.16"
+msgstr ""
+
+#: ../../../news.rst:588
+msgid "Fix missing `~Cursor.rowcount` after SHOW (:ticket:`#343`)."
+msgstr ""
+
+#: ../../../news.rst:589
+msgid "Add scripts to build macOS arm64 packages (:ticket:`#162`)."
+msgstr ""
+
+#: ../../../news.rst:593
+msgid "Psycopg 3.0.15"
+msgstr ""
+
+#: ../../../news.rst:595
+msgid ""
+"Fix wrong escaping of unprintable chars in COPY (nonetheless correctly "
+"interpreted by PostgreSQL)."
+msgstr ""
+
+#: ../../../news.rst:597
+msgid ""
+"Restore the connection to usable state after an error in `~Cursor.stream()`."
+msgstr ""
+
+#: ../../../news.rst:598
+msgid ""
+"Raise `DataError` instead of `OverflowError` loading binary intervals out-of-"
+"range."
+msgstr ""
+
+#: ../../../news.rst:600
+msgid "Distribute ``manylinux2014`` wheel packages (:ticket:`#124`)."
+msgstr ""
+
+#: ../../../news.rst:604
+msgid "Psycopg 3.0.14"
+msgstr ""
+
+#: ../../../news.rst:606
+msgid "Raise `DataError` dumping arrays of mixed types (:ticket:`#301`)."
+msgstr ""
+
+#: ../../../news.rst:607
+msgid ""
+"Fix handling of incorrect server results, with blank sqlstate (:ticket:"
+"`#303`)."
+msgstr ""
+
+#: ../../../news.rst:608
+msgid "Fix bad Float4 conversion on ppc64le/musllinux (:ticket:`#304`)."
+msgstr ""
+
+#: ../../../news.rst:612
+msgid "Psycopg 3.0.13"
+msgstr ""
+
+#: ../../../news.rst:614
+msgid "Fix `Cursor.stream()` slowness (:ticket:`#286`)."
+msgstr ""
+
+#: ../../../news.rst:615
+msgid ""
+"Fix oid for lists of integers, which might cause the server choosing bad "
+"plans (:ticket:`#293`)."
+msgstr ""
+
+#: ../../../news.rst:617
+msgid ""
+"Make `Connection.cancel()` on a closed connection a no-op instead of an "
+"error."
+msgstr ""
+
+#: ../../../news.rst:622
+msgid "Psycopg 3.0.12"
+msgstr ""
+
+#: ../../../news.rst:624
+msgid ""
+"Allow `bytearray`/`memoryview` data too as `Copy.write()` input (:ticket:"
+"`#254`)."
+msgstr ""
+
+#: ../../../news.rst:626
+msgid "Fix dumping `~enum.IntEnum` in text mode, Python implementation."
+msgstr ""
+
+#: ../../../news.rst:630
+msgid "Psycopg 3.0.11"
+msgstr ""
+
+#: ../../../news.rst:632
+msgid ""
+"Fix `DataError` loading arrays with dimensions information (:ticket:`#253`)."
+msgstr ""
+
+#: ../../../news.rst:633
+msgid "Fix hanging during COPY in case of memory error (:ticket:`#255`)."
+msgstr ""
+
+#: ../../../news.rst:634
+msgid ""
+"Fix error propagation from COPY worker thread (mentioned in :ticket:`#255`)."
+msgstr ""
+
+#: ../../../news.rst:638
+msgid "Psycopg 3.0.10"
+msgstr ""
+
+#: ../../../news.rst:640
+msgid ""
+"Leave the connection in working state after interrupting a query with Ctrl-C "
+"(:ticket:`#231`)."
+msgstr ""
+
+#: ../../../news.rst:642
+msgid ""
+"Fix `Cursor.description` after a COPY ... TO STDOUT operation (:ticket:"
+"`#235`)."
+msgstr ""
+
+#: ../../../news.rst:644
+msgid "Fix building on FreeBSD and likely other BSD flavours (:ticket:`#241`)."
+msgstr ""
+
+#: ../../../news.rst:648
+msgid "Psycopg 3.0.9"
+msgstr ""
+
+#: ../../../news.rst:650
+msgid "Set `Error.sqlstate` when an unknown code is received (:ticket:`#225`)."
+msgstr ""
+
+#: ../../../news.rst:651
+msgid ""
+"Add the `!tzdata` package as a dependency on Windows in order to handle time "
+"zones (:ticket:`#223`)."
+msgstr ""
+
+#: ../../../news.rst:656
+msgid "Psycopg 3.0.8"
+msgstr ""
+
+#: ../../../news.rst:658
+msgid ""
+"Decode connection errors in the ``client_encoding`` specified in the "
+"connection string, if available (:ticket:`#194`)."
+msgstr ""
+
+#: ../../../news.rst:660
+msgid ""
+"Fix possible warnings in objects deletion on interpreter shutdown (:ticket:"
+"`#198`)."
+msgstr ""
+
+#: ../../../news.rst:662
+msgid ""
+"Don't leave connections in ACTIVE state in case of error during COPY ... TO "
+"STDOUT (:ticket:`#203`)."
+msgstr ""
+
+#: ../../../news.rst:667
+msgid "Psycopg 3.0.7"
+msgstr ""
+
+#: ../../../news.rst:669
+msgid ""
+"Fix crash in `~Cursor.executemany()` with no input sequence (:ticket:`#179`)."
+msgstr ""
+
+#: ../../../news.rst:671
+msgid ""
+"Fix wrong `~Cursor.rowcount` after an `~Cursor.executemany()` returning no "
+"rows (:ticket:`#178`)."
+msgstr ""
+
+#: ../../../news.rst:676
+msgid "Psycopg 3.0.6"
+msgstr ""
+
+#: ../../../news.rst:678
+msgid ""
+"Allow to use `Cursor.description` if the connection is closed (:ticket:"
+"`#172`)."
+msgstr ""
+
+#: ../../../news.rst:680
+msgid ""
+"Don't raise exceptions on `ServerCursor.close()` if the connection is closed "
+"(:ticket:`#173`)."
+msgstr ""
+
+#: ../../../news.rst:682
+msgid ""
+"Fail on `Connection.cursor()` if the connection is closed (:ticket:`#174`)."
+msgstr ""
+
+#: ../../../news.rst:683
+msgid ""
+"Raise `ProgrammingError` if out-of-order exit from transaction contexts is "
+"detected (:tickets:`#176, #177`)."
+msgstr ""
+
+#: ../../../news.rst:685
+msgid "Add `!CHECK_STANDBY` value to `~pq.ConnStatus` enum."
+msgstr ""
+
+#: ../../../news.rst:689
+msgid "Psycopg 3.0.5"
+msgstr ""
+
+#: ../../../news.rst:691
+msgid ""
+"Fix possible \"Too many open files\" OS error, reported on macOS but "
+"possible on other platforms too (:ticket:`#158`)."
+msgstr ""
+
+#: ../../../news.rst:693
+msgid ""
+"Don't clobber exceptions if a transaction block exit with error and rollback "
+"fails (:ticket:`#165`)."
+msgstr ""
+
+#: ../../../news.rst:698
+msgid "Psycopg 3.0.4"
+msgstr ""
+
+#: ../../../news.rst:700
+msgid ""
+"Allow to use the module with strict strings comparison (:ticket:`#147`)."
+msgstr ""
+
+#: ../../../news.rst:701
+msgid ""
+"Fix segfault on Python 3.6 running in ``-W error`` mode, related to `!"
+"backport.zoneinfo` (:ticket:`#109`). <https://github.com/pganssle/zoneinfo/"
+"issues/109>`__."
+msgstr ""
+
+#: ../../../news.rst:704
+msgid ""
+"Build binary package with libpq versions not affected by `CVE-2021-23222 "
+"<https://www.postgresql.org/support/security/CVE-2021-23222/>`__ (:ticket:"
+"`#149`)."
+msgstr ""
+
+#: ../../../news.rst:710
+msgid "Psycopg 3.0.3"
+msgstr ""
+
+#: ../../../news.rst:712
+msgid ""
+"Release musllinux binary packages, compatible with Alpine Linux (:ticket:"
+"`#141`)."
+msgstr ""
+
+#: ../../../news.rst:714
+msgid ""
+"Reduce size of binary package by stripping debug symbols (:ticket:`#142`)."
+msgstr ""
+
+#: ../../../news.rst:715
+msgid "Include typing information in the `!psycopg_binary` package."
+msgstr ""
+
+#: ../../../news.rst:719
+msgid "Psycopg 3.0.2"
+msgstr ""
+
+#: ../../../news.rst:721
+msgid "Fix type hint for `sql.SQL.join()` (:ticket:`#127`)."
+msgstr ""
+
+#: ../../../news.rst:722
+msgid "Fix type hint for `Connection.notifies()` (:ticket:`#128`)."
+msgstr ""
+
+#: ../../../news.rst:723
+msgid ""
+"Fix call to `MultiRange.__setitem__()` with a non-iterable value and a "
+"slice, now raising a `TypeError` (:ticket:`#129`)."
+msgstr ""
+
+#: ../../../news.rst:725
+msgid "Fix disable cursors methods after close() (:ticket:`#125`)."
+msgstr ""
+
+#: ../../../news.rst:729
+msgid "Psycopg 3.0.1"
+msgstr ""
+
+#: ../../../news.rst:731
+msgid ""
+"Fix use of the wrong dumper reusing cursors with the same query but "
+"different parameter types (:ticket:`#112`)."
+msgstr ""
+
+#: ../../../news.rst:736
+msgid "Psycopg 3.0"
+msgstr ""
+
+#: ../../../news.rst:738
+msgid "First stable release. Changed from 3.0b1:"
+msgstr ""
+
+#: ../../../news.rst:740
+msgid "Add :ref:`adapt-shapely` (:ticket:`#80`)."
+msgstr ""
+
+#: ../../../news.rst:741
+msgid "Add :ref:`adapt-multirange` (:ticket:`#75`)."
+msgstr ""
+
+#: ../../../news.rst:742
+msgid "Add `pq.__build_version__` constant."
+msgstr ""
+
+#: ../../../news.rst:743
+msgid "Don't use the extended protocol with COPY, (:tickets:`#78, #82`)."
+msgstr ""
+
+#: ../../../news.rst:744
+msgid "Add ``context`` parameter to `~Connection.connect()` (:ticket:`#83`)."
+msgstr ""
+
+#: ../../../news.rst:745
+msgid "Fix selection of dumper by oid after `~Copy.set_types()`."
+msgstr ""
+
+#: ../../../news.rst:746
+msgid ""
+"Drop `!Connection.client_encoding`. Use `ConnectionInfo.encoding` to read "
+"it, and a :sql:`SET` statement to change it."
+msgstr ""
+
+#: ../../../news.rst:748
+msgid "Add binary packages for Python 3.10 (:ticket:`#103`)."
+msgstr ""
+
+#: ../../../news.rst:752
+msgid "Psycopg 3.0b1"
+msgstr ""
+
+#: ../../../news.rst:754
+msgid "First public release on PyPI."
+msgstr ""
+
+#: ../../../news.rst:3
+msgid "Release notes"
+msgstr ""
+
+#: ../../../news.rst:3
+msgid "News"
+msgstr ""

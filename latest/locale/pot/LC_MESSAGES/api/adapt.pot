@@ -1,0 +1,378 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/adapt.rst:2
+msgid "`adapt` -- Types adaptation"
+msgstr ""
+
+#: ../../../api/adapt.rst:6
+msgid ""
+"The `!psycopg.adapt` module exposes a set of objects useful for the "
+"configuration of *data adaptation*, which is the conversion of Python "
+"objects to PostgreSQL data types and back."
+msgstr ""
+
+#: ../../../api/adapt.rst:10
+msgid ""
+"These objects are useful if you need to configure data adaptation, i.e. if "
+"you need to change the default way that Psycopg converts between types or if "
+"you want to adapt custom data types and objects. You don't need this object "
+"in the normal use of Psycopg."
+msgstr ""
+
+#: ../../../api/adapt.rst:15
+msgid "See :ref:`adaptation` for an overview of the Psycopg adaptation system."
+msgstr ""
+
+#: ../../../api/adapt.rst:21
+msgid "Dumpers and loaders"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Dumper:1
+msgid "Convert Python object of the type `!cls` to PostgreSQL representation."
+msgstr ""
+
+#: ../../../api/adapt.rst:25
+msgid ""
+"This is an `abstract base class`_, partially implementing the `~psycopg.abc."
+"Dumper` protocol. Subclasses *must* at least implement the `.dump()` method "
+"and optionally override other members."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Dumper.dump:1
+msgid "Convert the object `!obj` to PostgreSQL representation."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_dumper:0
+#: psycopg._adapters_map.AdaptersMap.register_loader:0 ../../../api/adapt.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Dumper.dump:3
+msgid "the object to convert."
+msgstr ""
+
+#: ../../../api/adapt.rst:33
+msgid ""
+"`!dump()` can also return `!None`, to represent a :sql:`NULL` in the "
+"database."
+msgstr ""
+
+#: ../../../api/adapt.rst:40
+msgid ""
+"Class attribute. Set it to `~psycopg.pq.Format.BINARY` if the class `dump()` "
+"methods converts the object to binary format."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Dumper.quote:1
+msgid ""
+"By default return the `dump()` value quoted and sanitised, so that the "
+"result can be used to build a SQL string. This works well for most types and "
+"you won't likely have to implement this method in a subclass."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Dumper.get_key:1
+msgid ""
+"Implementation of the `~psycopg.abc.Dumper.get_key()` member of the "
+"`~psycopg.abc.Dumper` protocol. Look at its definition for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Dumper.get_key:4
+msgid ""
+"This implementation returns the `!cls` passed in the constructor. Subclasses "
+"needing to specialise the PostgreSQL type according to the *value* of the "
+"object dumped (not only according to to its type) should override this class."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Dumper.upgrade:1
+msgid ""
+"Implementation of the `~psycopg.abc.Dumper.upgrade()` member of the "
+"`~psycopg.abc.Dumper` protocol. Look at its definition for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Dumper.upgrade:4
+msgid ""
+"This implementation just returns `!self`. If a subclass implements "
+"`get_key()` it should probably override `!upgrade()` too."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Loader:1
+msgid "Convert PostgreSQL values with type OID `!oid` to Python objects."
+msgstr ""
+
+#: ../../../api/adapt.rst:52
+msgid ""
+"This is an `abstract base class`_, partially implementing the `~psycopg.abc."
+"Loader` protocol. Subclasses *must* at least implement the `.load()` method "
+"and optionally override other members."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Loader.load:1
+msgid "Convert a PostgreSQL value to a Python object."
+msgstr ""
+
+#: ../../../api/adapt.rst:62
+msgid ""
+"Class attribute. Set it to `~psycopg.pq.Format.BINARY` if the class `load()` "
+"methods converts the object from binary format."
+msgstr ""
+
+#: ../../../api/adapt.rst:67
+msgid "Other objects used in adaptations"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.PyFormat:1
+msgid "Enum representing the format wanted for a query argument."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.PyFormat:3
+msgid ""
+"The value `AUTO` allows psycopg to choose the best format for a certain "
+"parameter."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.AdaptersMap:1
+msgid ""
+"Establish how types should be converted between Python and PostgreSQL in an "
+"`~psycopg.abc.AdaptContext`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.AdaptersMap:4
+msgid ""
+"`!AdaptersMap` maps Python types to `~psycopg.adapt.Dumper` classes to "
+"define how Python types are converted to PostgreSQL, and maps OIDs to "
+"`~psycopg.adapt.Loader` classes to establish how query results are converted "
+"to Python."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.AdaptersMap:9
+msgid ""
+"Every `!AdaptContext` object has an underlying `!AdaptersMap` defining how "
+"types are converted in that context, exposed as the `~psycopg.abc."
+"AdaptContext.adapters` attribute: changing such map allows to customise "
+"adaptation in a context without changing separated contexts."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.AdaptersMap:14
+msgid ""
+"When a context is created from another context (for instance when a "
+"`~psycopg.Cursor` is created from a `~psycopg.Connection`), the parent's `!"
+"adapters` are used as template for the child's `!adapters`, so that every "
+"cursor created from the same connection use the connection's types "
+"configuration, but separate connections have independent mappings."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.AdaptersMap:20
+msgid ""
+"Once created, `!AdaptersMap` are independent. This means that objects "
+"already created are not affected if a wider scope (e.g. the global one) is "
+"changed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.AdaptersMap:24
+msgid ""
+"The connections adapters are initialised using a global `!AdptersMap` "
+"template, exposed as `psycopg.adapters`: changing such mapping allows to "
+"customise the type mapping for every connections created afterwards."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.AdaptersMap:28
+msgid ""
+"The object can start empty or copy from another object of the same class. "
+"Copies are copy-on-write: if the maps are updated make a copy. This way "
+"extending e.g. global map by a connection or a connection map from a cursor "
+"is cheap: a copy is only made on customisation."
+msgstr ""
+
+#: ../../../api/adapt.rst:75
+msgid ":ref:`adaptation` for an explanation about how contexts are connected."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_dumper:1
+msgid ""
+"Configure the context to use `!dumper` to convert objects of type `!cls`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_dumper:3
+msgid ""
+"If two dumpers with different `~Dumper.format` are registered for the same "
+"type, the last one registered will be chosen when the query doesn't specify "
+"a format (i.e. when the value is used with a ``%s`` \"`~PyFormat.AUTO`\" "
+"placeholder)."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_dumper:8
+msgid "The type to manage."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_dumper:9
+msgid "The dumper to register for `!cls`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_dumper:11
+msgid ""
+"If `!cls` is specified as string it will be lazy-loaded, so that it will be "
+"possible to register it without importing it before. In this case it should "
+"be the fully qualified name of the object (e.g. ``\"uuid.UUID\"``)."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_dumper:16
+msgid ""
+"If `!cls` is None, only use the dumper when looking up using "
+"`get_dumper_by_oid()`, which happens when we know the Postgres type to adapt "
+"to, but not the Python type that will be adapted (e.g. in COPY after using "
+"`~psycopg.Copy.set_types()`)."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_loader:1
+msgid "Configure the context to use `!loader` to convert data of oid `!oid`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_loader:3
+msgid "The PostgreSQL OID or type name to manage."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_loader:4
+msgid "The loar to register for `!oid`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.register_loader:6
+msgid ""
+"If `oid` is specified as string, it refers to a type name, which is looked "
+"up in the `types` registry."
+msgstr ""
+
+#: ../../../api/adapt.rst:83
+msgid ""
+"The object where to look up for types information (such as the mapping "
+"between type names and oids in the specified context)."
+msgstr ""
+
+#: ../../../api/adapt.rst:0
+msgid "type"
+msgstr ""
+
+#: ../../../api/adapt.rst:86
+msgid "`~psycopg.types.TypesRegistry`"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_dumper:1
+msgid "Return the dumper class for the given type and format."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_dumper:3
+#: psycopg._adapters_map.AdaptersMap.get_dumper_by_oid:3
+msgid "Raise `~psycopg.ProgrammingError` if a class is not available."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_dumper:5
+msgid "The class to adapt."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_dumper:6
+msgid ""
+"The format to dump to. If `~psycopg.adapt.PyFormat.AUTO`, use the last one "
+"of the dumpers registered on `!cls`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_dumper_by_oid:1
+msgid "Return the dumper class for the given oid and format."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_dumper_by_oid:5
+msgid "The oid of the type to dump to."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_dumper_by_oid:6
+msgid "The format to dump to."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_loader:1
+msgid "Return the loader class for the given oid and format."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_loader:3
+msgid "Return `!None` if not found."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_loader:5
+msgid "The oid of the type to load."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
+#: of psycopg._adapters_map.AdaptersMap.get_loader:6
+msgid "The format to load from."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Transformer:1
+msgid "An object that can adapt efficiently between Python and PostgreSQL."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
+#: of psycopg.adapt.Transformer:3
+msgid ""
+"The life cycle of the object is the query, so it is assumed that attributes "
+"such as the server version or the connection encoding will not change. The "
+"object have its state so adapting several values of the same type can be "
+"optimised."
+msgstr ""
+
+#: ../../../api/adapt.rst:95
+msgid "The context where the transformer should operate."
+msgstr ""

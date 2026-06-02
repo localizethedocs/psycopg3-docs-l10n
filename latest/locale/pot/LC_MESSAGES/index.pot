@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../index.rst:3
+msgid "Psycopg 3 -- PostgreSQL database adapter for Python"
+msgstr ""
+
+#: ../../../index.rst:5
+msgid ""
+"Psycopg 3 is a newly designed PostgreSQL_ database adapter for the Python_ "
+"programming language."
+msgstr ""
+
+#: ../../../index.rst:8
+msgid ""
+"Psycopg 3 presents a familiar interface for everyone who has used `Psycopg "
+"2`_ or any other `DB-API 2.0`_ database adapter, but allows to use more "
+"modern PostgreSQL and Python features, such as:"
+msgstr ""
+
+#: ../../../index.rst:12
+msgid ":ref:`Asynchronous support <async>`"
+msgstr ""
+
+#: ../../../index.rst:13
+msgid ":ref:`COPY support from Python objects <copy>`"
+msgstr ""
+
+#: ../../../index.rst:14
+msgid ":ref:`A redesigned connection pool <connection-pools>`"
+msgstr ""
+
+#: ../../../index.rst:15
+msgid ":ref:`Support for static typing <static-typing>`"
+msgstr ""
+
+#: ../../../index.rst:16
+msgid ":ref:`Server-side parameters binding <server-side-binding>`"
+msgstr ""
+
+#: ../../../index.rst:17
+msgid ":ref:`Prepared statements <prepared-statements>`"
+msgstr ""
+
+#: ../../../index.rst:18
+msgid ":ref:`Statements pipeline <pipeline-mode>`"
+msgstr ""
+
+#: ../../../index.rst:19
+msgid ":ref:`Binary communication <binary-data>`"
+msgstr ""
+
+#: ../../../index.rst:20
+msgid ":ref:`Direct access to the libpq functionalities <psycopg.pq>`"
+msgstr ""
+
+#: ../../../index.rst:29
+msgid "Documentation"
+msgstr ""
+
+#: ../../../index.rst:39
+msgid "Release notes"
+msgstr ""
+
+#: ../../../index.rst:49
+msgid "Indices and tables"
+msgstr ""
+
+#: ../../../index.rst:51
+msgid ":ref:`genindex`"
+msgstr ""
+
+#: ../../../index.rst:52
+msgid ":ref:`modindex`"
+msgstr ""
