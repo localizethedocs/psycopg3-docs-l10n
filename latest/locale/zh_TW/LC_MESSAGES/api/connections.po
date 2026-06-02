@@ -67,7 +67,7 @@ msgstr ""
 
 #: ../../../api/connections.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../api/connections.rst:34
 msgid ""

@@ -46,7 +46,7 @@ msgstr ""
 
 #: ../../../api/types.rst:24
 msgid "Types information"
-msgstr ""
+msgstr "型別資訊"
 
 #: ../../../api/types.rst:26
 msgid ""
@@ -115,7 +115,7 @@ msgstr ""
 #: psycopg.types.json.set_json_dumps:0 psycopg.types.json.set_json_loads:0
 #: ../../../api/types.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../api/types.rst:78
 msgid "the connection to query"

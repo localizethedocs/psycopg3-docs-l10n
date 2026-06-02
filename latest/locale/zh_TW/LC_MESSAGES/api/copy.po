@@ -45,7 +45,7 @@ msgstr ""
 
 #: ../../../api/copy.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
 #: of psycopg.AsyncCopy:3 psycopg.Copy:3

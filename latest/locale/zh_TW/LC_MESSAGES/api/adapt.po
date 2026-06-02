@@ -65,7 +65,7 @@ msgstr ""
 #: of psycopg._adapters_map.AdaptersMap.register_dumper:0
 #: psycopg._adapters_map.AdaptersMap.register_loader:0 ../../../api/adapt.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
 #: of psycopg.adapt.Dumper.dump:3

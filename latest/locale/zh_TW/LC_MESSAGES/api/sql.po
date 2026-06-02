@@ -206,7 +206,7 @@ msgstr ""
 #: of psycopg.sql.Composable.as_bytes:0 psycopg.sql.SQL.format:0
 #: ../../../api/sql.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/sql.py:docstring
 #: of psycopg.sql.Composable.as_string:3

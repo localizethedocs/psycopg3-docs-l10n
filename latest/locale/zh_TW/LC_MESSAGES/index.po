@@ -36,7 +36,7 @@ msgstr ""
 
 #: ../../../index.rst:12
 msgid ":ref:`Asynchronous support <async>`"
-msgstr ""
+msgstr ":ref:`異步支援 <async>`"
 
 #: ../../../index.rst:13
 msgid ":ref:`COPY support from Python objects <copy>`"
@@ -72,11 +72,11 @@ msgstr ""
 
 #: ../../../index.rst:29
 msgid "Documentation"
-msgstr ""
+msgstr "文件"
 
 #: ../../../index.rst:39
 msgid "Release notes"
-msgstr ""
+msgstr "發行備註"
 
 #: ../../../index.rst:49
 msgid "Indices and tables"

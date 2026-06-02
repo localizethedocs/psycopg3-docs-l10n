@@ -51,7 +51,7 @@ msgstr ""
 
 #: ../../../api/dns.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../api/dns.rst:30 ../../../api/dns.rst:106
 msgid ""

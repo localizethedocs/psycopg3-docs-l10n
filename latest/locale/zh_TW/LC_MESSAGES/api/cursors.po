@@ -129,7 +129,7 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
 #: of psycopg.cursor_async.AsyncCursor.set_result:0 ../../../api/cursors.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../api/cursors.rst:75 ../../../api/cursors.rst:387
 #: ../../../api/cursors.rst:441

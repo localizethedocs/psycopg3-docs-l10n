@@ -120,7 +120,7 @@ msgstr ""
 
 #: ../../../api/crdb.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../api/crdb.rst:76
 msgid "the connection to check"

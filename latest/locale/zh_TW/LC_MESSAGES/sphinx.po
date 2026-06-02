@@ -14,7 +14,7 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
@@ -3016,7 +3016,7 @@ msgstr ""
 #: domains/c/__init__.py:354 domains/cpp/__init__.py:485
 #: domains/python/_object.py:190 ext/napoleon/docstring.py:980
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: domains/python/_object.py:206
 msgid "Variables"

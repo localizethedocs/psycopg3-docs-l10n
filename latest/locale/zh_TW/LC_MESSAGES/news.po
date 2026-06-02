@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../news.rst:8
 msgid "``psycopg`` release notes"
-msgstr ""
+msgstr "``psycopg`` 發行備註"
 
 #: ../../../news.rst:11
 msgid "Future releases"

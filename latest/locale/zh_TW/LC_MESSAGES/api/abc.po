@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../api/abc.rst:2
 msgid "`!abc` -- Psycopg abstract classes"
-msgstr ""
+msgstr "`!abc` -- Psycopg 抽象類別"
 
 #: ../../../api/abc.rst:4
 msgid ""
@@ -49,7 +49,7 @@ msgstr ""
 #: of psycopg.abc.Dumper.get_key:0 psycopg.abc.Dumper.upgrade:0
 #: ../../../api/abc.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../api/abc.rst:21 ../../../api/abc.rst:72
 msgid "The type that will be managed by this dumper."

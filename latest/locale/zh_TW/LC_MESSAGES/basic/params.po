@@ -369,7 +369,7 @@ msgstr ""
 
 #: ../../../basic/params.rst:3 ../../../basic/params.rst:200
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../basic/params.rst:126
 msgid "Security"
