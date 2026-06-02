@@ -1,0 +1,287 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../release.rst:4
+msgid "How to make a psycopg release"
+msgstr ""
+
+#: ../../../release.rst:6
+msgid ""
+"Check if there is a new version or libpq_ or OpenSSL_; in such case update "
+"``LIBPQ_VERSION`` and/or ``OPENSSL_VERSION`` in ``.github/workflows/packages-"
+"bin.yml``."
+msgstr ""
+
+#: ../../../release.rst:14
+msgid ""
+"Check if there is a new `cibuildwheel release`__; if so, upgrade it in ``."
+"github/workflows/packages-bin.yml``."
+msgstr ""
+
+#: ../../../release.rst:19
+msgid "Use ``tools/bump_version.py`` to upgrade package version numbers."
+msgstr ""
+
+#: ../../../release.rst:21
+msgid "Push to GitHub to run `the tests workflow`__."
+msgstr ""
+
+#: ../../../release.rst:25
+msgid "Build the packages by triggering manually the ones requested among:"
+msgstr ""
+
+#: ../../../release.rst:27
+msgid "`Source packages`__"
+msgstr ""
+
+#: ../../../release.rst:28
+msgid "`Binary packages`__"
+msgstr ""
+
+#: ../../../release.rst:29
+msgid "`Pool packages`__"
+msgstr ""
+
+#: ../../../release.rst:35
+msgid "Delete the ``wheelhouse`` directory if there is one."
+msgstr ""
+
+#: ../../../release.rst:37
+msgid ""
+"If all packages were built ok, push the new tag created by ``bump_version."
+"py``::"
+msgstr ""
+
+#: ../../../release.rst:39
+msgid "git push --tags"
+msgstr ""
+
+#: ../../../release.rst:41
+msgid ""
+"Download the ``artifacts.zip`` package from the last Packages workflow run."
+msgstr ""
+
+#: ../../../release.rst:43
+msgid "Unpack the packages in the wheelhouse dir::"
+msgstr ""
+
+#: ../../../release.rst:45
+msgid ""
+"mkdir -p wheelhouse\n"
+"cd wheelhouse\n"
+"unzip ~/Downloads/artifact.zip"
+msgstr ""
+
+#: ../../../release.rst:49
+msgid "If the package is a testing one, upload it on TestPyPI with::"
+msgstr ""
+
+#: ../../../release.rst:51
+msgid "$ twine upload -r testpypi *"
+msgstr ""
+
+#: ../../../release.rst:53
+msgid "If the package is stable, omit ``-r testpypi``::"
+msgstr ""
+
+#: ../../../release.rst:55
+msgid "$ twine upload *"
+msgstr ""
+
+#: ../../../release.rst:57
+msgid "Run ``tools/bump_version.py -l dev`` to bump to the next dev version."
+msgstr ""
+
+#: ../../../release.rst:61
+msgid "When a new PostgreSQL major version is released"
+msgstr ""
+
+#: ../../../release.rst:63
+msgid ""
+"Add the new version to ``tools/update_errors.py`` and run the script to add "
+"new error classes."
+msgstr ""
+
+#: ../../../release.rst:66
+msgid ""
+"If the script above found any change, document the version added at the "
+"bottom of ``docs/api/errors.rst``."
+msgstr ""
+
+#: ../../../release.rst:69
+msgid ""
+"Run the script ``tools/update_oids.py`` to add new oids. Use ``-h`` to get "
+"an example docker command line to run a server locally."
+msgstr ""
+
+#: ../../../release.rst:72
+msgid "Check if there are new enum values to include in:"
+msgstr ""
+
+#: ../../../release.rst:74
+msgid "``psycopg_c/psycopg_c/pq/libpq.pxd``;"
+msgstr ""
+
+#: ../../../release.rst:75
+msgid "``psycopg/psycopg/pq/_enums.py``."
+msgstr ""
+
+#: ../../../release.rst:77
+msgid "Include the new version in GitHub Actions test and package grids."
+msgstr ""
+
+#: ../../../release.rst:79
+msgid "Bump ``PG_VERSION`` in the ``macos`` job of"
+msgstr ""
+
+#: ../../../release.rst:81
+msgid "``.github/workflows/packages-bin.yml``."
+msgstr ""
+
+#: ../../../release.rst:82
+msgid "``.github/workflows/tests.yml``."
+msgstr ""
+
+#: ../../../release.rst:84
+msgid "Update the documented versions in:"
+msgstr ""
+
+#: ../../../release.rst:86
+msgid "``docs/basic/install.rst``;"
+msgstr ""
+
+#: ../../../release.rst:87
+msgid "``content/features/contents.lr`` in the psycopg-website repository."
+msgstr ""
+
+#: ../../../release.rst:91
+msgid "Adding new libpq wrapper methods"
+msgstr ""
+
+#: ../../../release.rst:93
+msgid ""
+"The ``psycopg.pq`` module is a thin wrapper around the libpq, only doing the "
+"minimal work to make the library somewhat Pythonic (e.g. converting types "
+"and raising exceptions instead of returning error values)."
+msgstr ""
+
+#: ../../../release.rst:97
+msgid ""
+"When new functionalities are added to the libpq we often want to expose them "
+"to Python (either to allow Python users to use them directly or to build new "
+"features on top of them). The procedure touches several files, in order to "
+"add function wrappers to both the Python and the C implementation of the "
+"libpq, to the objects interfaces and every object implementing them, and "
+"eventually to bubble up to some Python object."
+msgstr ""
+
+#: ../../../release.rst:104
+msgid ""
+"It is polite to add new top-level objects interfaces (such as ``connection."
+"info`` or ``Capabilities`` only on minor releases (3.x), but if we need to "
+"add a libpq function wrapper to solve an issue we can do it in a bugfix "
+"release, without documenting it (e.g. ``PQconnectionUsedGSSAPI`` was added "
+"in 3.2.10 but only advertised in 3.3)."
+msgstr ""
+
+#: ../../../release.rst:110
+msgid ""
+"You can use `PR 1140`__ as a reference for the work to do (code, tests, "
+"documentation). In this MR, the changes in the first commit are suitable to "
+"introduce a new function in a bugfix release, the second commit changes make "
+"the new functionality public."
+msgstr ""
+
+#: ../../../release.rst:119
+msgid "When a new Python major version is released"
+msgstr ""
+
+#: ../../../release.rst:121
+msgid ""
+"Add the new version to the relevant test matrices in ``.github/workflows/"
+"tests.yml`` and ``.github/workflows/packages-bin.yml``."
+msgstr ""
+
+#: ../../../release.rst:124
+msgid ""
+"Update ``docs/basic/install.rst`` with the correct range of supported Python "
+"versions."
+msgstr ""
+
+#: ../../../release.rst:127
+msgid ""
+"Add the ``Programming Language :: Python :: 3.<X>`` classifier to ``psycopg/"
+"pyproject.toml``, ``psycopg_c/pyproject.toml``, and ``psycopg_pool/pyproject."
+"toml``."
+msgstr ""
+
+#: ../../../release.rst:133
+msgid "When dropping end-of-life Python versions"
+msgstr ""
+
+#: ../../../release.rst:135
+msgid ""
+"Update project metadata, ``requires-python`` and (maybe) package "
+"dependencies in ``pyproject.toml`` files of the corresponding ``psycopg`` "
+"directories."
+msgstr ""
+
+#: ../../../release.rst:138
+msgid ""
+"Update GitHub Actions workflow files in the ``.github/workflows/`` "
+"directory, e.g., ``tests.yml``, ``.3rd-party-tests.yml``, ``packages-bin."
+"yml``."
+msgstr ""
+
+#: ../../../release.rst:141
+msgid "Bump versions in the ``tests/constraints.txt`` file if it is necessary."
+msgstr ""
+
+#: ../../../release.rst:143
+msgid ""
+"bump ``build-system.requires`` in ``*/pyproject.toml``. Install the packages "
+"with ``pip install ./psycopg*/`` and check eventual warnings."
+msgstr ""
+
+#: ../../../release.rst:146
+msgid ""
+"You may grep throughout the project for occurrences of a version to be "
+"dropped. However, favouring smaller pull requests is convenient and easy to "
+"review. An example for grepping `end-of-life <https://endoflife.date/"
+"python>` Python 3.8::"
+msgstr ""
+
+#: ../../../release.rst:150
+msgid ""
+"git grep -E -e '\\b3\\.8\\b' -e '\\b(cp)?38\\b' -e '\\b3, 8\\b'\n"
+"git grep -E -e '\\b3\\.9\\b' -e '\\b(cp)?39\\b' -e '\\b3, 9\\b'"
+msgstr ""
+
+#: ../../../release.rst:153
+msgid ""
+"Consider using pyupgrade_ with ``--py3NN-plus`` in order to refresh syntax "
+"to Python 3.NN (the new minimum supported version)."
+msgstr ""
+
+#: ../../../release.rst:158
+msgid "Examples:"
+msgstr ""
+
+#: ../../../release.rst:160
+msgid "`PR #977 <https://github.com/psycopg/psycopg/pull/977>`_"
+msgstr ""

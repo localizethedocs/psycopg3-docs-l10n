@@ -1,0 +1,575 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../basic/transactions.rst:3 ../../../basic/transactions.rst:11
+msgid "Transactions management"
+msgstr ""
+
+#: ../../../basic/transactions.rst:13
+msgid ""
+"Psycopg has a behaviour that may seem surprising compared to :program:"
+"`psql`: by default, any database operation will start a new transaction. As "
+"a consequence, changes made by any cursor of the connection will not be "
+"visible until `Connection.commit()` is called, and will be discarded by "
+"`Connection.rollback()`. The following operation on the same connection will "
+"start a new transaction."
+msgstr ""
+
+#: ../../../basic/transactions.rst:20
+msgid ""
+"If a database operation fails, the server will refuse further commands, "
+"until a `~rollback()` is called."
+msgstr ""
+
+#: ../../../basic/transactions.rst:23
+msgid ""
+"If the connection is closed with a transaction open, no COMMIT command is "
+"sent to the server, which will then discard the connection. Certain "
+"middleware (such as PgBouncer) will also discard a connection left in "
+"transaction state, so, if possible you will want to commit or rollback a "
+"connection before finishing working with it."
+msgstr ""
+
+#: ../../../basic/transactions.rst:29
+msgid ""
+"An example of what will happen, the first time you will use Psycopg (and to "
+"be disappointed by it), is likely:"
+msgstr ""
+
+#: ../../../basic/transactions.rst:32
+msgid ""
+"conn = psycopg.connect()\n"
+"\n"
+"# Creating a cursor doesn't start a transaction or affect the connection\n"
+"# in any way.\n"
+"cur = conn.cursor()\n"
+"\n"
+"cur.execute(\"SELECT count(*) FROM my_table\")\n"
+"# This function call executes:\n"
+"# - BEGIN\n"
+"# - SELECT count(*) FROM my_table\n"
+"# So now a transaction has started.\n"
+"\n"
+"# If your program spends a long time in this state, the server will keep\n"
+"# a connection \"idle in transaction\", which is likely something undesired\n"
+"\n"
+"cur.execute(\"INSERT INTO data VALUES (%s)\", (\"Hello\",))\n"
+"# This statement is executed inside the transaction\n"
+"\n"
+"conn.close()\n"
+"# No COMMIT was sent: the INSERT was discarded."
+msgstr ""
+
+#: ../../../basic/transactions.rst:55
+msgid ""
+"There are a few things going wrong here, let's see how they can be improved."
+msgstr ""
+
+#: ../../../basic/transactions.rst:57
+msgid ""
+"One obvious problem after the run above is that, firing up :program:`psql`, "
+"you will see no new record in the table ``data``. One way to fix the problem "
+"is to call `!conn.commit()` before closing the connection. Thankfully, if "
+"you use the :ref:`connection context <with-connection>`, Psycopg will commit "
+"the connection at the end of the block (or roll it back if the block is "
+"exited with an exception):"
+msgstr ""
+
+#: ../../../basic/transactions.rst:64
+msgid ""
+"The code modified using a connection context will result in the following "
+"sequence of database statements:"
+msgstr ""
+
+#: ../../../basic/transactions.rst:67
+msgid ""
+"with psycopg.connect() as conn:\n"
+"\n"
+"    cur = conn.cursor()\n"
+"\n"
+"    cur.execute(\"SELECT count(*) FROM my_table\")\n"
+"    # This function call executes:\n"
+"    # - BEGIN\n"
+"    # - SELECT count(*) FROM my_table\n"
+"    # So now a transaction has started.\n"
+"\n"
+"    cur.execute(\"INSERT INTO data VALUES (%s)\", (\"Hello\",))\n"
+"    # This statement is executed inside the transaction\n"
+"\n"
+"# No exception at the end of the block:\n"
+"# COMMIT is executed."
+msgstr ""
+
+#: ../../../basic/transactions.rst:86
+msgid ""
+"This way we don't have to remember to call neither `!close()` nor `!"
+"commit()` and the database operations actually have a persistent effect. The "
+"code might still do something you don't expect: keep a transaction from the "
+"first operation to the connection closure. You can have a finer control over "
+"the transactions using an :ref:`autocommit transaction <autocommit>` and/or :"
+"ref:`transaction contexts <transaction-context>`."
+msgstr ""
+
+#: ../../../basic/transactions.rst:95
+msgid ""
+"By default even a simple :sql:`SELECT` will start a transaction: in long-"
+"running programs, if no further action is taken, the session will remain "
+"*idle in transaction*, an undesirable condition for several reasons (locks "
+"are held by the session, tables bloat...). For long lived scripts, either "
+"make sure to terminate a transaction as soon as possible or use an "
+"`~Connection.autocommit` connection."
+msgstr ""
+
+#: ../../../basic/transactions.rst:104
+msgid ""
+"If a database operation fails with an error message such as "
+"*InFailedSqlTransaction: current transaction is aborted, commands ignored "
+"until end of transaction block*, it means that **a previous operation "
+"failed** and the database session is in a state of error. You need to call "
+"`~Connection.rollback()` if you want to keep on using the same connection."
+msgstr ""
+
+#: ../../../basic/transactions.rst:114
+msgid "Autocommit transactions"
+msgstr ""
+
+#: ../../../basic/transactions.rst:116
+msgid ""
+"The manual commit requirement can be suspended using `~Connection."
+"autocommit`, either as connection attribute or as `~psycopg.Connection."
+"connect()` parameter. This may be required to run operations that cannot be "
+"executed inside a transaction, such as :sql:`CREATE DATABASE`, :sql:"
+"`VACUUM`, :sql:`CALL` on `stored procedures`__ using transaction control."
+msgstr ""
+
+#: ../../../basic/transactions.rst:124
+msgid ""
+"With an autocommit transaction, the above sequence of operation results in:"
+msgstr ""
+
+#: ../../../basic/transactions.rst:126
+msgid ""
+"with psycopg.connect(autocommit=True) as conn:\n"
+"\n"
+"    cur = conn.cursor()\n"
+"\n"
+"    cur.execute(\"SELECT count(*) FROM my_table\")\n"
+"    # This function call now only executes:\n"
+"    # - SELECT count(*) FROM my_table\n"
+"    # and no transaction starts.\n"
+"\n"
+"    cur.execute(\"INSERT INTO data VALUES (%s)\", (\"Hello\",))\n"
+"    # The result of this statement is persisted immediately by the database\n"
+"\n"
+"# The connection is closed at the end of the block but, because it is not\n"
+"# in a transaction state, no COMMIT is executed."
+msgstr ""
+
+#: ../../../basic/transactions.rst:144
+msgid ""
+"An autocommit transaction behaves more as someone coming from :program:"
+"`psql` would expect. This has a beneficial performance effect, because less "
+"queries are sent and less operations are performed by the database. The "
+"statements, however, are not executed in an atomic transaction; if you need "
+"to execute certain operations inside a transaction, you can achieve that "
+"with an autocommit connection too, using an explicit :ref:`transaction block "
+"<transaction-context>`."
+msgstr ""
+
+#: ../../../basic/transactions.rst:156
+msgid "Transaction contexts"
+msgstr ""
+
+#: ../../../basic/transactions.rst:158
+msgid ""
+"A more transparent way to make sure that transactions are finalised at the "
+"right time is to use `!with` `Connection.transaction()` to create a "
+"transaction context. When the context is entered, a transaction is started; "
+"when leaving the context the transaction is committed, or it is rolled back "
+"if an exception is raised inside the block."
+msgstr ""
+
+#: ../../../basic/transactions.rst:164
+msgid ""
+"Continuing the example above, if you want to use an autocommit connection "
+"but still wrap selected groups of commands inside an atomic transaction, you "
+"can use a `!transaction()` context:"
+msgstr ""
+
+#: ../../../basic/transactions.rst:168
+msgid ""
+"with psycopg.connect(autocommit=True) as conn:\n"
+"\n"
+"    cur = conn.cursor()\n"
+"\n"
+"    cur.execute(\"SELECT count(*) FROM my_table\")\n"
+"    # The connection is autocommit, so no BEGIN executed.\n"
+"\n"
+"    with conn.transaction():\n"
+"        # BEGIN is executed, a transaction started\n"
+"\n"
+"        cur.execute(\"INSERT INTO data VALUES (%s)\", (\"Hello\",))\n"
+"        cur.execute(\"INSERT INTO times VALUES (now())\")\n"
+"        # These two operation run atomically in the same transaction\n"
+"\n"
+"    # COMMIT is executed at the end of the block.\n"
+"    # The connection is in idle state again.\n"
+"\n"
+"# The connection is closed at the end of the block."
+msgstr ""
+
+#: ../../../basic/transactions.rst:191
+msgid ""
+"Note that connection blocks can also be used with non-autocommit "
+"connections: in this case you still need to pay attention to eventual "
+"transactions started automatically. If an operation starts an implicit "
+"transaction, a `!transaction()` block will only manage :ref:`a savepoint sub-"
+"transaction <nested-transactions>`, leaving the caller to deal with the main "
+"transaction, as explained in :ref:`transactions`:"
+msgstr ""
+
+#: ../../../basic/transactions.rst:198
+msgid ""
+"conn = psycopg.connect()\n"
+"\n"
+"cur = conn.cursor()\n"
+"\n"
+"cur.execute(\"SELECT count(*) FROM my_table\")\n"
+"# This function call executes:\n"
+"# - BEGIN\n"
+"# - SELECT count(*) FROM my_table\n"
+"# So now a transaction has started.\n"
+"\n"
+"with conn.transaction():\n"
+"    # The block starts with a transaction already open, so it will execute\n"
+"    # - SAVEPOINT\n"
+"\n"
+"    cur.execute(\"INSERT INTO data VALUES (%s)\", (\"Hello\",))\n"
+"\n"
+"# The block was executing a sub-transaction so on exit it will only run:\n"
+"# - RELEASE SAVEPOINT\n"
+"# The transaction is still on.\n"
+"\n"
+"conn.close()\n"
+"# No COMMIT was sent: the INSERT was discarded."
+msgstr ""
+
+#: ../../../basic/transactions.rst:223
+msgid ""
+"If a `!transaction()` block starts when no transaction is active then it "
+"will manage a proper transaction. In essence, a transaction context tries to "
+"leave a connection in the state it found it, and leaves you to deal with the "
+"wider context."
+msgstr ""
+
+#: ../../../basic/transactions.rst:229
+msgid ""
+"The interaction between non-autocommit transactions and transaction contexts "
+"is probably surprising. Although the non-autocommit default is what's "
+"demanded by the DBAPI, the personal preference of several experienced "
+"developers is to:"
+msgstr ""
+
+#: ../../../basic/transactions.rst:234
+msgid "use a connection block: ``with psycopg.connect(...) as conn``;"
+msgstr ""
+
+#: ../../../basic/transactions.rst:235
+msgid ""
+"use an autocommit connection, either passing `!autocommit=True` as `!"
+"connect()` parameter or setting the attribute ``conn.autocommit = True``;"
+msgstr ""
+
+#: ../../../basic/transactions.rst:238
+msgid ""
+"use `!with conn.transaction()` blocks to manage transactions only where "
+"needed."
+msgstr ""
+
+#: ../../../basic/transactions.rst:245
+msgid "Nested transactions"
+msgstr ""
+
+#: ../../../basic/transactions.rst:247
+msgid ""
+"Transaction blocks can be also nested (internal transaction blocks are "
+"implemented using SAVEPOINT__): an exception raised inside an inner block "
+"has a chance of being handled and not completely fail outer operations. The "
+"following is an example where a series of operations interact with the "
+"database: operations are allowed to fail; at the end we also want to store "
+"the number of operations successfully processed."
+msgstr ""
+
+#: ../../../basic/transactions.rst:256
+msgid ""
+"with conn.transaction() as tx1:\n"
+"    num_ok = 0\n"
+"    for operation in operations:\n"
+"        try:\n"
+"            with conn.transaction() as tx2:\n"
+"                unreliable_operation(conn, operation)\n"
+"        except Exception:\n"
+"            logger.exception(f\"{operation} failed\")\n"
+"        else:\n"
+"            num_ok += 1\n"
+"\n"
+"    save_number_of_successes(conn, num_ok)"
+msgstr ""
+
+#: ../../../basic/transactions.rst:271
+msgid ""
+"If `!unreliable_operation()` causes an error, including an operation causing "
+"a database error, all its changes will be reverted. The exception bubbles up "
+"outside the block: in the example it is intercepted by the `!try` so that "
+"the loop can complete. The outermost block is unaffected (unless other "
+"errors happen there)."
+msgstr ""
+
+#: ../../../basic/transactions.rst:277
+msgid ""
+"You can also write code to explicitly roll back any currently active "
+"transaction block, by raising the `Rollback` exception. The exception "
+"\"jumps\" to the end of a transaction block, rolling back its transaction "
+"but allowing the program execution to continue from there. By default the "
+"exception rolls back the innermost transaction block, but any current block "
+"can be specified as the target. In the following example, a hypothetical `!"
+"CancelCommand` may stop the processing and cancel any operation previously "
+"performed, but not entirely committed yet."
+msgstr ""
+
+#: ../../../basic/transactions.rst:286
+msgid ""
+"from psycopg import Rollback\n"
+"\n"
+"with conn.transaction() as outer_tx:\n"
+"    for command in commands():\n"
+"        with conn.transaction() as inner_tx:\n"
+"            if isinstance(command, CancelCommand):\n"
+"                raise Rollback(outer_tx)\n"
+"            process_command(command)\n"
+"\n"
+"# If `Rollback` is raised, it would propagate only up to this block,\n"
+"# and the program would continue from here with no exception."
+msgstr ""
+
+#: ../../../basic/transactions.rst:6 ../../../basic/transactions.rst:304
+msgid "Transaction status"
+msgstr ""
+
+#: ../../../basic/transactions.rst:308
+msgid ""
+"Each `!Transaction` object exposes a `~Transaction.status` property allowing "
+"to inspect the current state of the transaction. This can be useful for "
+"debugging, logging, or implementing custom transaction management logic."
+msgstr ""
+
+#: ../../../basic/transactions.rst:312
+msgid ""
+"The `!status` property is a `psycopg.Transaction.Status` enum value: please "
+"check its documentation for the possible values."
+msgstr ""
+
+#: ../../../basic/transactions.rst:315
+msgid "Here are a few examples of how to use the `!status` property:"
+msgstr ""
+
+#: ../../../basic/transactions.rst:317
+msgid ""
+"from psycopg import Rollback\n"
+"\n"
+"# Successful transaction\n"
+"with conn.transaction() as tx:\n"
+"    assert tx.status == tx.Status.ACTIVE\n"
+"    conn.execute(\"INSERT INTO data VALUES (%s)\", (\"Hello\",))\n"
+"assert tx.status == tx.Status.COMMITTED\n"
+"\n"
+"# Transaction rolled back with an error\n"
+"try:\n"
+"    with conn.transaction() as tx:\n"
+"        conn.execute(\"INSERT INTO data VALUES (%s)\", (\"World\",))\n"
+"        1 / 0  # Causes an exception\n"
+"except ZeroDivisionError:\n"
+"    pass\n"
+"assert tx.status == tx.Status.ROLLED_BACK_WITH_ERROR\n"
+"\n"
+"# Explicit rollback\n"
+"with conn.transaction() as tx:\n"
+"    conn.execute(\"INSERT INTO data VALUES (%s)\", (\"Test\",))\n"
+"    raise Rollback()\n"
+"assert tx.status == tx.Status.ROLLED_BACK_EXPLICITLY\n"
+"\n"
+"# Force rollback\n"
+"with conn.transaction(force_rollback=True) as tx:\n"
+"    conn.execute(\"INSERT INTO data VALUES (%s)\", (\"Temp\",))\n"
+"assert tx.status == tx.Status.ROLLED_BACK_EXPLICITLY"
+msgstr ""
+
+#: ../../../basic/transactions.rst:347
+msgid ""
+"The `!status` property remains accessible after the transaction context has "
+"exited, allowing you to check the final outcome of the transaction even "
+"after the `!with` block has exited. This is particularly useful when you "
+"need to log transaction outcomes or implement retry logic based on the "
+"transaction status."
+msgstr ""
+
+#: ../../../basic/transactions.rst:356
+msgid "Transaction characteristics"
+msgstr ""
+
+#: ../../../basic/transactions.rst:358
+msgid ""
+"You can set `transaction parameters`__ for the transactions that Psycopg "
+"handles. They affect the transactions started implicitly by non-autocommit "
+"transactions and the ones started explicitly by `Connection.transaction()` "
+"for both autocommit and non-autocommit transactions."
+msgstr ""
+
+#: ../../../basic/transactions.rst:365
+msgid ""
+"Transaction parameters :ref:`don't affect autocommit connections "
+"<transaction-characteristics-and-autocommit>`, unless a `!transaction()` "
+"block is explicitly used."
+msgstr ""
+
+#: ../../../basic/transactions.rst:369
+msgid ""
+"Leaving these parameters as `!None` will use the server's default behaviour "
+"(which is controlled by server settings such as "
+"default_transaction_isolation__)."
+msgstr ""
+
+#: ../../../basic/transactions.rst:377
+msgid ""
+"In order to set these parameters you can use the connection attributes "
+"`~Connection.isolation_level`, `~Connection.read_only`, `~Connection."
+"deferrable`. For async connections you must use the equivalent "
+"`~AsyncConnection.set_isolation_level()` method and similar. The parameters "
+"can only be changed if there isn't a transaction already active on the "
+"connection."
+msgstr ""
+
+#: ../../../basic/transactions.rst:384
+msgid ""
+"Added methods equivalent to setting the properties (such as `~Connection."
+"set_isolation_level()`) on sync connections too."
+msgstr ""
+
+#: ../../../basic/transactions.rst:390
+msgid ""
+"Applications running at `~IsolationLevel.REPEATABLE_READ` or "
+"`~IsolationLevel.SERIALIZABLE` isolation level are exposed to serialization "
+"failures. `In certain concurrent update cases`__, PostgreSQL will raise an "
+"exception looking like::"
+msgstr ""
+
+#: ../../../basic/transactions.rst:395
+msgid ""
+"psycopg2.errors.SerializationFailure: could not serialize access\n"
+"due to concurrent update"
+msgstr ""
+
+#: ../../../basic/transactions.rst:398
+msgid ""
+"In this case the application must be prepared to repeat the operation that "
+"caused the exception."
+msgstr ""
+
+#: ../../../basic/transactions.rst:411
+msgid "Two-Phase Commit protocol support"
+msgstr ""
+
+#: ../../../basic/transactions.rst:415
+msgid ""
+"Psycopg exposes the two-phase commit features available in PostgreSQL "
+"implementing the `two-phase commit extensions`__ proposed by the DBAPI."
+msgstr ""
+
+#: ../../../basic/transactions.rst:418
+msgid ""
+"The DBAPI model of two-phase commit is inspired by the `XA specification`__, "
+"according to which transaction IDs are formed from three components:"
+msgstr ""
+
+#: ../../../basic/transactions.rst:421
+msgid "a format ID (non-negative 32 bit integer)"
+msgstr ""
+
+#: ../../../basic/transactions.rst:422
+msgid "a global transaction ID (string not longer than 64 bytes)"
+msgstr ""
+
+#: ../../../basic/transactions.rst:423
+msgid "a branch qualifier (string not longer than 64 bytes)"
+msgstr ""
+
+#: ../../../basic/transactions.rst:425
+msgid ""
+"For a particular global transaction, the first two components will be the "
+"same for all the resources. Every resource will be assigned a different "
+"branch qualifier."
+msgstr ""
+
+#: ../../../basic/transactions.rst:429
+msgid ""
+"According to the DBAPI specification, a transaction ID is created using the "
+"`Connection.xid()` method. Once you have a transaction id, a distributed "
+"transaction can be started with `Connection.tpc_begin()`, prepared using "
+"`~Connection.tpc_prepare()` and completed using `~Connection.tpc_commit()` "
+"or `~Connection.tpc_rollback()`.  Transaction IDs can also be retrieved from "
+"the database using `~Connection.tpc_recover()` and completed using the above "
+"`!tpc_commit()` and `!tpc_rollback()`."
+msgstr ""
+
+#: ../../../basic/transactions.rst:437
+msgid ""
+"PostgreSQL doesn't follow the XA standard though, and the ID for a "
+"PostgreSQL prepared transaction can be any string up to 200 characters long. "
+"Psycopg's `Xid` objects can represent both XA-style transactions IDs (such "
+"as the ones created by the `!xid()` method) and PostgreSQL transaction IDs "
+"identified by an unparsed string."
+msgstr ""
+
+#: ../../../basic/transactions.rst:443
+msgid ""
+"The format in which the Xids are converted into strings passed to the "
+"database is the same employed by the `PostgreSQL JDBC driver`__: this should "
+"allow interoperation between tools written in Python and in Java. For "
+"example a recovery tool written in Python would be able to recognize the "
+"components of transactions produced by a Java program."
+msgstr ""
+
+#: ../../../basic/transactions.rst:449
+msgid "For further details see the documentation for the :ref:`tpc-methods`."
+msgstr ""
+
+#: ../../../basic/transactions.rst:4
+msgid "InFailedSqlTransaction"
+msgstr ""
+
+#: ../../../basic/transactions.rst:5
+msgid "idle in transaction"
+msgstr ""
+
+#: ../../../basic/transactions.rst:405
+msgid "Two-phase commit"
+msgstr ""
+
+#: ../../../basic/transactions.rst:405
+msgid "Transaction"
+msgstr ""

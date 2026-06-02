@@ -1,0 +1,784 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/pool.rst:2
+msgid "`!psycopg_pool` -- Connection pool implementations"
+msgstr ""
+
+#: ../../../api/pool.rst:9
+msgid ""
+"A connection pool is an object used to create and maintain a limited amount "
+"of PostgreSQL connections, reducing the time requested by the program to "
+"obtain a working connection and allowing an arbitrary large number of "
+"concurrent threads or tasks to use a controlled amount of resources on the "
+"server. See :ref:`connection-pools` for more details and usage pattern."
+msgstr ""
+
+#: ../../../api/pool.rst:15
+msgid "This package exposes a few connection pool classes:"
+msgstr ""
+
+#: ../../../api/pool.rst:17
+msgid ""
+"`ConnectionPool` is a synchronous connection pool yielding `~psycopg."
+"Connection` objects and can be used by multithread applications."
+msgstr ""
+
+#: ../../../api/pool.rst:20
+msgid ""
+"`AsyncConnectionPool` has an interface similar to `!ConnectionPool`, but "
+"with `asyncio` functions replacing blocking functions, and yields `~psycopg."
+"AsyncConnection` instances."
+msgstr ""
+
+#: ../../../api/pool.rst:24
+msgid ""
+"`NullConnectionPool` is a `!ConnectionPool` subclass exposing the same "
+"interface of its parent, but not keeping any unused connection in its state. "
+"See :ref:`null-pool` for details about related use cases."
+msgstr ""
+
+#: ../../../api/pool.rst:28
+msgid ""
+"`AsyncNullConnectionPool` has the same behaviour of the `!"
+"NullConnectionPool`, but with the same async interface of the `!"
+"AsyncConnectionPool`."
+msgstr ""
+
+#: ../../../api/pool.rst:32
+msgid ""
+"The `!psycopg_pool` package is distributed separately from the main "
+"`psycopg` package: use ``pip install \"psycopg[pool]\"``, or ``pip install "
+"psycopg_pool``, to make it available. See :ref:`pool-installation`."
+msgstr ""
+
+#: ../../../api/pool.rst:36
+msgid ""
+"The version numbers indicated in this page refer to the `!psycopg_pool` "
+"package, not to `psycopg`."
+msgstr ""
+
+#: ../../../api/pool.rst:41
+msgid "The `!ConnectionPool` class"
+msgstr ""
+
+#: ../../../api/pool.rst:45
+msgid ""
+"This class implements a connection pool serving `~psycopg.Connection` "
+"instances (or subclasses). The constructor has *alot* of arguments, but only "
+"`!conninfo` and `!min_size` are the fundamental ones, all the other "
+"arguments have meaningful defaults and can probably be tweaked later, if "
+"required."
+msgstr ""
+
+#: ../../../api/pool.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../api/pool.rst:51
+msgid ""
+"The connection string. See `~psycopg.Connection.connect()` for details. If "
+"it is a callable it will be called at every connection attempt."
+msgstr ""
+
+#: ../../../api/pool.rst:56
+msgid ""
+"The class of the connections to serve. It should be a `!Connection` subclass."
+msgstr ""
+
+#: ../../../api/pool.rst:60
+msgid ""
+"Extra arguments to pass to `!connect()`. Note that this is *one dict "
+"argument* of the pool constructor, which is expanded as `connect()` keyword "
+"parameters. If it is a callable it will be called at every connection "
+"attempt."
+msgstr ""
+
+#: ../../../api/pool.rst:66
+msgid ""
+"The minimum number of connection the pool will hold. The pool will actively "
+"try to create new connections if some are lost (closed, broken) and will try "
+"to never go below `!min_size`."
+msgstr ""
+
+#: ../../../api/pool.rst:72
+msgid ""
+"The maximum number of connections the pool will hold. If `!None`, or equal "
+"to `!min_size`, the pool will not grow or shrink. If larger than `!"
+"min_size`, the pool can grow if more than `!min_size` connections are "
+"requested at the same time and will shrink back after the extra connections "
+"have been unused for more than `!max_idle` seconds."
+msgstr ""
+
+#: ../../../api/pool.rst:80
+msgid ""
+"If `!True`, open the pool, creating the required connections, on init. If `!"
+"False`, open the pool when `!open()` is called or when the pool context is "
+"entered. See the `open()` method documentation for more details."
+msgstr ""
+
+#: ../../../api/pool.rst:86
+msgid ""
+"A callback to configure a connection after creation. Useful, for instance, "
+"to configure its adapters. If the connection is used to run internal queries "
+"(to inspect the database) make sure to close an eventual transaction before "
+"leaving the function."
+msgstr ""
+
+#: ../../../api/pool.rst:93
+msgid ""
+"A callback to check that a connection is working correctly when obtained by "
+"the pool. The callback is called at every `getconn()` or `connection()`: the "
+"connection is only passed to the client if the callback doesn't throw an "
+"exception. By default no check is made on the connection. You can provide "
+"the `check_connection()` pool static method if you want to perform a simple "
+"check."
+msgstr ""
+
+#: ../../../api/pool.rst:102
+msgid ""
+"If `!True`, calling `~psycopg.Connection.close()` on the connection will not "
+"actually close it, but it will return the connection to the pool, like in "
+"`~ConnectionPool.putconn()`. Use it if you want to use Psycopg pool with "
+"SQLAlchemy. See :ref:`pool-sqlalchemy`."
+msgstr ""
+
+#: ../../../api/pool.rst:111
+msgid ""
+"A callback to reset a function after it has been returned to the pool. The "
+"connection is guaranteed to be passed to the `!reset()` function in \"idle\" "
+"state (no transaction). When leaving the `!reset()` function the connection "
+"must be left in *idle* state, otherwise it is discarded."
+msgstr ""
+
+#: ../../../api/pool.rst:118
+msgid ""
+"An optional name to give to the pool, useful, for instance, to identify it "
+"in the logs if more than one pool is used. if not specified pick a "
+"sequential name such as ``pool-1``, ``pool-2``, etc."
+msgstr ""
+
+#: ../../../api/pool.rst:124
+msgid ""
+"The default maximum time in seconds that a client can wait to receive a "
+"connection from the pool (using `connection()` or `getconn()`). Note that "
+"these methods allow to override the `!timeout` default."
+msgstr ""
+
+#: ../../../api/pool.rst:130
+msgid ""
+"Maximum number of requests that can be queued to the pool, after which new "
+"requests will fail, raising `TooManyRequests`. 0 means no queue limit."
+msgstr ""
+
+#: ../../../api/pool.rst:135
+msgid ""
+"The maximum lifetime of a connection in the pool, in seconds. Connections "
+"used for longer get closed and replaced by a new one. The amount is reduced "
+"by a random amount up to 5% to avoid mass eviction."
+msgstr ""
+
+#: ../../../api/pool.rst:141
+msgid ""
+"Maximum time, in seconds, that a connection can stay unused in the pool "
+"before being closed, and the pool shrunk. This only happens to connections "
+"more than `!min_size`, if `!max_size` allowed the pool to grow."
+msgstr ""
+
+#: ../../../api/pool.rst:147
+msgid ""
+"Maximum time, in seconds, the pool will try to create a connection. If a "
+"connection attempt fails, the pool will try to reconnect a few times, using "
+"an exponential backoff and some random factor to avoid mass attempts. If "
+"repeated attempts fail, after `!reconnect_timeout` second the connection "
+"attempt is aborted and the `!reconnect_failed()` callback invoked."
+msgstr ""
+
+#: ../../../api/pool.rst:157
+msgid ""
+"Callback invoked if an attempt to create a new connection fails for more "
+"than `!reconnect_timeout` seconds. The user may decide, for instance, to "
+"terminate the program (executing `sys.exit()`). By default don't do "
+"anything: restart a new connection attempt (if the number of connection fell "
+"below `!min_size`)."
+msgstr ""
+
+#: ../../../api/pool.rst:166
+msgid ""
+"Number of background worker threads used to maintain the pool state. "
+"Background workers are used for example to create new connections and to "
+"clean up connections when they are returned to the pool."
+msgstr ""
+
+#: ../../../api/pool.rst:172
+msgid "added `!open` parameter to the constructor."
+msgstr ""
+
+#: ../../../api/pool.rst:175 ../../../api/pool.rst:325
+msgid "added `!check` parameter to the constructor."
+msgstr ""
+
+#: ../../../api/pool.rst:178
+msgid ""
+"the class is generic and `!connection_class` provides types type variable. "
+"See :ref:`pool-generic`."
+msgstr ""
+
+#: ../../../api/pool.rst:182 ../../../api/pool.rst:331
+msgid "added `!close_returns` parameter to the constructor."
+msgstr ""
+
+#: ../../../api/pool.rst:185
+msgid "`conninfo` and `kwargs` can be callable."
+msgstr ""
+
+#: ../../../api/pool.rst:190
+msgid ""
+"At the moment, the default value for the `!open` parameter is `!True`; In a "
+"future version, the default will be changed to `!False`."
+msgstr ""
+
+#: ../../../api/pool.rst:193
+msgid ""
+"If you expect the pool to be open on creation even if you don't use the pool "
+"as context manager, you should specify the parameter `!open=True` explicitly."
+msgstr ""
+
+#: ../../../api/pool.rst:197
+msgid ""
+"Starting from psycopg_pool 3.2, a warning is raised if the pool is used with "
+"the expectation of being implicitly opened in the constructor and `!open` is "
+"not specified."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.connection:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.connection:1
+msgid "Context manager to obtain a connection from the pool."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.connection:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.connection:3
+msgid ""
+"Return the connection immediately if available, otherwise wait up to "
+"*timeout* or `self.timeout` seconds and throw `PoolTimeout` if a connection "
+"is not available in time."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.connection:7
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.connection:7
+msgid ""
+"Upon context exit, return the connection to the pool. Apply the normal :ref:"
+"`connection context behaviour <with-connection>` (commit/rollback the "
+"transaction in case of success/error). If the connection is no more in "
+"working state, replace it with a new one."
+msgstr ""
+
+#: ../../../api/pool.rst:203
+msgid ""
+"with my_pool.connection() as conn:\n"
+"    conn.execute(...)\n"
+"\n"
+"# the connection is now back in the pool"
+msgstr ""
+
+#: ../../../api/pool.rst:210
+msgid ""
+"The connection returned is annotated as defined in `!connection_class`. See :"
+"ref:`pool-generic`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.open:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.open:1
+msgid "Open the pool by starting connecting and and accepting clients."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.open:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.open:3
+msgid ""
+"If *wait* is `!False`, return immediately and let the background worker fill "
+"the pool if `min_size` > 0. Otherwise wait up to *timeout* seconds for the "
+"requested number of connections to be ready (see `wait()` for details)."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.open:8
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.open:8
+msgid ""
+"It is safe to call `!open()` again on a pool already open (because the "
+"method was already called, or because the pool context was entered, or "
+"because the pool was initialized with *open* = `!True`) but you cannot "
+"currently re-open a closed pool."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.close:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.close:1
+msgid "Close the pool and make it unavailable to new clients."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.close:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.close:3
+msgid ""
+"All the waiting and future clients will fail to acquire a connection with a "
+"`PoolClosed` exception. Currently used connections will not be closed until "
+"returned to the pool."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.close:7
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.close:7
+msgid ""
+"Wait *timeout* seconds for threads to terminate their job, if positive. If "
+"the timeout expires the pool is closed anyway, although it may raise some "
+"warnings on exit."
+msgstr ""
+
+#: ../../../api/pool.rst:223
+msgid ""
+"The pool can be also used as a context manager, in which case it will be "
+"opened (if necessary) on entering the block and closed on exiting it:"
+msgstr ""
+
+#: ../../../api/pool.rst:226
+msgid ""
+"with ConnectionPool(...) as pool:\n"
+"    # code using the pool"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/__init__.py:docstring
+#: of psycopg_pool.ConnectionPool.closed:1
+msgid "`!True` if the pool is closed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.wait:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.wait:1
+msgid ""
+"Wait for the pool to be full (with `min_size` connections) after creation."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/null_pool.py:docstring
+#: of psycopg_pool.null_pool.NullConnectionPool.wait:7
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: psycopg_pool.pool.ConnectionPool.wait:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.wait:3
+msgid ""
+"Close the pool, and raise `PoolTimeout`, if not ready within *timeout* sec."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.wait:6
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.wait:6
+msgid ""
+"Calling this method is not mandatory: you can try and use the pool "
+"immediately after its creation. The first client will be served as soon as a "
+"connection is ready. You can use this method if you prefer your program to "
+"terminate in case the environment is not configured properly, rather than "
+"trying to stay up the hardest it can."
+msgstr ""
+
+#: ../../../api/pool.rst:238
+msgid ""
+"The name of the pool set on creation, or automatically generated if not set."
+msgstr ""
+
+#: ../../../api/pool.rst:244
+msgid ""
+"The current minimum and maximum size of the pool. Use `resize()` to change "
+"them at runtime."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/null_pool.py:docstring
+#: of psycopg_pool.null_pool.NullConnectionPool.resize:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: psycopg_pool.pool.ConnectionPool.resize:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.resize:1
+msgid "Change the size of the pool during runtime."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.check:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.check:1
+msgid "Verify the state of the connections currently in the pool."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.check:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.check:3
+msgid ""
+"Test each connection: if it works return it to the pool, otherwise dispose "
+"of it and create a new one."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.check_connection:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.check_connection:1
+msgid "A simple check to verify that a connection is still working."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.check_connection:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.check_connection:3
+msgid ""
+"Return quietly if the connection is still working, otherwise raise an "
+"exception."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.check_connection:6
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.check_connection:6
+msgid ""
+"Used internally by `check()`, but also available for client usage, for "
+"instance as `!check` callback when a pool is created."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.drain:1
+msgid "Remove all the connections from the pool and create new ones."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.drain:3
+msgid ""
+"If a connection is currently out of the pool it will be closed when returned "
+"to the pool and replaced with a new one."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.drain:6
+msgid ""
+"This method is useful to force a connection re-configuration, for example "
+"when the adapters map changes after the pool was created."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/base.py:docstring
+#: of psycopg_pool.base.BasePool.get_stats:1
+#: psycopg_pool.base.BasePool.pop_stats:1
+msgid "Return current stats about the pool usage."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/base.py:docstring
+#: of psycopg_pool.base.BasePool.pop_stats:3
+msgid "After the call, all the counters are reset to zero."
+msgstr ""
+
+#: ../../../api/pool.rst:260
+msgid "See :ref:`pool-stats` for the metrics returned."
+msgstr ""
+
+#: ../../../api/pool.rst:263
+msgid "Functionalities you may not need"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.getconn:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.getconn:1
+msgid "Obtain a connection from the pool."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.getconn:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.getconn:3
+msgid ""
+"You should preferably use `connection()`. Use this function only if it is "
+"not possible to use the connection as context manager."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.getconn:6
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.getconn:6
+msgid ""
+"After using this function you *must* call a corresponding `putconn()`: "
+"failing to do so will deplete the pool. A depleted pool is a sad pool: you "
+"don't want a depleted pool."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.putconn:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.putconn:1
+msgid "Return a connection to the loving hands of its pool."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
+#: of psycopg_pool.pool.ConnectionPool.putconn:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
+#: psycopg_pool.pool_async.AsyncConnectionPool.putconn:3
+msgid ""
+"Use this function only paired with a `getconn()`. You don't need to use it "
+"if you use the much more comfortable `connection()` context manager."
+msgstr ""
+
+#: ../../../api/pool.rst:269
+msgid "Pool exceptions"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/__init__.py:docstring
+#: of psycopg_pool.PoolTimeout:1
+msgid "The pool couldn't provide a connection in acceptable time."
+msgstr ""
+
+#: ../../../api/pool.rst:273 ../../../api/pool.rst:277
+#: ../../../api/pool.rst:281
+msgid "Subclass of `~psycopg.OperationalError`"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/__init__.py:docstring
+#: of psycopg_pool.PoolClosed:1
+msgid "Attempt to get a connection from a closed pool."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/__init__.py:docstring
+#: of psycopg_pool.TooManyRequests:1
+msgid "Too many requests in the queue waiting for a connection from the pool."
+msgstr ""
+
+#: ../../../api/pool.rst:285
+msgid "The `!AsyncConnectionPool` class"
+msgstr ""
+
+#: ../../../api/pool.rst:287
+msgid ""
+"`!AsyncConnectionPool` has a very similar interface to the `ConnectionPool` "
+"class but its blocking methods are implemented as `!async` coroutines. It "
+"returns instances of `~psycopg.AsyncConnection`, or of its subclass if "
+"specified so in the `!connection_class` parameter."
+msgstr ""
+
+#: ../../../api/pool.rst:292
+msgid ""
+"Only the functions and parameters with different signature from `!"
+"ConnectionPool` are listed here."
+msgstr ""
+
+#: ../../../api/pool.rst:297
+msgid "The connection string. It can be an async function too."
+msgstr ""
+
+#: ../../../api/pool.rst:300
+msgid ""
+"The class of the connections to serve. It should be an `!AsyncConnection` "
+"subclass."
+msgstr ""
+
+#: ../../../api/pool.rst:304
+msgid ""
+"Extra arguments to pass to `!connect()`. It can be an async function too."
+msgstr ""
+
+#: ../../../api/pool.rst:309
+msgid ""
+"A callback to check that a connection is working correctly when obtained by "
+"the pool."
+msgstr ""
+
+#: ../../../api/pool.rst:313
+msgid "A callback to configure a connection after creation."
+msgstr ""
+
+#: ../../../api/pool.rst:316
+msgid "A callback to reset a function after it has been returned to the pool."
+msgstr ""
+
+#: ../../../api/pool.rst:320
+msgid ""
+"Callback invoked if an attempt to create a new connection fails for more "
+"than `!reconnect_timeout` seconds."
+msgstr ""
+
+#: ../../../api/pool.rst:328
+msgid "The `!reconnect_failed` parameter can be `!async`."
+msgstr ""
+
+#: ../../../api/pool.rst:334
+msgid "`conninfo` and `kwargs` can be callable (sync or async)."
+msgstr ""
+
+#: ../../../api/pool.rst:339
+msgid ""
+"Opening an async pool in the constructor (using `!open=True` on init) will "
+"become an error in a future pool versions. Please note that, currently, `!"
+"open=True` is the default; in a future version, the default for the "
+"parameter will be changed to `!False`."
+msgstr ""
+
+#: ../../../api/pool.rst:344
+msgid ""
+"In order to make sure that your code will keep working as expected in future "
+"versions, please specify `!open=False` in the constructor and use an "
+"explicit `!await pool.open()`::"
+msgstr ""
+
+#: ../../../api/pool.rst:348
+msgid ""
+"pool = AsyncConnectionPool(..., open=False)\n"
+"await pool.open()"
+msgstr ""
+
+#: ../../../api/pool.rst:351
+msgid "or use the pool context manager::"
+msgstr ""
+
+#: ../../../api/pool.rst:353
+msgid ""
+"async with AsyncConnectionPool(..., open=False) as pool:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/pool.rst:356
+msgid ""
+"Starting from psycopg_pool 3.2, opening an async pool in the constructor "
+"raises a warning."
+msgstr ""
+
+#: ../../../api/pool.rst:361
+msgid ""
+"async with my_pool.connection() as conn:\n"
+"    await conn.execute(...)\n"
+"\n"
+"# the connection is now back in the pool"
+msgstr ""
+
+#: ../../../api/pool.rst:373
+msgid ""
+"The pool can be also used as an async context manager, in which case it will "
+"be opened (if necessary) on entering the block and closed on exiting it:"
+msgstr ""
+
+#: ../../../api/pool.rst:377
+msgid ""
+"async with AsyncConnectionPool(...) as pool:\n"
+"    # code using the pool"
+msgstr ""
+
+#: ../../../api/pool.rst:382
+msgid "All the other constructor parameters are the same of `!ConnectionPool`."
+msgstr ""
+
+#: ../../../api/pool.rst:396
+msgid "Null connection pools"
+msgstr ""
+
+#: ../../../api/pool.rst:400
+msgid ""
+"The `NullConnectionPool` is a `ConnectionPool` subclass which doesn't create "
+"connections preemptively and doesn't keep unused connections in its state. "
+"See :ref:`null-pool` for further details."
+msgstr ""
+
+#: ../../../api/pool.rst:404
+msgid ""
+"The interface of the object is entirely compatible with its parent class. "
+"Its behaviour is similar, with the following differences:"
+msgstr ""
+
+#: ../../../api/pool.rst:409
+msgid ""
+"All the other constructor parameters are the same as in `ConnectionPool`."
+msgstr ""
+
+#: ../../../api/pool.rst:411
+msgid "Always 0, cannot be changed."
+msgstr ""
+
+#: ../../../api/pool.rst:414
+msgid ""
+"If None or 0, create a new connection at every request, without a maximum. "
+"If greater than 0, don't create more than `!max_size` connections and queue "
+"the waiting clients."
+msgstr ""
+
+#: ../../../api/pool.rst:419
+msgid ""
+"It is only called when there are waiting clients in the queue, before giving "
+"them a connection already open. If no client is waiting, the connection is "
+"closed and discarded without a fuss."
+msgstr ""
+
+#: ../../../api/pool.rst:425
+msgid "Ignored, as null pools don't leave idle connections sitting around."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/null_pool.py:docstring
+#: of psycopg_pool.null_pool.NullConnectionPool.wait:1
+msgid "Create a connection for test."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/null_pool.py:docstring
+#: of psycopg_pool.null_pool.NullConnectionPool.wait:3
+msgid ""
+"Calling this function will verify that the connectivity with the database "
+"works as expected. However the connection will not be stored in the pool."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/null_pool.py:docstring
+#: of psycopg_pool.null_pool.NullConnectionPool.resize:3
+msgid "Only *max_size* can be changed; *min_size* must remain 0."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/null_pool.py:docstring
+#: of psycopg_pool.null_pool.NullConnectionPool.check:1
+msgid "No-op, as the pool doesn't have connections in its state."
+msgstr ""
+
+#: ../../../api/pool.rst:433
+msgid ""
+"The `AsyncNullConnectionPool` is, similarly, an `AsyncConnectionPool` "
+"subclass with the same behaviour of the `NullConnectionPool`."
+msgstr ""
+
+#: ../../../api/pool.rst:438
+msgid ""
+"The interface is the same of its parent class `AsyncConnectionPool`. The "
+"behaviour is different in the same way described for `NullConnectionPool`."
+msgstr ""
+
+#: ../../../api/pool.rst:4
+msgid "Connection"
+msgstr ""
+
+#: ../../../api/pool.rst:4
+msgid "Pool"
+msgstr ""
