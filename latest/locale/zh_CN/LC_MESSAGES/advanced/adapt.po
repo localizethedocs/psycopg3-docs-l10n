@@ -1,0 +1,449 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../advanced/adapt.rst:6
+msgid "Data adaptation configuration"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:8
+msgid ""
+"The adaptation system is at the core of Psycopg and allows to customise the "
+"way Python objects are converted to PostgreSQL when a query is performed and "
+"how PostgreSQL values are converted to Python objects when query results are "
+"returned."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:14
+msgid ""
+"For a high-level view of the conversion of types between Python and "
+"PostgreSQL please look at :ref:`query-parameters`. Using the objects "
+"described in this page is useful if you intend to *customise* the adaptation "
+"rules."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:19
+msgid ""
+"Adaptation configuration is performed by changing the `~psycopg.abc."
+"AdaptContext.adapters` object of objects implementing the `~psycopg.abc."
+"AdaptContext` protocol, for instance `~psycopg.Connection` or `~psycopg."
+"Cursor`."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:24
+msgid ""
+"Every context object derived from another context inherits its adapters "
+"mapping: cursors created from a connection inherit the connection's "
+"configuration."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:28
+msgid ""
+"By default, connections obtain an adapters map from the global map exposed "
+"as `psycopg.adapters`: changing the content of this object will affect every "
+"connection created afterwards. You may specify a different template adapters "
+"map using the `!context` parameter on `~psycopg.Connection.connect()`."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:37
+msgid ""
+"The `!adapters` attributes are `AdaptersMap` instances, and contain the "
+"mapping from Python types and `~psycopg.abc.Dumper` classes, and from "
+"PostgreSQL OIDs to `~psycopg.abc.Loader` classes. Changing this mapping (e."
+"g. writing and registering your own adapters, or using a different "
+"configuration of builtin adapters) affects how types are converted between "
+"Python and PostgreSQL."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:44
+msgid ""
+"Dumpers (objects implementing the `~psycopg.abc.Dumper` protocol) are the "
+"objects used to perform the conversion from a Python object to a bytes "
+"sequence in a format understood by PostgreSQL. The string returned "
+"*shouldn't be quoted*: the value will be passed to the database using "
+"functions such as :pq:`PQexecParams()` so quoting and quotes escaping is not "
+"necessary. The dumper usually also suggests to the server what type to use, "
+"via its `~psycopg.abc.Dumper.oid` attribute."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:52
+msgid ""
+"Loaders (objects implementing the `~psycopg.abc.Loader` protocol) are the "
+"objects used to perform the opposite operation: reading a bytes sequence "
+"from PostgreSQL and creating a Python object out of it."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:56
+msgid ""
+"Dumpers and loaders are instantiated on demand by a `~Transformer` object "
+"when a query is executed."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:60
+msgid ""
+"Changing adapters in a context only affects that context and its children "
+"objects created *afterwards*; the objects already created are not affected. "
+"For instance, changing the global context will only change newly created "
+"connections, not the ones already existing."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:67
+msgid ""
+"you can call `~AdaptersMap.register_loader()` on `!Cursor.adapters` after a "
+"query has returned a result to change the loaders used."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:74
+msgid "Dumpers and loaders life cycle"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:76
+msgid ""
+"Registering dumpers and loaders will instruct Psycopg to use them in the "
+"queries to follow, in the context where they have been registered."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:79
+msgid ""
+"When a query is performed on a `~psycopg.Cursor`, a `~psycopg.adapt."
+"Transformer` object is created as a local context to manage adaptation "
+"during the query, instantiating the required dumpers and loaders and "
+"dispatching the values to perform the wanted conversions from Python to "
+"Postgres and back."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:85
+msgid ""
+"The `!Transformer` copies the adapters configuration from the `!Cursor`, "
+"thus inheriting all the changes made to the global `psycopg.adapters` "
+"configuration, the current `!Connection`, the `!Cursor`."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:89
+msgid ""
+"For every Python type passed as query argument, the `!Transformer` will "
+"instantiate a `~psycopg.abc.Dumper`. Usually all the objects of the same "
+"type will be converted by the same dumper instance."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:93
+msgid ""
+"According to the placeholder used (``%s``, ``%b``, ``%t``), Psycopg may "
+"select a binary or a text dumper class (identified by their `~psycopg.abc."
+"Dumper.format` attribute). When using the ``%s`` \"`~PyFormat.AUTO`\" "
+"format, if the same type has both a text and a binary dumper registered, the "
+"last one registered by `~AdaptersMap.register_dumper()` will be used."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:100
+msgid ""
+"Sometimes, just looking at the Python type is not enough to decide the best "
+"PostgreSQL type to use (for instance the PostgreSQL type of a Python list "
+"depends on the objects it contains, whether to use an :sql:`integer` or :sql:"
+"`bigint` depends on the number size...) In these cases the mechanism "
+"provided by `~psycopg.abc.Dumper.get_key()` and `~psycopg.abc.Dumper."
+"upgrade()` is used to create more specific dumpers."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:107
+msgid ""
+"The query is executed. Upon successful request, the result is received as a "
+"`~psycopg.pq.PGresult`."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:110
+msgid ""
+"For every OID returned by the query, the `!Transformer` will instantiate a "
+"`~psycopg.abc.Loader`. All the values with the same OID will be converted by "
+"the same loader instance."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:114
+msgid ""
+"According to the format of the result, which can be text or binary, Psycopg "
+"will select either text loaders or binary loaders (identified by their "
+"`~psycopg.abc.Loader.format` attribute)."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:118
+msgid ""
+"Recursive types (e.g. Python lists, PostgreSQL arrays and composite types) "
+"will use the same adaptation rules."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:121
+msgid ""
+"As a consequence it is possible to perform certain choices only once per "
+"query (e.g. looking up the connection encoding) and then call a fast-path "
+"operation for each value to convert."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:125
+msgid ""
+"Querying will fail if a Python object for which there isn't a `!Dumper` "
+"registered (for the right `~psycopg.pq.Format`) is used as query parameter. "
+"If the query returns a data type whose OID doesn't have a `!Loader`, the "
+"value will be returned as a string (or bytes string for binary types)."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:134
+msgid "Writing a custom adapter: XML"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:136
+msgid ""
+"Psycopg doesn't provide adapters for the XML data type, because there are "
+"just too many ways of handling XML in Python. Creating a loader to parse the "
+"`PostgreSQL xml type`__ to `~xml.etree.ElementTree` is very simple, using "
+"the `psycopg.adapt.Loader` base class and implementing the `~psycopg.abc."
+"Loader.load()` method:"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:144
+msgid ""
+">>> import xml.etree.ElementTree as ET\n"
+">>> from psycopg.adapt import Loader\n"
+"\n"
+">>> # Create a class implementing the `load()` method.\n"
+">>> class XmlLoader(Loader):\n"
+"...     def load(self, data):\n"
+"...         return ET.fromstring(data)\n"
+"\n"
+">>> # Register the loader on the adapters of a context.\n"
+">>> conn.adapters.register_loader(\"xml\", XmlLoader)\n"
+"\n"
+">>> # Now just query the database returning XML data.\n"
+">>> cur = conn.execute(\n"
+"...     \"\"\"select XMLPARSE (DOCUMENT '<?xml version=\"1.0\"?>\n"
+"...            <book><title>Manual</title><chapter>...</chapter></book>')\n"
+"...     \"\"\")\n"
+"\n"
+">>> elem = cur.fetchone()[0]\n"
+">>> elem\n"
+"<Element 'book' at 0x7ffb55142ef0>"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:167
+msgid ""
+"The opposite operation, converting Python objects to PostgreSQL, is "
+"performed by dumpers. The `psycopg.adapt.Dumper` base class makes it easy to "
+"implement one: you only need to implement the `~psycopg.abc.Dumper.dump()` "
+"method::"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:171
+msgid ""
+">>> from psycopg.adapt import Dumper\n"
+"\n"
+">>> class XmlDumper(Dumper):\n"
+"...     # Setting an OID is not necessary but can be helpful\n"
+"...     oid = psycopg.adapters.types[\"xml\"].oid\n"
+"...\n"
+"...     def dump(self, elem):\n"
+"...         return ET.tostring(elem)\n"
+"\n"
+">>> # Register the dumper on the adapters of a context\n"
+">>> conn.adapters.register_dumper(ET.Element, XmlDumper)\n"
+"\n"
+">>> # Now, in that context, it is possible to use ET.Element objects as "
+"parameters\n"
+">>> conn.execute(\"SELECT xpath('//title/text()', %s)\", [elem]).fetchone()"
+"[0]\n"
+"['Manual']"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:189
+msgid ""
+"You can use a `~psycopg.types.TypesRegistry`, exposed by any `~psycopg.abc."
+"AdaptContext`, to obtain information on builtin types, in the form of a "
+"`TypeInfo` object::"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:193
+msgid ""
+"# Global types registry\n"
+">>> psycopg.adapters.types[\"text\"]\n"
+"<TypeInfo: text (oid: 25, array oid: 1009)>\n"
+"\n"
+"# Types registry on a connection\n"
+">>> conn.adapters.types[\"integer\"]\n"
+"<TypeInfo: int4 (oid: 23, array oid: 1007)>"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:201
+msgid ""
+"The same method can be used to get information about extension types if they "
+"have been registered on that context using the `~psycopg.types.TypeInfo`\\."
+"\\ `~psycopg.types.TypeInfo.register()` method::"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:205
+msgid ""
+">>> (t := psycopg.types.TypeInfo.fetch(conn, \"hstore\"))\n"
+"<TypeInfo: hstore (oid: 770082, array oid: 770087)>\n"
+"\n"
+">>> t.register()  # globally\n"
+"\n"
+">>> psycopg.adapters.types[\"hstore\"]\n"
+"<TypeInfo: hstore (oid: 770082, array oid: 770087)>"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:217
+msgid "Example: converting empty strings to NULL"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:221
+msgid ""
+"The `dump()` method can also return `!None`, which will be stored as :sql:"
+"`NULL` in the database."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:224
+msgid ""
+"If you prefer to store missing values as :sql:`NULL`, in the database, but "
+"your input may contain empty strings, you can subclass the stock string "
+"dumper to return `!None` upon empty or whitespace-only strings::"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:228
+msgid ""
+">>> from psycopg.types.string import StrDumper\n"
+"\n"
+">>> class NullStrDumper(StrDumper):\n"
+"...     def dump(self, obj):\n"
+"...         if not obj or obj.isspace():\n"
+"...             return None\n"
+"...         return super().dump(obj)\n"
+"\n"
+">>> conn.adapters.register_dumper(str, NullStrDumper)\n"
+"\n"
+">>> conn.execute(\"select %s, %s, %s, %s\", (\"foo\", \"\", \"bar\", \"  "
+"\")).fetchone()\n"
+"('foo', None, 'bar', None)"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:245
+msgid "Example: PostgreSQL numeric to Python float"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:247
+msgid ""
+"Normally PostgreSQL :sql:`numeric` values are converted to Python `~decimal."
+"Decimal` instances, because both the types allow fixed-precision arithmetic "
+"and are not subject to rounding."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:251
+msgid ""
+"Sometimes, however, you may want to perform floating-point math on :sql:"
+"`numeric` values, and `!Decimal` may get in the way (maybe because it is "
+"slower, or maybe because mixing `!float` and `!Decimal` values causes Python "
+"errors)."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:256
+msgid ""
+"If you are fine with the potential loss of precision and you simply want to "
+"receive :sql:`numeric` values as Python `!float`, you can register on :sql:"
+"`numeric` the same `Loader` class used to load :sql:`float4`\\/:sql:`float8` "
+"values. Because the PostgreSQL textual representation of both floats and "
+"decimal is the same, the two loaders are compatible."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:263
+msgid ""
+"conn = psycopg.connect()\n"
+"\n"
+"conn.execute(\"SELECT 123.45\").fetchone()[0]\n"
+"# Decimal('123.45')\n"
+"\n"
+"conn.adapters.register_loader(\"numeric\", psycopg.types.numeric."
+"FloatLoader)\n"
+"\n"
+"conn.execute(\"SELECT 123.45\").fetchone()[0]\n"
+"# 123.45"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:275
+msgid ""
+"In this example the customised adaptation takes effect only on the "
+"connection `!conn` and on any cursor created from it, not on other "
+"connections."
+msgstr ""
+
+#: ../../../advanced/adapt.rst:282
+msgid "Example: handling infinity date"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:284
+msgid ""
+"Suppose you want to work with the \"infinity\" date which is available in "
+"PostgreSQL but not handled by Python:"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:287
+msgid ""
+">>> conn.execute(\"SELECT 'infinity'::date\").fetchone()\n"
+"Traceback (most recent call last):\n"
+"   ...\n"
+"DataError: date too large (after year 10K): 'infinity'"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:294
+msgid ""
+"One possibility would be to store Python's `datetime.date.max` as PostgreSQL "
+"infinity. For this, let's create a subclass for the dumper and the loader "
+"and register them in the working scope (globally or just on a connection or "
+"cursor):"
+msgstr ""
+
+#: ../../../advanced/adapt.rst:299
+msgid ""
+"from datetime import date\n"
+"\n"
+"# Subclass existing adapters so that the base case is handled normally.\n"
+"from psycopg.types.datetime import DateLoader, DateDumper\n"
+"\n"
+"class InfDateDumper(DateDumper):\n"
+"    def dump(self, obj):\n"
+"        if obj == date.max:\n"
+"            return b\"infinity\"\n"
+"        elif obj == date.min:\n"
+"            return b\"-infinity\"\n"
+"        else:\n"
+"            return super().dump(obj)\n"
+"\n"
+"class InfDateLoader(DateLoader):\n"
+"    def load(self, data):\n"
+"        if data == b\"infinity\":\n"
+"            return date.max\n"
+"        elif data == b\"-infinity\":\n"
+"            return date.min\n"
+"        else:\n"
+"            return super().load(data)\n"
+"\n"
+"# The new classes can be registered globally, on a connection, on a cursor\n"
+"cur.adapters.register_dumper(date, InfDateDumper)\n"
+"cur.adapters.register_loader(\"date\", InfDateLoader)\n"
+"\n"
+"cur.execute(\"SELECT %s::text, %s::text\", [date(2020, 12, 31), date.max])."
+"fetchone()\n"
+"# ('2020-12-31', 'infinity')\n"
+"cur.execute(\"SELECT '2020-12-31'::date, 'infinity'::date\").fetchone()\n"
+"# (datetime.date(2020, 12, 31), datetime.date(9999, 12, 31))"
+msgstr ""

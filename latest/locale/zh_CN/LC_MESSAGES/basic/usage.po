@@ -1,0 +1,428 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../basic/usage.rst:6
+msgid "Basic module usage"
+msgstr ""
+
+#: ../../../basic/usage.rst:8
+msgid ""
+"The basic Psycopg usage is common to all the database adapters implementing "
+"the `DB-API`__ protocol. Other database adapters, such as the builtin "
+"`sqlite3` or `psycopg2`, have roughly the same pattern of interaction."
+msgstr ""
+
+#: ../../../basic/usage.rst:21
+msgid "Main objects in Psycopg 3"
+msgstr ""
+
+#: ../../../basic/usage.rst:23
+msgid "Here is an interactive session showing some of the basic commands:"
+msgstr ""
+
+#: ../../../basic/usage.rst:25
+msgid ""
+"# Note: the module name is psycopg, not psycopg3\n"
+"import psycopg\n"
+"\n"
+"# Connect to an existing database\n"
+"with psycopg.connect(\"dbname=test user=postgres\") as conn:\n"
+"\n"
+"    # Open a cursor to perform database operations\n"
+"    with conn.cursor() as cur:\n"
+"\n"
+"        # Execute a command: this creates a new table\n"
+"        cur.execute(\"\"\"\n"
+"            CREATE TABLE test (\n"
+"                id serial PRIMARY KEY,\n"
+"                num integer,\n"
+"                data text)\n"
+"            \"\"\")\n"
+"\n"
+"        # Pass data to fill a query placeholders and let Psycopg perform\n"
+"        # the correct conversion (no SQL injections!)\n"
+"        cur.execute(\n"
+"            \"INSERT INTO test (num, data) VALUES (%s, %s)\",\n"
+"            (100, \"abc'def\"))\n"
+"\n"
+"        # Query the database and obtain data as Python objects.\n"
+"        cur.execute(\"SELECT * FROM test\")\n"
+"        print(cur.fetchone())\n"
+"        # will print (1, 100, \"abc'def\")\n"
+"\n"
+"        # You can use `cur.executemany()` to perform an operation in batch\n"
+"        cur.executemany(\n"
+"            \"INSERT INTO test (num) values (%s)\",\n"
+"            [(33,), (66,), (99,)])\n"
+"\n"
+"        # You can use `cur.fetchmany()`, `cur.fetchall()` to return a list\n"
+"        # of several records, or even iterate on the cursor\n"
+"        cur.execute(\"SELECT id, num FROM test order by num\")\n"
+"        for record in cur:\n"
+"            print(record)\n"
+"\n"
+"        # Make the changes to the database persistent\n"
+"        conn.commit()"
+msgstr ""
+
+#: ../../../basic/usage.rst:70
+msgid ""
+"In the example you can see some of the main objects and methods and how they "
+"relate to each other:"
+msgstr ""
+
+#: ../../../basic/usage.rst:73
+msgid ""
+"The function `~Connection.connect()` creates a new database session and "
+"returns a new `Connection` instance. `AsyncConnection.connect()` creates an "
+"`asyncio` connection instead."
+msgstr ""
+
+#: ../../../basic/usage.rst:77
+msgid "The `~Connection` class encapsulates a database session. It allows to:"
+msgstr ""
+
+#: ../../../basic/usage.rst:79
+msgid ""
+"create new `~Cursor` instances using the `~Connection.cursor()` method to "
+"execute database commands and queries,"
+msgstr ""
+
+#: ../../../basic/usage.rst:82
+msgid ""
+"terminate transactions using the methods `~Connection.commit()` or "
+"`~Connection.rollback()`."
+msgstr ""
+
+#: ../../../basic/usage.rst:85
+msgid "The class `~Cursor` allows interaction with the database:"
+msgstr ""
+
+#: ../../../basic/usage.rst:87
+msgid ""
+"send commands to the database using methods such as `~Cursor.execute()` and "
+"`~Cursor.executemany()`,"
+msgstr ""
+
+#: ../../../basic/usage.rst:90
+msgid ""
+"retrieve data from the database, iterating on the cursor or using methods "
+"such as `~Cursor.fetchone()`, `~Cursor.fetchmany()`, `~Cursor.fetchall()`."
+msgstr ""
+
+#: ../../../basic/usage.rst:93
+msgid ""
+"Using these objects as context managers (i.e. using `!with`) will make sure "
+"to close them and free their resources at the end of the block (notice that :"
+"ref:`this is different from psycopg2 <diff-with>`)."
+msgstr ""
+
+#: ../../../basic/usage.rst:100
+msgid "A few important topics you will have to deal with are:"
+msgstr ""
+
+#: ../../../basic/usage.rst:102
+msgid ":ref:`query-parameters`."
+msgstr ""
+
+#: ../../../basic/usage.rst:103
+msgid ":ref:`types-adaptation`."
+msgstr ""
+
+#: ../../../basic/usage.rst:104
+msgid ":ref:`transactions`."
+msgstr ""
+
+#: ../../../basic/usage.rst:108
+msgid "Shortcuts"
+msgstr ""
+
+#: ../../../basic/usage.rst:110
+msgid ""
+"The pattern above is familiar to `!psycopg2` users. However, Psycopg 3 also "
+"exposes a few simple extensions which make the above pattern leaner:"
+msgstr ""
+
+#: ../../../basic/usage.rst:113
+msgid ""
+"the `Connection` objects exposes an `~Connection.execute()` method, "
+"equivalent to creating a cursor, calling its `~Cursor.execute()` method, and "
+"returning it."
+msgstr ""
+
+#: ../../../basic/usage.rst:117
+msgid ""
+"# In Psycopg 2\n"
+"cur = conn.cursor()\n"
+"cur.execute(...)\n"
+"\n"
+"# In Psycopg 3\n"
+"cur = conn.execute(...)"
+msgstr ""
+
+#: ../../../basic/usage.rst:126
+msgid ""
+"The `Cursor.execute()` method returns `!self`. This means that you can chain "
+"a fetch operation, such as `~Cursor.fetchone()`, to the `!execute()` call:"
+msgstr ""
+
+#: ../../../basic/usage.rst:129
+msgid ""
+"# In Psycopg 2\n"
+"cur.execute(...)\n"
+"record = cur.fetchone()\n"
+"\n"
+"cur.execute(...)\n"
+"for record in cur:\n"
+"    ...\n"
+"\n"
+"# In Psycopg 3\n"
+"record = cur.execute(...).fetchone()\n"
+"\n"
+"for record in cur.execute(...):\n"
+"    ..."
+msgstr ""
+
+#: ../../../basic/usage.rst:145
+msgid ""
+"Using them together, in simple cases, you can go from creating a connection "
+"to using a result in a single expression:"
+msgstr ""
+
+#: ../../../basic/usage.rst:148
+msgid ""
+"print(psycopg.connect(DSN).execute(\"SELECT now()\").fetchone()[0])\n"
+"# 2042-07-12 18:15:10.706497+01:00"
+msgstr ""
+
+#: ../../../basic/usage.rst:160
+msgid "Connection context"
+msgstr ""
+
+#: ../../../basic/usage.rst:162
+msgid "Psycopg 3 `Connection` can be used as a context manager:"
+msgstr ""
+
+#: ../../../basic/usage.rst:164
+msgid ""
+"with psycopg.connect() as conn:\n"
+"    ... # use the connection\n"
+"\n"
+"# the connection is now closed"
+msgstr ""
+
+#: ../../../basic/usage.rst:171
+msgid ""
+"When the block is exited, if there is a transaction open, it will be "
+"committed. If an exception is raised within the block the transaction is "
+"rolled back. In both cases the connection is closed. It is roughly the "
+"equivalent of:"
+msgstr ""
+
+#: ../../../basic/usage.rst:176
+msgid ""
+"conn = psycopg.connect()\n"
+"try:\n"
+"    ... # use the connection\n"
+"except BaseException:\n"
+"    conn.rollback()\n"
+"else:\n"
+"    conn.commit()\n"
+"finally:\n"
+"    conn.close()"
+msgstr ""
+
+#: ../../../basic/usage.rst:189
+msgid ""
+"This behaviour is not what `!psycopg2` does: in `!psycopg2` :ref:`there is "
+"no final close() <pg2:with>` and the connection can be used in several `!"
+"with` statements to manage different transactions. This behaviour has been "
+"considered non-standard and surprising so it has been replaced by the more "
+"explicit `~Connection.transaction()` block."
+msgstr ""
+
+#: ../../../basic/usage.rst:195
+msgid ""
+"Note that, while the above pattern is what most people would use, "
+"`connect()` doesn't enter a block itself, but returns an \"un-entered\" "
+"connection, so that it is still possible to use a connection regardless of "
+"the code scope and the developer is free to use (and responsible for "
+"calling) `~Connection.commit()`, `~Connection.rollback()`, `~Connection."
+"close()` as and where needed."
+msgstr ""
+
+#: ../../../basic/usage.rst:202
+msgid ""
+"If a connection is just left to go out of scope, the way it will behave with "
+"or without the use of a `!with` block is different:"
+msgstr ""
+
+#: ../../../basic/usage.rst:205
+msgid ""
+"if the connection is used without a `!with` block, the server will find a "
+"connection closed INTRANS and roll back the current transaction;"
+msgstr ""
+
+#: ../../../basic/usage.rst:208
+msgid ""
+"if the connection is used with a `!with` block, there will be an explicit "
+"COMMIT and the operations will be finalised."
+msgstr ""
+
+#: ../../../basic/usage.rst:211
+msgid ""
+"You should use a `!with` block when your intention is just to execute a set "
+"of operations and then committing the result, which is the most usual thing "
+"to do with a connection. If your connection life cycle and transaction "
+"pattern is different, and want more control on it, the use without `!with` "
+"might be more convenient."
+msgstr ""
+
+#: ../../../basic/usage.rst:217
+msgid "See :ref:`transactions` for more information."
+msgstr ""
+
+#: ../../../basic/usage.rst:219
+msgid ""
+"`AsyncConnection` can be also used as context manager, using ``async with``, "
+"but be careful about its quirkiness: see :ref:`async-with` for details."
+msgstr ""
+
+#: ../../../basic/usage.rst:224
+msgid "Adapting psycopg to your program"
+msgstr ""
+
+#: ../../../basic/usage.rst:226
+msgid ""
+"The above :ref:`pattern of use <usage>` only shows the default behaviour of "
+"the adapter. Psycopg can be customised in several ways, to allow the "
+"smoothest integration between your Python program and your PostgreSQL "
+"database:"
+msgstr ""
+
+#: ../../../basic/usage.rst:230
+msgid ""
+"If your program is concurrent and based on `asyncio` instead of on threads/"
+"processes, you can use :ref:`async connections and cursors <async>`."
+msgstr ""
+
+#: ../../../basic/usage.rst:233
+msgid ""
+"If you want to customise the objects that the cursor returns, instead of "
+"receiving tuples, you can specify your :ref:`row factories <row-factories>`."
+msgstr ""
+
+#: ../../../basic/usage.rst:236
+msgid ""
+"If you want to customise how Python values and PostgreSQL types are mapped "
+"into each other, beside the :ref:`basic type mapping <types-adaptation>`, "
+"you can :ref:`configure your types <adaptation>`."
+msgstr ""
+
+#: ../../../basic/usage.rst:244
+msgid "Connection logging"
+msgstr ""
+
+#: ../../../basic/usage.rst:246
+msgid ""
+"Psycopg uses the stdlib `logging` module to report the operations happening "
+"at connection time. If you experience slowness or random failures on "
+"connection you can set the ``psycopg`` logger at ``DEBUG`` level to read the "
+"operations performed."
+msgstr ""
+
+#: ../../../basic/usage.rst:251
+msgid "A very simple example of logging configuration may be the following:"
+msgstr ""
+
+#: ../../../basic/usage.rst:253
+msgid ""
+"import logging\n"
+"import psycopg\n"
+"\n"
+"logging.basicConfig(level=logging.DEBUG, format=\"%(asctime)s %(levelname)s "
+"%(message)s\")\n"
+"\n"
+"logging.getLogger(\"psycopg\").setLevel(logging.DEBUG)\n"
+"\n"
+"psycopg.connect(\"host=192.0.2.1,localhost connect_timeout=10\")"
+msgstr ""
+
+#: ../../../basic/usage.rst:264
+msgid ""
+"In this example Psycopg will first try to connect to a non responsive "
+"server, only stopping after hitting the timeout, and will move on to a "
+"working server. The resulting log might look like:"
+msgstr ""
+
+#: ../../../basic/usage.rst:268
+msgid ""
+"2045-05-10 11:45:54,364 DEBUG connection attempt: host: '192.0.2.1', port: "
+"None, hostaddr: '192.0.2.1'\n"
+"2045-05-10 11:45:54,365 DEBUG connection started: <psycopg_c.pq.PGconn "
+"[STARTED] at 0x79dff6d26160>\n"
+"2045-05-10 11:45:54,365 DEBUG connection polled: <psycopg_c.pq.PGconn [MADE] "
+"at 0x79dff6d26160>\n"
+"2045-05-10 11:46:04,392 DEBUG connection failed: host: '192.0.2.1', port: "
+"None, hostaddr: '192.0.2.1': connection timeout expired\n"
+"2045-05-10 11:46:04,392 DEBUG connection attempt: host: 'localhost', port: "
+"None, hostaddr: '127.0.0.1'\n"
+"2045-05-10 11:46:04,393 DEBUG connection started: <psycopg_c.pq.PGconn "
+"[STARTED] at 0x79dff6d26160>\n"
+"2045-05-10 11:46:04,394 DEBUG connection polled: <psycopg_c.pq.PGconn [MADE] "
+"at 0x79dff6d26160>\n"
+"2045-05-10 11:46:04,394 DEBUG connection polled: <psycopg_c.pq.PGconn "
+"[SSL_STARTUP] at 0x79dff6d26160>\n"
+"2045-05-10 11:46:04,411 DEBUG connection polled: <psycopg_c.pq.PGconn "
+"[SSL_STARTUP] at 0x79dff6d26160>\n"
+"2045-05-10 11:46:04,413 DEBUG connection polled: <psycopg_c.pq.PGconn "
+"[SSL_STARTUP] at 0x79dff6d26160>\n"
+"2045-05-10 11:46:04,423 DEBUG connection polled: <psycopg_c.pq.PGconn [MADE] "
+"at 0x79dff6d26160>\n"
+"2045-05-10 11:46:04,424 DEBUG connection polled: <psycopg_c.pq.PGconn "
+"[AWAITING_RESPONSE] at 0x79dff6d26160>\n"
+"2045-05-10 11:46:04,426 DEBUG connection polled: <psycopg_c.pq.PGconn [IDLE] "
+"(host=localhost database=piro) at 0x79dff6d26160>\n"
+"2045-05-10 11:46:04,426 DEBUG connection succeeded: host: 'localhost', port: "
+"None, hostaddr: '127.0.0.1'"
+msgstr ""
+
+#: ../../../basic/usage.rst:285
+msgid ""
+"Please note that a connection attempt might try to reach different servers: "
+"either explicitly because the connection string specifies `multiple "
+"hosts`__, or implicitly, because the DNS resolves the host name to multiple "
+"IPs."
+msgstr ""
+
+#: ../../../basic/usage.rst:15
+msgid "Example"
+msgstr ""
+
+#: ../../../basic/usage.rst:15
+msgid "Usage"
+msgstr ""
+
+#: ../../../basic/usage.rst:154
+msgid "Connection"
+msgstr ""
+
+#: ../../../basic/usage.rst:154
+msgid "`!with`"
+msgstr ""

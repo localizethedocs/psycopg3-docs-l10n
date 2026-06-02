@@ -1,0 +1,351 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../advanced/typing.rst:6
+msgid "Static Typing"
+msgstr ""
+
+#: ../../../advanced/typing.rst:8
+msgid ""
+"Psycopg source code is annotated according to :pep:`0484` type hints and is "
+"checked using the current version of Mypy_ in ``--strict`` mode."
+msgstr ""
+
+#: ../../../advanced/typing.rst:11
+msgid ""
+"If your application is checked using Mypy too you can make use of Psycopg "
+"types to validate the correct use of Psycopg objects and of the data "
+"returned by the database."
+msgstr ""
+
+#: ../../../advanced/typing.rst:19
+msgid "Generic types"
+msgstr ""
+
+#: ../../../advanced/typing.rst:21
+msgid ""
+"Psycopg `Connection` and `Cursor` objects are `~typing.Generic` objects and "
+"support a `!Row` parameter which is the type of the records returned. The "
+"parameter can be configured by passing a `!row_factory` parameter to the "
+"constructor or to the `~Connection.cursor()` method."
+msgstr ""
+
+#: ../../../advanced/typing.rst:26
+msgid ""
+"By default, methods producing records such as `Cursor.fetchall()` return "
+"normal tuples of unknown size and content. As such, the `connect()` function "
+"returns an object of type `!psycopg.Connection[tuple[Any, ...]]` and "
+"`Connection.cursor()` returns an object of type `!psycopg."
+"Cursor[tuple[Any, ...]]`. If you are writing generic plumbing code it might "
+"be practical to use annotations such as `!Connection[Any]` and `!"
+"Cursor[Any]`."
+msgstr ""
+
+#: ../../../advanced/typing.rst:33
+msgid ""
+"conn = psycopg.connect() # type is psycopg.Connection[tuple[Any, ...]]\n"
+"\n"
+"cur = conn.cursor()      # type is psycopg.Cursor[tuple[Any, ...]]\n"
+"\n"
+"rec = cur.fetchone()     # type is tuple[Any, ...] | None\n"
+"\n"
+"rec = next(cur)          # type is tuple[Any, ...]\n"
+"\n"
+"recs = cur.fetchall()    # type is List[tuple[Any, ...]]"
+msgstr ""
+
+#: ../../../advanced/typing.rst:49
+msgid "Type of rows returned"
+msgstr ""
+
+#: ../../../advanced/typing.rst:51
+msgid ""
+"If you want to use connections and cursors returning your data as different "
+"types, for instance as dictionaries, you can use the `!row_factory` argument "
+"of the `~Connection.connect()` and the `~Connection.cursor()` method, which "
+"will control what type of record is returned by the fetch methods of the "
+"cursors and annotate the returned objects accordingly. See :ref:`row-"
+"factories` for more details."
+msgstr ""
+
+#: ../../../advanced/typing.rst:58
+msgid ""
+"dconn = psycopg.connect(row_factory=dict_row)\n"
+"# dconn type is psycopg.Connection[dict[str, Any]]\n"
+"\n"
+"dcur = conn.cursor(row_factory=dict_row)\n"
+"dcur = dconn.cursor()\n"
+"# dcur type is psycopg.Cursor[dict[str, Any]] in both cases\n"
+"\n"
+"drec = dcur.fetchone()\n"
+"# drec type is dict[str, Any] | None"
+msgstr ""
+
+#: ../../../advanced/typing.rst:74
+msgid "The ``fetchone()`` frustration"
+msgstr ""
+
+#: ../../../advanced/typing.rst:78
+msgid ""
+"If you use a static type checker and you are 100% sure that the cursor will "
+"exactly one record, it is frustrating to be told that the returned row might "
+"be `!None`. For example:"
+msgstr ""
+
+#: ../../../advanced/typing.rst:82
+msgid ""
+"import psycopg\n"
+"from psycopg.rows import scalar_row\n"
+"\n"
+"def count_records() -> int:\n"
+"    conn = psycopg.connect()\n"
+"    cur = conn.cursor(row_factory=scalar_row)\n"
+"    cur.execute(\"SELECT count(*) FROM mytable\")\n"
+"    rv: int = cur.fetchone()  # mypy error here\n"
+"    return rv"
+msgstr ""
+
+#: ../../../advanced/typing.rst:94
+msgid ""
+"The :sql:`count(*)` will always return a record with a number, even if the "
+"table is empty (it will just report 0). However, Mypy will report an error "
+"such as *incompatible types in assignment (expression has type \"Any | "
+"None\", variable has type \"int\")*. In order to work around the error you "
+"will need to use an `!if`, an `!assert` or some other workaround (like "
+"``(rv,) = cur.fetchall()`` or some other horrible trick)."
+msgstr ""
+
+#: ../../../advanced/typing.rst:101
+msgid ""
+"Since Psycopg 3.3, cursors are iterables__, therefore they support the "
+"`next` function. A `!next(cur)` will behave like `!cur.fetchone()`, but it "
+"is guaranteed to return a row (in case there are no rows in the result set "
+"it will not return anything but will raise `!StopIteration`). Therefore the "
+"function above can terminate with:"
+msgstr ""
+
+#: ../../../advanced/typing.rst:107
+msgid ""
+"def count_records() -> int:\n"
+"    ...\n"
+"    rv: int = next(cur)\n"
+"    return rv"
+msgstr ""
+
+#: ../../../advanced/typing.rst:114
+msgid "and your static checker will be happy."
+msgstr ""
+
+#: ../../../advanced/typing.rst:116
+msgid ""
+"Similarly, in async code, you can use an `!await` `anext`\\ `!(cur)` "
+"expression."
+msgstr ""
+
+#: ../../../advanced/typing.rst:124
+msgid "Generic pool types"
+msgstr ""
+
+#: ../../../advanced/typing.rst:128
+msgid ""
+"The `~psycopg_pool.ConnectionPool` class and similar are generic on their `!"
+"connection_class` argument. The `~psycopg_pool.ConnectionPool.connection()` "
+"method is annotated as returning a connection of that type, and the record "
+"returned will follow the rule as in :ref:`row-factory-static`."
+msgstr ""
+
+#: ../../../advanced/typing.rst:133
+msgid ""
+"Note that, at the moment, if you use a generic class as `!connection_class`, "
+"you will need to specify a `!row_factory` consistently in the `!kwargs`, "
+"otherwise the typing system and the runtime will not agree."
+msgstr ""
+
+#: ../../../advanced/typing.rst:137
+msgid ""
+"from psycopg import Connection\n"
+"from psycopg.rows import DictRow, dict_row\n"
+"\n"
+"with ConnectionPool(\n"
+"    connection_class=Connection[DictRow],   # provides type hinting\n"
+"    kwargs={\"row_factory\": dict_row},       # works at runtime\n"
+") as pool:\n"
+"    # reveal_type(pool): ConnectionPool[Connection[dict[str, Any]]]\n"
+"\n"
+"    with pool.connection() as conn:\n"
+"        # reveal_type(conn): Connection[dict[str, Any]]\n"
+"\n"
+"        row = conn.execute(\"SELECT now()\").fetchone()\n"
+"        # reveal_type(row): dict[str, Any] | None\n"
+"\n"
+"        print(row)  # {\"now\": datetime.datetime(...)}"
+msgstr ""
+
+#: ../../../advanced/typing.rst:156
+msgid ""
+"If a non-generic `!Connection` subclass is used (one whose returned row type "
+"is not parametric) then it's not necessary to specify `!kwargs`:"
+msgstr ""
+
+#: ../../../advanced/typing.rst:159
+msgid ""
+"class MyConnection(Connection[DictRow]):\n"
+"    def __init__(self, *args, **kwargs):\n"
+"        kwargs[\"row_factory\"] = dict_row\n"
+"        super().__init__(*args, **kwargs)\n"
+"\n"
+"with ConnectionPool(connection_class=MyConnection) as pool:\n"
+"    # reveal_type(pool): ConnectionPool[MyConnection]\n"
+"\n"
+"    with pool.connection() as conn:\n"
+"        # reveal_type(conn): MyConnection\n"
+"\n"
+"        row = conn.execute(\"SELECT now()\").fetchone()\n"
+"        # reveal_type(row): dict[str, Any] | None\n"
+"\n"
+"        print(row)  # {\"now\": datetime.datetime(...)}"
+msgstr ""
+
+#: ../../../advanced/typing.rst:181
+msgid "Example: returning records as Pydantic models"
+msgstr ""
+
+#: ../../../advanced/typing.rst:183
+msgid ""
+"Using Pydantic_ it is possible to enforce static typing at runtime. Using a "
+"Pydantic model factory the code can be checked statically using Mypy and "
+"querying the database will raise an exception if the rows returned is not "
+"compatible with the model."
+msgstr ""
+
+#: ../../../advanced/typing.rst:190
+msgid ""
+"The following example can be checked with ``mypy --strict`` without "
+"reporting any issue. Pydantic will also raise a runtime error in case the `!"
+"Person` is used with a query that returns incompatible data."
+msgstr ""
+
+#: ../../../advanced/typing.rst:194
+msgid ""
+"from datetime import date\n"
+"from typing import Optional\n"
+"\n"
+"import psycopg\n"
+"from psycopg.rows import class_row\n"
+"from pydantic import BaseModel\n"
+"\n"
+"class Person(BaseModel):\n"
+"    id: int\n"
+"    first_name: str\n"
+"    last_name: str\n"
+"    dob: Optional[date]\n"
+"\n"
+"def fetch_person(id: int) -> Person:\n"
+"    with psycopg.connect() as conn:\n"
+"        with conn.cursor(row_factory=class_row(Person)) as cur:\n"
+"            cur.execute(\n"
+"                \"\"\"\n"
+"                SELECT id, first_name, last_name, dob\n"
+"                FROM (VALUES\n"
+"                    (1, 'John', 'Doe', '2000-01-01'::date),\n"
+"                    (2, 'Jane', 'White', NULL)\n"
+"                ) AS data (id, first_name, last_name, dob)\n"
+"                WHERE id = %(id)s;\n"
+"                \"\"\",\n"
+"                {\"id\": id},\n"
+"            )\n"
+"            obj = cur.fetchone()\n"
+"\n"
+"            # reveal_type(obj) would return 'Optional[Person]' here\n"
+"\n"
+"            if not obj:\n"
+"                raise KeyError(f\"person {id} not found\")\n"
+"\n"
+"            # reveal_type(obj) would return 'Person' here\n"
+"\n"
+"            return obj\n"
+"\n"
+"for id in [1, 2]:\n"
+"    p = fetch_person(id)\n"
+"    if p.dob:\n"
+"        print(f\"{p.first_name} was born in {p.dob.year}\")\n"
+"    else:\n"
+"        print(f\"Who knows when {p.first_name} was born\")"
+msgstr ""
+
+#: ../../../advanced/typing.rst:245
+msgid "Checking literal strings in queries"
+msgstr ""
+
+#: ../../../advanced/typing.rst:247
+msgid ""
+"The `~Cursor.execute()` method and similar should only receive a literal "
+"string as input, according to :pep:`675`. This means that the query should "
+"come from a literal string in your code, not from an arbitrary string "
+"expression."
+msgstr ""
+
+#: ../../../advanced/typing.rst:252
+msgid ""
+"For instance, passing an argument to the query should be done via the second "
+"argument to `!execute()`, not by string composition:"
+msgstr ""
+
+#: ../../../advanced/typing.rst:255
+msgid ""
+"def get_record(conn: psycopg.Connection[Any], id: int) -> Any:\n"
+"    cur = conn.execute(\"SELECT * FROM my_table WHERE id = %s\" % id)  # "
+"BAD!\n"
+"    return cur.fetchone()\n"
+"\n"
+"# the function should be implemented as:\n"
+"\n"
+"def get_record(conn: psycopg.Connection[Any], id: int) -> Any:\n"
+"    cur = conn.execute(\"select * FROM my_table WHERE id = %s\", (id,))\n"
+"    return cur.fetchone()"
+msgstr ""
+
+#: ../../../advanced/typing.rst:267
+msgid ""
+"If you are composing a query dynamically you should use the `sql.SQL` object "
+"and similar to escape safely table and field names. The parameter of the `!"
+"SQL()` object should be a literal string:"
+msgstr ""
+
+#: ../../../advanced/typing.rst:271
+msgid ""
+"def count_records(conn: psycopg.Connection[Any], table: str) -> int:\n"
+"    query = \"SELECT count(*) FROM %s\" % table  # BAD!\n"
+"    return conn.execute(query).fetchone()[0]\n"
+"\n"
+"# the function should be implemented as:\n"
+"\n"
+"def count_records(conn: psycopg.Connection[Any], table: str) -> int:\n"
+"    query = sql.SQL(\"SELECT count(*) FROM {}\").format(sql."
+"Identifier(table))\n"
+"    return conn.execute(query).fetchone()[0]"
+msgstr ""
+
+#: ../../../advanced/typing.rst:283
+msgid ""
+"At the time of writing, no Python static analyzer implements this check "
+"(`mypy doesn't implement it`__, Pyre_ does, but `doesn't work with psycopg "
+"yet`__). Once the type checkers support will be complete, the above bad "
+"statements should be reported as errors."
+msgstr ""

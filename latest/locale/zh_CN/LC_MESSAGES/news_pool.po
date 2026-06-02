@@ -1,0 +1,354 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../news_pool.rst:8
+msgid "``psycopg_pool`` release notes"
+msgstr ""
+
+#: ../../../news_pool.rst:11
+msgid "Current release"
+msgstr ""
+
+#: ../../../news_pool.rst:14
+msgid "psycopg_pool 3.3.1"
+msgstr ""
+
+#: ../../../news_pool.rst:16
+msgid ""
+"Fix residual race condition catching `~asyncio.CancelledError` on connection "
+"(:ticket:`#1275`)."
+msgstr ""
+
+#: ../../../news_pool.rst:18
+msgid ""
+"Fix race condition constructing the lock that makes sync `~ConnectionPool."
+"open()` thread-safe (:ticket:`#1300`)."
+msgstr ""
+
+#: ../../../news_pool.rst:23
+msgid "psycopg_pool 3.3.0"
+msgstr ""
+
+#: ../../../news_pool.rst:25
+msgid "Add `~ConnectionPool.drain()` method (:ticket:`#1215`)."
+msgstr ""
+
+#: ../../../news_pool.rst:26
+msgid ""
+"Allow the `!conninfo` and `!kwargs` `ConnectionPool` parameters to be "
+"callable to allow connection parameters update (:ticket:`#851`)."
+msgstr ""
+
+#: ../../../news_pool.rst:28
+msgid ""
+"Add `!close_returns` `ConnectionPool` parameter for :ref:`integration with "
+"SQLAlchemy <pool-sqlalchemy>` (:ticket:`#1046`)."
+msgstr ""
+
+#: ../../../news_pool.rst:33
+msgid "psycopg_pool 3.2.8"
+msgstr ""
+
+#: ../../../news_pool.rst:35
+msgid ""
+"Don't lose connections if a `~asyncio.CancelledError` is raised on check, "
+"rollback, or other events (:tickets:`#1123, #1208`)."
+msgstr ""
+
+#: ../../../news_pool.rst:40
+msgid "psycopg_pool 3.2.7"
+msgstr ""
+
+#: ../../../news_pool.rst:42
+msgid ""
+"Fix infinite loop with connections modified to return on close (:ticket:"
+"`#1124`)."
+msgstr ""
+
+#: ../../../news_pool.rst:44
+msgid ""
+"Fix request of excessive connections upon connection close failing and "
+"retrying (:ticket:`#1176`)."
+msgstr ""
+
+#: ../../../news_pool.rst:49
+msgid "psycopg_pool 3.2.6"
+msgstr ""
+
+#: ../../../news_pool.rst:51
+msgid "Reset transaction status of connection failing check (:ticket:`#1014`)."
+msgstr ""
+
+#: ../../../news_pool.rst:55
+msgid "psycopg_pool 3.2.5"
+msgstr ""
+
+#: ../../../news_pool.rst:57
+msgid "Fix spurious warning logging on pool shrinking (:ticket:`#1001`)."
+msgstr ""
+
+#: ../../../news_pool.rst:61
+msgid "psycopg_pool 3.2.4"
+msgstr ""
+
+#: ../../../news_pool.rst:63
+msgid ""
+"Add a hint to the warning printed if threads fail to stop during "
+"``__del__``, which has been reported happening during interpreter shutdown "
+"on Python 3.13 (see :ticket:`#954`)."
+msgstr ""
+
+#: ../../../news_pool.rst:69
+msgid "psycopg_pool 3.2.3"
+msgstr ""
+
+#: ../../../news_pool.rst:71
+msgid "Add metadata to declare compatibility with Python 3.13."
+msgstr ""
+
+#: ../../../news_pool.rst:75
+msgid "psycopg_pool 3.2.2"
+msgstr ""
+
+#: ../../../news_pool.rst:77
+msgid ""
+"Raise a `RuntimeWarning` instead of a `DeprecationWarning` if an async pool "
+"is open in the constructor."
+msgstr ""
+
+#: ../../../news_pool.rst:79
+msgid ""
+"Fix connections possibly left in the pool after closing (:ticket:`#784`)."
+msgstr ""
+
+#: ../../../news_pool.rst:80
+msgid ""
+"Use an empty query instead of ``SELECT 1`` to check connections (:ticket:"
+"`#790`)."
+msgstr ""
+
+#: ../../../news_pool.rst:85
+msgid "psycopg_pool 3.2.1"
+msgstr ""
+
+#: ../../../news_pool.rst:87
+msgid ""
+"Respect the `!timeout` parameter on `~ConnectionPool.connection()` when `!"
+"check` fails. Also avoid a busy-loop of checking; separate check attempts "
+"using an exponential backoff (:ticket:`#709`)."
+msgstr ""
+
+#: ../../../news_pool.rst:90
+msgid ""
+"Use `typing.Self` as a more correct return value annotation of context "
+"managers and other self-returning methods (see :ticket:`708`)."
+msgstr ""
+
+#: ../../../news_pool.rst:95
+msgid "psycopg_pool 3.2.0"
+msgstr ""
+
+#: ../../../news_pool.rst:97
+msgid ""
+"Add support for async `!reconnect_failed` callbacks in `AsyncConnectionPool` "
+"(:ticket:`#520`)."
+msgstr ""
+
+#: ../../../news_pool.rst:99
+msgid ""
+"Add `!check` parameter to the pool constructor and `~ConnectionPool."
+"check_connection()` method. (:ticket:`#656`)."
+msgstr ""
+
+#: ../../../news_pool.rst:101
+msgid ""
+"Make connection pool classes generic on the connection type (:ticket:`#559`)."
+msgstr ""
+
+#: ../../../news_pool.rst:102
+msgid ""
+"Raise a warning if sync pools rely an implicit `!open=True` and the pool "
+"context is not used. In the future the default will become `!False` (:ticket:"
+"`#659`)."
+msgstr ""
+
+#: ../../../news_pool.rst:105
+msgid ""
+"Raise a warning if async pools are opened in the constructor. In the future "
+"it will become an error. (:ticket:`#659`)."
+msgstr ""
+
+#: ../../../news_pool.rst:110
+msgid "psycopg_pool 3.1.9"
+msgstr ""
+
+#: ../../../news_pool.rst:112
+msgid ""
+"Fix the return type annotation of `!NullConnectionPool.__enter__()` (:ticket:"
+"`#540`)."
+msgstr ""
+
+#: ../../../news_pool.rst:117
+msgid "psycopg_pool 3.1.8"
+msgstr ""
+
+#: ../../../news_pool.rst:119
+msgid ""
+"Enforce connections' ``max_lifetime`` on `~ConnectionPool.check()` (:ticket:"
+"`#482`)."
+msgstr ""
+
+#: ../../../news_pool.rst:124
+msgid "psycopg_pool 3.1.7"
+msgstr ""
+
+#: ../../../news_pool.rst:126
+msgid ""
+"Fix handling of tasks cancelled while waiting in async pool queue (:ticket:"
+"`#503`)."
+msgstr ""
+
+#: ../../../news_pool.rst:131
+msgid "psycopg_pool 3.1.6"
+msgstr ""
+
+#: ../../../news_pool.rst:133
+msgid ""
+"Declare all parameters in pools constructors, instead of using `!**kwargs` (:"
+"ticket:`#493`)."
+msgstr ""
+
+#: ../../../news_pool.rst:138
+msgid "psycopg_pool 3.1.5"
+msgstr ""
+
+#: ../../../news_pool.rst:140
+msgid ""
+"Make sure that `!ConnectionPool.check()` refills an empty pool (:ticket:"
+"`#438`)."
+msgstr ""
+
+#: ../../../news_pool.rst:142
+msgid ""
+"Avoid error in Pyright caused by aliasing `!TypeAlias` (:ticket:`#439`)."
+msgstr ""
+
+#: ../../../news_pool.rst:146
+msgid "psycopg_pool 3.1.4"
+msgstr ""
+
+#: ../../../news_pool.rst:148
+msgid ""
+"Fix async pool exhausting connections, happening if the pool is created "
+"before the event loop is started (:ticket:`#219`)."
+msgstr ""
+
+#: ../../../news_pool.rst:153
+msgid "psycopg_pool 3.1.3"
+msgstr ""
+
+#: ../../../news_pool.rst:155
+msgid "Add support for Python 3.11 (:ticket:`#305`)."
+msgstr ""
+
+#: ../../../news_pool.rst:159
+msgid "psycopg_pool 3.1.2"
+msgstr ""
+
+#: ../../../news_pool.rst:161
+msgid ""
+"Fix possible failure to reconnect after losing connection from the server (:"
+"ticket:`#370`)."
+msgstr ""
+
+#: ../../../news_pool.rst:166
+msgid "psycopg_pool 3.1.1"
+msgstr ""
+
+#: ../../../news_pool.rst:168
+msgid ""
+"Fix race condition on pool creation which might result in the pool not "
+"filling (:ticket:`#230`)."
+msgstr ""
+
+#: ../../../news_pool.rst:173
+msgid "psycopg_pool 3.1.0"
+msgstr ""
+
+#: ../../../news_pool.rst:175
+msgid "Add :ref:`null-pool` (:ticket:`#148`)."
+msgstr ""
+
+#: ../../../news_pool.rst:176
+msgid ""
+"Add `ConnectionPool.open()` and `!open` parameter to the pool constructor (:"
+"ticket:`#151`)."
+msgstr ""
+
+#: ../../../news_pool.rst:178
+msgid "Drop support for Python 3.6."
+msgstr ""
+
+#: ../../../news_pool.rst:182
+msgid "psycopg_pool 3.0.3"
+msgstr ""
+
+#: ../../../news_pool.rst:184
+msgid ""
+"Raise `!ValueError` if `ConnectionPool` `!min_size` and `!max_size` are both "
+"set to 0 (instead of hanging)."
+msgstr ""
+
+#: ../../../news_pool.rst:186
+msgid "Raise `PoolClosed` calling `~ConnectionPool.wait()` on a closed pool."
+msgstr ""
+
+#: ../../../news_pool.rst:190
+msgid "psycopg_pool 3.0.2"
+msgstr ""
+
+#: ../../../news_pool.rst:192
+msgid "Remove dependency on the internal `!psycopg._compat` module."
+msgstr ""
+
+#: ../../../news_pool.rst:196
+msgid "psycopg_pool 3.0.1"
+msgstr ""
+
+#: ../../../news_pool.rst:198
+msgid ""
+"Don't leave connections idle in transaction after calling `~ConnectionPool."
+"check()` (:ticket:`#144`)."
+msgstr ""
+
+#: ../../../news_pool.rst:203
+msgid "psycopg_pool 3.0"
+msgstr ""
+
+#: ../../../news_pool.rst:205
+msgid "First release on PyPI."
+msgstr ""
+
+#: ../../../news_pool.rst:3
+msgid "Release notes"
+msgstr ""
+
+#: ../../../news_pool.rst:3
+msgid "News"
+msgstr ""

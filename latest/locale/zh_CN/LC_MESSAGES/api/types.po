@@ -1,0 +1,358 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/types.rst:6
+msgid "`!types` -- Types information and adapters"
+msgstr ""
+
+#: ../../../api/types.rst:10
+msgid "The `!psycopg.types` package exposes:"
+msgstr ""
+
+#: ../../../api/types.rst:12
+msgid ""
+"objects to describe PostgreSQL types, such as `TypeInfo`, `TypesRegistry`, "
+"to help or :ref:`customise the types conversion <adaptation>`;"
+msgstr ""
+
+#: ../../../api/types.rst:15
+msgid ""
+"concrete implementations of `~psycopg.abc.Loader` and `~psycopg.abc.Dumper` "
+"protocols to :ref:`handle builtin data types <types-adaptation>`;"
+msgstr ""
+
+#: ../../../api/types.rst:18
+msgid ""
+"helper objects to represent PostgreSQL data types which :ref:`don't have a "
+"straightforward Python representation <extra-adaptation>`, such as `~range."
+"Range`."
+msgstr ""
+
+#: ../../../api/types.rst:24
+msgid "Types information"
+msgstr ""
+
+#: ../../../api/types.rst:26
+msgid ""
+"The `TypeInfo` object describes simple information about a PostgreSQL data "
+"type, such as its name, oid and array oid. `!TypeInfo` subclasses may hold "
+"more information, for instance the components of a composite type."
+msgstr ""
+
+#: ../../../api/types.rst:30
+msgid ""
+"You can use `TypeInfo.fetch()` to query information from a database catalog, "
+"which is then used by helper functions, such as `~psycopg.types.hstore."
+"register_hstore()`, to register adapters on types whose OID is not known "
+"upfront or to create more specialised adapters."
+msgstr ""
+
+#: ../../../api/types.rst:35
+msgid ""
+"The `!TypeInfo` object doesn't instruct Psycopg to convert a PostgreSQL type "
+"into a Python type: this is the role of a `~psycopg.abc.Loader`. However it "
+"can extend the behaviour of other adapters: if you create a loader for `!"
+"MyType`, using the `TypeInfo` information, Psycopg will be able to manage "
+"seamlessly arrays of `!MyType` or ranges and composite types using `!MyType` "
+"as a subtype."
+msgstr ""
+
+#: ../../../api/types.rst:42
+msgid ""
+":ref:`adaptation` describes how to convert from Python objects to PostgreSQL "
+"types and back."
+msgstr ""
+
+#: ../../../api/types.rst:45
+msgid ""
+"from psycopg.adapt import Loader\n"
+"from psycopg.types import TypeInfo\n"
+"\n"
+"t = TypeInfo.fetch(conn, \"mytype\")\n"
+"t.register(conn)\n"
+"\n"
+"for record in conn.execute(\"SELECT mytypearray FROM mytable\"):\n"
+"    # records will return lists of \"mytype\" as string\n"
+"\n"
+"class MyTypeLoader(Loader):\n"
+"    def load(self, data):\n"
+"        # parse the data and return a MyType instance\n"
+"\n"
+"conn.adapters.register_loader(\"mytype\", MyTypeLoader)\n"
+"\n"
+"for record in conn.execute(\"SELECT mytypearray FROM mytable\"):\n"
+"    # records will return lists of MyType instances"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/__init__.py:docstring
+#: of psycopg.types.TypeInfo:1
+msgid "Hold information about a PostgreSQL base type."
+msgstr ""
+
+#: ../../../api/types.rst:76
+msgid "Query a system catalog to read information about a type."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.get:0
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/json.py:docstring
+#: psycopg.types.json.set_json_dumps:0 psycopg.types.json.set_json_loads:0
+#: ../../../api/types.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../api/types.rst:78
+msgid "the connection to query"
+msgstr ""
+
+#: ../../../api/types.rst:80
+msgid "the name of the type to query. It can include a schema name."
+msgstr ""
+
+#: ../../../api/types.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../../api/types.rst:83
+msgid ""
+"a `!TypeInfo` object (or subclass) populated with the type information, `!"
+"None` if not found."
+msgstr ""
+
+#: ../../../api/types.rst:86
+msgid ""
+"If the connection is async, `!fetch()` will behave as a coroutine and the "
+"caller will need to `!await` on it to get the result::"
+msgstr ""
+
+#: ../../../api/types.rst:89
+msgid "t = await TypeInfo.fetch(aconn, \"mytype\")"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypeInfo.register:1
+msgid "Register the type information, globally or in the specified `!context`."
+msgstr ""
+
+#: ../../../api/types.rst:93
+msgid ""
+"the context where the type is registered, for instance a `~psycopg."
+"Connection` or `~psycopg.Cursor`. `!None` registers the `!TypeInfo` globally."
+msgstr ""
+
+#: ../../../api/types.rst:98
+msgid ""
+"Registering the `TypeInfo` in a context allows the adapters of that context "
+"to look up type information: for instance it allows to recognise "
+"automatically arrays of that type and load them from the database as a list "
+"of the base type."
+msgstr ""
+
+#: ../../../api/types.rst:104
+msgid ""
+"In order to get information about dynamic PostgreSQL types, Psycopg offers a "
+"few `!TypeInfo` subclasses, whose `!fetch()` method can extract more "
+"complete information about the type, such as `~psycopg.types.composite."
+"CompositeInfo`, `~psycopg.types.range.RangeInfo`, `~psycopg.types.multirange."
+"MultirangeInfo`, `~psycopg.types.enum.EnumInfo`."
+msgstr ""
+
+#: ../../../api/types.rst:110
+msgid ""
+"`!TypeInfo` objects are collected in `TypesRegistry` instances, which help "
+"type information lookup. Every `~psycopg.adapt.AdaptersMap` exposes its type "
+"map on its `~psycopg.adapt.AdaptersMap.types` attribute."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/__init__.py:docstring
+#: of psycopg.types.TypesRegistry:1
+msgid "Container for the information about types in a database."
+msgstr ""
+
+#: ../../../api/types.rst:116
+msgid ""
+"`!TypeRegistry` instances are typically exposed by `~psycopg.adapt."
+"AdaptersMap` objects in adapt contexts such as `~psycopg.Connection` or "
+"`~psycopg.Cursor` (e.g. `!conn.adapters.types`)."
+msgstr ""
+
+#: ../../../api/types.rst:120
+msgid ""
+"The global registry, from which the others inherit from, is available as "
+"`psycopg.adapters`\\ `!.types`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.__getitem__:1
+#: psycopg._typeinfo.TypesRegistry.get:1
+msgid "Return info about a type, specified by name or oid"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.__getitem__:3
+#: psycopg._typeinfo.TypesRegistry.get:3
+msgid "the name or oid of the type to look for."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.__getitem__:5
+msgid "Raise KeyError if not found."
+msgstr ""
+
+#: ../../../api/types.rst:125
+msgid ""
+">>> import psycopg\n"
+"\n"
+">>> psycopg.adapters.types[\"text\"]\n"
+"<TypeInfo: text (oid: 25, array oid: 1009)>\n"
+"\n"
+">>> psycopg.adapters.types[23]\n"
+"<TypeInfo: int4 (oid: 23, array oid: 1007)>"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.get:5
+msgid "Unlike `__getitem__`, return None if not found."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.get_oid:1
+msgid "Return the oid of a PostgreSQL type by name."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.get_oid:3
+msgid "the name of the type to look for."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.get_oid:5
+msgid "Return the array oid if the type ends with \"``[]``\""
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.get_oid:7
+msgid "Raise KeyError if the name is unknown."
+msgstr ""
+
+#: ../../../api/types.rst:139
+msgid ""
+">>> psycopg.adapters.types.get_oid(\"text[]\")\n"
+"1009"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.get_by_subtype:1
+msgid "Return info about a `TypeInfo` subclass by its element name or oid."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.get_by_subtype:3
+msgid ""
+"the subtype of `!TypeInfo` to look for. Currently supported are `~psycopg."
+"types.range.RangeInfo` and `~psycopg.types.multirange.MultirangeInfo`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.get_by_subtype:6
+msgid "The name or OID of the subtype of the element to look for."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
+#: of psycopg._typeinfo.TypesRegistry.get_by_subtype:7
+msgid ""
+"The `!TypeInfo` object of class `!cls` whose subtype is `!subtype`. `!None` "
+"if the element or its range are not found."
+msgstr ""
+
+#: ../../../api/types.rst:150
+msgid "JSON adapters"
+msgstr ""
+
+#: ../../../api/types.rst:152
+msgid "See :ref:`adapt-json` for details."
+msgstr ""
+
+#: ../../../api/types.rst:159
+msgid ""
+"Wrappers to signal to convert `!obj` to a json or jsonb PostgreSQL value."
+msgstr ""
+
+#: ../../../api/types.rst:161
+msgid ""
+"Any object supported by the underlying `!dumps()` function can be wrapped."
+msgstr ""
+
+#: ../../../api/types.rst:163
+msgid ""
+"If a `!dumps` function is passed to the wrapper, use it to dump the wrapped "
+"object. Otherwise use the function specified by `set_json_dumps()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/json.py:docstring
+#: of psycopg.types.json.set_json_dumps:1
+msgid ""
+"Set the JSON serialisation function to store JSON objects in the database."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/json.py:docstring
+#: of psycopg.types.json.set_json_dumps:3
+msgid "The dump function to use."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/json.py:docstring
+#: of psycopg.types.json.set_json_dumps:5
+msgid "Where to use the `!dumps` function. If not specified, use it globally."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/json.py:docstring
+#: of psycopg.types.json.set_json_dumps:9
+msgid ""
+"By default dumping JSON uses the builtin `json.dumps`. You can override it "
+"to use a different JSON library or to use customised arguments."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/json.py:docstring
+#: of psycopg.types.json.set_json_dumps:12
+msgid ""
+"If the `Json` wrapper specified a `!dumps` function, use it in precedence of "
+"the one set by this function."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/json.py:docstring
+#: of psycopg.types.json.set_json_loads:1
+msgid "Set the JSON parsing function to fetch JSON objects from the database."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/json.py:docstring
+#: of psycopg.types.json.set_json_loads:3
+msgid "The load function to use."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/json.py:docstring
+#: of psycopg.types.json.set_json_loads:5
+msgid "Where to use the `!loads` function. If not specified, use it globally."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/json.py:docstring
+#: of psycopg.types.json.set_json_loads:9
+msgid ""
+"By default loading JSON uses the builtin `json.loads`. You can override it "
+"to use a different JSON library or to use customised arguments."
+msgstr ""

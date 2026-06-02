@@ -1,0 +1,212 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/dns.rst:2
+msgid "`_dns` -- DNS resolution utilities"
+msgstr ""
+
+#: ../../../api/dns.rst:6
+msgid ""
+"This module contains a few experimental utilities to interact with the DNS "
+"server before performing a connection."
+msgstr ""
+
+#: ../../../api/dns.rst:10
+msgid ""
+"This module is experimental and its interface could change in the future, "
+"without warning or respect for the version scheme. It is provided here to "
+"allow experimentation before making it more stable."
+msgstr ""
+
+#: ../../../api/dns.rst:15
+msgid ""
+"This module depends on the `dnspython`_ package. The package is currently "
+"not installed automatically as a Psycopg dependency and must be installed "
+"manually:"
+msgstr ""
+
+#: ../../../api/dns.rst:19
+msgid "$ pip install \"dnspython >= 2.1\""
+msgstr ""
+
+#: ../../../api/dns.rst:28
+msgid "Apply SRV DNS lookup as defined in :RFC:`2782`."
+msgstr ""
+
+#: ../../../api/dns.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../api/dns.rst:30 ../../../api/dns.rst:106
+msgid ""
+"The input parameters, for instance as returned by `~psycopg.conninfo."
+"conninfo_to_dict()`."
+msgstr ""
+
+#: ../../../api/dns.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../../api/dns.rst:33
+msgid "An updated list of connection parameters."
+msgstr ""
+
+#: ../../../api/dns.rst:35
+msgid ""
+"For every host defined in the ``params[\"host\"]`` list (comma-separated), "
+"perform SRV lookup if the host is in the form ``_Service._Proto.Target``. If "
+"lookup is successful, return a params dict with hosts and ports replaced "
+"with the looked-up entries."
+msgstr ""
+
+#: ../../../api/dns.rst:40
+msgid ""
+"Raise `~psycopg.OperationalError` if no lookup is successful and no host "
+"(looked up or unchanged) could be returned."
+msgstr ""
+
+#: ../../../api/dns.rst:43
+msgid ""
+"In addition to the rules defined by RFC 2782 about the host name pattern, "
+"perform SRV lookup also if the the port is the string ``SRV`` (case "
+"insensitive)."
+msgstr ""
+
+#: ../../../api/dns.rst:48
+msgid "This is an experimental functionality."
+msgstr ""
+
+#: ../../../api/dns.rst:51
+msgid ""
+"One possible way to use this function automatically is to subclass `~psycopg."
+"Connection`, extending the `~psycopg.Connection._get_connection_params()` "
+"method::"
+msgstr ""
+
+#: ../../../api/dns.rst:55
+msgid ""
+"import psycopg._dns  # not imported automatically\n"
+"\n"
+"class SrvCognizantConnection(psycopg.Connection):\n"
+"    @classmethod\n"
+"    def _get_connection_params(cls, conninfo, **kwargs):\n"
+"        params = super()._get_connection_params(conninfo, **kwargs)\n"
+"        params = psycopg._dns.resolve_srv(params)\n"
+"        return params\n"
+"\n"
+"# The name will be resolved to db1.example.com\n"
+"cnn = SrvCognizantConnection.connect(\"host=_postgres._tcp.db.psycopg.org\")"
+msgstr ""
+
+#: ../../../api/dns.rst:71
+msgid "Async equivalent of `resolve_srv()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection._get_connection_params:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection._get_connection_params:1
+msgid "Manipulate connection parameters before connecting."
+msgstr ""
+
+#: ../../../api/dns.rst:77 ../../../api/dns.rst:93
+msgid "This is an experimental method."
+msgstr ""
+
+#: ../../../api/dns.rst:79
+msgid ""
+"This method is a subclass hook allowing to manipulate the connection "
+"parameters before performing the connection. Make sure to call the `!"
+"super()` implementation before further manipulation of the arguments::"
+msgstr ""
+
+#: ../../../api/dns.rst:83
+msgid ""
+"@classmethod\n"
+"def _get_connection_params(cls, conninfo, **kwargs):\n"
+"    params = super()._get_connection_params(conninfo, **kwargs)\n"
+"    # do something with the params\n"
+"    return params"
+msgstr ""
+
+#: ../../../api/dns.rst:99
+msgid "Perform async DNS lookup of the hosts and return a new params dict."
+msgstr ""
+
+#: ../../../api/dns.rst:101
+msgid ""
+"The use of this function is not necessary anymore, because `psycopg."
+"AsyncConnection.connect()` performs non-blocking name resolution "
+"automatically."
+msgstr ""
+
+#: ../../../api/dns.rst:110
+msgid ""
+"If a ``host`` param is present but not ``hostname``, resolve the host "
+"addresses dynamically."
+msgstr ""
+
+#: ../../../api/dns.rst:113
+msgid ""
+"The function may change the input ``host``, ``hostname``, ``port`` to allow "
+"connecting without further DNS lookups, eventually removing hosts that are "
+"not resolved, keeping the lists of hosts and ports consistent."
+msgstr ""
+
+#: ../../../api/dns.rst:117
+msgid ""
+"Raise `~psycopg.OperationalError` if connection is not possible (e.g. no "
+"host resolve, inconsistent lists length)."
+msgstr ""
+
+#: ../../../api/dns.rst:120
+msgid ""
+"See `the PostgreSQL docs`__ for explanation of how these params are used, "
+"and how they support multiple entries."
+msgstr ""
+
+#: ../../../api/dns.rst:127
+msgid ""
+"Before psycopg 3.1, this function doesn't handle the ``/etc/hosts`` file."
+msgstr ""
+
+#: ../../../api/dns.rst:130
+msgid ""
+"Starting from psycopg 3.1, a similar operation is performed automatically by "
+"`!AsyncConnection._get_connection_params()`, so this function is unneeded."
+msgstr ""
+
+#: ../../../api/dns.rst:134
+msgid ""
+"In psycopg 3.0, one possible way to use this function automatically is to "
+"subclass `~psycopg.AsyncConnection`, extending the `~psycopg.AsyncConnection."
+"_get_connection_params()` method::"
+msgstr ""
+
+#: ../../../api/dns.rst:138
+msgid ""
+"import psycopg._dns  # not imported automatically\n"
+"\n"
+"class AsyncDnsConnection(psycopg.AsyncConnection):\n"
+"    @classmethod\n"
+"    async def _get_connection_params(cls, conninfo, **kwargs):\n"
+"        params = await super()._get_connection_params(conninfo, **kwargs)\n"
+"        params = await psycopg._dns.resolve_hostaddr_async(params)\n"
+"        return params"
+msgstr ""
