@@ -1,0 +1,995 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/connections.rst:4
+msgid "Connection classes"
+msgstr ""
+
+#: ../../../api/connections.rst:6
+msgid ""
+"The `Connection` and `AsyncConnection` classes are the main wrappers for a "
+"PostgreSQL database session. You can imagine them similar to a :program:"
+"`psql` session."
+msgstr ""
+
+#: ../../../api/connections.rst:10
+msgid ""
+"One of the differences compared to :program:`psql` is that a `Connection` "
+"usually handles a transaction automatically: other sessions will not be able "
+"to see the changes until you have committed them, more or less explicitly. "
+"Take a look to :ref:`transactions` for the details."
+msgstr ""
+
+#: ../../../api/connections.rst:17
+msgid "The `!Connection` class"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.AsyncConnection:1 psycopg.Connection:1
+msgid "Wrapper for a connection to the database."
+msgstr ""
+
+#: ../../../api/connections.rst:21
+msgid ""
+"This class implements a `DBAPI-compliant interface`__. It is what you want "
+"to use if you write a \"classic\", blocking program (eventually using "
+"threads or Eventlet/gevent for concurrency). If your program uses `asyncio` "
+"you might want to use `AsyncConnection` instead."
+msgstr ""
+
+#: ../../../api/connections.rst:28
+msgid ""
+"Connections behave as context managers: on block exit, the current "
+"transaction will be committed (or rolled back, in case of exception) and the "
+"connection will be closed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.connect:1
+msgid "Connect to a database server and return a new `Connection` instance."
+msgstr ""
+
+#: ../../../api/connections.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../api/connections.rst:34
+msgid ""
+"The `connection string`__ (a ``postgresql://`` url or a list of "
+"``key=value`` pairs) to specify where and how to connect."
+msgstr ""
+
+#: ../../../api/connections.rst:36
+msgid ""
+"Further parameters specifying the connection string. They override the ones "
+"specified in `!conninfo`."
+msgstr ""
+
+#: ../../../api/connections.rst:38
+msgid ""
+"If `!True` don't start transactions automatically. See :ref:`transactions` "
+"for details."
+msgstr ""
+
+#: ../../../api/connections.rst:40
+msgid ""
+"The row factory specifying what type of records to create fetching data "
+"(default: `~psycopg.rows.tuple_row()`). See :ref:`row-factories` for details."
+msgstr ""
+
+#: ../../../api/connections.rst:43
+msgid ""
+"Initial value for the `cursor_factory` attribute of the connection (new in "
+"Psycopg 3.1)."
+msgstr ""
+
+#: ../../../api/connections.rst:45
+msgid ""
+"Initial value for the `prepare_threshold` attribute of the connection (new "
+"in Psycopg 3.1)."
+msgstr ""
+
+#: ../../../api/connections.rst:48
+msgid "More specialized use:"
+msgstr ""
+
+#: ../../../api/connections.rst:50
+msgid ""
+"A context to copy the initial adapters configuration from. It might be an "
+"`~psycopg.adapt.AdaptersMap` with customized loaders and dumpers, used as a "
+"template to create several connections. See :ref:`adaptation` for further "
+"details."
+msgstr ""
+
+#: ../../../api/connections.rst:58
+msgid "This method is also aliased as `psycopg.connect()`."
+msgstr ""
+
+#: ../../../api/connections.rst:62
+msgid "the list of `the accepted connection parameters`__"
+msgstr ""
+
+#: ../../../api/connections.rst:63
+msgid "the `environment variables`__ affecting connection"
+msgstr ""
+
+#: ../../../api/connections.rst:68
+msgid "added `!prepare_threshold` and `!cursor_factory` parameters."
+msgstr ""
+
+#: ../../../api/connections.rst:74
+msgid ""
+"The adapters configuration used to convert Python parameters and PostgreSQL "
+"results for the queries executed on this cursor."
+msgstr ""
+
+#: ../../../api/connections.rst:77
+msgid "It affects all the cursors created by this connection afterwards."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.close:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.close:1
+msgid "Close the database connection."
+msgstr ""
+
+#: ../../../api/connections.rst:83 ../../../api/connections.rst:120
+#: ../../../api/connections.rst:519
+msgid "You can use::"
+msgstr ""
+
+#: ../../../api/connections.rst:85
+msgid ""
+"with psycopg.connect() as conn:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/connections.rst:88
+msgid ""
+"to close the connection automatically when the block is exited. See :ref:"
+"`with-connection`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.closed:1
+msgid "`!True` if the connection is closed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.broken:1
+msgid "`!True` if the connection was interrupted."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.broken:3
+msgid ""
+"A broken connection is always `closed`, but wasn't closed in a clean way, "
+"such as using `close()` or a `!with` block."
+msgstr ""
+
+#: ../../../api/connections.rst:101
+msgid "Return a new cursor to send commands and queries to the connection."
+msgstr ""
+
+#: ../../../api/connections.rst:103
+msgid ""
+"If not specified create a client-side cursor, if specified create a server-"
+"side cursor. See :ref:`cursor-types` for details."
+msgstr ""
+
+#: ../../../api/connections.rst:106
+msgid ""
+"If `!True` return binary values from the database. All the types returned by "
+"the query must have a binary loader. See :ref:`binary-data` for details."
+msgstr ""
+
+#: ../../../api/connections.rst:109
+msgid ""
+"If specified override the `row_factory` set on the connection. See :ref:`row-"
+"factories` for details."
+msgstr ""
+
+#: ../../../api/connections.rst:111
+msgid ""
+"Specify the `~ServerCursor.scrollable` property of the server-side cursor "
+"created."
+msgstr ""
+
+#: ../../../api/connections.rst:113
+msgid ""
+"Specify the `~ServerCursor.withhold` property of the server-side cursor "
+"created."
+msgstr ""
+
+#: ../../../api/connections.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../../api/connections.rst:115
+msgid ""
+"A cursor of the class specified by `cursor_factory` (or "
+"`server_cursor_factory` if `!name` is specified)."
+msgstr ""
+
+#: ../../../api/connections.rst:122
+msgid ""
+"with conn.cursor() as cur:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/connections.rst:125 ../../../api/connections.rst:524
+msgid "to close the cursor automatically when the block is exited."
+msgstr ""
+
+#: ../../../api/connections.rst:129
+msgid "The type, or factory function, returned by `cursor()` and `execute()`."
+msgstr ""
+
+#: ../../../api/connections.rst:131
+msgid "Default is `psycopg.Cursor`."
+msgstr ""
+
+#: ../../../api/connections.rst:135
+msgid ""
+"The type, or factory function, returned by `cursor()` when a name is "
+"specified."
+msgstr ""
+
+#: ../../../api/connections.rst:138
+msgid "Default is `psycopg.ServerCursor`."
+msgstr ""
+
+#: ../../../api/connections.rst:142
+msgid ""
+"The row factory defining the type of rows returned by `~Cursor.fetchone()` "
+"and the other cursor fetch methods."
+msgstr ""
+
+#: ../../../api/connections.rst:145
+msgid ""
+"The default is `~psycopg.rows.tuple_row`, which means that the fetch methods "
+"will return simple tuples."
+msgstr ""
+
+#: ../../../api/connections.rst:148
+msgid ""
+"See :ref:`row-factories` for details about defining the objects returned by "
+"cursors."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.execute:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.execute:1
+msgid "Execute a query and return a cursor to read its results."
+msgstr ""
+
+#: ../../../api/connections.rst:153
+msgid "The query to execute."
+msgstr ""
+
+#: ../../../api/connections.rst:156
+msgid ""
+"The parameters to pass to the query, if any. Can't be specified if ``query`` "
+"is a `!Template`."
+msgstr ""
+
+#: ../../../api/connections.rst:159
+msgid ""
+"Force (`!True`) or disallow (`!False`) preparation of the query. By default "
+"(`!None`) prepare automatically. See :ref:`prepared-statements`."
+msgstr ""
+
+#: ../../../api/connections.rst:162
+msgid ""
+"If `!True` the cursor will return binary values from the database. All the "
+"types returned by the query must have a binary loader. See :ref:`binary-"
+"data` for details."
+msgstr ""
+
+#: ../../../api/connections.rst:166
+msgid ""
+"The method simply creates a `Cursor` instance, `~Cursor.execute()` the query "
+"requested, and returns it."
+msgstr ""
+
+#: ../../../api/connections.rst:169
+msgid ""
+"See :ref:`query-parameters` for all the details about executing queries."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.pipeline:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.pipeline:1
+msgid "Context manager to switch the connection into pipeline mode."
+msgstr ""
+
+#: ../../../api/connections.rst:174
+msgid "The method is a context manager: you should call it using::"
+msgstr ""
+
+#: ../../../api/connections.rst:176
+msgid ""
+"with conn.pipeline() as p:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/connections.rst:179
+msgid ""
+"At the end of the block, a synchronization point is established and the "
+"connection returns in normal mode."
+msgstr ""
+
+#: ../../../api/connections.rst:182
+msgid ""
+"You can call the method recursively from within a pipeline block. Innermost "
+"blocks will establish a synchronization point on exit, but pipeline mode "
+"will be kept until the outermost block exits."
+msgstr ""
+
+#: ../../../api/connections.rst:186
+msgid "See :ref:`pipeline-mode` for details."
+msgstr ""
+
+#: ../../../api/connections.rst:192
+msgid "Transaction management methods"
+msgstr ""
+
+#: ../../../api/connections.rst:193
+msgid "For details see :ref:`transactions`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.commit:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.commit:1
+msgid "Commit any pending transaction to the database."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.rollback:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.rollback:1
+msgid "Roll back to the start of any pending transaction."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.transaction:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.transaction:1
+msgid "Start a context block with a new transaction or nested transaction."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.transaction:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.transaction:3
+msgid ""
+"Name of the savepoint used to manage a nested transaction. If `!None`, one "
+"will be chosen automatically."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.transaction:5
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.transaction:5
+msgid ""
+"Roll back the transaction at the end of the block even if there were no "
+"error (e.g. to try a no-op process)."
+msgstr ""
+
+#: ../../../api/connections.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../../api/connections.rst:201
+msgid "The method must be called with a syntax such as::"
+msgstr ""
+
+#: ../../../api/connections.rst:203
+msgid ""
+"with conn.transaction():\n"
+"    ...\n"
+"\n"
+"with conn.transaction() as tx:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/connections.rst:209
+msgid ""
+"The latter is useful if you need to interact with the `Transaction` object. "
+"See :ref:`transaction-context` for details."
+msgstr ""
+
+#: ../../../api/connections.rst:212
+msgid ""
+"Inside a transaction block it will not be possible to call `commit()` or "
+"`rollback()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.autocommit:1
+msgid "The autocommit state of the connection."
+msgstr ""
+
+#: ../../../api/connections.rst:217
+msgid ""
+"The property is writable for sync connections, read-only for async ones: you "
+"should call `!await` `~AsyncConnection.set_autocommit` :samp:`({value})` "
+"instead."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.set_autocommit:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.set_autocommit:1
+msgid "Method version of the `~Connection.autocommit` setter."
+msgstr ""
+
+#: ../../../api/connections.rst:225
+msgid ""
+"The following three properties control the characteristics of new "
+"transactions. See :ref:`transaction-characteristics` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.isolation_level:1
+msgid "The isolation level of the new transactions started on the connection."
+msgstr ""
+
+#: ../../../api/connections.rst:230
+msgid ""
+"`!None` means use the default set in the default_transaction_isolation__ "
+"configuration parameter of the server."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.set_isolation_level:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.set_isolation_level:1
+msgid "Method version of the `~Connection.isolation_level` setter."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.read_only:1
+msgid "The read-only state of the new transactions started on the connection."
+msgstr ""
+
+#: ../../../api/connections.rst:242
+msgid ""
+"`!None` means use the default set in the default_transaction_read_only__ "
+"configuration parameter of the server."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.set_read_only:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.set_read_only:1
+msgid "Method version of the `~Connection.read_only` setter."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.deferrable:1
+msgid "The deferrable state of the new transactions started on the connection."
+msgstr ""
+
+#: ../../../api/connections.rst:254
+msgid ""
+"`!None` means use the default set in the default_transaction_deferrable__ "
+"configuration parameter of the server."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.set_deferrable:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.set_deferrable:1
+msgid "Method version of the `~Connection.deferrable` setter."
+msgstr ""
+
+#: ../../../api/connections.rst:266
+msgid "Checking and configuring the connection state"
+msgstr ""
+
+#: ../../../api/connections.rst:270
+msgid "The `~pq.PGconn` libpq connection wrapper underlying the `!Connection`."
+msgstr ""
+
+#: ../../../api/connections.rst:272
+msgid ""
+"It can be used to send low level commands to PostgreSQL and access features "
+"not currently wrapped by Psycopg."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.info:1
+msgid "A `ConnectionInfo` attribute to inspect connection properties."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.prepare_threshold:1
+msgid "Number of times a query is executed before it is prepared."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.prepare_threshold:3
+msgid ""
+"If it is set to 0, every query is prepared the first time it is executed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.prepare_threshold:5
+msgid ""
+"If it is set to `!None`, prepared statements are disabled on the connection."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.prepare_threshold:8
+msgid "Default value: 5"
+msgstr ""
+
+#: ../../../api/connections.rst:279
+msgid "See :ref:`prepared-statements` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.prepared_max:1
+msgid "Maximum number of prepared statements on the connection."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Connection.prepared_max:3
+msgid ""
+"`!None` means no max number of prepared statements. The default value is 100."
+msgstr ""
+
+#: ../../../api/connections.rst:284
+msgid "If more queries need to be prepared, old ones are deallocated__."
+msgstr ""
+
+#: ../../../api/connections.rst:286
+msgid ""
+"Specifying `!None` can be useful for middleware that don't support "
+"deallocation; see :ref:`prepared statements notes <pgbouncer>`."
+msgstr ""
+
+#: ../../../api/connections.rst:293
+msgid "Added support for the `!None` value."
+msgstr ""
+
+#: ../../../api/connections.rst:297
+msgid "Methods you can use to do something cool"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.cancel:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: psycopg.connection.Connection.cancel_safe:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.cancel_safe:1
+msgid "Cancel the current operation on the connection."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.cancel_safe:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.cancel_safe:3
+msgid ""
+"raise a `~errors.CancellationTimeout` if the cancellation request does not "
+"succeed within `timeout` seconds."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.cancel_safe:6
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.cancel_safe:6
+msgid ""
+"Note that a successful cancel attempt on the client is not a guarantee that "
+"the server will successfully manage to cancel the operation."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.cancel_safe:9
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.cancel_safe:9
+msgid ""
+"This is a non-blocking version of `~Connection.cancel()` which leverages a "
+"more secure and improved cancellation feature of the libpq, which is only "
+"available from version 17."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.cancel_safe:13
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.cancel_safe:13
+msgid ""
+"If the underlying libpq is older than version 17, the method will fall back "
+"to using the same implementation of `!cancel()`."
+msgstr ""
+
+#: ../../../api/connections.rst:302
+msgid ""
+"You can use the `~Capabilities.has_cancel_safe` capability to check if `!"
+"cancel_safe()` will not fall back on the legacy libpq functions."
+msgstr ""
+
+#: ../../../api/connections.rst:308
+msgid "The `timeout` parameter has no effect for libpq older than version 17."
+msgstr ""
+
+#: ../../../api/connections.rst:313
+msgid ""
+"This method shouldn't be used as a `~signal.signal` handler. Please use "
+"`cancel()` instead."
+msgstr ""
+
+#: ../../../api/connections.rst:322
+msgid ""
+"The `!cancel()` method is implemented using the :pq:`PQcancel` function, "
+"which is deprecated since PostgreSQL 17, and has a few shortcomings:"
+msgstr ""
+
+#: ../../../api/connections.rst:326
+msgid "it is blocking even on async connections,"
+msgstr ""
+
+#: ../../../api/connections.rst:327
+msgid ""
+"it `might use an insecure connection`__ even if the original connection was "
+"secure."
+msgstr ""
+
+#: ../../../api/connections.rst:330
+msgid "Therefore you should use the `cancel_safe()` method whenever possible."
+msgstr ""
+
+#: ../../../api/connections.rst:338
+msgid ""
+"Unlike `cancel_safe()`, it is safe to call this method as a `~signal.signal` "
+"handler. This is pretty much the only case in which you might want to use "
+"this function."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.notifies:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.notifies:1
+msgid "Yield `Notify` objects as soon as they are received from the database."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.notifies:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.notifies:3
+msgid ""
+"maximum amount of time to wait for notifications. `!None` means no timeout."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.notifies:5
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.notifies:5
+msgid ""
+"stop after receiving this number of notifications. You might actually "
+"receive more than this number if more than one notifications arrives in the "
+"same packet."
+msgstr ""
+
+#: ../../../api/connections.rst:344
+msgid ""
+"Notifies are received after using :sql:`LISTEN` in a connection, when any "
+"sessions in the database generates a :sql:`NOTIFY` on one of the listened "
+"channels."
+msgstr ""
+
+#: ../../../api/connections.rst:350 ../../../api/connections.rst:567
+msgid "Added `!timeout` and `!stop_after` parameters."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.add_notify_handler:1
+msgid "Register a callable to be invoked whenever a notification is received."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.add_notify_handler:3
+msgid "the callback to call upon notification received."
+msgstr ""
+
+#: ../../../api/connections.rst:354
+msgid "See :ref:`async-notify` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.remove_notify_handler:1
+msgid "Unregister a notification callable previously registered."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.remove_notice_handler:3
+#: psycopg._connection_base.BaseConnection.remove_notify_handler:3
+msgid "the callback to remove."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.add_notice_handler:1
+msgid "Register a callable to be invoked when a notice message is received."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.add_notice_handler:3
+msgid "the callback to call upon message received."
+msgstr ""
+
+#: ../../../api/connections.rst:360
+msgid "See :ref:`async-messages` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.remove_notice_handler:1
+msgid "Unregister a notice message callable previously registered."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.fileno:1
+msgid "Return the file descriptor of the connection."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.fileno:3
+msgid ""
+"This function allows to use the connection as file-like object in functions "
+"waiting for readiness, such as the ones defined in the `selectors` module."
+msgstr ""
+
+#: ../../../api/connections.rst:370
+msgid "Two-Phase Commit support methods"
+msgstr ""
+
+#: ../../../api/connections.rst:373
+msgid ""
+":ref:`two-phase-commit` for an introductory explanation of these methods."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.xid:1
+msgid "Returns a `Xid` to pass to the `!tpc_*()` methods of this connection."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.xid:3
+msgid ""
+"The argument types and constraints are explained in :ref:`two-phase-commit`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_base.py:docstring
+#: of psycopg._connection_base.BaseConnection.xid:6
+msgid ""
+"The values passed to the method will be available on the returned object as "
+"the members `~Xid.format_id`, `~Xid.gtrid`, `~Xid.bqual`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.tpc_begin:1
+msgid "Begin a TPC transaction with the given transaction ID `!xid`."
+msgstr ""
+
+#: ../../../api/connections.rst:380 ../../../api/connections.rst:414
+#: ../../../api/connections.rst:439
+msgid "The id of the transaction"
+msgstr ""
+
+#: ../../../api/connections.rst:383
+msgid ""
+"This method should be called outside of a transaction (i.e. nothing may have "
+"executed since the last `commit()` or `rollback()` and `~ConnectionInfo."
+"transaction_status` is `~pq.TransactionStatus.IDLE`)."
+msgstr ""
+
+#: ../../../api/connections.rst:387
+msgid ""
+"Furthermore, it is an error to call `!commit()` or `!rollback()` within the "
+"TPC transaction: in this case a `ProgrammingError` is raised."
+msgstr ""
+
+#: ../../../api/connections.rst:391
+msgid ""
+"The `!xid` may be either an object returned by the `xid()` method or a plain "
+"string: the latter allows to create a transaction using the provided string "
+"as PostgreSQL transaction id. See also `tpc_recover()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.tpc_prepare:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.tpc_prepare:1
+msgid "Perform the first phase of a transaction started with `tpc_begin()`."
+msgstr ""
+
+#: ../../../api/connections.rst:399
+msgid ""
+"A `ProgrammingError` is raised if this method is used outside of a TPC "
+"transaction."
+msgstr ""
+
+#: ../../../api/connections.rst:402
+msgid ""
+"After calling `!tpc_prepare()`, no statements can be executed until "
+"`tpc_commit()` or `tpc_rollback()` will be called."
+msgstr ""
+
+#: ../../../api/connections.rst:406
+msgid "The |PREPARE TRANSACTION|_ PostgreSQL command."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.tpc_commit:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.tpc_commit:1
+msgid "Commit a prepared two-phase transaction."
+msgstr ""
+
+#: ../../../api/connections.rst:417
+msgid ""
+"When called with no arguments, `!tpc_commit()` commits a TPC transaction "
+"previously prepared with `tpc_prepare()`."
+msgstr ""
+
+#: ../../../api/connections.rst:420
+msgid ""
+"If `!tpc_commit()` is called prior to `!tpc_prepare()`, a single phase "
+"commit is performed.  A transaction manager may choose to do this if only a "
+"single resource is participating in the global transaction."
+msgstr ""
+
+#: ../../../api/connections.rst:424
+msgid ""
+"When called with a transaction ID `!xid`, the database commits the given "
+"transaction.  If an invalid transaction ID is provided, a `ProgrammingError` "
+"will be raised.  This form should be called outside of a transaction, and is "
+"intended for use in recovery."
+msgstr ""
+
+#: ../../../api/connections.rst:429 ../../../api/connections.rst:450
+msgid "On return, the TPC transaction is ended."
+msgstr ""
+
+#: ../../../api/connections.rst:431
+msgid "The |COMMIT PREPARED|_ PostgreSQL command."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.tpc_rollback:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: psycopg.connection_async.AsyncConnection.tpc_rollback:1
+msgid "Roll back a prepared two-phase transaction."
+msgstr ""
+
+#: ../../../api/connections.rst:442
+msgid ""
+"When called with no arguments, `!tpc_rollback()` rolls back a TPC "
+"transaction.  It may be called before or after `tpc_prepare()`."
+msgstr ""
+
+#: ../../../api/connections.rst:445
+msgid ""
+"When called with a transaction ID `!xid`, it rolls back the given "
+"transaction.  If an invalid transaction ID is provided, a `ProgrammingError` "
+"is raised.  This form should be called outside of a transaction, and is "
+"intended for use in recovery."
+msgstr ""
+
+#: ../../../api/connections.rst:452
+msgid "The |ROLLBACK PREPARED|_ PostgreSQL command."
+msgstr ""
+
+#: ../../../api/connections.rst:460
+msgid ""
+"Returns a list of `Xid` representing pending transactions, suitable for use "
+"with `tpc_commit()` or `tpc_rollback()`."
+msgstr ""
+
+#: ../../../api/connections.rst:463
+msgid ""
+"If a transaction was not initiated by Psycopg, the returned Xids will have "
+"attributes `~Xid.format_id` and `~Xid.bqual` set to `!None` and the `~Xid."
+"gtrid` set to the PostgreSQL transaction ID: such Xids are still usable for "
+"recovery.  Psycopg uses the same algorithm of the `PostgreSQL JDBC driver`__ "
+"to encode a XA triple in a string, so transactions initiated by a program "
+"using such driver should be unpacked correctly."
+msgstr ""
+
+#: ../../../api/connections.rst:473
+msgid ""
+"Xids returned by `!tpc_recover()` also have extra attributes `~Xid."
+"prepared`, `~Xid.owner`, `~Xid.database` populated with the values read from "
+"the server."
+msgstr ""
+
+#: ../../../api/connections.rst:477
+msgid "the |pg_prepared_xacts|_ system view."
+msgstr ""
+
+#: ../../../api/connections.rst:484
+msgid "The `!AsyncConnection` class"
+msgstr ""
+
+#: ../../../api/connections.rst:488
+msgid ""
+"This class implements a DBAPI-inspired interface, with all the blocking "
+"methods implemented as coroutines. Unless specified otherwise, non-blocking "
+"methods are shared with the `Connection` class."
+msgstr ""
+
+#: ../../../api/connections.rst:492
+msgid ""
+"The following methods have the same behaviour of the matching `!Connection` "
+"methods, but should be called using the `await` keyword."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection_async.py:docstring
+#: of psycopg.connection_async.AsyncConnection.connect:1
+msgid ""
+"Connect to a database server and return a new `AsyncConnection` instance."
+msgstr ""
+
+#: ../../../api/connections.rst:499
+msgid ""
+"Automatically resolve domain names asynchronously. In previous versions, "
+"name resolution blocks, unless the `!hostaddr` parameter is specified, or "
+"the `~psycopg._dns.resolve_hostaddr_async()` function is used."
+msgstr ""
+
+#: ../../../api/connections.rst:506
+msgid ""
+"You can use ``async with`` to close the connection automatically when the "
+"block is exited, but be careful about the async quirkness: see :ref:`async-"
+"with` for details."
+msgstr ""
+
+#: ../../../api/connections.rst:521
+msgid ""
+"async with conn.cursor() as cur:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/connections.rst:528
+msgid "Default is `psycopg.AsyncCursor`."
+msgstr ""
+
+#: ../../../api/connections.rst:532
+msgid "Default is `psycopg.AsyncServerCursor`."
+msgstr ""
+
+#: ../../../api/connections.rst:542 ../../../api/connections.rst:554
+msgid "It must be called as::"
+msgstr ""
+
+#: ../../../api/connections.rst:544
+msgid ""
+"async with conn.pipeline() as p:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/connections.rst:556
+msgid ""
+"async with conn.transaction() as tx:\n"
+"    ..."
+msgstr ""

@@ -1,0 +1,802 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../advanced/pool.rst:6
+msgid "Connection pools"
+msgstr ""
+
+#: ../../../advanced/pool.rst:8
+msgid ""
+"A `connection pool`__ is an object managing a set of connections and "
+"allowing their use in functions needing one. Because the time to establish a "
+"new connection can be relatively long, keeping connections open can reduce "
+"latency."
+msgstr ""
+
+#: ../../../advanced/pool.rst:14
+msgid ""
+"This page explains a few basic concepts of Psycopg connection pool's "
+"behaviour. Please refer to the `ConnectionPool` object API for details about "
+"the pool operations."
+msgstr ""
+
+#: ../../../advanced/pool.rst:18
+msgid ""
+"The connection pool objects are distributed in a package separate from the "
+"main `psycopg` package: use ``pip install \"psycopg[pool]\"`` or ``pip "
+"install psycopg_pool`` to make the `psycopg_pool` package available. See :"
+"ref:`pool-installation`."
+msgstr ""
+
+#: ../../../advanced/pool.rst:25
+msgid "Basic connection pool usage"
+msgstr ""
+
+#: ../../../advanced/pool.rst:27
+msgid ""
+"A `ConnectionPool` object can be used to request connections from multiple "
+"concurrent threads. A simple and safe way to use it is as a *context "
+"manager*. Within the `!with` block, you can request the pool a connection "
+"using the `~ConnectionPool.connection()` method, and use it as a context "
+"manager too::"
+msgstr ""
+
+#: ../../../advanced/pool.rst:32
+msgid ""
+"with ConnectionPool(...) as pool:\n"
+"    with pool.connection() as conn:\n"
+"        conn.execute(\"SELECT something FROM somewhere ...\")\n"
+"\n"
+"        with conn.cursor() as cur:\n"
+"            cur.execute(\"SELECT something else...\")\n"
+"\n"
+"    # At the end of the `connection()` context, the transaction is "
+"committed\n"
+"    # or rolled back, and the connection returned to the pool\n"
+"\n"
+"# At the end of the pool context, all the resources used by the pool are "
+"released"
+msgstr ""
+
+#: ../../../advanced/pool.rst:44
+msgid ""
+"The `!connection()` context behaves like the `~psycopg.Connection` object "
+"context: at the end of the block, if there is a transaction open, it will be "
+"committed if the context is exited normally, or rolled back if the context "
+"is exited with an exception. See :ref:`transaction-context` for details."
+msgstr ""
+
+#: ../../../advanced/pool.rst:49
+msgid ""
+"The pool manages a certain amount of connections (between `!min_size` and `!"
+"max_size`). If the pool has a connection ready in its state, it is served "
+"immediately to the `~connection()` caller, otherwise the caller is put in a "
+"queue and is served a connection as soon as it's available."
+msgstr ""
+
+#: ../../../advanced/pool.rst:54
+msgid ""
+"If instead of threads your application uses async code you can use the "
+"`AsyncConnectionPool` instead and use the `!async` and `!await` keywords "
+"with the methods requiring them::"
+msgstr ""
+
+#: ../../../advanced/pool.rst:58
+msgid ""
+"async with AsyncConnectionPool(...) as pool:\n"
+"    async with pool.connection() as conn:\n"
+"        await conn.execute(\"SELECT something FROM somewhere ...\")\n"
+"\n"
+"        async with conn.cursor() as cur:\n"
+"            await cur.execute(\"SELECT something else...\")"
+msgstr ""
+
+#: ../../../advanced/pool.rst:67
+msgid "Pool startup check"
+msgstr ""
+
+#: ../../../advanced/pool.rst:69
+msgid ""
+"After a pool is open, it can accept new clients even if it doesn't have `!"
+"min_size` connections ready yet. However, if the application is "
+"misconfigured and cannot connect to the database server, the clients will "
+"block until failing with a `PoolTimeout`."
+msgstr ""
+
+#: ../../../advanced/pool.rst:74
+msgid ""
+"If you want to make sure early in the application lifetime that the "
+"environment is well configured, you can use the `~ConnectionPool.wait()` "
+"method after opening the pool, which will block until `!min_size` "
+"connections have been acquired, or fail with a `!PoolTimeout` if it doesn't "
+"happen in time::"
+msgstr ""
+
+#: ../../../advanced/pool.rst:79
+msgid ""
+"with ConnectionPool(...) as pool:\n"
+"    pool.wait()\n"
+"    use_the(pool)"
+msgstr ""
+
+#: ../../../advanced/pool.rst:85
+msgid "Connections life cycle"
+msgstr ""
+
+#: ../../../advanced/pool.rst:87
+msgid ""
+"When the pool needs a new connection (because it was just opened, or because "
+"an existing connection was closed, or because a spike of activity requires "
+"new connections), it uses a background pool worker to prepare it in the "
+"background:"
+msgstr ""
+
+#: ../../../advanced/pool.rst:91
+msgid ""
+"the worker creates a connection according to the parameters `!conninfo`, `!"
+"kwargs`, and `!connection_class` passed to `ConnectionPool` constructor, "
+"calling something similar to :samp:`{connection_class}({conninfo}, "
+"**{kwargs})`;"
+msgstr ""
+
+#: ../../../advanced/pool.rst:96
+msgid ""
+"if a `!configure` callback was provided, it is called with the new "
+"connection as parameter. This can be used, for instance, to configure the "
+"connection adapters."
+msgstr ""
+
+#: ../../../advanced/pool.rst:100
+msgid ""
+"Once the connection is prepared, it is stored in the pool state, or it is "
+"passed to a client if someone is already in the requests queue."
+msgstr ""
+
+#: ../../../advanced/pool.rst:103
+msgid ""
+"When a client asks for a connection (typically entering a `~ConnectionPool."
+"connection()` context):"
+msgstr ""
+
+#: ../../../advanced/pool.rst:106
+msgid ""
+"if there is a connection available in the pool, it is served to the client "
+"immediately;"
+msgstr ""
+
+#: ../../../advanced/pool.rst:109
+msgid ""
+"if no connection is available, the client is put in a queue, and will be "
+"served a connection once one becomes available (because returned by another "
+"client or because a new one is created);"
+msgstr ""
+
+#: ../../../advanced/pool.rst:113
+msgid ""
+"if a `!check` callback was provided, it is called on the connection before "
+"passing the connection to the client. If the check fails, a new connection "
+"will be obtained."
+msgstr ""
+
+#: ../../../advanced/pool.rst:117
+msgid ""
+"When a client has finished to use the connection (typically at the end of "
+"the context stared by `~ConnectionPool.connection()`):"
+msgstr ""
+
+#: ../../../advanced/pool.rst:120
+msgid ""
+"if there is a transaction open, the transaction is committed (if the block "
+"is exited normally) or rolled back (if it is exited with an exception);"
+msgstr ""
+
+#: ../../../advanced/pool.rst:123
+msgid ""
+"if a `!reset` callback was provided, the connection is passed to it, to "
+"allow application-specific cleanup if needed;"
+msgstr ""
+
+#: ../../../advanced/pool.rst:126
+msgid ""
+"if, along this process, the connection is found in broken state, or if it "
+"passed the `!max_lifetime` configured at pool creation, it is discarded and "
+"a new connection is requested to a worker;"
+msgstr ""
+
+#: ../../../advanced/pool.rst:130
+msgid ""
+"the connection is finally returned to the pool, or, if there are clients in "
+"the queue, to the first client waiting."
+msgstr ""
+
+#: ../../../advanced/pool.rst:135
+msgid "Other ways to create a pool"
+msgstr ""
+
+#: ../../../advanced/pool.rst:137
+msgid ""
+"Using the pool as a context manager is not mandatory: pools can be created "
+"and used without using the context pattern. However, using the context is "
+"the safest way to manage its resources."
+msgstr ""
+
+#: ../../../advanced/pool.rst:141
+msgid ""
+"When the pool is created, if its `!open` parameter is `!True`, the "
+"connection process starts immediately. In a simple program you might create "
+"a pool as a global object and use it from the rest of your code::"
+msgstr ""
+
+#: ../../../advanced/pool.rst:145
+msgid ""
+"# module db.py in your program\n"
+"from psycopg_pool import ConnectionPool\n"
+"\n"
+"pool = ConnectionPool(..., open=True, ...)\n"
+"# the pool starts connecting immediately.\n"
+"\n"
+"# in another module\n"
+"from .db import pool\n"
+"\n"
+"def my_function():\n"
+"    with pool.connection() as conn:\n"
+"        conn.execute(...)"
+msgstr ""
+
+#: ../../../advanced/pool.rst:158
+msgid ""
+"Using this pattern, the pool will start the connection process already at "
+"import time. If that's too early, and you want to delay opening connections "
+"until the application is ready, you can specify to create a closed pool and "
+"call the `~ConnectionPool.open()` method."
+msgstr ""
+
+#: ../../../advanced/pool.rst:163
+msgid ""
+"If you are not using the pool as context manager, you are advised to call "
+"the `~ConnectionPool.close()` method on program exit: on some Python "
+"versions this might cause a program exit delay. How to ensure it depends on "
+"the way you are writing your program. One simple method is to use the "
+"`atexit` module::"
+msgstr ""
+
+#: ../../../advanced/pool.rst:168
+msgid "atexit.register(pool.close)"
+msgstr ""
+
+#: ../../../advanced/pool.rst:170
+msgid ""
+"Other frameworks might provide suitable hooks. For example, in FastAPI, you "
+"can use a `lifespan`__ function::"
+msgstr ""
+
+#: ../../../advanced/pool.rst:173
+msgid ""
+"pool = AsyncConnectionPool(..., open=False, ...)\n"
+"\n"
+"@asynccontextmanager\n"
+"async def lifespan(instance: FastAPI):\n"
+"    await pool.open()\n"
+"    yield\n"
+"    await pool.close()\n"
+"\n"
+"app = FastAPI(lifespan=lifespan)"
+msgstr ""
+
+#: ../../../advanced/pool.rst:186
+msgid ""
+"The current default for the `!open` parameter is `!True`. However this "
+"proved to be not the best idea and, in future releases, the default might be "
+"changed to `!False`. As a consequence, if you rely on the pool to be opened "
+"on creation, you should specify `!open=True` explicitly."
+msgstr ""
+
+#: ../../../advanced/pool.rst:192
+msgid ""
+"Opening an async pool in the constructor is deprecated and will be removed "
+"in the future. When using `AsyncConnectionPool` you should call `await pool."
+"open()` or `async with ... as pool` explicitly."
+msgstr ""
+
+#: ../../../advanced/pool.rst:200
+msgid "Null connection pools"
+msgstr ""
+
+#: ../../../advanced/pool.rst:204
+msgid ""
+"Sometimes you may want leave the choice of using or not using a connection "
+"pool as a configuration parameter of your application. For instance, you "
+"might want to use a pool if you are deploying a \"large instance\" of your "
+"application and can dedicate it a handful of connections; conversely you "
+"might not want to use it if you deploy the application in several instances, "
+"behind a load balancer, and/or using an external connection pool process "
+"such as PgBouncer."
+msgstr ""
+
+#: ../../../advanced/pool.rst:211
+msgid ""
+"Switching between using or not using a pool requires some code change, "
+"because the `ConnectionPool` API is different from the normal `~psycopg."
+"connect()` function and because the pool can perform additional connection "
+"configuration (in the `!configure` parameter) that, if the pool is removed, "
+"should be performed in some different code path of your application."
+msgstr ""
+
+#: ../../../advanced/pool.rst:217
+msgid ""
+"The `!psycopg_pool` 3.1 package introduces the `NullConnectionPool` class. "
+"This class has the same interface, and largely the same behaviour, of the `!"
+"ConnectionPool`, but doesn't create any connection beforehand. When a "
+"connection is returned, unless there are other clients already waiting, it "
+"is closed immediately and not kept in the pool state."
+msgstr ""
+
+#: ../../../advanced/pool.rst:223
+msgid ""
+"A null pool is not only a configuration convenience, but can also be used to "
+"regulate the access to the server by a client program. If `!max_size` is set "
+"to a value greater than 0, the pool will make sure that no more than `!"
+"max_size` connections are created at any given time. If more clients ask for "
+"further connections, they will be queued and served a connection as soon as "
+"a previous client has finished using it, like for the basic pool. Other "
+"mechanisms to throttle client requests (such as `!timeout` or `!"
+"max_waiting`) are respected too."
+msgstr ""
+
+#: ../../../advanced/pool.rst:234
+msgid ""
+"Queued clients will be handed an already established connection, as soon as "
+"a previous client has finished using it (and after the pool has returned it "
+"to idle state and called `!reset()` on it, if necessary)."
+msgstr ""
+
+#: ../../../advanced/pool.rst:238
+msgid ""
+"Because normally (i.e. unless queued) every client will be served a new "
+"connection, the time to obtain the connection is paid by the waiting client; "
+"background workers are not normally involved in obtaining new connections."
+msgstr ""
+
+#: ../../../advanced/pool.rst:244
+msgid "Pool connection and sizing"
+msgstr ""
+
+#: ../../../advanced/pool.rst:246
+msgid ""
+"A pool can have a fixed size (specifying no `!max_size` or `!max_size` = `!"
+"min_size`) or a dynamic size (when `!max_size` > `!min_size`). In both "
+"cases, as soon as the pool is created, it will try to acquire `!min_size` "
+"connections in the background."
+msgstr ""
+
+#: ../../../advanced/pool.rst:251
+msgid ""
+"If an attempt to create a connection fails, a new attempt will be made soon "
+"after, using an exponential backoff to increase the time between attempts, "
+"until a maximum of `!reconnect_timeout` is reached. When that happens, the "
+"pool will call the `!reconnect_failed()` function, if provided to the pool, "
+"and just start a new connection attempt. You can use this function either to "
+"send alerts or to interrupt the program and allow the rest of your "
+"infrastructure to restart it."
+msgstr ""
+
+#: ../../../advanced/pool.rst:259
+msgid ""
+"If more than `!min_size` connections are requested concurrently, new ones "
+"are created, up to `!max_size`. Note that the connections are always created "
+"by the background workers, not by the thread asking for the connection: if a "
+"client requests a new connection, and a previous client terminates its job "
+"before the new connection is ready, the waiting client will be served the "
+"existing connection. This is especially useful in scenarios where the time "
+"to establish a connection dominates the time for which the connection is "
+"used (see `this analysis`__, for instance)."
+msgstr ""
+
+#: ../../../advanced/pool.rst:271
+msgid ""
+"If a pool grows above `!min_size`, but its usage decreases afterwards, a "
+"number of connections are eventually closed: one every time a connection is "
+"unused after the `!max_idle` time specified in the pool constructor."
+msgstr ""
+
+#: ../../../advanced/pool.rst:277
+msgid "What's the right size for the pool?"
+msgstr ""
+
+#: ../../../advanced/pool.rst:279
+msgid ""
+"Big question. Who knows. However, probably not as large as you imagine. "
+"Please take a look at `this analysis`__ for some ideas."
+msgstr ""
+
+#: ../../../advanced/pool.rst:284
+msgid ""
+"Something useful you can do is probably to use the `~ConnectionPool."
+"get_stats()` method and monitor the behaviour of your program to tune the "
+"configuration parameters. The size of the pool can also be changed at "
+"runtime using the `~ConnectionPool.resize()` method."
+msgstr ""
+
+#: ../../../advanced/pool.rst:291
+msgid "Connection quality"
+msgstr ""
+
+#: ../../../advanced/pool.rst:295
+msgid ""
+"The pool doesn't actively check the state of the connections held in its "
+"state. This means that, if communication with the server is lost, or if a "
+"connection is closed for other reasons (such as a server configured with an "
+"`idle_session_timeout`__ killing connections that haven't been used for some "
+"time), the application might be served a connection in broken state."
+msgstr ""
+
+#: ../../../advanced/pool.rst:303
+msgid ""
+"If you want to configure the pool to check the state of the connection, and "
+"make sure that the application always receives a working connection, you can "
+"configure a `!check` callback. The callback can perform some operation to "
+"verify the quality of the connection and, if it completes without raising "
+"exception, the connection is passed to the client. This, of course, will "
+"imply some network time that the pool client will have to pay."
+msgstr ""
+
+#: ../../../advanced/pool.rst:310
+msgid ""
+"A simple implementation is available as the static method `ConnectionPool."
+"check_connection`, which can be used as::"
+msgstr ""
+
+#: ../../../advanced/pool.rst:313
+msgid ""
+"with ConnectionPool(\n"
+"    ..., check=ConnectionPool.check_connection, ...\n"
+") as pool:\n"
+"    ..."
+msgstr ""
+
+#: ../../../advanced/pool.rst:322
+msgid "Pool operations logging"
+msgstr ""
+
+#: ../../../advanced/pool.rst:324
+msgid ""
+"The pool uses the `logging` module to log some key operations to the "
+"``psycopg.pool`` logger. If you are trying to debug the pool behaviour you "
+"may try to log at least the ``INFO`` operations on that logger."
+msgstr ""
+
+#: ../../../advanced/pool.rst:328
+msgid "For example, the script:"
+msgstr ""
+
+#: ../../../advanced/pool.rst:330
+msgid ""
+"import time\n"
+"import logging\n"
+"from concurrent.futures import ThreadPoolExecutor, as_completed\n"
+"from psycopg_pool import ConnectionPool\n"
+"\n"
+"logging.basicConfig(\n"
+"    level=logging.INFO, format=\"%(asctime)s %(levelname)s %(name)s: "
+"%(message)s\"\n"
+")\n"
+"logging.getLogger(\"psycopg.pool\").setLevel(logging.INFO)\n"
+"\n"
+"pool = ConnectionPool(min_size=2)\n"
+"pool.wait()\n"
+"logging.info(\"pool ready\")\n"
+"\n"
+"def square(n):\n"
+"    with pool.connection() as conn:\n"
+"        time.sleep(1)\n"
+"        rec = conn.execute(\"SELECT %s * %s\", (n, n)).fetchone()\n"
+"        logging.info(f\"The square of {n} is {rec[0]}.\")\n"
+"\n"
+"with ThreadPoolExecutor(max_workers=4) as executor:\n"
+"    futures = [executor.submit(square, n) for n in range(4)]\n"
+"    for future in as_completed(futures):\n"
+"        future.result()"
+msgstr ""
+
+#: ../../../advanced/pool.rst:357
+msgid "might print something like:"
+msgstr ""
+
+#: ../../../advanced/pool.rst:359
+msgid ""
+"2023-09-20 11:02:39,718 INFO psycopg.pool: waiting for pool 'pool-1' "
+"initialization\n"
+"2023-09-20 11:02:39,720 INFO psycopg.pool: adding new connection to the "
+"pool\n"
+"2023-09-20 11:02:39,720 INFO psycopg.pool: adding new connection to the "
+"pool\n"
+"2023-09-20 11:02:39,720 INFO psycopg.pool: pool 'pool-1' is ready to use\n"
+"2023-09-20 11:02:39,720 INFO root: pool ready\n"
+"2023-09-20 11:02:39,721 INFO psycopg.pool: connection requested from "
+"'pool-1'\n"
+"2023-09-20 11:02:39,721 INFO psycopg.pool: connection given by 'pool-1'\n"
+"2023-09-20 11:02:39,721 INFO psycopg.pool: connection requested from "
+"'pool-1'\n"
+"2023-09-20 11:02:39,721 INFO psycopg.pool: connection given by 'pool-1'\n"
+"2023-09-20 11:02:39,721 INFO psycopg.pool: connection requested from "
+"'pool-1'\n"
+"2023-09-20 11:02:39,722 INFO psycopg.pool: connection requested from "
+"'pool-1'\n"
+"2023-09-20 11:02:40,724 INFO root: The square of 0 is 0.\n"
+"2023-09-20 11:02:40,724 INFO root: The square of 1 is 1.\n"
+"2023-09-20 11:02:40,725 INFO psycopg.pool: returning connection to 'pool-1'\n"
+"2023-09-20 11:02:40,725 INFO psycopg.pool: connection given by 'pool-1'\n"
+"2023-09-20 11:02:40,725 INFO psycopg.pool: returning connection to 'pool-1'\n"
+"2023-09-20 11:02:40,726 INFO psycopg.pool: connection given by 'pool-1'\n"
+"2023-09-20 11:02:41,728 INFO root: The square of 3 is 9.\n"
+"2023-09-20 11:02:41,729 INFO root: The square of 2 is 4.\n"
+"2023-09-20 11:02:41,729 INFO psycopg.pool: returning connection to 'pool-1'\n"
+"2023-09-20 11:02:41,730 INFO psycopg.pool: returning connection to 'pool-1'"
+msgstr ""
+
+#: ../../../advanced/pool.rst:383
+msgid ""
+"Please do not rely on the messages generated to remain unchanged across "
+"versions: they don't constitute a stable interface."
+msgstr ""
+
+#: ../../../advanced/pool.rst:390
+msgid "Pool stats"
+msgstr ""
+
+#: ../../../advanced/pool.rst:392
+msgid ""
+"The pool can return information about its usage using the methods "
+"`~ConnectionPool.get_stats()` or `~ConnectionPool.pop_stats()`. Both methods "
+"return the same values, but the latter reset the counters after its use. The "
+"values can be sent to a monitoring system such as Graphite_ or Prometheus_."
+msgstr ""
+
+#: ../../../advanced/pool.rst:400
+msgid ""
+"The following values should be provided, but please don't consider them as a "
+"rigid interface: it is possible that they might change in the future. Keys "
+"whose value is 0 may not be returned."
+msgstr ""
+
+#: ../../../advanced/pool.rst:406
+msgid "Metric"
+msgstr ""
+
+#: ../../../advanced/pool.rst:406
+msgid "Meaning"
+msgstr ""
+
+#: ../../../advanced/pool.rst:408
+msgid "``pool_min``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:408
+msgid "Current value for `~ConnectionPool.min_size`"
+msgstr ""
+
+#: ../../../advanced/pool.rst:409
+msgid "``pool_max``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:409
+msgid "Current value for `~ConnectionPool.max_size`"
+msgstr ""
+
+#: ../../../advanced/pool.rst:410
+msgid "``pool_size``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:410
+msgid ""
+"Number of connections currently managed by the pool (in the pool, given to "
+"clients, being prepared)"
+msgstr ""
+
+#: ../../../advanced/pool.rst:412
+msgid "``pool_available``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:412
+msgid "Number of connections currently idle in the pool"
+msgstr ""
+
+#: ../../../advanced/pool.rst:413
+msgid "``requests_waiting``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:413
+msgid "Number of requests currently waiting in a queue to receive a connection"
+msgstr ""
+
+#: ../../../advanced/pool.rst:415
+msgid "``usage_ms``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:415
+msgid "Total usage time of the connections outside the pool"
+msgstr ""
+
+#: ../../../advanced/pool.rst:416
+msgid "``requests_num``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:416
+msgid "Number of connections requested to the pool"
+msgstr ""
+
+#: ../../../advanced/pool.rst:417
+msgid "``requests_queued``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:417
+msgid ""
+"Number of requests queued because a connection wasn't immediately available "
+"in the pool"
+msgstr ""
+
+#: ../../../advanced/pool.rst:419
+msgid "``requests_wait_ms``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:419
+msgid "Total time in the queue for the clients waiting"
+msgstr ""
+
+#: ../../../advanced/pool.rst:420
+msgid "``requests_errors``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:420
+msgid ""
+"Number of connection requests resulting in an error (timeouts, queue full...)"
+msgstr ""
+
+#: ../../../advanced/pool.rst:422
+msgid "``returns_bad``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:422
+msgid "Number of connections returned to the pool in a bad state"
+msgstr ""
+
+#: ../../../advanced/pool.rst:424
+msgid "``connections_num``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:424
+msgid "Number of connection attempts made by the pool to the server"
+msgstr ""
+
+#: ../../../advanced/pool.rst:426
+msgid "``connections_ms``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:426
+msgid "Total time spent to establish connections with the server"
+msgstr ""
+
+#: ../../../advanced/pool.rst:428
+msgid "``connections_errors``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:428
+msgid "Number of failed connection attempts"
+msgstr ""
+
+#: ../../../advanced/pool.rst:429
+msgid "``connections_lost``"
+msgstr ""
+
+#: ../../../advanced/pool.rst:429
+msgid ""
+"Number of connections lost identified by `~ConnectionPool.check()` or by the "
+"`!check` callback"
+msgstr ""
+
+#: ../../../advanced/pool.rst:437
+msgid "Integration with SQLAlchemy"
+msgstr ""
+
+#: ../../../advanced/pool.rst:441
+msgid ""
+"If you want to use SQLAlchemy__ with psycopg's connection pool you can use "
+"the SQLAlchemy's NullPool__ feature, using the pool's `~ConnectionPool."
+"getconn` as `!creator` function. However, SQLAlchemy expects that calling "
+"`~psycopg.Connection.close()` on the connection will return the connection "
+"to the pool, which is not Psycopg's default behaviour."
+msgstr ""
+
+#: ../../../advanced/pool.rst:450
+msgid ""
+"Since `!psycopg_pool` version 3.3, the `!close_returns` parameter of the "
+"pool allows to change this behaviour, telling its connections to return to "
+"the pool, instead of closing, when `!close()` is called."
+msgstr ""
+
+#: ../../../advanced/pool.rst:454
+msgid "For example, the initialization in an async application may look like:"
+msgstr ""
+
+#: ../../../advanced/pool.rst:456
+msgid ""
+"import psycopg_pool\n"
+"import sqlalchemy.pool\n"
+"import sqlalchemy.ext.asyncio\n"
+"\n"
+"db_url = \"postgresql://postgres:postgres@hostname:port/database\"\n"
+"\n"
+"async def main():\n"
+"    # Create and open a Psycopg pool\n"
+"    pgpool = psycopg_pool.AsyncConnectionPool(\n"
+"        conninfo=db_url, open=False, close_returns=True\n"
+"    )\n"
+"    await mypool.open()\n"
+"\n"
+"    # Create a SQLAlchemy engine using the pool just created\n"
+"    engine = sqlalchemy.ext.asyncio.create_async_engine(\n"
+"        url=\"postgresql+psycopg://\",\n"
+"        poolclass=sqlalchemy.pool.NullPool,\n"
+"        async_creator=pgpool.getconn,\n"
+"    )\n"
+"\n"
+"    # Use the `engine` in the rest of your application.\n"
+"    await run_my_app(engine)\n"
+"\n"
+"if __name__ == \"__main__\":\n"
+"    asyncio.run(main())"
+msgstr ""
+
+#: ../../../advanced/pool.rst:484
+msgid ""
+"If you want to integrate the Psycopg pool with SQLAlchemy using a `!"
+"psycopg_pool` version older than 3.3, you will need to create a subclass of "
+"the `~psycopg.Connection` or `~psycopg.AsyncConnection` class, overriding "
+"the `!close()` method, with an implementation similar to the following:"
+msgstr ""
+
+#: ../../../advanced/pool.rst:489
+msgid ""
+"class MyAsyncConnection(psycopg.AsyncConnection):\n"
+"    # If you need to subclass a sync connection, just drop the\n"
+"    # 'async' and 'await' keywords from this example.\n"
+"    async def close(self) -> None:\n"
+"        if pool := getattr(self, \"_pool\", None):\n"
+"            # Connection currently checked out from the pool.\n"
+"            # Instead of closing it, return it to the pool.\n"
+"            await pool.putconn(self)\n"
+"        else:\n"
+"            # Connection not part of any pool, or currently into the pool.\n"
+"            # Close the connection for real.\n"
+"            await super().close()"
+msgstr ""
+
+#: ../../../advanced/pool.rst:504
+msgid ""
+"Using a connection implementing this method you will not need to specify `!"
+"close_returns` in the pool constructor, but just `!connection_class`; the "
+"example above would be modified as:"
+msgstr ""
+
+#: ../../../advanced/pool.rst:508
+msgid ""
+"pgpool = psycopg_pool.AsyncConnectionPool(\n"
+"    conninfo=db_url, open=False, connection_class=MyAsyncConnection\n"
+")"
+msgstr ""

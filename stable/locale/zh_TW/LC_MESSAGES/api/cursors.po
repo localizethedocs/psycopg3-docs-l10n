@@ -1,0 +1,1110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/cursors.rst:4
+msgid "Cursor classes"
+msgstr ""
+
+#: ../../../api/cursors.rst:6
+msgid ""
+"The `Cursor` and `AsyncCursor` classes are the main objects to send commands "
+"to a PostgreSQL database session. They are normally created by the "
+"connection's `~Connection.cursor()` method."
+msgstr ""
+
+#: ../../../api/cursors.rst:10
+msgid ""
+"Using the `!name` parameter on `!cursor()` will create a `ServerCursor` or "
+"`AsyncServerCursor`, which can be used to retrieve partial results from a "
+"database."
+msgstr ""
+
+#: ../../../api/cursors.rst:14
+msgid ""
+"Other cursor classes can be created by directly instantiating them, or can "
+"be set as `Connection.cursor_factory` to require them on `!cursor()` call."
+msgstr ""
+
+#: ../../../api/cursors.rst:17
+msgid ""
+"This page describe the details of the `!Cursor` class interface. Please "
+"refer to :ref:`cursor-types` for general information about the different "
+"types of cursors available in Psycopg."
+msgstr ""
+
+#: ../../../api/cursors.rst:23
+msgid "The `!Cursor` class"
+msgstr ""
+
+#: ../../../api/cursors.rst:27
+msgid ""
+"This class implements a `DBAPI-compliant interface`__. It is what the "
+"classic `Connection.cursor()` method returns. `AsyncConnection.cursor()` "
+"will create instead `AsyncCursor` objects, which have the same set of method "
+"but expose an `asyncio` interface and require `!async` and `!await` keywords "
+"to operate."
+msgstr ""
+
+#: ../../../api/cursors.rst:37
+msgid ""
+"Cursors behave as context managers: on block exit they are closed and "
+"further operation will not be possible. Closing a cursor will not terminate "
+"a transaction or a session though."
+msgstr ""
+
+#: ../../../api/cursors.rst:44
+msgid "The connection this cursor is using."
+msgstr ""
+
+#: ../../../api/cursors.rst:49
+msgid ""
+"The adapters configuration used to convert Python parameters and PostgreSQL "
+"results for the queries executed on this cursor."
+msgstr ""
+
+#: ../../../api/cursors.rst:54
+msgid ""
+"reconfiguring loaders using `~adapt.AdaptersMap.register_loader()` affects "
+"the results of a query already executed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.close:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.close:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.close:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.close:1
+msgid "Close the current cursor and free associated resources."
+msgstr ""
+
+#: ../../../api/cursors.rst:61 ../../../api/cursors.rst:550
+msgid "You can use::"
+msgstr ""
+
+#: ../../../api/cursors.rst:63
+msgid ""
+"with conn.cursor() as cur:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:66
+msgid ""
+"to close the cursor automatically when the block is exited. See :ref:`usage`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Cursor.closed:1
+msgid "`True` if the cursor is closed."
+msgstr ""
+
+#: ../../../api/cursors.rst:72
+msgid "Methods to send commands"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.execute:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.execute:1
+msgid "Execute a query or command to the database."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: of psycopg.cursor_async.AsyncCursor.set_result:0 ../../../api/cursors.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../api/cursors.rst:75 ../../../api/cursors.rst:387
+#: ../../../api/cursors.rst:441
+msgid "The query to execute."
+msgstr ""
+
+#: ../../../api/cursors.rst:78 ../../../api/cursors.rst:444
+msgid ""
+"The parameters to pass to the query, if any. Can't be specified if ``query`` "
+"is a `!Template`."
+msgstr ""
+
+#: ../../../api/cursors.rst:81
+msgid ""
+"Force (`!True`) or disallow (`!False`) preparation of the query. By default "
+"(`!None`) prepare automatically. See :ref:`prepared-statements`."
+msgstr ""
+
+#: ../../../api/cursors.rst:84 ../../../api/cursors.rst:447
+msgid ""
+"Specify whether the server should return data in binary format (`!True`) or "
+"in text format (`!False`). By default (`!None`) return data as requested by "
+"the cursor's `~Cursor.format`."
+msgstr ""
+
+#: ../../../api/cursors.rst:88
+msgid ""
+"Return the cursor itself, so that it will be possible to chain a fetch "
+"operation after the call."
+msgstr ""
+
+#: ../../../api/cursors.rst:91 ../../../api/cursors.rst:151
+msgid ""
+"See :ref:`query-parameters` for all the details about executing queries."
+msgstr ""
+
+#: ../../../api/cursors.rst:96
+msgid ""
+"The `query` argument must be a `~typing.StringLiteral`. If you need to "
+"compose a query dynamically, please use `sql.SQL` and related objects."
+msgstr ""
+
+#: ../../../api/cursors.rst:100
+msgid "See :pep:`675` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.executemany:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.executemany:1
+msgid "Execute the same command with a sequence of input data."
+msgstr ""
+
+#: ../../../api/cursors.rst:104
+msgid "The query to execute"
+msgstr ""
+
+#: ../../../api/cursors.rst:106
+msgid "The parameters to pass to the query"
+msgstr ""
+
+#: ../../../api/cursors.rst:108
+msgid "If `!True`, fetch the results of the queries executed"
+msgstr ""
+
+#: ../../../api/cursors.rst:111
+msgid ""
+"This is more efficient than performing separate queries, but in case of "
+"several :sql:`INSERT` (and with some SQL creativity for massive :sql:"
+"`UPDATE` too) you may consider using `copy()`."
+msgstr ""
+
+#: ../../../api/cursors.rst:115
+msgid ""
+"If the queries return data you want to read (e.g. when executing an :sql:"
+"`INSERT ... RETURNING` or a :sql:`SELECT` with a side-effect), you can "
+"specify `!returning=True`. This is equivalent of calling `~Cursor.execute()` "
+"as many times as the number of items in `!params_seq`, and to store all the "
+"results in the cursor's state."
+msgstr ""
+
+#: ../../../api/cursors.rst:123
+msgid ""
+"Using the usual `~Cursor.fetchone()`, `~Cursor.fetchall()`, you will be able "
+"to read the records returned *by the first query executed only*. In order to "
+"read the results of the following queries you can call `nextset()` or "
+"`results()` to move across the result set."
+msgstr ""
+
+#: ../../../api/cursors.rst:129
+msgid ""
+"A typical use case for `!executemany(returning=True)` might be to insert a "
+"bunch of records and to retrieve the primary keys inserted, taken from a "
+"PostgreSQL sequence. In order to do so, you may execute a query such as :sql:"
+"`INSERT INTO table VALUES (...) RETURNING id`. Because every :sql:`INSERT` "
+"is guaranteed to insert exactly a single record, you can obtain the list of "
+"the new ids using a pattern such as::"
+msgstr ""
+
+#: ../../../api/cursors.rst:137
+msgid ""
+"cur.executemany(query, records)\n"
+"ids = [cur.fetchone()[0] for _ in cur.results()]"
+msgstr ""
+
+#: ../../../api/cursors.rst:142
+msgid ""
+"More explicitly, `!fetchall()` alone will not return all the values "
+"returned! You must iterate on the results using `results()`."
+msgstr ""
+
+#: ../../../api/cursors.rst:146
+msgid ""
+"If `!returning=False`, the value of `rowcount` is set to the cumulated "
+"number of rows affected by queries. If `!returning=True`, `!rowcount` is set "
+"to the number of rows in the current result set (i.e. the first one, until "
+"`nextset()` gets called)."
+msgstr ""
+
+#: ../../../api/cursors.rst:156
+msgid "Added `!returning` parameter to receive query results."
+msgstr ""
+
+#: ../../../api/cursors.rst:157
+msgid ""
+"Performance optimised by making use of the pipeline mode, when using libpq "
+"14 or newer."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.copy:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.copy:1
+msgid "Initiate a :sql:`COPY` operation and return an object to manage it."
+msgstr ""
+
+#: ../../../api/cursors.rst:162
+msgid "The copy operation to execute"
+msgstr ""
+
+#: ../../../api/cursors.rst:164
+msgid "The parameters to pass to the statement, if any."
+msgstr ""
+
+#: ../../../api/cursors.rst:169 ../../../api/cursors.rst:563
+#: ../../../api/cursors.rst:572
+msgid "The method must be called with::"
+msgstr ""
+
+#: ../../../api/cursors.rst:171
+msgid ""
+"with cursor.copy() as copy:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:174
+msgid "See :ref:`copy` for information about :sql:`COPY`."
+msgstr ""
+
+#: ../../../api/cursors.rst:176
+msgid "Added parameters support."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.stream:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.stream:1
+msgid "Iterate row-by-row on a result from the database."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.stream:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.stream:3
+msgid ""
+"if greater than 1, results will be retrieved by chunks of this size from the "
+"server (but still yielded row-by-row); this is only available from version "
+"17 of the libpq."
+msgstr ""
+
+#: ../../../api/cursors.rst:181
+msgid ""
+"This command is similar to execute + iter; however it supports endless data "
+"streams. The feature is not available in PostgreSQL, but some "
+"implementations exist: Materialize `SUBSCRIBE`__ and CockroachDB "
+"`CHANGEFEED`__ for instance."
+msgstr ""
+
+#: ../../../api/cursors.rst:186
+msgid ""
+"The feature, and the API supporting it, are still experimental. Beware... 👀"
+msgstr ""
+
+#: ../../../api/cursors.rst:192
+msgid ""
+"The parameters are the same of `execute()`, except for `size` which can be "
+"used to set results retrieval by chunks instead of row-by-row."
+msgstr ""
+
+#: ../../../api/cursors.rst:197
+msgid ""
+"This `size` parameter is only available from libpq 17, you can use the "
+"`~Capabilities.has_stream_chunked` capability to check if this is supported."
+msgstr ""
+
+#: ../../../api/cursors.rst:203
+msgid ""
+"Failing to consume the iterator entirely will result in a connection left in "
+"`~psycopg.ConnectionInfo.transaction_status` `~pq.TransactionStatus.ACTIVE` "
+"state: this connection will refuse to receive further commands (with a "
+"message such as *another command is already in progress*)."
+msgstr ""
+
+#: ../../../api/cursors.rst:209
+msgid ""
+"If there is a chance that the generator is not consumed entirely, in order "
+"to restore the connection to a working state you can call `~generator.close` "
+"on the generator object returned by `!stream()`. The `contextlib.closing` "
+"function might be particularly useful to make sure that `!close()` is called:"
+msgstr ""
+
+#: ../../../api/cursors.rst:215
+msgid ""
+"with closing(cur.stream(\"select generate_series(1, 10000)\")) as gen:\n"
+"    for rec in gen:\n"
+"        something(rec)  # might fail"
+msgstr ""
+
+#: ../../../api/cursors.rst:221
+msgid ""
+"Without calling `!close()`, in case of error, the connection will be `!"
+"ACTIVE` and unusable. If `!close()` is called, the connection might be `!"
+"INTRANS` or `!INERROR`, depending on whether the server managed to send the "
+"entire resultset to the client. An autocommit connection will be `!IDLE` "
+"instead."
+msgstr ""
+
+#: ../../../api/cursors.rst:230
+msgid ""
+"The format of the data returned by the queries. It can be selected initially "
+"e.g. specifying `Connection.cursor`\\ `!(binary=True)` and changed during "
+"the cursor's lifetime. It is also possible  to override the value for single "
+"queries, e.g. specifying `execute` `!(binary=True)`."
+msgstr ""
+
+#: ../../../api/cursors.rst:0
+msgid "type"
+msgstr ""
+
+#: ../../../api/cursors.rst:236
+msgid "`pq.Format`"
+msgstr ""
+
+#: ../../../api/cursors.rst:0
+msgid "default"
+msgstr ""
+
+#: ../../../api/cursors.rst:237
+msgid "`~pq.Format.TEXT`"
+msgstr ""
+
+#: ../../../api/cursors.rst:239
+msgid ":ref:`binary-data`"
+msgstr ""
+
+#: ../../../api/cursors.rst:243
+msgid "Methods to retrieve results"
+msgstr ""
+
+#: ../../../api/cursors.rst:244
+msgid ""
+"Fetch methods are only available if the current result set contains results, "
+"e.g. a :sql:`SELECT` or a command with :sql:`RETURNING`. They will raise an "
+"exception if used with operations that don't return result, such as an :sql:"
+"`INSERT` with no :sql:`RETURNING` or an :sql:`ALTER TABLE`."
+msgstr ""
+
+#: ../../../api/cursors.rst:251
+msgid "Cursors are iterators, so just using the::"
+msgstr ""
+
+#: ../../../api/cursors.rst:253
+msgid ""
+"for record in cursor:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:256
+msgid "syntax will iterate on the records in the current result set."
+msgstr ""
+
+#: ../../../api/cursors.rst:260
+msgid ""
+"it is now possible to use `!next(cursor)`. Previously, cursors were "
+"iterables__, not iterators__."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Cursor.row_factory:1
+msgid "Writable attribute to control how result rows are formed."
+msgstr ""
+
+#: ../../../api/cursors.rst:268
+msgid ""
+"The property affects the objects returned by the `fetchone()`, "
+"`fetchmany()`, `fetchall()` methods. The default (`~psycopg.rows.tuple_row`) "
+"returns a tuple for each record fetched."
+msgstr ""
+
+#: ../../../api/cursors.rst:272
+msgid "See :ref:`row-factories` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.fetchone:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.fetchone:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.fetchone:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.fetchone:1
+msgid "Return the next record from the current result set."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.fetchone:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.fetchone:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.fetchone:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.fetchone:3
+msgid "Return `!None` the result set is finished."
+msgstr ""
+
+#: ../../../api/cursors.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.fetchone:5
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.fetchone:5
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.fetchone:5
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.fetchone:5
+msgid "Row | None, with Row defined by `row_factory`"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.fetchmany:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.fetchmany:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.fetchmany:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.fetchmany:1
+msgid "Return the next `!size` records from the current result set."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.fetchmany:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.fetchmany:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.fetchmany:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.fetchmany:3
+msgid "`!size` default to `!self.arraysize` if not specified."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.fetchall:3
+#: psycopg._server_cursor.ServerCursor.fetchmany:5
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.fetchall:3
+#: psycopg._server_cursor_async.AsyncServerCursor.fetchmany:5
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.fetchall:3 psycopg.cursor.Cursor.fetchmany:5
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.fetchall:3
+#: psycopg.cursor_async.AsyncCursor.fetchmany:5
+msgid "Sequence[Row], with Row defined by `row_factory`"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.fetchall:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.fetchall:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.fetchall:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.fetchall:1
+msgid "Return all the remaining records from the current result set."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_cursor_base.py:docstring
+#: of psycopg._cursor_base.BaseCursor.nextset:1
+msgid ""
+"Move to the result set of the next query executed through `executemany()` or "
+"to the next result set if `execute()` returned more than one."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_cursor_base.py:docstring
+#: of psycopg._cursor_base.BaseCursor.nextset:4
+msgid ""
+"Return `!True` if a new result is available, which will be the one methods `!"
+"fetch*()` will operate on."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.results:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.results:1
+msgid "Iterate across multiple record sets received by the cursor."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.results:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.results:3
+msgid ""
+"Multiple record sets are received after using `executemany()` with `!"
+"returning=True` or using `execute()` with more than one query in the command."
+msgstr ""
+
+#: ../../../api/cursors.rst:281
+msgid ""
+"The iterator yields the cursor itself upon iteration, but the cursor state "
+"changes, in a way equivalent to calling `nextset()` in a loop. Therefore you "
+"can ignore the result of the iteration if you are consuming `!results()` in "
+"a loop::"
+msgstr ""
+
+#: ../../../api/cursors.rst:286
+msgid ""
+"for _ in cursor.results():\n"
+"    for row in cursor:\n"
+"        ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:290
+msgid "or make use of it for example using `map()` to consume the iterator::"
+msgstr ""
+
+#: ../../../api/cursors.rst:292
+msgid ""
+"def cursor_consumer(cur: Cursor) -> Any:\n"
+"    ...\n"
+"\n"
+"map(cursor_consumer, cursor.results())"
+msgstr ""
+
+#: ../../../api/cursors.rst:299
+msgid ""
+"In previous version you may call `nextset()` in a loop until it returns a "
+"false value."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.set_result:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.set_result:1
+msgid "Move to a specific result set."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.set_result:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.set_result:3
+msgid "index of the result to go to"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.set_result:6
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.set_result:6
+msgid ""
+"More than one result will be available after executing calling "
+"`executemany()` or `execute()` with more than one query."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.set_result:9
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.set_result:9
+msgid ""
+"`!index` is 0-based and supports negative values, counting from the end, the "
+"same way you can index items in a list."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: of psycopg.cursor.Cursor.set_result:12
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.set_result:12
+msgid ""
+"The function returns self, so that the result may be followed by a fetch "
+"operation. See `results()` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.scroll:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.scroll:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.scroll:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.scroll:1
+msgid "Move the cursor in the result set to a new position according to mode."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.scroll:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.scroll:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.scroll:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.scroll:3
+msgid ""
+"If `!mode` is ``'relative'`` (default), `!value` is taken as offset to the "
+"current position in the result set; if set to ``'absolute'``, `!value` "
+"states an absolute target position."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.scroll:7
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.scroll:7
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor.py:docstring
+#: psycopg.cursor.Cursor.scroll:7
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/cursor_async.py:docstring
+#: psycopg.cursor_async.AsyncCursor.scroll:7
+msgid ""
+"Raise `!IndexError` in case a scroll operation would leave the result set. "
+"In this case the position will not change."
+msgstr ""
+
+#: ../../../api/cursors.rst:311
+msgid "Representation of the current result set, if available, else `!None`."
+msgstr ""
+
+#: ../../../api/cursors.rst:313
+msgid ""
+"It can be used to obtain low level info about the current result set and to "
+"access to features not currently wrapped by Psycopg."
+msgstr ""
+
+#: ../../../api/cursors.rst:318
+msgid "Information about the data"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Cursor.description:1
+msgid "A list of `Column` objects describing the current resultset."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Cursor.description:3
+msgid "`!None` if the current resultset didn't return tuples."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Cursor.statusmessage:1
+msgid "The status tag of the current result set."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Cursor.statusmessage:3
+msgid "`!None` if the cursor doesn't have a result available."
+msgstr ""
+
+#: ../../../api/cursors.rst:323
+msgid ""
+"This is the status tag you typically see in :program:`psql` after a "
+"successful command, such as ``CREATE TABLE`` or ``UPDATE 42``."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Cursor.rowcount:1
+msgid ""
+"Number of records affected by the operation that produced the current result "
+"set."
+msgstr ""
+
+#: ../../../api/cursors.rst:328
+msgid ""
+"From `executemany()`, unless called with `!returning=True`, this is the "
+"cumulated number of rows affected by executed commands."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Cursor.rownumber:1
+msgid "Index of the next row to fetch in the current result set."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Cursor.rownumber:3
+msgid "`!None` if there is no result to fetch."
+msgstr ""
+
+#: ../../../api/cursors.rst:335
+msgid ""
+"An helper object used to convert queries and parameters before sending them "
+"to PostgreSQL."
+msgstr ""
+
+#: ../../../api/cursors.rst:339
+msgid ""
+"This attribute is exposed because it might be helpful to debug problems when "
+"the communication between Python and PostgreSQL doesn't work as expected. "
+"For this reason, the attribute is available when a query fails too."
+msgstr ""
+
+#: ../../../api/cursors.rst:345
+msgid ""
+"You shouldn't consider it part of the public interface of the object: it "
+"might change without warnings."
+msgstr ""
+
+#: ../../../api/cursors.rst:348
+msgid "Except this warning, I guess."
+msgstr ""
+
+#: ../../../api/cursors.rst:350
+msgid ""
+"If you would like to build reliable features using this object, please get "
+"in touch so we can try and design an useful interface for it."
+msgstr ""
+
+#: ../../../api/cursors.rst:354
+msgid "Among the properties currently exposed by this object:"
+msgstr ""
+
+#: ../../../api/cursors.rst:356
+msgid ""
+"`!query` (`!bytes`): the query effectively sent to PostgreSQL. It will have "
+"Python placeholders (``%s``\\-style) replaced with PostgreSQL ones (``$1``, "
+"``$2``\\-style)."
+msgstr ""
+
+#: ../../../api/cursors.rst:360
+msgid ""
+"`!params` (sequence of `!bytes`): the parameters passed to PostgreSQL, "
+"adapted to the database format."
+msgstr ""
+
+#: ../../../api/cursors.rst:363
+msgid ""
+"`!types` (sequence of `!int`): the OID of the parameters passed to "
+"PostgreSQL."
+msgstr ""
+
+#: ../../../api/cursors.rst:366
+msgid ""
+"`!formats` (sequence of `pq.Format`): whether the parameter format is text "
+"or binary."
+msgstr ""
+
+#: ../../../api/cursors.rst:371
+msgid "The `!ClientCursor` class"
+msgstr ""
+
+#: ../../../api/cursors.rst:373
+msgid "See :ref:`client-side-binding-cursors` for details."
+msgstr ""
+
+#: ../../../api/cursors.rst:377
+msgid ""
+"This `Cursor` subclass has exactly the same interface of its parent class, "
+"but, instead of sending query and parameters separately to the server, it "
+"merges them on the client and sends them as a non-parametric query on the "
+"server. This allows, for instance, to execute parametrized data definition "
+"statements and other :ref:`problematic queries <server-side-binding>`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/client_cursor.py:docstring
+#: of psycopg.client_cursor.ClientCursorMixin.mogrify:1
+msgid "Return the query and parameters merged."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/client_cursor.py:docstring
+#: of psycopg.client_cursor.ClientCursorMixin.mogrify:3
+msgid ""
+"Parameters are adapted and merged to the query the same way that `!"
+"execute()` would do."
+msgstr ""
+
+#: ../../../api/cursors.rst:389
+msgid "The parameters to pass to the query, if any."
+msgstr ""
+
+#: ../../../api/cursors.rst:394
+msgid "The `!ServerCursor` class"
+msgstr ""
+
+#: ../../../api/cursors.rst:396
+msgid "See :ref:`server-side-cursors` for details."
+msgstr ""
+
+#: ../../../api/cursors.rst:400
+msgid ""
+"This class also implements a `DBAPI-compliant interface`__. It is created by "
+"`Connection.cursor()` specifying the `!name` parameter. Using this object "
+"results in the creation of an equivalent PostgreSQL cursor in the server. "
+"DBAPI-extension methods (such as `~Cursor.copy()` or `~Cursor.stream()`) are "
+"not implemented on this object: use a normal `Cursor` instead."
+msgstr ""
+
+#: ../../../api/cursors.rst:409
+msgid ""
+"Most attribute and methods behave exactly like in `Cursor`, here are "
+"documented the differences:"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.ServerCursor.name:1
+msgid "The name of the cursor."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.ServerCursor.scrollable:1
+msgid "Whether the cursor is scrollable or not."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.ServerCursor.scrollable:3
+msgid ""
+"If `!None` leave the choice to the server. Use `!True` if you want to use "
+"`scroll()` on the cursor."
+msgstr ""
+
+#: ../../../api/cursors.rst:415
+msgid ""
+"The PostgreSQL DECLARE_ statement documentation for the description of :sql:"
+"`[NO] SCROLL`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.ServerCursor.withhold:1
+msgid "If the cursor can be used after the creating transaction has committed."
+msgstr ""
+
+#: ../../../api/cursors.rst:420
+msgid ""
+"The PostgreSQL DECLARE_ statement documentation for the description of :sql:"
+"`{WITH|WITHOUT} HOLD`."
+msgstr ""
+
+#: ../../../api/cursors.rst:428
+msgid ""
+"Closing a server-side cursor is more important than closing a client-side "
+"one because it also releases the resources on the server, which otherwise "
+"might remain allocated until the end of the session (memory, locks). Using "
+"the pattern::"
+msgstr ""
+
+#: ../../../api/cursors.rst:433
+msgid ""
+"with conn.cursor():\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:436
+msgid ""
+"is especially useful so that the cursor is closed at the end of the block."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.execute:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.execute:1
+msgid "Open a cursor to execute a query to the database."
+msgstr ""
+
+#: ../../../api/cursors.rst:451
+msgid "Create a server cursor with given `!name` and the `!query` in argument."
+msgstr ""
+
+#: ../../../api/cursors.rst:453
+msgid ""
+"If using :sql:`DECLARE` is not appropriate (for instance because the cursor "
+"is returned by calling a stored procedure) you can avoid to use `!"
+"execute()`, crete the cursor in other ways, and use directly the `!fetch*()` "
+"methods instead. See :ref:`cursor-steal` for an example."
+msgstr ""
+
+#: ../../../api/cursors.rst:458
+msgid ""
+"Using `!execute()` more than once will close the previous cursor and open a "
+"new one with the same name."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor.py:docstring
+#: of psycopg._server_cursor.ServerCursor.executemany:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_server_cursor_async.py:docstring
+#: psycopg._server_cursor_async.AsyncServerCursor.executemany:1
+msgid "Method not implemented for server-side cursors."
+msgstr ""
+
+#: ../../../api/cursors.rst:466
+msgid ""
+"These methods use the FETCH_ SQL statement to retrieve some of the records "
+"from the cursor's current position."
+msgstr ""
+
+#: ../../../api/cursors.rst:473
+msgid ""
+"You can also iterate on the cursor to read its result one at time with::"
+msgstr ""
+
+#: ../../../api/cursors.rst:476
+msgid ""
+"for record in cur:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:479
+msgid ""
+"In this case, the records are not fetched one at time from the server but "
+"they are retrieved in batches of `itersize` to reduce the number of server "
+"roundtrips."
+msgstr ""
+
+#: ../../../api/cursors.rst:485
+msgid ""
+"Number of records to fetch at time when iterating on the cursor. The default "
+"is 100."
+msgstr ""
+
+#: ../../../api/cursors.rst:490
+msgid ""
+"This method uses the MOVE_ SQL statement to move the current position in the "
+"server-side cursor, which will affect following `!fetch*()` operations. If "
+"you need to scroll backwards you should probably call `~Connection.cursor()` "
+"using `scrollable=True`."
+msgstr ""
+
+#: ../../../api/cursors.rst:495
+msgid ""
+"Note that PostgreSQL doesn't provide a reliable way to report when a cursor "
+"moves out of bound, so the method might not raise `!IndexError` when it "
+"happens, but it might rather stop at the cursor boundary."
+msgstr ""
+
+#: ../../../api/cursors.rst:503
+msgid "The `!RawCursor` and `!RawServerCursor` class"
+msgstr ""
+
+#: ../../../api/cursors.rst:505
+msgid "See :ref:`raw-query-cursors` for details."
+msgstr ""
+
+#: ../../../api/cursors.rst:509
+msgid ""
+"This `Cursor` subclass has the same interface of the parent class but "
+"supports placeholders in PostgreSQL format (``$1``, ``$2``...) rather than "
+"in Python format (``%s``). Only positional parameters are supported."
+msgstr ""
+
+#: ../../../api/cursors.rst:518
+msgid ""
+"This `ServerCursor` subclass has the same interface of the parent class but "
+"supports placeholders in PostgreSQL format (``$1``, ``$2``...) rather than "
+"in Python format (``%s``). Only positional parameters are supported."
+msgstr ""
+
+#: ../../../api/cursors.rst:527
+msgid "Async cursor classes"
+msgstr ""
+
+#: ../../../api/cursors.rst:529
+msgid ""
+"Every `Cursor` class has an equivalent `!Async` version exposing the same "
+"semantic with an `!async` interface. The main interface is described in "
+"`AsyncCursor`."
+msgstr ""
+
+#: ../../../api/cursors.rst:536
+msgid ""
+"This class implements a DBAPI-inspired interface, with all the blocking "
+"methods implemented as coroutines. Unless specified otherwise, non-blocking "
+"methods are shared with the `Cursor` class."
+msgstr ""
+
+#: ../../../api/cursors.rst:540
+msgid ""
+"The following methods have the same behaviour of the matching `!Cursor` "
+"methods, but should be called using the `await` keyword."
+msgstr ""
+
+#: ../../../api/cursors.rst:552
+msgid ""
+"async with conn.cursor():\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:555
+msgid "to close the cursor automatically when the block is exited."
+msgstr ""
+
+#: ../../../api/cursors.rst:565
+msgid ""
+"async with cursor.copy() as copy:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:574
+msgid ""
+"async for record in cursor.stream(query):\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:586
+msgid "You can also use::"
+msgstr ""
+
+#: ../../../api/cursors.rst:588
+msgid ""
+"async for record in cursor:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:591
+msgid "to iterate on the async cursor results."
+msgstr ""
+
+#: ../../../api/cursors.rst:597
+msgid ""
+"This class is the `!async` equivalent of `ClientCursor`. The differences w.r."
+"t. the sync counterpart are the same described in `AsyncCursor`."
+msgstr ""
+
+#: ../../../api/cursors.rst:606
+msgid ""
+"This class implements a DBAPI-inspired interface as the `AsyncCursor` does, "
+"but wraps a server-side cursor like the `ServerCursor` class. It is created "
+"by `AsyncConnection.cursor()` specifying the `!name` parameter."
+msgstr ""
+
+#: ../../../api/cursors.rst:610
+msgid ""
+"The following are the methods exposing a different (async) interface from "
+"the `ServerCursor` counterpart, but sharing the same semantics."
+msgstr ""
+
+#: ../../../api/cursors.rst:616
+msgid "You can close the cursor automatically using::"
+msgstr ""
+
+#: ../../../api/cursors.rst:618
+msgid ""
+"async with conn.cursor(\"name\") as cursor:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:629
+msgid "You can also iterate on the cursor using::"
+msgstr ""
+
+#: ../../../api/cursors.rst:631
+msgid ""
+"async for record in cur:\n"
+"    ..."
+msgstr ""
+
+#: ../../../api/cursors.rst:639
+msgid ""
+"This class is the `!async` equivalent of `RawCursor`. The differences w.r.t. "
+"the sync counterpart are the same described in `AsyncCursor`."
+msgstr ""
+
+#: ../../../api/cursors.rst:647
+msgid ""
+"This class is the `!async` equivalent of `RawServerCursor`. The differences "
+"w.r.t. the sync counterpart are the same described in `AsyncServerCursor`."
+msgstr ""

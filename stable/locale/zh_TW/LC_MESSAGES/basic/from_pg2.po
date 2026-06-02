@@ -1,0 +1,725 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../basic/from_pg2.rst:10
+msgid "Differences from `!psycopg2`"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:12
+msgid ""
+"Psycopg 3 uses the common DBAPI structure of many other database adapters "
+"and tries to behave as close as possible to `!psycopg2`. There are however a "
+"few differences to be aware of."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:17
+msgid ""
+"Most of the times, the workarounds suggested here will work with both "
+"Psycopg 2 and 3, which could be useful if you are porting a program or "
+"writing a program that should work with both Psycopg 2 and 3."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:25
+msgid "Which package to install?"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:29
+msgid ""
+"If you were installing ``psycopg2-binary`` you should now install "
+"``psycopg[binary]`` instead."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:32
+msgid ""
+"If you were installing ``psycopg2``, therefore your client has the "
+"prerequisites to build the C extension yourself, you can install "
+"``psycopg[c]`` instead."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:36
+msgid ""
+"Please see the :ref:`installation <installation>` section for all the "
+"details."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:38
+msgid ""
+"Rationale: both the ``psycopg2`` and the ``psycopg2-binary`` distribution "
+"packages install the ``psycopg2`` Python package. This scenario is not well "
+"covered by Python packaging metadata, resulting in complex dependencies "
+"management and problems if both the packages are installed."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:43
+msgid ""
+"In Psycopg 3 there is a clear \"interface\" package, ``psycopg``, and "
+"optional speed-up extensions that can be included in the dependencies of a "
+"service (but don't need to -- and shouldn't be -- included in the "
+"dependencies of a library). See :ref:`install-dependencies` for more details."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:52
+msgid "Server-side binding"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:54
+msgid ""
+"Psycopg 3 sends the query and the parameters to the server separately, "
+"instead of merging them on the client side. Server-side binding works for "
+"normal :sql:`SELECT` and data manipulation statements (:sql:`INSERT`, :sql:"
+"`UPDATE`, :sql:`DELETE`), but it doesn't work with many other statements. "
+"For instance, it doesn't work with :sql:`SET` or with :sql:`NOTIFY`::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:60
+msgid ""
+">>> conn.execute(\"SET TimeZone TO %s\", [\"UTC\"])\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"psycopg.errors.SyntaxError: syntax error at or near \"$1\"\n"
+"LINE 1: SET TimeZone TO $1\n"
+"                        ^\n"
+"\n"
+">>> conn.execute(\"NOTIFY %s, %s\", [\"chan\", 42])\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"psycopg.errors.SyntaxError: syntax error at or near \"$1\"\n"
+"LINE 1: NOTIFY $1, $2\n"
+"               ^"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:74
+msgid "and with any data definition statement::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:76
+msgid ""
+">>> conn.execute(\"CREATE TABLE foo (id int DEFAULT %s)\", [42])\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"psycopg.errors.UndefinedParameter: there is no parameter $1\n"
+"LINE 1: CREATE TABLE foo (id int DEFAULT $1)\n"
+"                                         ^"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:83
+msgid ""
+"Sometimes, PostgreSQL offers an alternative: for instance the "
+"`set_config()`__ function can be used instead of the :sql:`SET` statement, "
+"the `pg_notify()`__ function can be used instead of :sql:`NOTIFY`::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:87
+msgid ""
+">>> conn.execute(\"SELECT set_config('TimeZone', %s, false)\", [\"UTC\"])\n"
+"\n"
+">>> conn.execute(\"SELECT pg_notify(%s, %s)\", [\"chan\", \"42\"])"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:97
+msgid ""
+"If this is not possible, you must merge the query and the parameter on the "
+"client side. You can do so using the `psycopg.sql` objects::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:100
+msgid ""
+">>> from psycopg import sql\n"
+"\n"
+">>> cur.execute(sql.SQL(\"CREATE TABLE foo (id int DEFAULT {})\").format(42))"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:104
+msgid ""
+"or creating a :ref:`client-side binding cursor <client-side-binding-"
+"cursors>` such as `ClientCursor`::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:107
+msgid ""
+">>> cur = ClientCursor(conn)\n"
+">>> cur.execute(\"CREATE TABLE foo (id int DEFAULT %s)\", [42])"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:110
+msgid ""
+"If you need `!ClientCursor` often, you can set the `Connection."
+"cursor_factory` to have them created by default by `Connection.cursor()`. "
+"This way, Psycopg 3 will behave largely the same way of Psycopg 2."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:114
+msgid ""
+"Note that, both server-side and client-side, you can only specify **values** "
+"as parameters (i.e. *the strings that go in single quotes*). If you need to "
+"parametrize different parts of a statement (such as a table name), you must "
+"use the `psycopg.sql` module::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:119
+msgid ""
+">>> from psycopg import sql\n"
+"\n"
+"# This will quote the user and the password using the right quotes\n"
+"# e.g.: ALTER USER \"foo\" SET PASSWORD 'bar'\n"
+">>> conn.execute(\n"
+"...     sql.SQL(\"ALTER USER {} SET PASSWORD {}\")\n"
+"...     .format(sql.Identifier(username), password))"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:135
+msgid "Extended query Protocol"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:137
+msgid ""
+"In order to use :ref:`server-side-binding`, psycopg normally uses the "
+"`extended query protocol`__ to communicate with the backend."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:140
+msgid ""
+"In certain context outside pure PostgreSQL, the extended query protocol is "
+"not supported, for instance to query the `PgBouncer admin console`__. In "
+"this case you should probably use a `ClientCursor`. See :ref:`simple-query-"
+"protocol` for details."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:152
+msgid "Multiple statements in the same query"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:154
+msgid ""
+"As a consequence of using :ref:`server-side bindings <server-side-binding>`, "
+"when parameters are used, it is not possible to execute several statements "
+"in the same `!execute()` call, separating them by semicolon::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:158
+msgid ""
+">>> conn.execute(\n"
+"...     \"INSERT INTO foo VALUES (%s); INSERT INTO foo VALUES (%s)\",\n"
+"...     (10, 20))\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"psycopg.errors.SyntaxError: cannot insert multiple commands into a prepared "
+"statement"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:165
+msgid ""
+"One obvious way to work around the problem is to use several `!execute()` "
+"calls."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:168
+msgid ""
+"**There is no such limitation if no parameters are used**. As a consequence, "
+"you can compose a multiple query on the client side and run them all in the "
+"same `!execute()` call, using the `psycopg.sql` objects::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:172
+msgid ""
+">>> from psycopg import sql\n"
+">>> conn.execute(\n"
+"...     sql.SQL(\"INSERT INTO foo VALUES ({}); INSERT INTO foo values "
+"({})\")\n"
+"...     .format(10, 20))"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:177
+msgid "or a :ref:`client-side binding cursor <client-side-binding-cursors>`::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:179
+msgid ""
+">>> cur = psycopg.ClientCursor(conn)\n"
+">>> cur.execute(\n"
+"...     \"INSERT INTO foo VALUES (%s); INSERT INTO foo VALUES (%s)\",\n"
+"...     (10, 20))"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:186
+msgid "You cannot execute multiple statements in the same query:"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:188
+msgid ""
+"when retrieving a :ref:`binary result <binary-data>` (such as using ``."
+"execute(..., binary=True)``;"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:190
+msgid "when using the :ref:`pipeline mode <pipeline-mode>`."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:194
+msgid ""
+"If a statement must be executed outside a transaction (such as :sql:`CREATE "
+"DATABASE`), it cannot be executed in batch with other statements, even if "
+"the connection is in autocommit mode::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:198
+msgid ""
+">>> conn.autocommit = True\n"
+">>> conn.execute(\"CREATE DATABASE foo; SELECT 1\")\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"psycopg.errors.ActiveSqlTransaction: CREATE DATABASE cannot run inside a "
+"transaction block"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:204
+msgid ""
+"This happens because PostgreSQL itself will wrap multiple statements in a "
+"transaction. Note that you will experience a different behaviour in :program:"
+"`psql` (:program:`psql` will split the queries on semicolons and send them "
+"to the server separately)."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:209
+msgid ""
+"This is not new in Psycopg 3: the same limitation is present in `!psycopg2` "
+"too."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:216
+msgid "Multiple results returned from multiple statements"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:218
+msgid ""
+"If more than one statement returning results is executed in psycopg2, only "
+"the result of the last statement is returned::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:221
+msgid ""
+">>> cur_pg2.execute(\"SELECT 1; SELECT 2\")\n"
+">>> cur_pg2.fetchone()\n"
+"(2,)"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:225
+msgid ""
+"In Psycopg 3 instead, all the results are available. After running the "
+"query, the first result will be readily available in the cursor and can be "
+"consumed using the usual `!fetch*()` methods. In order to access the "
+"following results, you can use the `Cursor.results()` method (or `~Cursor."
+"nextset()` before Psycopg 3.3)::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:231
+msgid ""
+">>> cur_pg3.execute(\"SELECT 1; SELECT 2\")\n"
+">>> for _ in cur_pg3.results():\n"
+"...    print(cur_pg3.fetchone())\n"
+"(1,)\n"
+"(2,)"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:237
+msgid ""
+"Remember though that you cannot use server-side bindings to :ref:`execute "
+"more than one statement in the same query <multi-statements>`, if you are "
+"passing parameters to the query."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:245
+msgid "Different cast rules"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:247
+msgid ""
+"In rare cases, especially around variadic functions, PostgreSQL might fail "
+"to find a function candidate for the given data types::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:250
+msgid ""
+">>> conn.execute(\"SELECT json_build_array(%s, %s)\", [\"foo\", \"bar\"])\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"psycopg.errors.IndeterminateDatatype: could not determine data type of "
+"parameter $1"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:255
+msgid ""
+"This can be worked around specifying the argument types explicitly via a "
+"cast::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:257
+msgid ""
+">>> conn.execute(\"SELECT json_build_array(%s::text, %s::text)\", [\"foo\", "
+"\"bar\"])"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:263
+msgid "You cannot use ``IN %s`` with a tuple"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:265
+msgid ""
+"``IN`` cannot be used with a tuple as single parameter, as was possible with "
+"``psycopg2``::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:268
+msgid ""
+">>> conn.execute(\"SELECT * FROM foo WHERE id IN %s\", [(10,20,30)])\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"psycopg.errors.SyntaxError: syntax error at or near \"$1\"\n"
+"LINE 1: SELECT * FROM foo WHERE id IN $1\n"
+"                                      ^"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:275
+msgid ""
+"What you can do is to use the `= ANY()`__ construct and pass the candidate "
+"values as a list instead of a tuple, which will be adapted to a PostgreSQL "
+"array::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:279
+msgid ""
+">>> conn.execute(\"SELECT * FROM foo WHERE id = ANY(%s)\", [[10,20,30]])"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:281
+msgid ""
+"Note that `ANY()` can be used with `!psycopg2` too, and has the advantage of "
+"accepting an empty list of values too as argument, which is not supported by "
+"the :sql:`IN` operator instead."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:292
+msgid "You cannot use ``IS %s``"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:294
+msgid "You cannot use :sql:`IS %s` or :sql:`IS NOT %s`::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:296
+msgid ""
+">>> conn.execute(\"SELECT * FROM foo WHERE field IS %s\", [None])\n"
+"Traceback (most recent call last):\n"
+"...\n"
+"psycopg.errors.SyntaxError: syntax error at or near \"$1\"\n"
+"LINE 1: SELECT * FROM foo WHERE field IS $1\n"
+"                                     ^"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:303
+msgid ""
+"This is probably caused by the fact that :sql:`IS` is not a binary predicate "
+"in PostgreSQL; rather, :sql:`IS NULL` and :sql:`IS NOT NULL` are unary "
+"predicates and you cannot use :sql:`IS` with anything else on the right hand "
+"side. Testing in psql:"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:308
+msgid ""
+"=# SELECT 10 IS 10;\n"
+"ERROR:  syntax error at or near \"10\"\n"
+"LINE 1: SELECT 10 IS 10;\n"
+"                     ^"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:315
+msgid ""
+"What you can do is to use `IS [NOT] DISTINCT FROM`__ predicate instead: :sql:"
+"`IS NOT DISTINCT FROM %s` can be used in place of :sql:`IS %s` (please pay "
+"attention to the awkwardly reversed :sql:`NOT`)::"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:319
+msgid ""
+">>> conn.execute(\"SELECT * FROM foo WHERE field IS NOT DISTINCT FROM %s\", "
+"[None])"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:323
+msgid ""
+"Analogously you can use :sql:`IS DISTINCT FROM %s` as a parametric version "
+"of :sql:`IS NOT %s`."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:330
+msgid "Cursors subclasses"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:332
+msgid ""
+"In `!psycopg2`, a few cursor subclasses allowed to return data in different "
+"form than tuples. In Psycopg 3 the same can be achieved by setting a :ref:"
+"`row factory <row-factories>`:"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:336
+msgid ""
+"instead of `~psycopg2.extras.RealDictCursor` you can use `~psycopg.rows."
+"dict_row`;"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:339
+msgid ""
+"instead of `~psycopg2.extras.NamedTupleCursor` you can use `~psycopg.rows."
+"namedtuple_row`."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:342
+msgid ""
+"Other row factories are available in the `psycopg.rows` module. There isn't "
+"an object behaving like `~psycopg2.extras.DictCursor` (whose results are "
+"indexable both by column position and by column name)."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:346
+msgid ""
+"from psycopg.rows import dict_row, namedtuple_row\n"
+"\n"
+"# By default, every cursor will return dicts.\n"
+"conn = psycopg.connect(DSN, row_factory=dict_row)\n"
+"\n"
+"# You can set a row factory on a single cursor too.\n"
+"cur = conn.cursor(row_factory=namedtuple_row)"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:360
+msgid "Different adaptation system"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:362
+msgid ""
+"The adaptation system has been completely rewritten, in order to address "
+"server-side parameters adaptation, but also to consider performance, "
+"flexibility, ease of customization."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:366
+msgid ""
+"The default behaviour with builtin data should be :ref:`what you would "
+"expect <types-adaptation>`. If you have customised the way to adapt data, or "
+"if you are managing your own extension types, you should look at the :ref:"
+"`new adaptation system <adaptation>`."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:373
+msgid ":ref:`types-adaptation` for the basic behaviour."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:374
+msgid ":ref:`adaptation` for more advanced use."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:380
+msgid "Copy is no longer file-based"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:382
+msgid ""
+"`!psycopg2` exposes :ref:`a few copy methods <pg2:copy>` to interact with "
+"PostgreSQL :sql:`COPY`. Their file-based interface doesn't make it easy to "
+"load dynamically-generated data into a database."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:386
+msgid ""
+"There is now a single `~Cursor.copy()` method, which is similar to `!"
+"psycopg2` `!copy_expert()` in accepting a free-form :sql:`COPY` command and "
+"returns an object to read/write data, block-wise or record-wise. The "
+"different usage pattern also enables :sql:`COPY` to be used in async "
+"interactions."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:391
+msgid "See :ref:`copy` for the details."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:397
+msgid "`!with` connection"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:399
+msgid ""
+"In `!psycopg2`, using the syntax :ref:`with connection <pg2:with>`, only the "
+"transaction is closed, not the connection. This behaviour is surprising for "
+"people used to several other Python classes wrapping resources, such as "
+"files."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:404
+msgid ""
+"In Psycopg 3, using :ref:`with connection <with-connection>` will close the "
+"connection at the end of the `!with` block, making handling the connection "
+"resources more familiar."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:408
+msgid ""
+"In order to manage transactions as blocks you can use the `Connection."
+"transaction()` method, which allows for finer control, for instance to use "
+"nested transactions."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:412
+msgid "See :ref:`transaction-context` for details."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:418
+msgid "`!callproc()` is gone"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:420
+msgid ""
+"`cursor.callproc()` is not implemented. The method has a simplistic semantic "
+"which doesn't account for PostgreSQL positional parameters, procedures, set-"
+"returning functions... Use a normal `~Cursor.execute()` with :sql:`SELECT "
+"function_name(...)` or :sql:`CALL procedure_name(...)` instead."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:429
+msgid "`!client_encoding` is gone"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:431
+msgid ""
+"Psycopg automatically uses the database client encoding to decode data to "
+"Unicode strings. Use `ConnectionInfo.encoding` if you need to read the "
+"encoding. You can select an encoding at connection time using the `!"
+"client_encoding` connection parameter and you can change the encoding of a "
+"connection by running a :sql:`SET client_encoding` statement... But why "
+"would you?"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:442
+msgid "Transaction characteristics attributes don't affect autocommit sessions"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:444
+msgid ""
+":ref:`Transactions characteristics attributes <transaction-characteristics>` "
+"such as `~Connection.read_only` don't affect automatically autocommit "
+"sessions: they only affect the implicit transactions started by non-"
+"autocommit sessions and the transactions created by the `~Connection."
+"transaction()` block (for both autocommit and non-autocommit connections)."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:450
+msgid ""
+"If you want to put an autocommit transaction in read-only mode, please use "
+"the default_transaction_read_only__ GUC, for instance executing the "
+"statement :sql:`SET default_transaction_read_only TO true`."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:461
+msgid "No default infinity dates handling"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:463
+msgid ""
+"PostgreSQL can represent a much wider range of dates and timestamps than "
+"Python. While Python dates are limited to the years between 1 and 9999 "
+"(represented by constants such as `datetime.date.min` and `~datetime.date."
+"max`), PostgreSQL dates extend to BC dates and past the year 10K. "
+"Furthermore PostgreSQL can also represent symbolic dates \"infinity\", in "
+"both directions."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:470
+msgid ""
+"In psycopg2, by default, `infinity dates and timestamps map to 'date.max'`__ "
+"and similar constants. This has the problem of creating a non-bijective "
+"mapping (two Postgres dates, infinity and 9999-12-31, both map to the same "
+"Python date). There is also the perversity that valid Postgres dates, "
+"greater than Python `!date.max` but arguably lesser than infinity, will "
+"still overflow."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:477
+msgid ""
+"In Psycopg 3, every date greater than year 9999 will overflow, including "
+"infinity. If you would like to customize this mapping (for instance "
+"flattening every date past Y10K on `!date.max`) you can subclass and adapt "
+"the appropriate loaders: take a look at :ref:`this example <adapt-example-"
+"inf-date>` to see how."
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:489
+msgid "What's new in Psycopg 3"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:491
+msgid ":ref:`Asynchronous support <async>`"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:492
+msgid ":ref:`Server-side parameters binding <server-side-binding>`"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:493
+msgid ":ref:`Prepared statements <prepared-statements>`"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:494
+msgid ":ref:`Binary communication <binary-data>`"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:495
+msgid ":ref:`Python-based COPY support <copy>`"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:496
+msgid ":ref:`Support for static typing <static-typing>`"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:497
+msgid ":ref:`A redesigned connection pool <connection-pools>`"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:498
+msgid ":ref:`Direct access to the libpq functionalities <psycopg.pq>`"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:1
+msgid "psycopg2"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:1
+msgid "Differences"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:128
+msgid "PgBouncer"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:128
+msgid "Query protocol"
+msgstr ""
+
+#: ../../../basic/from_pg2.rst:128
+msgid "advanced"
+msgstr ""
