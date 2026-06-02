@@ -6,7 +6,7 @@
     },
     {
       "VERSION" : "stable",
-      "VERSION_COMPENDIUM" : ""
+      "VERSION_COMPENDIUM" : "latest"
     }
   ]
 }
