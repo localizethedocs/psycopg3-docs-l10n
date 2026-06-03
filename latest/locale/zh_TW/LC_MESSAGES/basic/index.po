@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../../basic/index.rst:4
 msgid "Getting started with Psycopg 3"
-msgstr ""
+msgstr "開始使用 Psycopg 3"
 
 #: ../../../basic/index.rst:6
 msgid ""

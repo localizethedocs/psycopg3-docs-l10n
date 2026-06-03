@@ -1517,7 +1517,7 @@ msgstr ""
 
 #: ../../../news.rst:3
 msgid "Release notes"
-msgstr ""
+msgstr "發行備註"
 
 #: ../../../news.rst:3
 msgid "News"

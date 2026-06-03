@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../basic/params.rst:9
 msgid "Passing parameters to SQL queries"
-msgstr ""
+msgstr "將參數傳遞給 SQL 查詢"
 
 #: ../../../basic/params.rst:13
 msgid ""
