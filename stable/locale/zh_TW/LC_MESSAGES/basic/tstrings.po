@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../basic/tstrings.rst:9
 msgid "Template string queries"
-msgstr ""
+msgstr "模板字串查詢"
 
 #: ../../../basic/tstrings.rst:13
 msgid ""

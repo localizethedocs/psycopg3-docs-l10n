@@ -19,13 +19,13 @@ msgstr ""
 
 #: ../../../index.rst:3
 msgid "Psycopg 3 -- PostgreSQL database adapter for Python"
-msgstr ""
+msgstr "Psycopg 3 -- Python 的 PostgreSQL 資料庫適配器"
 
 #: ../../../index.rst:5
 msgid ""
 "Psycopg 3 is a newly designed PostgreSQL_ database adapter for the Python_ "
 "programming language."
-msgstr ""
+msgstr "Psycopg 3 是為 Python_ 程式語言新設計的 PostgreSQL_ 資料庫適配器。"
 
 #: ../../../index.rst:8
 msgid ""
@@ -33,10 +33,13 @@ msgid ""
 "2`_ or any other `DB-API 2.0`_ database adapter, but allows to use more "
 "modern PostgreSQL and Python features, such as:"
 msgstr ""
+"Psycopg 3 為所有使用過 `Psycopg 2`_ 或其他任何符合 `DB-API 2.0`_ 的資料庫驅動"
+"程式的人提供了熟悉的介面，同時允許使用更現代的 PostgreSQL 與 Python 功能，例"
+"如："
 
 #: ../../../index.rst:12
 msgid ":ref:`Asynchronous support <async>`"
-msgstr ""
+msgstr ":ref:`異步支援 <async>`"
 
 #: ../../../index.rst:13
 msgid ":ref:`COPY support from Python objects <copy>`"
@@ -44,15 +47,15 @@ msgstr ""
 
 #: ../../../index.rst:14
 msgid ":ref:`A redesigned connection pool <connection-pools>`"
-msgstr ""
+msgstr ":ref:`重新設計的連接池 <connection-pools>`"
 
 #: ../../../index.rst:15
 msgid ":ref:`Support for static typing <static-typing>`"
-msgstr ""
+msgstr ":ref:`支援靜態型別 <static-typing>`"
 
 #: ../../../index.rst:16
 msgid ":ref:`Server-side parameters binding <server-side-binding>`"
-msgstr ""
+msgstr ":ref:`伺服端參數綁定 <server-side-binding>`"
 
 #: ../../../index.rst:17
 msgid ":ref:`Prepared statements <prepared-statements>`"
@@ -68,15 +71,15 @@ msgstr ""
 
 #: ../../../index.rst:20
 msgid ":ref:`Direct access to the libpq functionalities <psycopg.pq>`"
-msgstr ""
+msgstr ":ref:`直接存取 libpq 功能 <psycopg.pq>`"
 
 #: ../../../index.rst:29
 msgid "Documentation"
-msgstr ""
+msgstr "文件"
 
 #: ../../../index.rst:39
 msgid "Release notes"
-msgstr ""
+msgstr "發行備註"
 
 #: ../../../index.rst:49
 msgid "Indices and tables"

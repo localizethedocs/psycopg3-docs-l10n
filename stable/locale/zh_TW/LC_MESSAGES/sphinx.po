@@ -3016,7 +3016,7 @@ msgstr ""
 #: domains/c/__init__.py:354 domains/cpp/__init__.py:485
 #: domains/python/_object.py:190 ext/napoleon/docstring.py:980
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: domains/python/_object.py:206
 msgid "Variables"

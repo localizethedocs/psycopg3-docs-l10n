@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../news_pool.rst:8
 msgid "``psycopg_pool`` release notes"
-msgstr ""
+msgstr "``psycopg_pool`` 發行備註"
 
 #: ../../../news_pool.rst:11
 msgid "Current release"
@@ -347,7 +347,7 @@ msgstr ""
 
 #: ../../../news_pool.rst:3
 msgid "Release notes"
-msgstr ""
+msgstr "發行備註"
 
 #: ../../../news_pool.rst:3
 msgid "News"

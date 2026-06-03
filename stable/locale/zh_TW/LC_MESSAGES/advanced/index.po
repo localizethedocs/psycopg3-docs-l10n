@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../../../advanced/index.rst:4
 msgid "More advanced topics"
-msgstr ""
+msgstr "更進階的話題"
 
 #: ../../../advanced/index.rst:6
 msgid ""

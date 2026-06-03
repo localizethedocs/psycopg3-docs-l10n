@@ -672,7 +672,7 @@ msgstr ""
 
 #: ../../../basic/adapt.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/enum.py:docstring
 #: of psycopg.types.enum.register_enum:3

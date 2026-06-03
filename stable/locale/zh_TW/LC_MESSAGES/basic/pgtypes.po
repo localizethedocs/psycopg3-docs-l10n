@@ -79,7 +79,7 @@ msgstr ""
 
 #: ../../../basic/pgtypes.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/composite.py:docstring
 #: of psycopg.types.composite.register_composite:3

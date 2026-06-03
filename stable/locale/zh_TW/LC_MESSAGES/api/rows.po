@@ -120,7 +120,7 @@ msgstr ""
 
 #: ../../../api/rows.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
 #: of psycopg.rows.class_row:5

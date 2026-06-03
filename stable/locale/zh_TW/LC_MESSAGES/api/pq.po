@@ -295,7 +295,7 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
 #: of psycopg.pq.pq_ctypes.PGconn.set_trace_flags:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
 #: of psycopg.pq.pq_ctypes.PGconn.set_trace_flags:3

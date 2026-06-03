@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../api/crdb.rst:2
 msgid "`crdb` -- CockroachDB support"
-msgstr ""
+msgstr "`crdb` -- CockroachDB 支援"
 
 #: ../../../api/crdb.rst:8
 msgid ""
@@ -27,6 +27,8 @@ msgid ""
 "protocol of PostgreSQL. As such, Psycopg can be used to write Python "
 "programs interacting with CockroachDB."
 msgstr ""
+"CockroachDB_ 是一種分散式資料庫，使用與 PostgreSQL 相同的前後端協定。因此，"
+"Psycopg 可用於撰寫與 CockroachDB 互動的 Python 程式。"
 
 #: ../../../api/crdb.rst:14
 msgid ""
@@ -120,7 +122,7 @@ msgstr ""
 
 #: ../../../api/crdb.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../api/crdb.rst:76
 msgid "the connection to check"

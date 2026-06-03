@@ -388,7 +388,7 @@ msgstr ""
 
 #: ../../../advanced/adapt.rst:282
 msgid "Example: handling infinity date"
-msgstr ""
+msgstr "範例：處理無限日期"
 
 #: ../../../advanced/adapt.rst:284
 msgid ""

@@ -678,7 +678,7 @@ msgstr ""
 
 #: ../../../basic/from_pg2.rst:492
 msgid ":ref:`Server-side parameters binding <server-side-binding>`"
-msgstr ""
+msgstr ":ref:`伺服端參數綁定 <server-side-binding>`"
 
 #: ../../../basic/from_pg2.rst:493
 msgid ":ref:`Prepared statements <prepared-statements>`"

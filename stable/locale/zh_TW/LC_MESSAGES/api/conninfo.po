@@ -34,7 +34,7 @@ msgstr ""
 
 #: ../../../api/conninfo.rst:0
 msgid "Parameters"
-msgstr ""
+msgstr "參數"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/conninfo.py:docstring
 #: of psycopg.conninfo.conninfo_to_dict:3 psycopg.conninfo.make_conninfo:3
