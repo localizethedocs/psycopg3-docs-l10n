@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../advanced/typing.rst:6
 msgid "Static Typing"
-msgstr ""
+msgstr "靜態型別"
 
 #: ../../../advanced/typing.rst:8
 msgid ""
@@ -147,6 +147,10 @@ msgid ""
 "    rv: int = next(cur)\n"
 "    return rv"
 msgstr ""
+"def count_records() -> int:\n"
+"    ...\n"
+"    rv: int = next(cur)\n"
+"    return rv"
 
 #: ../../../advanced/typing.rst:114
 msgid "and your static checker will be happy."

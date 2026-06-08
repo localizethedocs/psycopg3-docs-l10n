@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../basic/copy.rst:9
 msgid "Using COPY TO and COPY FROM"
-msgstr ""
+msgstr "使用 COPY TO 與 COPY FROM"
 
 #: ../../../basic/copy.rst:11
 msgid ""
@@ -96,6 +96,11 @@ msgid ""
 "    for record in records:\n"
 "        copy.write_row(record)"
 msgstr ""
+"records = [(10, 20, \"hello\"), (40, None, \"world\")]\n"
+"\n"
+"with cursor.copy(\"COPY sample (col1, col2, col3) FROM STDIN\") as copy:\n"
+"    for record in records:\n"
+"        copy.write_row(record)"
 
 #: ../../../basic/copy.rst:71
 msgid ""
@@ -226,7 +231,7 @@ msgstr ""
 
 #: ../../../basic/copy.rst:171
 msgid "Asynchronous copy support"
-msgstr ""
+msgstr "異步複製支援"
 
 #: ../../../basic/copy.rst:173
 msgid ""
@@ -297,4 +302,4 @@ msgstr ""
 
 #: ../../../basic/copy.rst:3
 msgid "SQL command"
-msgstr ""
+msgstr "SQL 命令"

@@ -59,7 +59,7 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
 #: of psycopg.adapt.Dumper.dump:1
 msgid "Convert the object `!obj` to PostgreSQL representation."
-msgstr ""
+msgstr "將物件 `!obj` 轉換成 PostgreSQL 表示法。"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_adapters_map.py:docstring
 #: of psycopg._adapters_map.AdaptersMap.register_dumper:0

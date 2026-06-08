@@ -578,7 +578,7 @@ msgstr ""
 
 #: ../../../api/pool.rst:285
 msgid "The `!AsyncConnectionPool` class"
-msgstr ""
+msgstr "`!AsyncConnectionPool` 類別"
 
 #: ../../../api/pool.rst:287
 msgid ""
