@@ -143,7 +143,7 @@ msgstr ""
 
 #: ../../../api/types.rst:89
 msgid "t = await TypeInfo.fetch(aconn, \"mytype\")"
-msgstr ""
+msgstr "t = await TypeInfo.fetch(aconn, \"mytype\")"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
 #: of psycopg._typeinfo.TypeInfo.register:1
@@ -225,6 +225,13 @@ msgid ""
 ">>> psycopg.adapters.types[23]\n"
 "<TypeInfo: int4 (oid: 23, array oid: 1007)>"
 msgstr ""
+">>> import psycopg\n"
+"\n"
+">>> psycopg.adapters.types[\"text\"]\n"
+"<TypeInfo: text (oid: 25, array oid: 1009)>\n"
+"\n"
+">>> psycopg.adapters.types[23]\n"
+"<TypeInfo: int4 (oid: 23, array oid: 1007)>"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
 #: of psycopg._typeinfo.TypesRegistry.get:5

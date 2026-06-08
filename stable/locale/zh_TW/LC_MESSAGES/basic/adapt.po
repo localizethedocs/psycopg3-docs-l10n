@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../basic/adapt.rst:11
 msgid "Adapting basic Python types"
-msgstr ""
+msgstr "適配基本的 Python 型別"
 
 #: ../../../basic/adapt.rst:13
 msgid ""

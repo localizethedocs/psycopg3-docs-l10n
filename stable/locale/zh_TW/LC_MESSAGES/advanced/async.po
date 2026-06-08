@@ -630,7 +630,7 @@ msgstr ""
 
 #: ../../../advanced/async.rst:238 ../../../advanced/async.rst:304
 msgid "SQL command"
-msgstr ""
+msgstr "SQL 命令"
 
 #: ../../../advanced/async.rst:238 ../../../advanced/async.rst:304
 msgid "NOTIFY"

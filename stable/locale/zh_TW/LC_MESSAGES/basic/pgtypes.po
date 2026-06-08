@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../basic/pgtypes.rst:11
 msgid "Adapting other PostgreSQL types"
-msgstr ""
+msgstr "適配其他 PostgreSQL 型別"
 
 #: ../../../basic/pgtypes.rst:13
 msgid ""

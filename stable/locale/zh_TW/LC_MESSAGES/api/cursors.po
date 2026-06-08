@@ -50,7 +50,7 @@ msgstr ""
 
 #: ../../../api/cursors.rst:23
 msgid "The `!Cursor` class"
-msgstr ""
+msgstr "`!Cursor` 類別"
 
 #: ../../../api/cursors.rst:27
 msgid ""
@@ -792,7 +792,7 @@ msgstr ""
 
 #: ../../../api/cursors.rst:371
 msgid "The `!ClientCursor` class"
-msgstr ""
+msgstr "`!ClientCursor` 類別"
 
 #: ../../../api/cursors.rst:373
 msgid "See :ref:`client-side-binding-cursors` for details."
@@ -825,7 +825,7 @@ msgstr ""
 
 #: ../../../api/cursors.rst:394
 msgid "The `!ServerCursor` class"
-msgstr ""
+msgstr "`!ServerCursor` 類別"
 
 #: ../../../api/cursors.rst:396
 msgid "See :ref:`server-side-cursors` for details."
@@ -978,7 +978,7 @@ msgstr ""
 
 #: ../../../api/cursors.rst:503
 msgid "The `!RawCursor` and `!RawServerCursor` class"
-msgstr ""
+msgstr "`!RawCursor` 和 `!RawServerCursor` 類別"
 
 #: ../../../api/cursors.rst:505
 msgid "See :ref:`raw-query-cursors` for details."

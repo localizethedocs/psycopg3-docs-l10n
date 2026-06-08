@@ -107,7 +107,7 @@ msgstr ""
 
 #: ../../../advanced/prepare.rst:69
 msgid "PgBouncer `max_prepared_statements`__ must be greater than 0."
-msgstr ""
+msgstr "PgBouncer 的 `max_prepared_statements`__ 必須大於 0。"
 
 #: ../../../advanced/prepare.rst:70
 msgid ""

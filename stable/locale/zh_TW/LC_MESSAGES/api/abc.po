@@ -77,7 +77,7 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
 #: of psycopg.abc.Dumper.dump:1
 msgid "Convert the object `!obj` to PostgreSQL representation."
-msgstr ""
+msgstr "將物件 `!obj` 轉換成 PostgreSQL 表示法。"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
 #: of psycopg.abc.Dumper.dump:3 psycopg.abc.Dumper.quote:3
@@ -97,7 +97,7 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
 #: of psycopg.abc.Dumper.quote:1
 msgid "Convert the object `!obj` to escaped representation."
-msgstr ""
+msgstr "將 `!obj` 轉換成跳脫表示法。"
 
 #: ../../../api/abc.rst:44
 msgid ""
@@ -279,4 +279,4 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
 #: of psycopg.abc.AdaptContext.connection:3
 msgid "`~psycopg.Connection` or `~psycopg.AsyncConnection` or `!None`"
-msgstr ""
+msgstr "`~psycopg.Connection` 或 `~psycopg.AsyncConnection` 或 `!None`"
