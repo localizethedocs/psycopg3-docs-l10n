@@ -1,0 +1,943 @@
+<!doctype html>
+<html class="no-js" lang="zh-TW" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜尋" href="../search.html"><link rel="next" title="Transactions management" href="transactions.html"><link rel="prev" title="適配基本的 Python 型別" href="adapt.html">
+        <link rel="canonical" href="https://projects.localizethedocs.org/psycopg3-docs-l10n/basic/pgtypes.html">
+        <link rel="prefetch" href="../_static/psycopg.svg" as="image">
+        <link rel="prefetch" href="../_static/psycopg.svg" as="image">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>適配其他 PostgreSQL 型別 - psycopg 3.3.4 說明文件</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/psycopg.css?v=67dada6b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --admonition-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">psycopg 3.3.4 說明文件</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../_static/psycopg.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../_static/psycopg.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">psycopg 3.3.4 說明文件</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜尋" name="q" aria-label="搜尋">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">開始使用 Psycopg 3</a><input aria-label="Toggle navigation of 開始使用 Psycopg 3" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html">Basic module usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="params.html">將參數傳遞給 SQL 查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tstrings.html">模板字串查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapt.html">適配基本的 Python 型別</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">適配其他 PostgreSQL 型別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">Transactions management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="copy.html">使用 COPY TO 與 COPY FROM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="from_pg2.html">Differences from <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">更進階的話題</a><input aria-label="Toggle navigation of 更進階的話題" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/async.html">Concurrent operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/typing.html">靜態型別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/rows.html">Row factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/pool.html">Connection pools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/cursors.html">Cursor types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/adapt.html">Data adaptation configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/prepare.html">Prepared statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/pipeline.html">Pipeline mode support</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">Psycopg 3 API</a><input aria-label="Toggle navigation of Psycopg 3 API" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/module.html">The <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg</span></code> module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/connections.html">Connection classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cursors.html">Cursor classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/copy.html">COPY-related objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/objects.html">Other top-level objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/sql.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql</span></code> -- SQL string composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/rows.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rows</span></code> -- row factory implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/errors.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors</span></code> -- Package exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/pool.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code> -- Connection pool implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/conninfo.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conninfo</span></code> -- manipulate connection strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/adapt.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt</span></code> -- Types adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/types.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types</span></code> -- Types information and adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/abc.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc</span></code> -- Psycopg 抽象類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/pq.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq</span></code> -- libpq wrapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/crdb.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crdb</span></code> -- CockroachDB 支援</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/dns.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_dns</span></code> -- DNS resolution utilities</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../news.html"><code class="docutils literal notranslate"><span class="pre">psycopg</span></code> 發行備註</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news_pool.html"><code class="docutils literal notranslate"><span class="pre">psycopg_pool</span></code> 發行備註</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="adapting-other-postgresql-types">
+<span id="extra-adaptation"></span><span id="index-0"></span><h1>適配其他 PostgreSQL 型別<a class="headerlink" href="#adapting-other-postgresql-types" title="連結到這個標頭">¶</a></h1>
+<p>PostgreSQL offers other data types which don't map to native Python types.
+Psycopg offers wrappers and conversion functions to allow their use.</p>
+<section id="composite-types-adaptation">
+<span id="adapt-composite"></span><span id="index-1"></span><h2>Composite types adaptation<a class="headerlink" href="#composite-types-adaptation" title="連結到這個標頭">¶</a></h2>
+<p>Psycopg can adapt PostgreSQL composite types (either created with the <a class="reference external" href="https://www.postgresql.org/docs/current/static/sql-createtype.html"><code class="sql docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TYPE</span></code></a> command or implicitly defined after a table row type) to and from
+Python tuples, <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">namedtuple</span></code></a>, or any suitably configured object.</p>
+<p>Before using a composite type it is necessary to get information about it
+using the <a class="reference internal" href="#psycopg.types.composite.CompositeInfo" title="psycopg.types.composite.CompositeInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CompositeInfo</span></code></a> class and to register it
+using <a class="reference internal" href="#psycopg.types.composite.register_composite" title="psycopg.types.composite.register_composite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_composite()</span></code></a>.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.types.composite.CompositeInfo">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.types.composite.</span></span><span class="sig-name descname"><span class="pre">CompositeInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">array_oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">regtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.14)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.14)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.types.composite.CompositeInfo" title="連結到這個定義">¶</a></dt>
+<dd><p>Manage information about a composite type.</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">CompositeInfo</span></code> is a <a class="reference internal" href="../api/types.html#psycopg.types.TypeInfo" title="psycopg.types.TypeInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeInfo</span></code></a> subclass: check its
+documentation for the general usage, especially the
+<a class="reference internal" href="../api/types.html#psycopg.types.TypeInfo.fetch" title="psycopg.types.TypeInfo.fetch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fetch()</span></code></a> method.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.types.composite.CompositeInfo.field_names">
+<span class="sig-name descname"><span class="pre">field_names</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#psycopg.types.composite.CompositeInfo.field_names" title="連結到這個定義">¶</a></dt>
+<dd><p>Tuple containing the field names of the composite type.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.types.composite.CompositeInfo.field_types">
+<span class="sig-name descname"><span class="pre">field_types</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#psycopg.types.composite.CompositeInfo.field_types" title="連結到這個定義">¶</a></dt>
+<dd><p>Tuple containing the field OIDs of the composite type.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.types.composite.CompositeInfo.python_type">
+<span class="sig-name descname"><span class="pre">python_type</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#psycopg.types.composite.CompositeInfo.python_type" title="連結到這個定義">¶</a></dt>
+<dd><p>After <a class="reference internal" href="#psycopg.types.composite.register_composite" title="psycopg.types.composite.register_composite"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_composite()</span></code></a> is called, it will contain the Python type
+adapting the registered composite.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="psycopg.types.composite.register_composite">
+<span class="sig-prename descclassname"><span class="pre">psycopg.types.composite.</span></span><span class="sig-name descname"><span class="pre">register_composite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#psycopg.types.composite.CompositeInfo" title="psycopg.types.composite.CompositeInfo"><span class="pre">CompositeInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api/abc.html#psycopg.abc.AdaptContext" title="psycopg.abc.AdaptContext"><span class="pre">AdaptContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">make_object</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.14)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#psycopg.types.composite.CompositeInfo" title="psycopg.types.composite.CompositeInfo"><span class="pre">CompositeInfo</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">make_sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.14)"><span class="pre">Callable</span></a><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#psycopg.types.composite.CompositeInfo" title="psycopg.types.composite.CompositeInfo"><span class="pre">CompositeInfo</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.14)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.types.composite.register_composite" title="連結到這個定義">¶</a></dt>
+<dd><p>Register the adapters to load and dump a composite type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> (<a class="reference internal" href="#psycopg.types.composite.CompositeInfo" title="psycopg.types.composite.CompositeInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CompositeInfo</span></code></a>) -- The object with the information about the composite to register.</p></li>
+<li><p><strong>context</strong> (<a class="reference internal" href="../api/abc.html#psycopg.abc.AdaptContext" title="psycopg.abc.AdaptContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaptContext</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>) -- The context where to register the adapters. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>,
+register it globally.</p></li>
+<li><p><strong>factory</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Callable[...,</span> <span class="pre">T]</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>) -- Callable to create a Python object from the sequence of
+attributes read from the composite.</p></li>
+<li><p><strong>make_object</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Callable[[Sequence[Any],</span> <span class="pre">CompositeInfo],</span> <span class="pre">T]</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>) -- optional function that will be used when loading a
+composite type from the database if the Python type is not a sequence
+compatible with the composite fields</p></li>
+<li><p><strong>make_sequence</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Callable[[T,</span> <span class="pre">CompositeInfo],</span> <span class="pre">Sequence[Any]]</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>) -- optional function that will be used when dumping an
+object to the database if the object is not a sequence compatible
+with the composite fields</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Registering the adapters doesn't affect objects already created, even
+if they are children of the registered context. For instance,
+registering the adapter globally doesn't affect already existing
+connections.</p>
+</div>
+<p>After registering the <a class="reference internal" href="#psycopg.types.composite.CompositeInfo" title="psycopg.types.composite.CompositeInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CompositeInfo</span></code></a>, fetching data of the registered
+composite type will invoke <code class="xref py py-obj docutils literal notranslate"><span class="pre">factory</span></code> to create corresponding Python
+objects. If no factory is specified, Psycopg will generate a
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">namedtuple</span></code> with the same fields of the composite type, and
+use it to return fetched data. The factory will be made available on
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">info.</span></code><a class="reference internal" href="#psycopg.types.composite.CompositeInfo.python_type" title="psycopg.types.composite.CompositeInfo.python_type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">python_type</span></code></a>.</p>
+<p>If the <code class="xref py py-obj docutils literal notranslate"><span class="pre">factory</span></code> is a type (and not a generic callable) then dumpers for
+such type are created and registered too, so that passing objects of that
+type to a query will adapt them to the registered composite type. This
+assumes that the <code class="xref py py-obj docutils literal notranslate"><span class="pre">factory</span></code> type is a sequence; if this is not the case you
+can specify the <code class="xref py py-obj docutils literal notranslate"><span class="pre">make_sequence</span></code> parameter: a function taking the object to
+dump and the composite info and returning a sequence of values. See
+<a class="reference internal" href="#composite-non-sequence"><span class="std std-ref">Example: non-sequence Python object</span></a>.</p>
+<p>The <code class="xref py py-obj docutils literal notranslate"><span class="pre">factory</span></code> callable will be called with the sequence of value from the
+composite. If passing the sequence of positional arguments is not suitable
+for the <code class="xref py py-obj docutils literal notranslate"><span class="pre">factory</span></code> type you can specify the <code class="xref py py-obj docutils literal notranslate"><span class="pre">make_object</span></code> parameter: a
+function taking the sequence of composite values and the type info, and
+which should return a new instance of the object to load. See
+<a class="reference internal" href="#composite-non-sequence"><span class="std std-ref">Example: non-sequence Python object</span></a>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.3 版被加入: </span>the <code class="xref py py-obj docutils literal notranslate"><span class="pre">make_object</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">make_sequence</span></code> parameters.</p>
+</div>
+</dd></dl>
+
+<section id="example-python-sequence">
+<span id="composite-sequence"></span><h3>Example: Python sequence<a class="headerlink" href="#example-python-sequence" title="連結到這個標頭">¶</a></h3>
+<p>Registering a composite without <code class="xref py py-obj docutils literal notranslate"><span class="pre">factory</span></code> information will create a
+type on the fly, stored in <code class="xref py py-obj docutils literal notranslate"><span class="pre">CompositeInfo.python_type</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg.types.composite</span><span class="w"> </span><span class="kn">import</span> <span class="n">CompositeInfo</span><span class="p">,</span> <span class="n">register_composite</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TYPE card AS (value int, suit text)&quot;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">info</span> <span class="o">=</span> <span class="n">CompositeInfo</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;card&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">register_composite</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_card</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">python_type</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;hearts&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_card</span>
+<span class="go">card(value=8, suit=&#39;hearts&#39;)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">&quot;SELECT pg_typeof(</span><span class="si">%(card)s</span><span class="s2">), (</span><span class="si">%(card)s</span><span class="s2">).suit&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;card&quot;</span><span class="p">:</span> <span class="n">my_card</span><span class="p">}</span>
+<span class="gp">... </span>    <span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+<span class="go">(&#39;card&#39;, &#39;hearts&#39;)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)::card&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;spades&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">card(value=1, suit=&#39;spades&#39;)</span>
+</pre></div>
+</div>
+<p>Nested composite types are handled as expected, provided that the type of the
+composite components are registered as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TYPE card_back AS (face card, back text)&quot;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">info2</span> <span class="o">=</span> <span class="n">CompositeInfo</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;card_back&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">register_composite</span><span class="p">(</span><span class="n">info2</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT ((8, &#39;hearts&#39;), &#39;blue&#39;)::card_back&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">card_back(face=card(value=8, suit=&#39;hearts&#39;), back=&#39;blue&#39;)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-non-sequence-python-object">
+<span id="composite-non-sequence"></span><h3>Example: non-sequence Python object<a class="headerlink" href="#example-non-sequence-python-object" title="連結到這個標頭">¶</a></h3>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.3 版被加入.</span></p>
+</div>
+<p>If your Python type takes keyword arguments, or if the sequence of value
+coming from the PostgreSQL type is not suitable for it, it is possible to
+specify a <code class="samp docutils literal notranslate"><span class="pre">make_object(</span><em><span class="pre">values</span></em><span class="pre">,</span> <em><span class="pre">info</span></em><span class="pre">)</span></code> function to adapt the values
+from the composite to the Python object to create, eventually making use of
+the information in the type <a class="reference internal" href="#psycopg.types.composite.CompositeInfo" title="psycopg.types.composite.CompositeInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CompositeInfo</span></code></a>, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Sequence</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="nd">@dataclass</span>
+<span class="gp">... </span><span class="k">class</span><span class="w"> </span><span class="nc">Card</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">suit</span><span class="p">:</span> <span class="nb">str</span>
+<span class="gp">... </span>    <span class="n">value</span><span class="p">:</span> <span class="nb">int</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">card_from_db</span><span class="p">(</span><span class="n">values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">info</span><span class="p">:</span> <span class="n">CompositeInfo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Card</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">Card</span><span class="p">(</span><span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">field_names</span><span class="p">,</span> <span class="n">values</span><span class="p">)))</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">register_composite</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">make_object</span><span class="o">=</span><span class="n">card_from_db</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select &#39;(1,spades)&#39;::card&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">Card(suit=&#39;spades&#39;, value=1)</span>
+</pre></div>
+</div>
+<p>The previous example only configures loaders to convert data from PostgreSQL
+to Python. If we are also interested in dumping Python <code class="xref py py-obj docutils literal notranslate"><span class="pre">Card</span></code> objects we need
+to specify <code class="xref py py-obj docutils literal notranslate"><span class="pre">Card</span></code> as the factory (to declare which object we want to dump)
+and, because <code class="xref py py-obj docutils literal notranslate"><span class="pre">Card</span></code> is not a sequence, we need to specify a
+<code class="samp docutils literal notranslate"><span class="pre">make_sequence(</span><em><span class="pre">object</span></em><span class="pre">,</span> <em><span class="pre">info</span></em><span class="pre">)</span></code> function to convert objects attributes
+into a sequence matching the composite fields:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">card_to_db</span><span class="p">(</span><span class="n">card</span><span class="p">:</span> <span class="n">Card</span><span class="p">,</span> <span class="n">info</span><span class="p">:</span> <span class="n">CompositeInfo</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="p">[</span><span class="nb">getattr</span><span class="p">(</span><span class="n">card</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">info</span><span class="o">.</span><span class="n">field_names</span><span class="p">]</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">register_composite</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">info</span><span class="p">,</span> <span class="n">conn</span><span class="p">,</span> <span class="n">factory</span><span class="o">=</span><span class="n">Card</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">make_object</span><span class="o">=</span><span class="n">card_from_db</span><span class="p">,</span> <span class="n">make_sequence</span><span class="o">=</span><span class="n">card_to_db</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">&quot;select </span><span class="si">%(card)s</span><span class="s2">.value + 1, </span><span class="si">%(card)s</span><span class="s2">.suit&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="s2">&quot;card&quot;</span><span class="p">:</span> <span class="n">Card</span><span class="p">(</span><span class="n">suit</span><span class="o">=</span><span class="s2">&quot;hearts&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">8</span><span class="p">)},</span>
+<span class="gp">... </span>    <span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+<span class="go">(9, &#39;hearts&#39;)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="range-adaptation">
+<span id="adapt-range"></span><span id="index-2"></span><h2>Range adaptation<a class="headerlink" href="#range-adaptation" title="連結到這個標頭">¶</a></h2>
+<p>PostgreSQL <a class="reference external" href="https://www.postgresql.org/docs/current/rangetypes.html">range types</a> are a family of data types representing a range of
+values between two elements. The type of the element is called the range
+<em>subtype</em>. PostgreSQL offers a few built-in range types and allows the
+definition of custom ones.</p>
+<p>All the PostgreSQL range types are loaded as the <a class="reference internal" href="#psycopg.types.range.Range" title="psycopg.types.range.Range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code></a>
+Python type, which is a <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Generic" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Generic</span></code></a> type and can hold bounds of
+different types.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.types.range.Range">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.types.range.</span></span><span class="sig-name descname"><span class="pre">Range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">T</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'[)'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empty</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.types.range.Range" title="連結到這個定義">¶</a></dt>
+<dd><p>Python representation for a PostgreSQL range type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lower</strong> -- lower bound for the range. <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> means unbound</p></li>
+<li><p><strong>upper</strong> -- upper bound for the range. <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> means unbound</p></li>
+<li><p><strong>bounds</strong> -- one of the literal strings <code class="docutils literal notranslate"><span class="pre">()</span></code>, <code class="docutils literal notranslate"><span class="pre">[)</span></code>, <code class="docutils literal notranslate"><span class="pre">(]</span></code>, <code class="docutils literal notranslate"><span class="pre">[]</span></code>,
+representing whether the lower or upper bounds are included</p></li>
+<li><p><strong>empty</strong> -- if <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>, the range is empty</p></li>
+</ul>
+</dd>
+</dl>
+<p>This Python type is only used to pass and retrieve range values to and
+from PostgreSQL and doesn't attempt to replicate the PostgreSQL range
+features: it doesn't perform normalization and doesn't implement all the
+<a class="reference external" href="https://www.postgresql.org/docs/current/static/functions-range.html#RANGE-OPERATORS-TABLE">operators</a> supported by the database.</p>
+<p>PostgreSQL will perform normalisation on <code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code> objects used as query
+parameters, so, when they are fetched back, they will be found in the
+normal form (for instance ranges on integers will have <code class="xref py py-obj docutils literal notranslate"><span class="pre">[)</span></code> bounds).</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code> objects are immutable, hashable, and support the <code class="xref py py-obj docutils literal notranslate"><span class="pre">in</span></code> operator
+(checking if an element is within the range). They can be tested for
+equivalence. Empty ranges evaluate to <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code> in a boolean context,
+nonempty ones evaluate to <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code> objects have the following attributes:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.types.range.Range.isempty">
+<span class="sig-name descname"><span class="pre">isempty</span></span><a class="headerlink" href="#psycopg.types.range.Range.isempty" title="連結到這個定義">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code> if the range is empty.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.types.range.Range.lower">
+<span class="sig-name descname"><span class="pre">lower</span></span><a class="headerlink" href="#psycopg.types.range.Range.lower" title="連結到這個定義">¶</a></dt>
+<dd><p>The lower bound of the range. <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> if empty or unbound.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.types.range.Range.upper">
+<span class="sig-name descname"><span class="pre">upper</span></span><a class="headerlink" href="#psycopg.types.range.Range.upper" title="連結到這個定義">¶</a></dt>
+<dd><p>The upper bound of the range. <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> if empty or unbound.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.types.range.Range.lower_inc">
+<span class="sig-name descname"><span class="pre">lower_inc</span></span><a class="headerlink" href="#psycopg.types.range.Range.lower_inc" title="連結到這個定義">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code> if the lower bound is included in the range.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.types.range.Range.upper_inc">
+<span class="sig-name descname"><span class="pre">upper_inc</span></span><a class="headerlink" href="#psycopg.types.range.Range.upper_inc" title="連結到這個定義">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code> if the upper bound is included in the range.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.types.range.Range.lower_inf">
+<span class="sig-name descname"><span class="pre">lower_inf</span></span><a class="headerlink" href="#psycopg.types.range.Range.lower_inf" title="連結到這個定義">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code> if the range doesn't have a lower bound.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.types.range.Range.upper_inf">
+<span class="sig-name descname"><span class="pre">upper_inf</span></span><a class="headerlink" href="#psycopg.types.range.Range.upper_inf" title="連結到這個定義">¶</a></dt>
+<dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code> if the range doesn't have an upper bound.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>The built-in range objects are adapted automatically: if a <code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code> objects
+contains <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">date</span></code></a> bounds, it is dumped using the <code class="sql docutils literal notranslate"><span class="pre">daterange</span></code> OID,
+and of course <code class="sql docutils literal notranslate"><span class="pre">daterange</span></code> values are loaded back as <code class="xref py py-obj docutils literal notranslate"><span class="pre">Range[date]</span></code>.</p>
+<p>If you create your own range type you can use <a class="reference internal" href="#psycopg.types.range.RangeInfo" title="psycopg.types.range.RangeInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RangeInfo</span></code></a>
+and <a class="reference internal" href="#psycopg.types.range.register_range" title="psycopg.types.range.register_range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_range()</span></code></a> to associate the range type with
+its subtype and make it work like the builtin ones.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.types.range.RangeInfo">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.types.range.</span></span><span class="sig-name descname"><span class="pre">RangeInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">array_oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">regtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtype_oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.types.range.RangeInfo" title="連結到這個定義">¶</a></dt>
+<dd><p>Manage information about a range type.</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">RangeInfo</span></code> is a <a class="reference internal" href="../api/types.html#psycopg.types.TypeInfo" title="psycopg.types.TypeInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeInfo</span></code></a> subclass: check its
+documentation for generic details, especially the
+<a class="reference internal" href="../api/types.html#psycopg.types.TypeInfo.fetch" title="psycopg.types.TypeInfo.fetch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fetch()</span></code></a> method.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="psycopg.types.range.register_range">
+<span class="sig-prename descclassname"><span class="pre">psycopg.types.range.</span></span><span class="sig-name descname"><span class="pre">register_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#psycopg.types.range.RangeInfo" title="psycopg.types.range.RangeInfo"><span class="pre">RangeInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api/abc.html#psycopg.abc.AdaptContext" title="psycopg.abc.AdaptContext"><span class="pre">AdaptContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.types.range.register_range" title="連結到這個定義">¶</a></dt>
+<dd><p>Register the adapters to load and dump a range type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> -- The object with the information about the range to register.</p></li>
+<li><p><strong>context</strong> -- The context where to register the adapters. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>,
+register it globally.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Register loaders so that loading data of this type will result in a <a class="reference internal" href="#psycopg.types.range.Range" title="psycopg.types.range.Range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code></a>
+with bounds parsed as the right subtype.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Registering the adapters doesn't affect objects already created, even
+if they are children of the registered context. For instance,
+registering the adapter globally doesn't affect already existing
+connections.</p>
+</div>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg.types.range</span><span class="w"> </span><span class="kn">import</span> <span class="n">Range</span><span class="p">,</span> <span class="n">RangeInfo</span><span class="p">,</span> <span class="n">register_range</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TYPE strrange AS RANGE (SUBTYPE = text)&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">info</span> <span class="o">=</span> <span class="n">RangeInfo</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;strrange&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">register_range</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT pg_typeof(</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">Range</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">)])</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&#39;strrange&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT &#39;[a,z]&#39;::strrange&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">Range(&#39;a&#39;, &#39;z&#39;, &#39;[]&#39;)</span>
+</pre></div>
+</div>
+</section>
+<section id="multirange-adaptation">
+<span id="adapt-multirange"></span><span id="index-3"></span><h2>Multirange adaptation<a class="headerlink" href="#multirange-adaptation" title="連結到這個標頭">¶</a></h2>
+<p>Since PostgreSQL 14, every range type is associated with a <a class="reference external" href="https://www.postgresql.org/docs/current/rangetypes.html">multirange</a>, a
+type representing a disjoint set of ranges. A multirange is
+automatically available for every range, built-in and user-defined.</p>
+<p>All the PostgreSQL range types are loaded as the
+<a class="reference internal" href="#psycopg.types.multirange.Multirange" title="psycopg.types.multirange.Multirange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Multirange</span></code></a> Python type, which is a mutable
+sequence of <a class="reference internal" href="#psycopg.types.range.Range" title="psycopg.types.range.Range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code></a> elements.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.types.multirange.Multirange">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.types.multirange.</span></span><span class="sig-name descname"><span class="pre">Multirange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.14)"><span class="pre">Iterable</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#psycopg.types.range.Range" title="psycopg.types.range.Range"><span class="pre">Range</span></a><span class="p"><span class="pre">[</span></span><span class="pre">T</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.types.multirange.Multirange" title="連結到這個定義">¶</a></dt>
+<dd><p>Python representation for a PostgreSQL multirange type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>items</strong> -- Sequence of ranges to initialise the object.</p>
+</dd>
+</dl>
+<p>This Python type is only used to pass and retrieve multirange values to
+and from PostgreSQL and doesn't attempt to replicate the PostgreSQL
+multirange features: overlapping items are not merged, empty ranges are
+not discarded, the items are not ordered, the behaviour of <a class="reference external" href="https://www.postgresql.org/docs/current/static/functions-range.html#MULTIRANGE-OPERATORS-TABLE">multirange
+operators</a> is not replicated in Python.</p>
+<p>PostgreSQL will perform normalisation on <code class="xref py py-obj docutils literal notranslate"><span class="pre">Multirange</span></code> objects used as
+query parameters, so, when they are fetched back, they will be found
+ordered, with overlapping ranges merged, etc.</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Multirange</span></code> objects are a <a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableSequence" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MutableSequence</span></code></a> and are
+totally ordered: they behave pretty much like a list of <code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code>. Like
+Range, they are <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Generic" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Generic</span></code></a> on the subtype of their range, so you
+can declare a variable to be <code class="xref py py-obj docutils literal notranslate"><span class="pre">Multirange[date]</span></code> and mypy will complain if
+you try to add it a <code class="xref py py-obj docutils literal notranslate"><span class="pre">Range[Decimal]</span></code>.</p>
+</dd></dl>
+
+<p>Like for <a class="reference internal" href="#psycopg.types.range.Range" title="psycopg.types.range.Range"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code></a>, built-in multirange objects are adapted
+automatically: if a <code class="xref py py-obj docutils literal notranslate"><span class="pre">Multirange</span></code> object contains <code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code> with
+<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.date" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">date</span></code></a> bounds, it is dumped using the <code class="sql docutils literal notranslate"><span class="pre">datemultirange</span></code> OID, and
+<code class="sql docutils literal notranslate"><span class="pre">datemultirange</span></code> values are loaded back as <code class="xref py py-obj docutils literal notranslate"><span class="pre">Multirange[date]</span></code>.</p>
+<p>If you have created your own range type you can use
+<a class="reference internal" href="#psycopg.types.multirange.MultirangeInfo" title="psycopg.types.multirange.MultirangeInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultirangeInfo</span></code></a> and
+<a class="reference internal" href="#psycopg.types.multirange.register_multirange" title="psycopg.types.multirange.register_multirange"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_multirange()</span></code></a> to associate the resulting
+multirange type with its subtype and make it work like the builtin ones.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.types.multirange.MultirangeInfo">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.types.multirange.</span></span><span class="sig-name descname"><span class="pre">MultirangeInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">array_oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">regtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">range_oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtype_oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.types.multirange.MultirangeInfo" title="連結到這個定義">¶</a></dt>
+<dd><p>Manage information about a multirange type.</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultirangeInfo</span></code> is a <a class="reference internal" href="../api/types.html#psycopg.types.TypeInfo" title="psycopg.types.TypeInfo"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeInfo</span></code></a> subclass: check its
+documentation for general details, especially the
+<a class="reference internal" href="../api/types.html#psycopg.types.TypeInfo.fetch" title="psycopg.types.TypeInfo.fetch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fetch()</span></code></a> method.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="psycopg.types.multirange.register_multirange">
+<span class="sig-prename descclassname"><span class="pre">psycopg.types.multirange.</span></span><span class="sig-name descname"><span class="pre">register_multirange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#psycopg.types.multirange.MultirangeInfo" title="psycopg.types.multirange.MultirangeInfo"><span class="pre">MultirangeInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api/abc.html#psycopg.abc.AdaptContext" title="psycopg.abc.AdaptContext"><span class="pre">AdaptContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.types.multirange.register_multirange" title="連結到這個定義">¶</a></dt>
+<dd><p>Register the adapters to load and dump a multirange type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> -- The object with the information about the range to register.</p></li>
+<li><p><strong>context</strong> -- The context where to register the adapters. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>,
+register it globally.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Register loaders so that loading data of this type will result in a <code class="xref py py-obj docutils literal notranslate"><span class="pre">Range</span></code>
+with bounds parsed as the right subtype.</p>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Registering the adapters doesn't affect objects already created, even
+if they are children of the registered context. For instance,
+registering the adapter globally doesn't affect already existing
+connections.</p>
+</div>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg.types.multirange</span><span class="w"> </span><span class="kn">import</span> \
+<span class="gp">... </span>    <span class="n">Multirange</span><span class="p">,</span> <span class="n">MultirangeInfo</span><span class="p">,</span> <span class="n">register_multirange</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg.types.range</span><span class="w"> </span><span class="kn">import</span> <span class="n">Range</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;CREATE TYPE strrange AS RANGE (SUBTYPE = text)&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">info</span> <span class="o">=</span> <span class="n">MultirangeInfo</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;strmultirange&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">register_multirange</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rec</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s2">&quot;SELECT pg_typeof(</span><span class="si">%(mr)s</span><span class="s2">), </span><span class="si">%(mr)s</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="p">{</span><span class="s2">&quot;mr&quot;</span><span class="p">:</span> <span class="n">Multirange</span><span class="p">([</span><span class="n">Range</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">),</span> <span class="n">Range</span><span class="p">(</span><span class="s2">&quot;l&quot;</span><span class="p">,</span> <span class="s2">&quot;z&quot;</span><span class="p">)])})</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&#39;strmultirange&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">Multirange([Range(&#39;a&#39;, &#39;z&#39;, &#39;[)&#39;)])</span>
+</pre></div>
+</div>
+</section>
+<section id="hstore-adaptation">
+<span id="adapt-hstore"></span><span id="index-4"></span><h2>Hstore adaptation<a class="headerlink" href="#hstore-adaptation" title="連結到這個標頭">¶</a></h2>
+<p>The <a class="reference external" href="https://www.postgresql.org/docs/current/static/hstore.html"><code class="sql docutils literal notranslate"><span class="pre">hstore</span></code></a> data type is a key-value store embedded in PostgreSQL. It
+supports GiST or GIN indexes allowing search by keys or key/value pairs as
+well as regular BTree indexes for equality, uniqueness etc.</p>
+<p>Psycopg can convert Python <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code> objects to and from <code class="sql docutils literal notranslate"><span class="pre">hstore</span></code> structures.
+Only dictionaries with string keys and values are supported. <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> is also
+allowed as value but not as a key.</p>
+<p>In order to use the <code class="sql docutils literal notranslate"><span class="pre">hstore</span></code> data type it is necessary to load it in a
+database using:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>=# CREATE EXTENSION hstore;
+</pre></div>
+</div>
+<p>Because <code class="sql docutils literal notranslate"><span class="pre">hstore</span></code> is distributed as a contrib module, its oid is not well
+known, so it is necessary to use <code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeInfo</span></code>.<a class="reference internal" href="../api/types.html#psycopg.types.TypeInfo.fetch" title="psycopg.types.TypeInfo.fetch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fetch()</span></code></a> to query the database and get its oid. The
+resulting object can be passed to
+<a class="reference internal" href="#psycopg.types.hstore.register_hstore" title="psycopg.types.hstore.register_hstore"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_hstore()</span></code></a> to configure dumping <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code> to
+<code class="sql docutils literal notranslate"><span class="pre">hstore</span></code> and parsing <code class="sql docutils literal notranslate"><span class="pre">hstore</span></code> back to <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code>, in the context where the
+adapter is registered.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="psycopg.types.hstore.register_hstore">
+<span class="sig-prename descclassname"><span class="pre">psycopg.types.hstore.</span></span><span class="sig-name descname"><span class="pre">register_hstore</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api/types.html#psycopg.types.TypeInfo" title="psycopg.types.TypeInfo"><span class="pre">TypeInfo</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../api/abc.html#psycopg.abc.AdaptContext" title="psycopg.abc.AdaptContext"><span class="pre">AdaptContext</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.types.hstore.register_hstore" title="連結到這個定義">¶</a></dt>
+<dd><p>Register the adapters to load and dump hstore.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> -- The object with the information about the hstore type.</p></li>
+<li><p><strong>context</strong> -- The context where to register the adapters. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>,
+register it globally.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Registering the adapters doesn't affect objects already created, even
+if they are children of the registered context. For instance,
+registering the adapter globally doesn't affect already existing
+connections.</p>
+</div>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeInfo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg.types.hstore</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_hstore</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">info</span> <span class="o">=</span> <span class="n">TypeInfo</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;hstore&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">register_hstore</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT pg_typeof(</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="p">[{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">}])</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&#39;hstore&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT &#39;foo =&gt; bar&#39;::hstore&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;foo&#39;: &#39;bar&#39;}</span>
+</pre></div>
+</div>
+</section>
+<section id="geometry-adaptation-using-shapely">
+<span id="adapt-shapely"></span><span id="index-5"></span><h2>Geometry adaptation using Shapely<a class="headerlink" href="#geometry-adaptation-using-shapely" title="連結到這個標頭">¶</a></h2>
+<p>When using the <a class="reference external" href="https://postgis.net/">PostGIS</a> extension, it can be useful to retrieve <a class="reference external" href="https://postgis.net/docs/geometry.html">geometry</a>
+values and have them automatically converted to <a class="reference external" href="https://github.com/Toblerity/Shapely">Shapely</a> instances. Likewise,
+you may want to store such instances in the database and have the conversion
+happen automatically.</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>Psycopg doesn't have a dependency on the <code class="docutils literal notranslate"><span class="pre">shapely</span></code> package: you should
+install the library as an additional dependency of your project.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>This module is experimental and might be changed in the future according
+to users' feedback.</p>
+</div>
+<p>Since PostgGIS is an extension, the <code class="sql docutils literal notranslate"><span class="pre">geometry</span></code> type oid is not well
+known, so it is necessary to use <code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeInfo</span></code>.<a class="reference internal" href="../api/types.html#psycopg.types.TypeInfo.fetch" title="psycopg.types.TypeInfo.fetch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fetch()</span></code></a> to query the database and find it. The
+resulting object can be passed to <a class="reference internal" href="#psycopg.psycopg.types.shapely.register_shapely" title="psycopg.psycopg.types.shapely.register_shapely"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_shapely()</span></code></a>
+to configure dumping <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html#shapely.geometry.shape">shape</a> instances to <code class="sql docutils literal notranslate"><span class="pre">geometry</span></code> columns and parsing
+<code class="sql docutils literal notranslate"><span class="pre">geometry</span></code> data back to <code class="xref py py-obj docutils literal notranslate"><span class="pre">shape</span></code> instances, in the context where the
+adapters are registered.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="psycopg.psycopg.types.shapely.register_shapely">
+<span class="sig-prename descclassname"><span class="pre">psycopg.types.shapely.</span></span><span class="sig-name descname"><span class="pre">register_shapely</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.psycopg.types.shapely.register_shapely" title="連結到這個定義">¶</a></dt>
+<dd><p>Register Shapely dumper and loaders.</p>
+<p>After invoking this function on an adapter, the queries retrieving
+PostGIS geometry objects will return Shapely's shape object instances
+both in text and binary mode.</p>
+<p>Similarly, shape objects can be sent to the database.</p>
+<p>This requires the Shapely library to be installed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> -- The object with the information about the geometry type.</p></li>
+<li><p><strong>context</strong> -- The context where to register the adapters. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>,
+register it globally.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">備註</p>
+<p>Registering the adapters doesn't affect objects already created, even
+if they are children of the registered context. For instance,
+registering the adapter globally doesn't affect already existing
+connections.</p>
+</div>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypeInfo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg.types.shapely</span><span class="w"> </span><span class="kn">import</span> <span class="n">register_shapely</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">info</span> <span class="o">=</span> <span class="n">TypeInfo</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">register_shapely</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT pg_typeof(</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">Point</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">)])</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&#39;geometry&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">SELECT ST_GeomFromGeoJSON(&#39;{</span>
+<span class="gp">... </span><span class="s2">    &quot;type&quot;:&quot;Point&quot;,</span>
+<span class="gp">... </span><span class="s2">    &quot;coordinates&quot;:[-48.23456,20.12345]}&#39;)</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&lt;shapely.geometry.multipolygon.MultiPolygon object at 0x7fb131f3cd90&gt;</span>
+</pre></div>
+</div>
+<p>Notice that, if the geometry adapters are registered on a specific object (a
+connection or cursor), other connections and cursors will be unaffected:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">conn2</span> <span class="o">=</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">CONN_STR</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn2</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="gp">... </span><span class="s2">SELECT ST_GeomFromGeoJSON(&#39;{</span>
+<span class="gp">... </span><span class="s2">    &quot;type&quot;:&quot;Point&quot;,</span>
+<span class="gp">... </span><span class="s2">    &quot;coordinates&quot;:[-48.23456,20.12345]}&#39;)</span>
+<span class="gp">... </span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">&#39;0101000020E61000009279E40F061E48C0F2B0506B9A1F3440&#39;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="transactions.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Transactions management</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="adapt.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">適配基本的 Python 型別</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020, Daniele Varrazzo and The Psycopg Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">適配其他 PostgreSQL 型別</a><ul>
+<li><a class="reference internal" href="#composite-types-adaptation">Composite types adaptation</a><ul>
+<li><a class="reference internal" href="#psycopg.types.composite.CompositeInfo"><code class="docutils literal notranslate"><span class="pre">CompositeInfo</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.types.composite.CompositeInfo.field_names"><code class="docutils literal notranslate"><span class="pre">CompositeInfo.field_names</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.composite.CompositeInfo.field_types"><code class="docutils literal notranslate"><span class="pre">CompositeInfo.field_types</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.composite.CompositeInfo.python_type"><code class="docutils literal notranslate"><span class="pre">CompositeInfo.python_type</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg.types.composite.register_composite"><code class="docutils literal notranslate"><span class="pre">register_composite()</span></code></a></li>
+<li><a class="reference internal" href="#example-python-sequence">Example: Python sequence</a></li>
+<li><a class="reference internal" href="#example-non-sequence-python-object">Example: non-sequence Python object</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#range-adaptation">Range adaptation</a><ul>
+<li><a class="reference internal" href="#psycopg.types.range.Range"><code class="docutils literal notranslate"><span class="pre">Range</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.types.range.Range.isempty"><code class="docutils literal notranslate"><span class="pre">Range.isempty</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.range.Range.lower"><code class="docutils literal notranslate"><span class="pre">Range.lower</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.range.Range.upper"><code class="docutils literal notranslate"><span class="pre">Range.upper</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.range.Range.lower_inc"><code class="docutils literal notranslate"><span class="pre">Range.lower_inc</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.range.Range.upper_inc"><code class="docutils literal notranslate"><span class="pre">Range.upper_inc</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.range.Range.lower_inf"><code class="docutils literal notranslate"><span class="pre">Range.lower_inf</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.range.Range.upper_inf"><code class="docutils literal notranslate"><span class="pre">Range.upper_inf</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg.types.range.RangeInfo"><code class="docutils literal notranslate"><span class="pre">RangeInfo</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.range.register_range"><code class="docutils literal notranslate"><span class="pre">register_range()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#multirange-adaptation">Multirange adaptation</a><ul>
+<li><a class="reference internal" href="#psycopg.types.multirange.Multirange"><code class="docutils literal notranslate"><span class="pre">Multirange</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.multirange.MultirangeInfo"><code class="docutils literal notranslate"><span class="pre">MultirangeInfo</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.types.multirange.register_multirange"><code class="docutils literal notranslate"><span class="pre">register_multirange()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#hstore-adaptation">Hstore adaptation</a><ul>
+<li><a class="reference internal" href="#psycopg.types.hstore.register_hstore"><code class="docutils literal notranslate"><span class="pre">register_hstore()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#geometry-adaptation-using-shapely">Geometry adaptation using Shapely</a><ul>
+<li><a class="reference internal" href="#psycopg.psycopg.types.shapely.register_shapely"><code class="docutils literal notranslate"><span class="pre">psycopg.types.shapely.register_shapely()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=8c20bb27"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/translations.js?v=cbf116e0"></script>
+    </body>
+</html>

@@ -1,0 +1,489 @@
+<!doctype html>
+<html class="no-js" lang="zh-TW" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="genindex.html"><link rel="search" title="搜尋" href="search.html">
+        <link rel="canonical" href="https://projects.localizethedocs.org/psycopg3-docs-l10n/release.html">
+        <link rel="prefetch" href="_static/psycopg.png" as="image">
+        <link rel="prefetch" href="_static/psycopg.png" as="image">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>How to make a psycopg release - psycopg 3.3.5.dev1 說明文件</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/psycopg.css?v=67dada6b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --admonition-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style>
+
+<script type="text/javascript" src="ltd-provenance.js"></script>
+<script type="text/javascript" src="ltd-current.js"></script>
+<script type="text/javascript" src="../../ltd-config.js"></script>
+<script type="text/javascript" src="../../ltd-flyout.js"></script>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">psycopg 3.3.5.dev1 說明文件</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/psycopg.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/psycopg.png" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">psycopg 3.3.5.dev1 說明文件</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="搜尋" name="q" aria-label="搜尋">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="basic/index.html">開始使用 Psycopg 3</a><input aria-label="Toggle navigation of 開始使用 Psycopg 3" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic/install.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/usage.html">Basic module usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/params.html">將參數傳遞給 SQL 查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/tstrings.html">模板字串查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/adapt.html">適配基本的 Python 型別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/pgtypes.html">適配其他 PostgreSQL 型別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/transactions.html">Transactions management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/copy.html">使用 COPY TO 與 COPY FROM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/from_pg2.html">Differences from <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="advanced/index.html">更進階的話題</a><input aria-label="Toggle navigation of 更進階的話題" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced/async.html">Concurrent operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/typing.html">靜態型別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/rows.html">Row factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/pool.html">Connection pools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/cursors.html">Cursor types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/adapt.html">Data adaptation configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/prepare.html">Prepared statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/pipeline.html">Pipeline mode support</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/index.html">Psycopg 3 API</a><input aria-label="Toggle navigation of Psycopg 3 API" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/module.html">The <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg</span></code> module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/connections.html">Connection classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/cursors.html">Cursor classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/copy.html">COPY-related objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/objects.html">Other top-level objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/sql.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql</span></code> -- SQL string composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/rows.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rows</span></code> -- row factory implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/errors.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors</span></code> -- Package exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pool.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code> -- Connection pool implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/conninfo.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conninfo</span></code> -- manipulate connection strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/adapt.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt</span></code> -- Types adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/types.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types</span></code> -- Types information and adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/abc.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc</span></code> -- Psycopg 抽象類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pq.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq</span></code> -- libpq wrapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/crdb.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crdb</span></code> -- CockroachDB 支援</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/dns.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_dns</span></code> -- DNS resolution utilities</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="news.html"><code class="docutils literal notranslate"><span class="pre">psycopg</span></code> 發行備註</a></li>
+<li class="toctree-l1"><a class="reference internal" href="news_pool.html"><code class="docutils literal notranslate"><span class="pre">psycopg_pool</span></code> 發行備註</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="how-to-make-a-psycopg-release">
+<h1>How to make a psycopg release<a class="headerlink" href="#how-to-make-a-psycopg-release" title="連結到這個標頭">¶</a></h1>
+<ul>
+<li><p>Check if there is a new version or <a class="reference external" href="https://www.postgresql.org/ftp/source/">libpq</a> or <a class="reference external" href="https://www.openssl.org/source/">OpenSSL</a>; in such case
+update <code class="docutils literal notranslate"><span class="pre">LIBPQ_VERSION</span></code> and/or <code class="docutils literal notranslate"><span class="pre">OPENSSL_VERSION</span></code> in
+<code class="docutils literal notranslate"><span class="pre">.github/workflows/packages-bin.yml</span></code>.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Check if there is a new <a class="reference external" href="https://github.com/pypa/cibuildwheel/releases">cibuildwheel release</a>; if so, upgrade it in
+<code class="docutils literal notranslate"><span class="pre">.github/workflows/packages-bin.yml</span></code>.</p>
+</li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">tools/bump_version.py</span></code> to upgrade package version numbers.</p></li>
+<li><p>Push to GitHub to run <a class="reference external" href="https://github.com/psycopg/psycopg/actions/workflows/tests.yml">the tests workflow</a>.</p>
+</li>
+<li><p>Build the packages by triggering manually the ones requested among:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/psycopg/psycopg/actions/workflows/packages-src.yml">Source packages</a></p></li>
+<li><p><a class="reference external" href="https://github.com/psycopg/psycopg/actions/workflows/packages-bin.yml">Binary packages</a></p></li>
+<li><p><a class="reference external" href="https://github.com/psycopg/psycopg/actions/workflows/packages-pool.yml">Pool packages</a></p></li>
+</ul>
+</li>
+<li><p>Delete the <code class="docutils literal notranslate"><span class="pre">wheelhouse</span></code> directory if there is one.</p></li>
+<li><p>If all packages were built ok, push the new tag created by <code class="docutils literal notranslate"><span class="pre">bump_version.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="o">--</span><span class="n">tags</span>
+</pre></div>
+</div>
+</li>
+<li><p>Download the <code class="docutils literal notranslate"><span class="pre">artifacts.zip</span></code> package from the last Packages workflow run.</p></li>
+<li><p>Unpack the packages in the wheelhouse dir:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">wheelhouse</span>
+<span class="n">cd</span> <span class="n">wheelhouse</span>
+<span class="n">unzip</span> <span class="o">~/</span><span class="n">Downloads</span><span class="o">/</span><span class="n">artifact</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+</li>
+<li><p>If the package is a testing one, upload it on TestPyPI with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ twine upload -r testpypi *
+</pre></div>
+</div>
+</li>
+<li><p>If the package is stable, omit <code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">testpypi</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ twine upload *
+</pre></div>
+</div>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">tools/bump_version.py</span> <span class="pre">-l</span> <span class="pre">dev</span></code> to bump to the next dev version.</p></li>
+</ul>
+<section id="when-a-new-postgresql-major-version-is-released">
+<h2>When a new PostgreSQL major version is released<a class="headerlink" href="#when-a-new-postgresql-major-version-is-released" title="連結到這個標頭">¶</a></h2>
+<ul class="simple">
+<li><p>Add the new version to <code class="docutils literal notranslate"><span class="pre">tools/update_errors.py</span></code> and run the script to add
+new error classes.</p></li>
+<li><p>If the script above found any change, document the version added at the
+bottom of <code class="docutils literal notranslate"><span class="pre">docs/api/errors.rst</span></code>.</p></li>
+<li><p>Run the script <code class="docutils literal notranslate"><span class="pre">tools/update_oids.py</span></code> to add new oids. Use <code class="docutils literal notranslate"><span class="pre">-h</span></code> to get
+an example docker command line to run a server locally.</p></li>
+<li><p>Check if there are new enum values to include in:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">psycopg_c/psycopg_c/pq/libpq.pxd</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">psycopg/psycopg/pq/_enums.py</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Include the new version in GitHub Actions test and package grids.</p></li>
+<li><p>Bump <code class="docutils literal notranslate"><span class="pre">PG_VERSION</span></code> in the <code class="docutils literal notranslate"><span class="pre">macos</span></code> job of</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">.github/workflows/packages-bin.yml</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.github/workflows/tests.yml</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Update the documented versions in:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">docs/basic/install.rst</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">content/features/contents.lr</span></code> in the psycopg-website repository.</p></li>
+</ul>
+</li>
+</ul>
+<section id="adding-new-libpq-wrapper-methods">
+<h3>Adding new libpq wrapper methods<a class="headerlink" href="#adding-new-libpq-wrapper-methods" title="連結到這個標頭">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">psycopg.pq</span></code> module is a thin wrapper around the libpq, only doing the
+minimal work to make the library somewhat Pythonic (e.g. converting types and
+raising exceptions instead of returning error values).</p>
+<p>When new functionalities are added to the libpq we often want to expose them
+to Python (either to allow Python users to use them directly or to build new
+features on top of them). The procedure touches several files, in order to
+add function wrappers to both the Python and the C implementation of the
+libpq, to the objects interfaces and every object implementing them, and
+eventually to bubble up to some Python object.</p>
+<p>It is polite to add new top-level objects interfaces (such as
+<code class="docutils literal notranslate"><span class="pre">connection.info</span></code> or <code class="docutils literal notranslate"><span class="pre">Capabilities</span></code> only on minor releases (3.x), but if
+we need to add a libpq function wrapper to solve an issue we can do it in a
+bugfix release, without documenting it (e.g. <code class="docutils literal notranslate"><span class="pre">PQconnectionUsedGSSAPI</span></code> was
+added in 3.2.10 but only advertised in 3.3).</p>
+<p>You can use <a class="reference external" href="https://github.com/psycopg/psycopg/pull/1140/">PR 1140</a> as a reference for the work to do (code, tests,
+documentation). In this MR, the changes in the first commit are suitable to
+introduce a new function in a bugfix release, the second commit changes make
+the new functionality public.</p>
+</section>
+</section>
+<section id="when-a-new-python-major-version-is-released">
+<h2>When a new Python major version is released<a class="headerlink" href="#when-a-new-python-major-version-is-released" title="連結到這個標頭">¶</a></h2>
+<ul class="simple">
+<li><p>Add the new version to the relevant test matrices in
+<code class="docutils literal notranslate"><span class="pre">.github/workflows/tests.yml</span></code> and <code class="docutils literal notranslate"><span class="pre">.github/workflows/packages-bin.yml</span></code>.</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">docs/basic/install.rst</span></code> with the correct range of supported Python
+versions.</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">Programming</span> <span class="pre">Language</span> <span class="pre">::</span> <span class="pre">Python</span> <span class="pre">::</span> <span class="pre">3.&lt;X&gt;</span></code> classifier to
+<code class="docutils literal notranslate"><span class="pre">psycopg/pyproject.toml</span></code>, <code class="docutils literal notranslate"><span class="pre">psycopg_c/pyproject.toml</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">psycopg_pool/pyproject.toml</span></code>.</p></li>
+</ul>
+</section>
+<section id="when-dropping-end-of-life-python-versions">
+<h2>When dropping end-of-life Python versions<a class="headerlink" href="#when-dropping-end-of-life-python-versions" title="連結到這個標頭">¶</a></h2>
+<ul>
+<li><p>Update project metadata, <code class="docutils literal notranslate"><span class="pre">requires-python</span></code> and (maybe) package dependencies
+in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> files of the corresponding <code class="docutils literal notranslate"><span class="pre">psycopg</span></code> directories.</p></li>
+<li><p>Update GitHub Actions workflow files in the <code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code> directory,
+e.g., <code class="docutils literal notranslate"><span class="pre">tests.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">.3rd-party-tests.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">packages-bin.yml</span></code>.</p></li>
+<li><p>Bump versions in the <code class="docutils literal notranslate"><span class="pre">tests/constraints.txt</span></code> file if it is necessary.</p></li>
+<li><p>bump <code class="docutils literal notranslate"><span class="pre">build-system.requires</span></code> in <code class="docutils literal notranslate"><span class="pre">*/pyproject.toml</span></code>. Install the packages
+with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">./psycopg*/</span></code> and check eventual warnings.</p></li>
+<li><p>You may grep throughout the project for occurrences of a version to be dropped.
+However, favouring smaller pull requests is convenient and easy to review.
+An example for grepping <code class="xref py py-obj docutils literal notranslate"><span class="pre">end-of-life</span></code> Python 3.8:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">grep</span> <span class="o">-</span><span class="n">E</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">3\.8</span><span class="se">\b</span><span class="s1">&#39;</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">(cp)?38</span><span class="se">\b</span><span class="s1">&#39;</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">3, 8</span><span class="se">\b</span><span class="s1">&#39;</span>
+<span class="n">git</span> <span class="n">grep</span> <span class="o">-</span><span class="n">E</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">3\.9</span><span class="se">\b</span><span class="s1">&#39;</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">(cp)?39</span><span class="se">\b</span><span class="s1">&#39;</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;</span><span class="se">\b</span><span class="s1">3, 9</span><span class="se">\b</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Consider using <a class="reference external" href="https://pypi.org/project/pyupgrade/">pyupgrade</a> with <code class="docutils literal notranslate"><span class="pre">--py3NN-plus</span></code> in order to refresh syntax
+to Python 3.NN (the new minimum supported version).</p></li>
+</ul>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/psycopg/psycopg/pull/977">PR #977</a></p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020, Daniele Varrazzo and The Psycopg Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">How to make a psycopg release</a><ul>
+<li><a class="reference internal" href="#when-a-new-postgresql-major-version-is-released">When a new PostgreSQL major version is released</a><ul>
+<li><a class="reference internal" href="#adding-new-libpq-wrapper-methods">Adding new libpq wrapper methods</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#when-a-new-python-major-version-is-released">When a new Python major version is released</a></li>
+<li><a class="reference internal" href="#when-dropping-end-of-life-python-versions">When dropping end-of-life Python versions</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=a60bbb32"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="_static/translations.js?v=cbf116e0"></script>
+    </body>
+</html>

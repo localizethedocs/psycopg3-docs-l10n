@@ -1,0 +1,1128 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="sql -- SQL string composition" href="sql.html"><link rel="prev" title="COPY-related objects" href="copy.html">
+        <link rel="canonical" href="https://projects.localizethedocs.org/psycopg3-docs-l10n/api/objects.html">
+        <link rel="prefetch" href="../_static/psycopg.svg" as="image">
+        <link rel="prefetch" href="../_static/psycopg.svg" as="image">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Other top-level objects - psycopg 3.3.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/psycopg.css?v=67dada6b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --admonition-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">psycopg 3.3.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../_static/psycopg.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../_static/psycopg.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">psycopg 3.3.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basic/index.html">Getting started with Psycopg 3</a><input aria-label="Toggle navigation of Getting started with Psycopg 3" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic/install.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/usage.html">Basic module usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/params.html">Passing parameters to SQL queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/tstrings.html">Template string queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/adapt.html">Adapting basic Python types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/pgtypes.html">Adapting other PostgreSQL types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/transactions.html">Transactions management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/copy.html">Using COPY TO and COPY FROM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/from_pg2.html">Differences from <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">More advanced topics</a><input aria-label="Toggle navigation of More advanced topics" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/async.html">Concurrent operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/typing.html">Static Typing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/rows.html">Row factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/pool.html">Connection pools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/cursors.html">Cursor types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/adapt.html">Data adaptation configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/prepare.html">Prepared statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/pipeline.html">Pipeline mode support</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Psycopg 3 API</a><input aria-label="Toggle navigation of Psycopg 3 API" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="module.html">The <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg</span></code> module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connections.html">Connection classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cursors.html">Cursor classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="copy.html">COPY-related objects</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Other top-level objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql</span></code> -- SQL string composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rows.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rows</span></code> -- row factory implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors</span></code> -- Package exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pool.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code> -- Connection pool implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conninfo.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conninfo</span></code> -- manipulate connection strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapt.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt</span></code> -- Types adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types</span></code> -- Types information and adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abc.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc</span></code> -- Psycopg abstract classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pq.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq</span></code> -- libpq wrapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crdb.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crdb</span></code> -- CockroachDB support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dns.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_dns</span></code> -- DNS resolution utilities</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../news.html"><code class="docutils literal notranslate"><span class="pre">psycopg</span></code> release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news_pool.html"><code class="docutils literal notranslate"><span class="pre">psycopg_pool</span></code> release notes</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="other-top-level-objects">
+<h1>Other top-level objects<a class="headerlink" href="#other-top-level-objects" title="链接到此标题。">¶</a></h1>
+<section id="connection-information">
+<h2>Connection information<a class="headerlink" href="#connection-information" title="链接到此标题。">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">ConnectionInfo</span></span><a class="headerlink" href="#psycopg.ConnectionInfo" title="链接到此定义。">¶</a></dt>
+<dd><p>Allow access to information about the connection.</p>
+<p>The object is usually returned by <a class="reference internal" href="connections.html#psycopg.Connection.info" title="psycopg.Connection.info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.info</span></code></a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.dsn">
+<span class="sig-name descname"><span class="pre">dsn</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.dsn" title="链接到此定义。">¶</a></dt>
+<dd><p>Return the connection string to connect to the database.</p>
+<p>The string contains all the parameters set to a non-default value,
+which might come either from the connection string and parameters
+passed to <a class="reference internal" href="connections.html#psycopg.Connection.connect" title="psycopg.Connection.connect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connect()</span></code></a> or from environment variables. The
+password is never returned (you can read it using the <a class="reference internal" href="#psycopg.ConnectionInfo.password" title="psycopg.ConnectionInfo.password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">password</span></code></a>
+attribute).</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>The <a class="reference internal" href="#psycopg.ConnectionInfo.get_parameters" title="psycopg.ConnectionInfo.get_parameters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_parameters()</span></code></a> method returns the same information
+as a dict.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.status" title="链接到此定义。">¶</a></dt>
+<dd><p>The status of the connection. See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQSTATUS"><span class="pre">PQstatus()</span></a></code>.</p>
+<p>The status can be one of a number of values. However, only two of
+these are seen outside of an asynchronous connection procedure:
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">OK</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">BAD</span></code>. A good connection to the
+database has the status <code class="xref py py-obj docutils literal notranslate"><span class="pre">OK</span></code>. Ordinarily, an <code class="xref py py-obj docutils literal notranslate"><span class="pre">OK</span></code> status will remain
+so until <a class="reference internal" href="connections.html#psycopg.Connection.close" title="psycopg.Connection.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.close()</span></code></a>, but a communications failure might
+result in the status changing to <code class="xref py py-obj docutils literal notranslate"><span class="pre">BAD</span></code> prematurely.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.transaction_status">
+<span class="sig-name descname"><span class="pre">transaction_status</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.transaction_status" title="链接到此定义。">¶</a></dt>
+<dd><p>The current in-transaction status of the session.
+See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQTRANSACTIONSTATUS"><span class="pre">PQtransactionStatus()</span></a></code>.</p>
+<p>The status can be <code class="xref py py-obj docutils literal notranslate"><span class="pre">IDLE</span></code> (currently idle),
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">ACTIVE</span></code> (a command is in progress),
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">INTRANS</span></code> (idle, in a valid transaction block),
+or <code class="xref py py-obj docutils literal notranslate"><span class="pre">INERROR</span></code> (idle, in a failed transaction
+block). <code class="xref py py-obj docutils literal notranslate"><span class="pre">UNKNOWN</span></code> is reported if the connection
+is bad. <code class="xref py py-obj docutils literal notranslate"><span class="pre">ACTIVE</span></code> is reported only when a query has been sent to the
+server and not yet completed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.pipeline_status">
+<span class="sig-name descname"><span class="pre">pipeline_status</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.pipeline_status" title="链接到此定义。">¶</a></dt>
+<dd><p>The current pipeline status of the client.
+See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-pipeline-mode.html#LIBPQ-PQPIPELINESTATUS"><span class="pre">PQpipelineStatus()</span></a></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.backend_pid">
+<span class="sig-name descname"><span class="pre">backend_pid</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.backend_pid" title="链接到此定义。">¶</a></dt>
+<dd><p>The process ID (PID) of the backend process handling this connection.
+See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQBACKENDPID"><span class="pre">PQbackendPID()</span></a></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.vendor">
+<span class="sig-name descname"><span class="pre">vendor</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.vendor" title="链接到此定义。">¶</a></dt>
+<dd><p>A string representing the database vendor connected to.</p>
+<p>Normally it is <code class="xref py py-obj docutils literal notranslate"><span class="pre">PostgreSQL</span></code>; it may be different if connected to
+a different database.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.1 版本加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.server_version">
+<span class="sig-name descname"><span class="pre">server_version</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.server_version" title="链接到此定义。">¶</a></dt>
+<dd><p>An integer representing the server version. See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQSERVERVERSION"><span class="pre">PQserverVersion()</span></a></code>.</p>
+<p>The number is formed by converting the major, minor, and revision
+numbers into two-decimal-digit numbers and appending them together.
+Starting from PostgreSQL 10 the minor version was dropped, so the
+second group of digits is always 00. For example, version 9.3.5 is
+returned as 90305, version 10.2 as 100002.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.full_protocol_version">
+<span class="sig-name descname"><span class="pre">full_protocol_version</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.full_protocol_version" title="链接到此定义。">¶</a></dt>
+<dd><p>An integer representing the server full protocol version.</p>
+<p>Return a value in the format described in <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQFULLPROTOCOLVERSION"><span class="pre">PQfullProtocolVersion()</span></a></code>.</p>
+<p>Only meaningful if the libpq used is version 18 or greater. If the
+version is lesser than that, return the value reported by
+<code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQPROTOCOLVERSION"><span class="pre">PQprotocolVersion()</span></a></code> (but in the same format as above, e.g. 30000
+for version 3). You can use <a class="reference internal" href="#psycopg.Capabilities.has_full_protocol_version" title="psycopg.Capabilities.has_full_protocol_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Capabilities.has_full_protocol_version()</span></code></a>
+to verify if the value can be considered reliable.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.3 版本加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.error_message">
+<span class="sig-name descname"><span class="pre">error_message</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.error_message" title="链接到此定义。">¶</a></dt>
+<dd><p>The error message most recently generated by an operation on the connection.
+See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQERRORMESSAGE"><span class="pre">PQerrorMessage()</span></a></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.get_parameters">
+<span class="sig-name descname"><span class="pre">get_parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(位于 Python v3.14)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#psycopg.ConnectionInfo.get_parameters" title="链接到此定义。">¶</a></dt>
+<dd><p>Return the connection parameters values.</p>
+<p>Return all the parameters set to a non-default value, which might come
+either from the connection string and parameters passed to
+<a class="reference internal" href="connections.html#psycopg.Connection.connect" title="psycopg.Connection.connect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connect()</span></code></a> or from environment variables. The password
+is never returned (you can read it using the <a class="reference internal" href="#psycopg.ConnectionInfo.password" title="psycopg.ConnectionInfo.password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">password</span></code></a> attribute).</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>The <a class="reference internal" href="#psycopg.ConnectionInfo.dsn" title="psycopg.ConnectionInfo.dsn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dsn</span></code></a> attribute returns the same information in the form
+as a string.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.timezone">
+<span class="sig-name descname"><span class="pre">timezone</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.timezone" title="链接到此定义。">¶</a></dt>
+<dd><p>The Python timezone info of the connection's timezone.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">timezone</span>
+<span class="go">zoneinfo.ZoneInfo(key=&#39;Europe/Rome&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.host">
+<span class="sig-name descname"><span class="pre">host</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.host" title="链接到此定义。">¶</a></dt>
+<dd><p>The server host name of the active connection. See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQHOST"><span class="pre">PQhost()</span></a></code>.</p>
+<p>This can be a host name, an IP address, or a directory path if the
+connection is via Unix socket. (The path case can be distinguished
+because it will always be an absolute path, beginning with <code class="docutils literal notranslate"><span class="pre">/</span></code>.)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.hostaddr">
+<span class="sig-name descname"><span class="pre">hostaddr</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.hostaddr" title="链接到此定义。">¶</a></dt>
+<dd><p>The server IP address of the connection. See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQHOSTADDR"><span class="pre">PQhostaddr()</span></a></code>.</p>
+<p>Only available if the libpq used is from PostgreSQL 12 or newer.
+Raise <a class="reference internal" href="errors.html#psycopg.NotSupportedError" title="psycopg.NotSupportedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotSupportedError</span></code></a> otherwise. You can use the
+<a class="reference internal" href="#psycopg.Capabilities.has_hostaddr" title="psycopg.Capabilities.has_hostaddr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">has_hostaddr</span></code></a> capability to check for its support.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.port">
+<span class="sig-name descname"><span class="pre">port</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.port" title="链接到此定义。">¶</a></dt>
+<dd><p>The port of the active connection. See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQPORT"><span class="pre">PQport()</span></a></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.dbname">
+<span class="sig-name descname"><span class="pre">dbname</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.dbname" title="链接到此定义。">¶</a></dt>
+<dd><p>The database name of the connection. See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQDB"><span class="pre">PQdb()</span></a></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.user" title="链接到此定义。">¶</a></dt>
+<dd><p>The user name of the connection. See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQUSER"><span class="pre">PQuser()</span></a></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.password" title="链接到此定义。">¶</a></dt>
+<dd><p>The password of the connection. See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQPASS"><span class="pre">PQpass()</span></a></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.options">
+<span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.options" title="链接到此定义。">¶</a></dt>
+<dd><p>The command-line options passed in the connection request.
+See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQOPTIONS"><span class="pre">PQoptions</span></a></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.parameter_status">
+<span class="sig-name descname"><span class="pre">parameter_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.ConnectionInfo.parameter_status" title="链接到此定义。">¶</a></dt>
+<dd><p>Return a parameter setting of the connection.</p>
+<p>Return <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> is the parameter is unknown.</p>
+<p>Example of parameters are <code class="docutils literal notranslate"><span class="pre">server_version</span></code>,
+<code class="docutils literal notranslate"><span class="pre">standard_conforming_strings</span></code>... See <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-status.html#LIBPQ-PQPARAMETERSTATUS"><span class="pre">PQparameterStatus()</span></a></code> for
+all the available parameters.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.ConnectionInfo.encoding">
+<span class="sig-name descname"><span class="pre">encoding</span></span><a class="headerlink" href="#psycopg.ConnectionInfo.encoding" title="链接到此定义。">¶</a></dt>
+<dd><p>The Python codec name of the connection's client encoding.</p>
+<p>The value returned is always normalized to the Python codec
+<a class="reference external" href="https://docs.python.org/3/library/codecs.html#codecs.CodecInfo.name" title="(位于 Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SET client_encoding TO LATIN9&quot;</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">encoding</span>
+<span class="s1">&#39;iso8859-15&#39;</span>
+</pre></div>
+</div>
+<p>A few PostgreSQL encodings are not available in Python and cannot be
+selected (currently <code class="docutils literal notranslate"><span class="pre">EUC_TW</span></code>, <code class="docutils literal notranslate"><span class="pre">MULE_INTERNAL</span></code>). The PostgreSQL
+<code class="docutils literal notranslate"><span class="pre">SQL_ASCII</span></code> encoding has the special meaning of &quot;no encoding&quot;: see
+<a class="reference internal" href="../basic/adapt.html#adapt-string"><span class="std std-ref">Strings adaptation</span></a> for details.</p>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p>The <a class="reference external" href="https://www.postgresql.org/docs/current/multibyte.html">PostgreSQL supported encodings</a>.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="libpq-capabilities-information">
+<span id="capabilities"></span><h2>Libpq capabilities information<a class="headerlink" href="#libpq-capabilities-information" title="链接到此标题。">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.Capabilities">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">Capabilities</span></span><a class="headerlink" href="#psycopg.Capabilities" title="链接到此定义。">¶</a></dt>
+<dd><p>An object to check if a feature is supported by the libpq available on the client.</p>
+<p>An instance of this object is normally exposed by the module as the object
+<a class="reference internal" href="module.html#psycopg.capabilities" title="psycopg.capabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg.capabilities</span></code></a>.</p>
+<p>Every feature check is implemented by an <code class="xref py py-obj docutils literal notranslate"><span class="pre">has_SOMETHING()</span></code> method. All
+the methods return a boolean value stating if the capability is supported,
+which can be used by a program to degrade gracefully:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">capabilities</span><span class="o">.</span><span class="n">has_pipeline</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">pipeline</span><span class="p">():</span>
+        <span class="n">operations</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;slower&quot;</span><span class="p">)</span>
+    <span class="n">operations</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If <code class="xref py py-obj docutils literal notranslate"><span class="pre">check</span></code> is <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>, and the capability is not supported, raise a
+<a class="reference internal" href="errors.html#psycopg.NotSupportedError" title="psycopg.NotSupportedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotSupportedError</span></code></a> instead of returning <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>, explaining why the
+feature is not supported. This allows to make a check at import time,
+crashing early and with a clear description of the problem.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">psycopg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">psycopg</span><span class="o">.</span><span class="n">capabilities</span><span class="o">.</span><span class="n">has_pipeline</span><span class="p">(</span><span class="n">check</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">  </span><span class="c">...</span>
+<span class="gr">psycopg.NotSupportedError</span>: <span class="n">the feature &#39;Connection.pipeline()&#39; is not available:</span>
+<span class="x">    the client libpq version (imported from system libraries) is 13.4; the</span>
+<span class="x">    feature requires libpq version 14.0 or newer</span>
+</pre></div>
+</div>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.2 版本加入.</span></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Capabilities.has_full_protocol_version">
+<span class="sig-name descname"><span class="pre">has_full_protocol_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#psycopg.Capabilities.has_full_protocol_version" title="链接到此定义。">¶</a></dt>
+<dd><p>Check if the <code class="xref py py-obj docutils literal notranslate"><span class="pre">PGconn.full_protocol_version()</span></code> method is implemented.</p>
+<p>If the method is implemented, then <a class="reference internal" href="#psycopg.ConnectionInfo.full_protocol_version" title="psycopg.ConnectionInfo.full_protocol_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionInfo.full_protocol_version</span></code></a>
+will return a meaningful value.</p>
+<p>The feature requires libpq 18.0 and greater.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.3 版本加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Capabilities.has_encrypt_password">
+<span class="sig-name descname"><span class="pre">has_encrypt_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#psycopg.Capabilities.has_encrypt_password" title="链接到此定义。">¶</a></dt>
+<dd><p>Check if the <code class="xref py py-obj docutils literal notranslate"><span class="pre">PGconn.encrypt_password()</span></code> method is implemented.</p>
+<p>The feature requires libpq 10.0 or greater.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Capabilities.has_hostaddr">
+<span class="sig-name descname"><span class="pre">has_hostaddr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#psycopg.Capabilities.has_hostaddr" title="链接到此定义。">¶</a></dt>
+<dd><p>Check if the <a class="reference internal" href="#psycopg.ConnectionInfo.hostaddr" title="psycopg.ConnectionInfo.hostaddr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionInfo.hostaddr</span></code></a> attribute is implemented.</p>
+<p>The feature requires libpq 12.0 or greater.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Capabilities.has_pipeline">
+<span class="sig-name descname"><span class="pre">has_pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#psycopg.Capabilities.has_pipeline" title="链接到此定义。">¶</a></dt>
+<dd><p>Check if the <a class="reference internal" href="../advanced/pipeline.html#pipeline-mode"><span class="std std-ref">pipeline mode</span></a> is supported.</p>
+<p>The feature requires libpq 14.0 or greater.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Capabilities.has_set_trace_flags">
+<span class="sig-name descname"><span class="pre">has_set_trace_flags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#psycopg.Capabilities.has_set_trace_flags" title="链接到此定义。">¶</a></dt>
+<dd><p>Check if the <a class="reference internal" href="pq.html#psycopg.pq.PGconn.set_trace_flags" title="psycopg.pq.PGconn.set_trace_flags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq.PGconn.set_trace_flags()</span></code></a> method is implemented.</p>
+<p>The feature requires libpq 14.0 or greater.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Capabilities.has_used_gssapi">
+<span class="sig-name descname"><span class="pre">has_used_gssapi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#psycopg.Capabilities.has_used_gssapi" title="链接到此定义。">¶</a></dt>
+<dd><p>Check if the <a class="reference internal" href="pq.html#psycopg.pq.PGconn.used_gssapi" title="psycopg.pq.PGconn.used_gssapi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq.PGconn.used_gssapi</span></code></a> attribute is implemented.</p>
+<p>The feature requires libpq 16.0 or greater.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.3 版本加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Capabilities.has_cancel_safe">
+<span class="sig-name descname"><span class="pre">has_cancel_safe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#psycopg.Capabilities.has_cancel_safe" title="链接到此定义。">¶</a></dt>
+<dd><p>Check if the <a class="reference internal" href="connections.html#psycopg.Connection.cancel_safe" title="psycopg.Connection.cancel_safe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.cancel_safe()</span></code></a> method is implemented.</p>
+<p>The feature requires libpq 17.0 or greater.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>The <code class="xref py py-obj docutils literal notranslate"><span class="pre">cancel_safe()</span></code> method is implemented anyway, but it will use
+the legacy <code class="docutils literal notranslate"><a class="reference external" href="https://www.postgresql.org/docs/18/libpq-cancel.html#LIBPQ-PQCANCEL"><span class="pre">PQcancel</span></a></code> implementation.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Capabilities.has_stream_chunked">
+<span class="sig-name descname"><span class="pre">has_stream_chunked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#psycopg.Capabilities.has_stream_chunked" title="链接到此定义。">¶</a></dt>
+<dd><p>Check if <a class="reference internal" href="cursors.html#psycopg.Cursor.stream" title="psycopg.Cursor.stream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.stream()</span></code></a> can handle a <code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code> parameter value
+greater than 1 to retrieve results by chunks.</p>
+<p>The feature requires libpq 17.0 or greater.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Capabilities.has_send_close_prepared">
+<span class="sig-name descname"><span class="pre">has_send_close_prepared</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#psycopg.Capabilities.has_send_close_prepared" title="链接到此定义。">¶</a></dt>
+<dd><p>Check if the <code class="xref py py-obj docutils literal notranslate"><span class="pre">pq.PGconn.send_closed_prepared()</span></code> method is implemented.</p>
+<p>The feature requires libpq 17.0 or greater.</p>
+<div class="admonition seealso">
+<p class="admonition-title">参见</p>
+<p><a class="reference internal" href="../advanced/prepare.html#pgbouncer"><span class="std std-ref">Using prepared statements with PgBouncer</span></a></p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="the-description-column-object">
+<h2>The description <a class="reference internal" href="#psycopg.Column" title="psycopg.Column"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Column</span></code></a> object<a class="headerlink" href="#the-description-column-object" title="链接到此标题。">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.Column">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">Column</span></span><a class="headerlink" href="#psycopg.Column" title="链接到此定义。">¶</a></dt>
+<dd><p>An object describing a column of data from a database result, <a class="reference external" href="https://www.python.org/dev/peps/pep-0249/#description">as described
+by the DBAPI</a>, so it can also be unpacked as a 7-items tuple.</p>
+<p>The object is returned by <a class="reference internal" href="cursors.html#psycopg.Cursor.description" title="psycopg.Cursor.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.description</span></code></a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Column.name">
+<span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#psycopg.Column.name" title="链接到此定义。">¶</a></dt>
+<dd><p>The name of the column.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Column.type_code">
+<span class="sig-name descname"><span class="pre">type_code</span></span><a class="headerlink" href="#psycopg.Column.type_code" title="链接到此定义。">¶</a></dt>
+<dd><p>The numeric OID of the column.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Column.type_display">
+<span class="sig-name descname"><span class="pre">type_display</span></span><a class="headerlink" href="#psycopg.Column.type_display" title="链接到此定义。">¶</a></dt>
+<dd><p>A pretty representation of the column type.</p>
+<p>It is composed by the type name, followed by eventual modifiers and
+brackets to signify arrays, e.g. <code class="sql docutils literal notranslate"><span class="pre">text</span></code>, <code class="sql docutils literal notranslate"><span class="pre">varchar(42)</span></code>,
+<code class="sql docutils literal notranslate"><span class="pre">date[]</span></code>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.2 版本加入.</span></p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Column.display_size">
+<span class="sig-name descname"><span class="pre">display_size</span></span><a class="headerlink" href="#psycopg.Column.display_size" title="链接到此定义。">¶</a></dt>
+<dd><p>The field size, for string types such as <code class="sql docutils literal notranslate"><span class="pre">varchar(n)</span></code>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Column.internal_size">
+<span class="sig-name descname"><span class="pre">internal_size</span></span><a class="headerlink" href="#psycopg.Column.internal_size" title="链接到此定义。">¶</a></dt>
+<dd><p>The internal field size for fixed-size types, None otherwise.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Column.precision">
+<span class="sig-name descname"><span class="pre">precision</span></span><a class="headerlink" href="#psycopg.Column.precision" title="链接到此定义。">¶</a></dt>
+<dd><p>The number of digits for fixed precision types.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Column.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#psycopg.Column.scale" title="链接到此定义。">¶</a></dt>
+<dd><p>The number of digits after the decimal point if available.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="notifications">
+<h2>Notifications<a class="headerlink" href="#notifications" title="链接到此标题。">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.Notify">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">Notify</span></span><a class="headerlink" href="#psycopg.Notify" title="链接到此定义。">¶</a></dt>
+<dd><p>An asynchronous notification received from the database.</p>
+<p>The object is usually returned by <a class="reference internal" href="connections.html#psycopg.Connection.notifies" title="psycopg.Connection.notifies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.notifies()</span></code></a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Notify.channel">
+<span class="sig-name descname"><span class="pre">channel</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#psycopg.Notify.channel" title="链接到此定义。">¶</a></dt>
+<dd><p>The name of the channel on which the notification was received.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Notify.payload">
+<span class="sig-name descname"><span class="pre">payload</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#psycopg.Notify.payload" title="链接到此定义。">¶</a></dt>
+<dd><p>The message attached to the notification.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Notify.pid">
+<span class="sig-name descname"><span class="pre">pid</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(位于 Python v3.14)"><span class="pre">int</span></a></span><a class="headerlink" href="#psycopg.Notify.pid" title="链接到此定义。">¶</a></dt>
+<dd><p>The PID of the backend process which sent the notification.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="pipeline-related-objects">
+<h2>Pipeline-related objects<a class="headerlink" href="#pipeline-related-objects" title="链接到此标题。">¶</a></h2>
+<p>See <a class="reference internal" href="../advanced/pipeline.html#pipeline-mode"><span class="std std-ref">Pipeline mode support</span></a> for details.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.Pipeline">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">Pipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="connections.html#psycopg.Connection" title="psycopg.Connection"><span class="pre">Connection</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_no_lock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.Pipeline" title="链接到此定义。">¶</a></dt>
+<dd><p>Handler for (sync) connection in pipeline mode.</p>
+<p>This objects is returned by <a class="reference internal" href="connections.html#psycopg.Connection.pipeline" title="psycopg.Connection.pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.pipeline()</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Pipeline.sync">
+<span class="sig-name descname"><span class="pre">sync</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.Pipeline.sync" title="链接到此定义。">¶</a></dt>
+<dd><p>Sync the pipeline, send any pending command and receive and process
+all available results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.Pipeline.is_supported">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">is_supported</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#psycopg.Pipeline.is_supported" title="链接到此定义。">¶</a></dt>
+<dd><p>Return <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code> if the psycopg libpq wrapper supports pipeline mode.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.AsyncPipeline">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">AsyncPipeline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="connections.html#psycopg.AsyncConnection" title="psycopg.AsyncConnection"><span class="pre">AsyncConnection</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_no_lock</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(位于 Python v3.14)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.AsyncPipeline" title="链接到此定义。">¶</a></dt>
+<dd><p>Handler for (async) connection in pipeline mode.</p>
+<p>This objects is returned by <a class="reference internal" href="connections.html#psycopg.AsyncConnection.pipeline" title="psycopg.AsyncConnection.pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection.pipeline()</span></code></a>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.AsyncPipeline.sync">
+<span class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">sync</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.AsyncPipeline.sync" title="链接到此定义。">¶</a></dt>
+<dd><p>Sync the pipeline, send any pending command and receive and process
+all available results.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="transaction-related-objects">
+<h2>Transaction-related objects<a class="headerlink" href="#transaction-related-objects" title="链接到此标题。">¶</a></h2>
+<p>See <a class="reference internal" href="../basic/transactions.html#transactions"><span class="std std-ref">Transactions management</span></a> for details about these objects.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.IsolationLevel">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">IsolationLevel</span></span><a class="headerlink" href="#psycopg.IsolationLevel" title="链接到此定义。">¶</a></dt>
+<dd><p>Enum representing the isolation level for a transaction.</p>
+<p>The value is usually used with the <a class="reference internal" href="connections.html#psycopg.Connection.isolation_level" title="psycopg.Connection.isolation_level"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.isolation_level</span></code></a> property.</p>
+<p>Check the PostgreSQL documentation for a description of the effects of the
+different <a class="reference external" href="https://www.postgresql.org/docs/current/transaction-iso.html">levels of transaction isolation</a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.Transaction">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">Transaction</span></span><a class="headerlink" href="#psycopg.Transaction" title="链接到此定义。">¶</a></dt>
+<dd><p>Returned by <a class="reference internal" href="connections.html#psycopg.Connection.transaction" title="psycopg.Connection.transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.transaction()</span></code></a> to handle a transaction block.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Transaction.savepoint_name">
+<span class="sig-name descname"><span class="pre">savepoint_name</span></span><a class="headerlink" href="#psycopg.Transaction.savepoint_name" title="链接到此定义。">¶</a></dt>
+<dd><p>The name of the savepoint; <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> if handling the main transaction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Transaction.connection">
+<span class="sig-name descname"><span class="pre">connection</span></span><a class="headerlink" href="#psycopg.Transaction.connection" title="链接到此定义。">¶</a></dt>
+<dd><p>The connection the object is managing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="connections.html#psycopg.Connection" title="psycopg.Connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Transaction.status">
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#psycopg.Transaction.status" title="链接到此定义。">¶</a></dt>
+<dd><p>The current status of the transaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#psycopg.psycopg.Transaction.Status" title="psycopg.psycopg.Transaction.Status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Status</span></code></a></p>
+</dd>
+</dl>
+<p>See <a class="reference internal" href="../basic/transactions.html#transaction-status"><span class="std std-ref">Transaction status</span></a> for more details and examples.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.AsyncTransaction">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">AsyncTransaction</span></span><a class="headerlink" href="#psycopg.AsyncTransaction" title="链接到此定义。">¶</a></dt>
+<dd><p>Returned by <a class="reference internal" href="connections.html#psycopg.AsyncConnection.transaction" title="psycopg.AsyncConnection.transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection.transaction()</span></code></a> to handle a transaction block.</p>
+<p>The class differs from <a class="reference internal" href="#psycopg.Transaction" title="psycopg.Transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transaction</span></code></a> for the following details:</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.AsyncTransaction.connection">
+<span class="sig-name descname"><span class="pre">connection</span></span><a class="headerlink" href="#psycopg.AsyncTransaction.connection" title="链接到此定义。">¶</a></dt>
+<dd><p>The connection the object is managing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="connections.html#psycopg.AsyncConnection" title="psycopg.AsyncConnection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.psycopg.Transaction.Status">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.Transaction.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><a class="headerlink" href="#psycopg.psycopg.Transaction.Status" title="链接到此定义。">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.AsyncTransaction.Status">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.AsyncTransaction.</span></span><span class="sig-name descname"><span class="pre">Status</span></span><a class="headerlink" href="#psycopg.AsyncTransaction.Status" title="链接到此定义。">¶</a></dt>
+<dd><p>The current status of a transaction.</p>
+<p>Exposed as the <a class="reference internal" href="#psycopg.Transaction.status" title="psycopg.Transaction.status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">status</span></code></a> attribute of
+<a class="reference internal" href="#psycopg.Transaction" title="psycopg.Transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transaction</span></code></a> and <a class="reference internal" href="#psycopg.AsyncTransaction" title="psycopg.AsyncTransaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncTransaction</span></code></a> objects.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.AsyncTransaction.Status.NON_STARTED">
+<span class="sig-name descname"><span class="pre">NON_STARTED</span></span><a class="headerlink" href="#psycopg.AsyncTransaction.Status.NON_STARTED" title="链接到此定义。">¶</a></dt>
+<dd><p>Transaction created but not yet entered.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.AsyncTransaction.Status.ACTIVE">
+<span class="sig-name descname"><span class="pre">ACTIVE</span></span><a class="headerlink" href="#psycopg.AsyncTransaction.Status.ACTIVE" title="链接到此定义。">¶</a></dt>
+<dd><p>Transaction currently active (inside the <code class="xref py py-obj docutils literal notranslate"><span class="pre">with</span></code> block).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.AsyncTransaction.Status.COMMITTED">
+<span class="sig-name descname"><span class="pre">COMMITTED</span></span><a class="headerlink" href="#psycopg.AsyncTransaction.Status.COMMITTED" title="链接到此定义。">¶</a></dt>
+<dd><p>Transaction successfully committed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.AsyncTransaction.Status.ROLLED_BACK_EXPLICITLY">
+<span class="sig-name descname"><span class="pre">ROLLED_BACK_EXPLICITLY</span></span><a class="headerlink" href="#psycopg.AsyncTransaction.Status.ROLLED_BACK_EXPLICITLY" title="链接到此定义。">¶</a></dt>
+<dd><p>The transaction was explicitly rolled back (by raising
+<a class="reference internal" href="#psycopg.Rollback" title="psycopg.Rollback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rollback</span></code></a> or calling <code class="xref py py-obj docutils literal notranslate"><span class="pre">transaction(force_rollback=True)</span></code>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.AsyncTransaction.Status.ROLLED_BACK_WITH_ERROR">
+<span class="sig-name descname"><span class="pre">ROLLED_BACK_WITH_ERROR</span></span><a class="headerlink" href="#psycopg.AsyncTransaction.Status.ROLLED_BACK_WITH_ERROR" title="链接到此定义。">¶</a></dt>
+<dd><p>The transaction was rolled back due to an exception raised within the
+transaction block.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.AsyncTransaction.Status.FAILED">
+<span class="sig-name descname"><span class="pre">FAILED</span></span><a class="headerlink" href="#psycopg.AsyncTransaction.Status.FAILED" title="链接到此定义。">¶</a></dt>
+<dd><p>The transaction failed due to a connection failure (e.g., the
+connection was closed or became unavailable during the transaction).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="psycopg.Rollback">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">Rollback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transaction</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#psycopg.Transaction" title="psycopg.Transaction"><span class="pre">Transaction</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#psycopg.AsyncTransaction" title="psycopg.AsyncTransaction"><span class="pre">AsyncTransaction</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.Rollback" title="链接到此定义。">¶</a></dt>
+<dd><p>Exit the current <a class="reference internal" href="#psycopg.Transaction" title="psycopg.Transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transaction</span></code></a> context immediately and rollback any changes
+made within this context.</p>
+<p>If a transaction context is specified in the constructor, rollback
+enclosing transactions contexts up to and including the one specified.</p>
+<p>It can be used as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">raise</span> <span class="pre">Rollback</span></code>: roll back the operation that happened in the current
+transaction block and continue the program after the block.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raise</span> <span class="pre">Rollback()</span></code>: same effect as above</p></li>
+<li><p><code class="samp docutils literal notranslate"><span class="pre">raise</span> <span class="pre">Rollback(</span><em><span class="pre">tx</span></em><span class="pre">)</span></code>: roll back any operation that happened in
+the <a class="reference internal" href="#psycopg.Transaction" title="psycopg.Transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transaction</span></code></a> <code class="xref py py-obj docutils literal notranslate"><span class="pre">tx</span></code> (returned by a statement such as <code class="samp docutils literal notranslate"><span class="pre">with</span>
+<span class="pre">conn.transaction()</span> <span class="pre">as</span> <em><span class="pre">tx</span></em><span class="pre">:</span></code> and all the blocks nested within. The
+program will continue after the <code class="xref py py-obj docutils literal notranslate"><span class="pre">tx</span></code> block.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="two-phase-commit-related-objects">
+<h2>Two-Phase Commit related objects<a class="headerlink" href="#two-phase-commit-related-objects" title="链接到此标题。">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.Xid">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.</span></span><span class="sig-name descname"><span class="pre">Xid</span></span><a class="headerlink" href="#psycopg.Xid" title="链接到此定义。">¶</a></dt>
+<dd><p>A two-phase commit transaction identifier.</p>
+<p>The object can also be unpacked as a 3-item tuple (<a class="reference internal" href="#psycopg.Xid.format_id" title="psycopg.Xid.format_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format_id</span></code></a>, <a class="reference internal" href="#psycopg.Xid.gtrid" title="psycopg.Xid.gtrid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gtrid</span></code></a>,
+<a class="reference internal" href="#psycopg.Xid.bqual" title="psycopg.Xid.bqual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bqual</span></code></a>).</p>
+<p>See <a class="reference internal" href="../basic/transactions.html#two-phase-commit"><span class="std std-ref">Two-Phase Commit protocol support</span></a> for details.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Xid.format_id">
+<span class="sig-name descname"><span class="pre">format_id</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(位于 Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#psycopg.Xid.format_id" title="链接到此定义。">¶</a></dt>
+<dd><p>Format Identifier of the two-phase transaction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Xid.gtrid">
+<span class="sig-name descname"><span class="pre">gtrid</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a></span><a class="headerlink" href="#psycopg.Xid.gtrid" title="链接到此定义。">¶</a></dt>
+<dd><p>Global Transaction Identifier of the two-phase transaction.</p>
+<p>If the Xid doesn't follow the XA standard, it will be the PostgreSQL
+ID of the transaction (in which case <a class="reference internal" href="#psycopg.Xid.format_id" title="psycopg.Xid.format_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format_id</span></code></a> and <a class="reference internal" href="#psycopg.Xid.bqual" title="psycopg.Xid.bqual"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bqual</span></code></a> will be
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Xid.bqual">
+<span class="sig-name descname"><span class="pre">bqual</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><a class="headerlink" href="#psycopg.Xid.bqual" title="链接到此定义。">¶</a></dt>
+<dd><p>Branch Qualifier of the two-phase transaction.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Xid.prepared">
+<span class="sig-name descname"><span class="pre">prepared</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dt.datetime</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#psycopg.Xid.prepared" title="链接到此定义。">¶</a></dt>
+<dd><p>Timestamp at which the transaction was prepared for commit.</p>
+<p>Only available on transactions recovered by <a class="reference internal" href="connections.html#psycopg.Connection.tpc_recover" title="psycopg.Connection.tpc_recover"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tpc_recover()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Xid.owner">
+<span class="sig-name descname"><span class="pre">owner</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#psycopg.Xid.owner" title="链接到此定义。">¶</a></dt>
+<dd><p>Named of the user that executed the transaction.</p>
+<p>Only available on recovered transactions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.Xid.database">
+<span class="sig-name descname"><span class="pre">database</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(位于 Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(位于 Python v3.14)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#psycopg.Xid.database" title="链接到此定义。">¶</a></dt>
+<dd><p>Named of the database in which the transaction was executed.</p>
+<p>Only available on recovered transactions.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="sql.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql</span></code> -- SQL string composition</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="copy.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">COPY-related objects</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020, Daniele Varrazzo and The Psycopg Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Other top-level objects</a><ul>
+<li><a class="reference internal" href="#connection-information">Connection information</a><ul>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.dsn"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.dsn</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.status"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.status</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.transaction_status"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.transaction_status</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.pipeline_status"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.pipeline_status</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.backend_pid"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.backend_pid</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.vendor"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.vendor</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.server_version"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.server_version</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.full_protocol_version"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.full_protocol_version</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.error_message"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.error_message</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.get_parameters"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.get_parameters()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.timezone"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.timezone</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.host"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.host</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.hostaddr"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.hostaddr</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.port"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.port</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.dbname"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.dbname</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.user"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.user</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.password"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.password</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.options"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.options</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.parameter_status"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.parameter_status()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.ConnectionInfo.encoding"><code class="docutils literal notranslate"><span class="pre">ConnectionInfo.encoding</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#libpq-capabilities-information">Libpq capabilities information</a><ul>
+<li><a class="reference internal" href="#psycopg.Capabilities"><code class="docutils literal notranslate"><span class="pre">Capabilities</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.Capabilities.has_full_protocol_version"><code class="docutils literal notranslate"><span class="pre">Capabilities.has_full_protocol_version()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Capabilities.has_encrypt_password"><code class="docutils literal notranslate"><span class="pre">Capabilities.has_encrypt_password()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Capabilities.has_hostaddr"><code class="docutils literal notranslate"><span class="pre">Capabilities.has_hostaddr()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Capabilities.has_pipeline"><code class="docutils literal notranslate"><span class="pre">Capabilities.has_pipeline()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Capabilities.has_set_trace_flags"><code class="docutils literal notranslate"><span class="pre">Capabilities.has_set_trace_flags()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Capabilities.has_used_gssapi"><code class="docutils literal notranslate"><span class="pre">Capabilities.has_used_gssapi()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Capabilities.has_cancel_safe"><code class="docutils literal notranslate"><span class="pre">Capabilities.has_cancel_safe()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Capabilities.has_stream_chunked"><code class="docutils literal notranslate"><span class="pre">Capabilities.has_stream_chunked()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Capabilities.has_send_close_prepared"><code class="docutils literal notranslate"><span class="pre">Capabilities.has_send_close_prepared()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-description-column-object">The description <code class="xref py py-obj docutils literal notranslate"><span class="pre">Column</span></code> object</a><ul>
+<li><a class="reference internal" href="#psycopg.Column"><code class="docutils literal notranslate"><span class="pre">Column</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.Column.name"><code class="docutils literal notranslate"><span class="pre">Column.name</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Column.type_code"><code class="docutils literal notranslate"><span class="pre">Column.type_code</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Column.type_display"><code class="docutils literal notranslate"><span class="pre">Column.type_display</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Column.display_size"><code class="docutils literal notranslate"><span class="pre">Column.display_size</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Column.internal_size"><code class="docutils literal notranslate"><span class="pre">Column.internal_size</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Column.precision"><code class="docutils literal notranslate"><span class="pre">Column.precision</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Column.scale"><code class="docutils literal notranslate"><span class="pre">Column.scale</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#notifications">Notifications</a><ul>
+<li><a class="reference internal" href="#psycopg.Notify"><code class="docutils literal notranslate"><span class="pre">Notify</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.Notify.channel"><code class="docutils literal notranslate"><span class="pre">Notify.channel</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Notify.payload"><code class="docutils literal notranslate"><span class="pre">Notify.payload</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Notify.pid"><code class="docutils literal notranslate"><span class="pre">Notify.pid</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pipeline-related-objects">Pipeline-related objects</a><ul>
+<li><a class="reference internal" href="#psycopg.Pipeline"><code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.Pipeline.sync"><code class="docutils literal notranslate"><span class="pre">Pipeline.sync()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Pipeline.is_supported"><code class="docutils literal notranslate"><span class="pre">Pipeline.is_supported()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg.AsyncPipeline"><code class="docutils literal notranslate"><span class="pre">AsyncPipeline</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.AsyncPipeline.sync"><code class="docutils literal notranslate"><span class="pre">AsyncPipeline.sync()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transaction-related-objects">Transaction-related objects</a><ul>
+<li><a class="reference internal" href="#psycopg.IsolationLevel"><code class="docutils literal notranslate"><span class="pre">IsolationLevel</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Transaction"><code class="docutils literal notranslate"><span class="pre">Transaction</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.Transaction.savepoint_name"><code class="docutils literal notranslate"><span class="pre">Transaction.savepoint_name</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Transaction.connection"><code class="docutils literal notranslate"><span class="pre">Transaction.connection</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Transaction.status"><code class="docutils literal notranslate"><span class="pre">Transaction.status</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg.AsyncTransaction"><code class="docutils literal notranslate"><span class="pre">AsyncTransaction</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.AsyncTransaction.connection"><code class="docutils literal notranslate"><span class="pre">AsyncTransaction.connection</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg.psycopg.Transaction.Status"><code class="docutils literal notranslate"><span class="pre">psycopg.Transaction.Status</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.AsyncTransaction.Status"><code class="docutils literal notranslate"><span class="pre">Status</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.AsyncTransaction.Status.NON_STARTED"><code class="docutils literal notranslate"><span class="pre">Status.NON_STARTED</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.AsyncTransaction.Status.ACTIVE"><code class="docutils literal notranslate"><span class="pre">Status.ACTIVE</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.AsyncTransaction.Status.COMMITTED"><code class="docutils literal notranslate"><span class="pre">Status.COMMITTED</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.AsyncTransaction.Status.ROLLED_BACK_EXPLICITLY"><code class="docutils literal notranslate"><span class="pre">Status.ROLLED_BACK_EXPLICITLY</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.AsyncTransaction.Status.ROLLED_BACK_WITH_ERROR"><code class="docutils literal notranslate"><span class="pre">Status.ROLLED_BACK_WITH_ERROR</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.AsyncTransaction.Status.FAILED"><code class="docutils literal notranslate"><span class="pre">Status.FAILED</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg.Rollback"><code class="docutils literal notranslate"><span class="pre">Rollback</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#two-phase-commit-related-objects">Two-Phase Commit related objects</a><ul>
+<li><a class="reference internal" href="#psycopg.Xid"><code class="docutils literal notranslate"><span class="pre">Xid</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.Xid.format_id"><code class="docutils literal notranslate"><span class="pre">Xid.format_id</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Xid.gtrid"><code class="docutils literal notranslate"><span class="pre">Xid.gtrid</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Xid.bqual"><code class="docutils literal notranslate"><span class="pre">Xid.bqual</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Xid.prepared"><code class="docutils literal notranslate"><span class="pre">Xid.prepared</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Xid.owner"><code class="docutils literal notranslate"><span class="pre">Xid.owner</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.Xid.database"><code class="docutils literal notranslate"><span class="pre">Xid.database</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=fc3f9bd0"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/translations.js?v=540d3cec"></script>
+    </body>
+</html>

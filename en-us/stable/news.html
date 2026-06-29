@@ -1,0 +1,1145 @@
+<!doctype html>
+<html class="no-js" lang="en-US" data-content_root="./">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="psycopg_pool release notes" href="news_pool.html"><link rel="prev" title="_dns – DNS resolution utilities" href="api/dns.html">
+        <link rel="canonical" href="https://projects.localizethedocs.org/psycopg3-docs-l10n/news.html">
+        <link rel="prefetch" href="_static/psycopg.svg" as="image">
+        <link rel="prefetch" href="_static/psycopg.svg" as="image">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>psycopg release notes - psycopg 3.3.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="_static/psycopg.css?v=67dada6b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --admonition-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style>
+
+<script type="text/javascript" src="ltd-provenance.js"></script>
+<script type="text/javascript" src="ltd-current.js"></script>
+<script type="text/javascript" src="../../ltd-config.js"></script>
+<script type="text/javascript" src="../../ltd-flyout.js"></script>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">psycopg 3.3.4 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="_static/psycopg.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="_static/psycopg.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">psycopg 3.3.4 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="basic/index.html">Getting started with Psycopg 3</a><input aria-label="Toggle navigation of Getting started with Psycopg 3" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic/install.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/usage.html">Basic module usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/params.html">Passing parameters to SQL queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/tstrings.html">Template string queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/adapt.html">Adapting basic Python types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/pgtypes.html">Adapting other PostgreSQL types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/transactions.html">Transactions management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/copy.html">Using COPY TO and COPY FROM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic/from_pg2.html">Differences from <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="advanced/index.html">More advanced topics</a><input aria-label="Toggle navigation of More advanced topics" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="advanced/async.html">Concurrent operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/typing.html">Static Typing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/rows.html">Row factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/pool.html">Connection pools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/cursors.html">Cursor types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/adapt.html">Data adaptation configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/prepare.html">Prepared statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced/pipeline.html">Pipeline mode support</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/index.html">Psycopg 3 API</a><input aria-label="Toggle navigation of Psycopg 3 API" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/module.html">The <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg</span></code> module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/connections.html">Connection classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/cursors.html">Cursor classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/copy.html">COPY-related objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/objects.html">Other top-level objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/sql.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql</span></code> – SQL string composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/rows.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rows</span></code> – row factory implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/errors.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors</span></code> – Package exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pool.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code> – Connection pool implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/conninfo.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conninfo</span></code> – manipulate connection strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/adapt.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt</span></code> – Types adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/types.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types</span></code> – Types information and adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/abc.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc</span></code> – Psycopg abstract classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/pq.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq</span></code> – libpq wrapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/crdb.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crdb</span></code> – CockroachDB support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/dns.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_dns</span></code> – DNS resolution utilities</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">psycopg</span></code> release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="news_pool.html"><code class="docutils literal notranslate"><span class="pre">psycopg_pool</span></code> release notes</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="psycopg-release-notes">
+<span id="index-0"></span><h1><code class="docutils literal notranslate"><span class="pre">psycopg</span></code> release notes<a class="headerlink" href="#psycopg-release-notes" title="Link to this heading">¶</a></h1>
+<section id="current-release">
+<h2>Current release<a class="headerlink" href="#current-release" title="Link to this heading">¶</a></h2>
+<section id="psycopg-3-3-4">
+<h3>Psycopg 3.3.4<a class="headerlink" href="#psycopg-3-3-4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix possible spurious connection timeout in systems with very long uptimes
+in C extension (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1280">#1280</a>).</p></li>
+<li><p>Fix client-side adaptation of enums whose name require quotes
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1298">#1298</a>).</p></li>
+<li><p>Consistently populate <a class="reference internal" href="api/cursors.html#psycopg.Cursor.statusmessage" title="psycopg.Cursor.statusmessage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">statusmessage</span></code></a> after <a class="reference internal" href="api/cursors.html#psycopg.Cursor.executemany" title="psycopg.Cursor.executemany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">executemany()</span></code></a>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1302">#1302</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-3-3">
+<h3>Psycopg 3.3.3<a class="headerlink" href="#psycopg-3-3-3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Retain <a class="reference internal" href="api/errors.html#psycopg.Error.pgconn" title="psycopg.Error.pgconn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Error.pgconn</span></code></a> when raising a single exception for multiple connection
+attempt errors (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1246">#1246</a>).</p></li>
+<li><p>Return a proper error when server sends <code class="docutils literal notranslate"><span class="pre">ErrorResponse</span></code> for a <code class="docutils literal notranslate"><span class="pre">Sync</span></code> after
+a <code class="docutils literal notranslate"><span class="pre">Parse</span></code> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1260">#1260</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-3-2">
+<h3>Psycopg 3.3.2<a class="headerlink" href="#psycopg-3-3-2" title="Link to this heading">¶</a></h3>
+<p>Fix race condition in adapters at startup (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1230">#1230</a>).</p>
+</section>
+<section id="psycopg-3-3-1">
+<h3>Psycopg 3.3.1<a class="headerlink" href="#psycopg-3-3-1" title="Link to this heading">¶</a></h3>
+<p>Fix iteration on server-side cursors (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1226">#1226</a>).</p>
+</section>
+</section>
+<section id="psycopg-3-3-0">
+<h2>Psycopg 3.3.0<a class="headerlink" href="#psycopg-3-3-0" title="Link to this heading">¶</a></h2>
+<p class="rubric">New top-level features</p>
+<ul class="simple">
+<li><p>Add <a class="reference internal" href="basic/tstrings.html#template-strings"><span class="std std-ref">template strings queries</span></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1054">#1054</a>).</p></li>
+<li><p>More flexible <a class="reference internal" href="basic/pgtypes.html#adapt-composite"><span class="std std-ref">composite adaptation</span></a>: it is now possible
+to adapt Python objects to PostgreSQL composites and back even if they are not
+sequences or if they take keyword arguments (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/932">#932</a>, ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1202">#1202</a>).</p></li>
+<li><p>Cursors are now <a class="reference external" href="https://docs.python.org/3/glossary.html#term-iterator">iterators</a>, not just <a class="reference external" href="https://docs.python.org/3/glossary.html#term-iterable">iterables</a>. This means you can call
+<a class="reference external" href="https://docs.python.org/3/library/functions.html#next" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">next</span></code></a><code class="docutils literal notranslate"><span class="pre">(cur)</span></code> or <a class="reference external" href="https://docs.python.org/3/library/functions.html#anext" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">anext</span></code></a><code class="docutils literal notranslate"><span class="pre">(cur)</span></code>, which is useful as a <a class="reference internal" href="advanced/typing.html#typing-fetchone"><span class="std std-ref">type-safe
+expression</span></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1064">#1064</a>).</p></li>
+<li><p>Add <a class="reference internal" href="api/cursors.html#psycopg.Cursor.set_result" title="psycopg.Cursor.set_result"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.set_result()</span></code></a> and <a class="reference internal" href="api/cursors.html#psycopg.Cursor.results" title="psycopg.Cursor.results"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.results()</span></code></a> to move across the result
+sets of queries executed though <a class="reference internal" href="api/cursors.html#psycopg.Cursor.executemany" title="psycopg.Cursor.executemany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">executemany()</span></code></a> or
+<a class="reference internal" href="api/cursors.html#psycopg.Cursor.execute" title="psycopg.Cursor.execute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">execute()</span></code></a> with multiple statements (tickets <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1080">#1080</a>, <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1170">#1170</a>).</p></li>
+<li><p>Add <a class="reference internal" href="basic/transactions.html#transaction-status"><span class="std std-ref">Transaction status</span></a> to report the status during and after a
+<a class="reference internal" href="api/connections.html#psycopg.Connection.transaction" title="psycopg.Connection.transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">transaction()</span></code></a> block (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/969">#969</a>).</p></li>
+<li><p>Allow to change loaders using <a class="reference internal" href="api/adapt.html#psycopg.adapt.AdaptersMap.register_loader" title="psycopg.adapt.AdaptersMap.register_loader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">register_loader()</span></code></a> on
+<a class="reference internal" href="api/cursors.html#psycopg.Cursor.adapters" title="psycopg.Cursor.adapters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.adapters</span></code></a> after a query result has been already returned
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/884">#884</a>).</p></li>
+</ul>
+<p class="rubric">New libpq wrapper features</p>
+<ul class="simple">
+<li><p>Add <a class="reference internal" href="api/pq.html#psycopg.pq.PGconn.used_gssapi" title="psycopg.pq.PGconn.used_gssapi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq.PGconn.used_gssapi</span></code></a> attribute and <a class="reference internal" href="api/objects.html#psycopg.Capabilities.has_used_gssapi" title="psycopg.Capabilities.has_used_gssapi"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Capabilities.has_used_gssapi()</span></code></a>
+function (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1138">#1138</a>).</p></li>
+<li><p>Add <a class="reference internal" href="api/objects.html#psycopg.ConnectionInfo.full_protocol_version" title="psycopg.ConnectionInfo.full_protocol_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionInfo.full_protocol_version</span></code></a> attribute,
+<a class="reference internal" href="api/objects.html#psycopg.Capabilities.has_full_protocol_version" title="psycopg.Capabilities.has_full_protocol_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Capabilities.has_full_protocol_version()</span></code></a> function (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1079">#1079</a>).</p></li>
+</ul>
+<p class="rubric">Other changes</p>
+<ul>
+<li><p>Disable default GSSAPI preferential connection in the binary package
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1136">#1136</a>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please explicitly set the <a class="reference external" href="https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNECT-GSSENCMODE">gssencmode</a> connection parameter or the
+<span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PGGSSENCMODE</span></code> environment variable to interact reliably with the
+GSSAPI.</p>
+</div>
+</li>
+<li><p>Drop support for Python 3.8 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/976">#976</a>) and 3.9 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1056">#1056</a>).</p></li>
+</ul>
+<section id="psycopg-3-2-13">
+<h3>Psycopg 3.2.13<a class="headerlink" href="#psycopg-3-2-13" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Show the host name in the error message in case of name resolution error
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1205">#1205</a>).</p></li>
+<li><p>Fix <a class="reference internal" href="api/cursors.html#psycopg.Cursor.copy" title="psycopg.Cursor.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.copy()</span></code></a> and <a class="reference internal" href="api/cursors.html#psycopg.AsyncCursor.copy" title="psycopg.AsyncCursor.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncCursor.copy()</span></code></a> to hold the connection lock
+for the entire operation, preventing concurrent access issues (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1210">#1210</a>).</p></li>
+<li><p>Fix GSSAPI check with C extension built with libpq &lt; v16 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1216">#1216</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-12">
+<h3>Psycopg 3.2.12<a class="headerlink" href="#psycopg-3-2-12" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Allow copy to pass different types per column, as long as the database can
+convert them. Regression introduced in 3.2.11 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1192">#1192</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-11">
+<h3>Psycopg 3.2.11<a class="headerlink" href="#psycopg-3-2-11" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix spurious readiness flags in some of the wait functions (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1141">#1141</a>).</p></li>
+<li><p>Fix high CPU usage using the <code class="docutils literal notranslate"><span class="pre">wait_c</span></code> function on Windows (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/645">#645</a>).</p></li>
+<li><p>Fix bad data on error in binary copy (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1147">#1147</a>).</p></li>
+<li><p>Respect <a class="reference internal" href="api/copy.html#psycopg.Copy.set_types" title="psycopg.Copy.set_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Copy.set_types()</span></code></a> in TEXT copy in C version, consistently with
+the Python version (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1153">#1153</a>).</p></li>
+<li><p>Don’t raise warning, and don’t leak resources, if a builtin function is used
+as JSON dumper/loader function (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1165">#1165</a>).</p></li>
+<li><p>Improve performance of Python conversion on results loading (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1155">#1155</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-10">
+<span id="id1"></span><h3>Psycopg 3.2.10<a class="headerlink" href="#psycopg-3-2-10" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p>Fix <code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code> shadowing <a class="reference external" href="https://docs.python.org/3/library/asyncio-exceptions.html#asyncio.CancelledError" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CancelledError</span></code></a> upon task cancellation
+during pipeline execution (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1005">#1005</a>).</p></li>
+<li><p>Fix memory leak when lambda/local functions are used as argument for
+<a class="reference internal" href="api/types.html#psycopg.types.json.set_json_dumps" title="psycopg.types.json.set_json_dumps"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_json_dumps()</span></code></a>, <a class="reference internal" href="api/types.html#psycopg.types.json.set_json_loads" title="psycopg.types.json.set_json_loads"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_json_loads()</span></code></a>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1108">#1108</a>).</p></li>
+<li><p>Fix coordination of <a class="reference internal" href="api/cursors.html#psycopg.Cursor.executemany" title="psycopg.Cursor.executemany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">executemany()</span></code></a> with other concurrent operations
+on other cursors (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1130">#1130</a>).</p></li>
+<li><p>Fix leak receiving notifications if the <a class="reference internal" href="api/connections.html#psycopg.Connection.notifies" title="psycopg.Connection.notifies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">notifies()</span></code></a> generator
+is not called (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1091">#1091</a>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This bugfix required the introduction of a change in <a class="reference internal" href="advanced/async.html#async-notify"><span class="std std-ref">notifies
+reception</span></a> behaviour.</p>
+<p>If a notification is received when a handler is registered via
+<a class="reference internal" href="api/connections.html#psycopg.Connection.add_notify_handler" title="psycopg.Connection.add_notify_handler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_notify_handler()</span></code></a> and the <a class="reference internal" href="api/connections.html#psycopg.Connection.notifies" title="psycopg.Connection.notifies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">notifies()</span></code></a>
+generator is not running the notification will not be yielded by the
+generator. This is a behaviour similar to before <a class="reference internal" href="#id2">Psycopg 3.2.4</a>, but
+<em>notifications are not lost if no handler is registered</em>.</p>
+<p>Using both the generator and handlers to receive notifications on the same
+connection is therefore deprecated and will now generate a runtime
+warning.</p>
+</div>
+</li>
+<li><p>Add support for Python 3.14 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1053">#1053</a>).</p></li>
+<li><p>Fix <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_binary.__version__</span></code>.</p></li>
+<li><p>Raise a warning if a GSSAPI connection is obtained using the
+<code class="docutils literal notranslate"><span class="pre">gssencmode=prefer</span></code> libpq default (see ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1136">#1136</a>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In a future Psycopg version the default in the binary package will be
+changed to <code class="docutils literal notranslate"><span class="pre">disable</span></code>. If you need to interact with the GSSAPI reliably
+you should explicitly set the <a class="reference external" href="https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNECT-GSSENCMODE">gssencmode</a> parameter in the connection
+string or the <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PGGSSENCMODE</span></code> environment variable to <code class="docutils literal notranslate"><span class="pre">prefer</span></code> or
+<code class="docutils literal notranslate"><span class="pre">require</span></code>.</p>
+</div>
+</li>
+</ul>
+</section>
+<section id="psycopg-3-2-9">
+<h3>Psycopg 3.2.9<a class="headerlink" href="#psycopg-3-2-9" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Revert the libpq included in the binary packages from conda forge to vcpkg
+because GSS connection crashes (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1088">#1088</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-8">
+<h3>Psycopg 3.2.8<a class="headerlink" href="#psycopg-3-2-8" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix <code class="xref py py-obj docutils literal notranslate"><span class="pre">DateFromTicks</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeFromTicks</span></code> return values to return a date and a
+time referred to the UTC timezone rather than to the local timezone. For
+consistency, <code class="xref py py-obj docutils literal notranslate"><span class="pre">TimestampFromTicks</span></code> to return a datetime in UTC rather than in
+the local timezone (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1058">#1058</a>).</p></li>
+<li><p>Fix <a class="reference internal" href="api/cursors.html#psycopg.Cursor.rownumber" title="psycopg.Cursor.rownumber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rownumber</span></code></a> after using <a class="reference internal" href="api/cursors.html#psycopg.AsyncServerCursor.scroll" title="psycopg.AsyncServerCursor.scroll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scroll()</span></code></a> on
+<a class="reference internal" href="api/cursors.html#psycopg.AsyncServerCursor" title="psycopg.AsyncServerCursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncServerCursor</span></code></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1066">#1066</a>).</p></li>
+<li><p>Fix interval parsing with days or other parts and negative time in C module
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1071">#1071</a>).</p></li>
+<li><p>Don’t process further connection attempts after Ctrl-C (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1077">#1077</a>).</p></li>
+<li><p>Fix cursors to correctly iterate over rows even if their row factory
+returns <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1073">#1073</a>).</p></li>
+<li><p>Fix <a class="reference internal" href="api/objects.html#psycopg.ConnectionInfo.port" title="psycopg.ConnectionInfo.port"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionInfo.port</span></code></a> when the port is specified as an empty string
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1078">#1078</a>).</p></li>
+<li><p>Report all the attempts error messages in the exception raised for a
+connection failure (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1069">#1069</a>).</p></li>
+<li><p>Improve logging on connection (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1085">#1085</a>).</p></li>
+<li><p>Add support for PostgreSQL 18 libpq (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1082">#1082</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-7">
+<h3>Psycopg 3.2.7<a class="headerlink" href="#psycopg-3-2-7" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Add SRID support to shapely dumpers/loaders (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1028">#1028</a>).</p></li>
+<li><p>Add support for binary hstore (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1030">#1030</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-6">
+<h3>Psycopg 3.2.6<a class="headerlink" href="#psycopg-3-2-6" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix connection semantic when using <code class="docutils literal notranslate"><span class="pre">target_session_attrs=prefer-standby</span></code>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1021">#1021</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-5">
+<h3>Psycopg 3.2.5<a class="headerlink" href="#psycopg-3-2-5" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>3x faster UUID loading thanks to C implementation (tickets <a class="reference external" href="https://github.com/psycopg/psycopg/issues/447">#447</a>, <a class="reference external" href="https://github.com/psycopg/psycopg/issues/998">#998</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-4">
+<span id="id2"></span><h3>Psycopg 3.2.4<a class="headerlink" href="#psycopg-3-2-4" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p>Don’t lose notifies received whilst the <a class="reference internal" href="api/connections.html#psycopg.Connection.notifies" title="psycopg.Connection.notifies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">notifies()</span></code></a> iterator
+is not running (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/962">#962</a>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you were using notifications to bridge the time between issuing a LISTEN
+on a channel and starting the iterator you might receive duplicate
+notifications.</p>
+</div>
+</li>
+<li><p>Make sure that the notifies callback is called during the use of the
+<a class="reference internal" href="api/connections.html#psycopg.Connection.notifies" title="psycopg.Connection.notifies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">notifies()</span></code></a> generator (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/972">#972</a>).</p></li>
+<li><p>Raise the correct error returned by the database (such as <code class="xref py py-obj docutils literal notranslate"><span class="pre">AdminShutdown</span></code>
+or <code class="xref py py-obj docutils literal notranslate"><span class="pre">IdleInTransactionSessionTimeout</span></code>) instead of a generic
+<a class="reference internal" href="api/errors.html#psycopg.OperationalError" title="psycopg.OperationalError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OperationalError</span></code></a> when a server error causes a client disconnection
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/988">#988</a>).</p></li>
+<li><p>Build macOS dependencies from sources instead using the Homebrew versions
+in order to avoid problems with <code class="docutils literal notranslate"><span class="pre">MACOSX_DEPLOYMENT_TARGET</span></code> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/858">#858</a>).</p></li>
+<li><p>Bump libpq to 17.2 in Linux and macOS binary packages.</p></li>
+<li><p>Bump libpq to 16.4 in Windows binary packages, using the <a class="reference external" href="https://vcpkg.io/en/package/libpq">vcpkg library</a>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/966">#966</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-3">
+<h3>Psycopg 3.2.3<a class="headerlink" href="#psycopg-3-2-3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Release binary packages including PostgreSQL 17 libpq (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/852">#852</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-2">
+<h3>Psycopg 3.2.2<a class="headerlink" href="#psycopg-3-2-2" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Drop <code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeDef</span></code> specifications as string from public modules, as they cannot
+be composed by users as <code class="xref py py-obj docutils literal notranslate"><span class="pre">typing</span></code> objects previously could (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/860">#860</a>).</p></li>
+<li><p>Release Python 3.13 binary packages.</p></li>
+</ul>
+</section>
+<section id="psycopg-3-2-1">
+<h3>Psycopg 3.2.1<a class="headerlink" href="#psycopg-3-2-1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix packaging metadata breaking <code class="docutils literal notranslate"><span class="pre">[c]</span></code>, <code class="docutils literal notranslate"><span class="pre">[binary]</span></code> dependencies
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/853">#853</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="psycopg-3-2">
+<h2>Psycopg 3.2<a class="headerlink" href="#psycopg-3-2" title="Link to this heading">¶</a></h2>
+<p class="rubric">New top-level features</p>
+<ul class="simple">
+<li><p>Add support for integer, floating point, boolean <a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#built-in-scalar-types">NumPy scalar types</a>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/332">#332</a>).</p></li>
+<li><p>Add <code class="xref py py-obj docutils literal notranslate"><span class="pre">timeout</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_after</span></code> parameters to <a class="reference internal" href="api/connections.html#psycopg.Connection.notifies" title="psycopg.Connection.notifies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.notifies()</span></code></a>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/340">340</a>).</p></li>
+<li><p>Allow dumpers to return <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, to be converted to NULL (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/377">#377</a>).</p></li>
+<li><p>Add <a class="reference internal" href="advanced/cursors.html#raw-query-cursors"><span class="std std-ref">Raw query cursors</span></a> to execute queries using placeholders in
+PostgreSQL format (<code class="xref py py-obj docutils literal notranslate"><span class="pre">$1</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">$2</span></code>…) (tickets <a class="reference external" href="https://github.com/psycopg/psycopg/issues/560">#560</a>, <a class="reference external" href="https://github.com/psycopg/psycopg/issues/839">#839</a>).</p></li>
+<li><p>Add <a class="reference internal" href="api/module.html#psycopg.capabilities" title="psycopg.capabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">capabilities</span></code></a> object to <a class="reference internal" href="api/objects.html#capabilities"><span class="std std-ref">inspect the libpq capabilities</span></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/772">#772</a>).</p></li>
+<li><p>Add <a class="reference internal" href="api/rows.html#psycopg.rows.scalar_row" title="psycopg.rows.scalar_row"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scalar_row</span></code></a> to return scalar values from a query (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/723">#723</a>).</p></li>
+<li><p>Add <a class="reference internal" href="api/connections.html#psycopg.Connection.cancel_safe" title="psycopg.Connection.cancel_safe"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cancel_safe()</span></code></a> for encrypted and non-blocking cancellation
+when using libpq v17. Use such method internally to implement
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">copy</span></code> termination (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/754">#754</a>).</p></li>
+<li><p>The <code class="xref py py-obj docutils literal notranslate"><span class="pre">context</span></code> parameter of <a class="reference internal" href="api/sql.html#module-psycopg.sql" title="psycopg.sql"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql</span></code></a> objects <a class="reference internal" href="api/sql.html#psycopg.sql.Composable.as_string" title="psycopg.sql.Composable.as_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_string()</span></code></a> and
+<a class="reference internal" href="api/sql.html#psycopg.sql.Composable.as_bytes" title="psycopg.sql.Composable.as_bytes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_bytes()</span></code></a> methods is now optional (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/716">#716</a>).</p></li>
+<li><p>Add <a class="reference internal" href="api/connections.html#psycopg.Connection.set_autocommit" title="psycopg.Connection.set_autocommit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_autocommit()</span></code></a> on sync connections, and similar
+transaction control methods available on the async connections.</p></li>
+<li><p>Add a <code class="xref py py-obj docutils literal notranslate"><span class="pre">size</span></code> parameter to <a class="reference internal" href="api/cursors.html#psycopg.Cursor.stream" title="psycopg.Cursor.stream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream()</span></code></a> to enable results retrieval in
+chunks instead of row-by-row (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/794">#794</a>).</p></li>
+</ul>
+<p class="rubric">New libpq wrapper features</p>
+<ul class="simple">
+<li><p>Add support for libpq functions to close prepared statements and portals
+introduced in libpq v17 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/603">#603</a>).</p></li>
+<li><p>Add support for libpq encrypted and non-blocking query cancellation
+functions introduced in libpq v17 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/754">#754</a>).</p></li>
+<li><p>Add support for libpq function to retrieve results in chunks introduced in
+libpq v17 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/793">#793</a>).</p></li>
+<li><p>Add support for libpq function to change role passwords introduced in
+libpq v17 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/818">#818</a>).</p></li>
+</ul>
+<p class="rubric">Other changes</p>
+<ul class="simple">
+<li><p>Drop support for Python 3.7.</p></li>
+<li><p>Prepared statements are now <a class="reference internal" href="advanced/prepare.html#pgbouncer"><span class="std std-ref">compatible with PgBouncer</span></a>.
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/589">#589</a>).</p></li>
+<li><p>Disable receiving more than one result on the same cursor in pipeline mode,
+to iterate through <a class="reference internal" href="api/cursors.html#psycopg.Cursor.nextset" title="psycopg.Cursor.nextset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nextset()</span></code></a>. The behaviour was different than
+in non-pipeline mode and not totally reliable (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/604">#604</a>).
+The <a class="reference internal" href="api/cursors.html#psycopg.Cursor" title="psycopg.Cursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor</span></code></a> now only preserves the results set of the last
+<a class="reference internal" href="api/cursors.html#psycopg.Cursor.execute" title="psycopg.Cursor.execute"><code class="xref py py-obj docutils literal notranslate"><span class="pre">execute()</span></code></a>, consistently with non-pipeline mode.</p></li>
+</ul>
+<section id="psycopg-3-1-20">
+<h3>Psycopg 3.1.20<a class="headerlink" href="#psycopg-3-1-20" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Use the simple query protocol to execute COMMIT/ROLLBACK when possible.
+This should make querying the PgBouncer admin database easier
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/820">#820</a>).</p></li>
+<li><p>Avoid unneeded escaping checks and memory over-allocation in text copy
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/829">#829</a>).</p></li>
+<li><p>Bundle binary package with OpenSSL 3.3.x (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/847">#847</a>).</p></li>
+<li><p>Drop macOS ARM64 binary packages for macOS versions before 14.0 and Python
+before 3.10 (not for our choice but for the lack of available CI runners;
+ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/858">#858</a>)</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-19">
+<h3>Psycopg 3.1.19<a class="headerlink" href="#psycopg-3-1-19" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix unaligned access undefined behaviour in C extension (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/734">#734</a>).</p></li>
+<li><p>Fix excessive stripping of error message prefixes (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/752">#752</a>).</p></li>
+<li><p>Allow to specify the <code class="docutils literal notranslate"><span class="pre">connect_timeout</span></code> connection parameter as float
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/796">#796</a>).</p></li>
+<li><p>Improve COPY performance on macOS (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/745">#745</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-18">
+<h3>Psycopg 3.1.18<a class="headerlink" href="#psycopg-3-1-18" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix possible deadlock on pipeline exit (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/685">#685</a>).</p></li>
+<li><p>Fix overflow loading large intervals in C module (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/719">#719</a>).</p></li>
+<li><p>Fix compatibility with musl libc distributions affected by <a class="reference external" href="https://github.com/python/cpython/issues/65821">CPython issue
+#65821</a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/725">#725</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-17">
+<h3>Psycopg 3.1.17<a class="headerlink" href="#psycopg-3-1-17" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix multiple connection attempts when a host name resolve to multiple
+IP addresses (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/699">#699</a>).</p></li>
+<li><p>Use <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Self" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">typing.Self</span></code></a> as a more correct return value annotation of context
+managers and other self-returning methods (see ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/708">#708</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-16">
+<h3>Psycopg 3.1.16<a class="headerlink" href="#psycopg-3-1-16" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix empty ports handling in async multiple connection attempts
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/703">#703</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-15">
+<h3>Psycopg 3.1.15<a class="headerlink" href="#psycopg-3-1-15" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix use of <code class="docutils literal notranslate"><span class="pre">service</span></code> in connection string (regression in 3.1.13,
+ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/694">#694</a>).</p></li>
+<li><p>Fix async connection to hosts resolving to multiple IP addresses (regression
+in 3.1.13, ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/695">#695</a>).</p></li>
+<li><p>Respect the <span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PGCONNECT_TIMEOUT</span></code> environment variable to determine
+the connection timeout.</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-14">
+<h3>Psycopg 3.1.14<a class="headerlink" href="#psycopg-3-1-14" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix <a class="reference internal" href="advanced/async.html#gevent"><span class="std std-ref">interaction with gevent</span></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/527">#527</a>).</p></li>
+<li><p>Add support for PyPy (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/686">#686</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-13">
+<h3>Psycopg 3.1.13<a class="headerlink" href="#psycopg-3-1-13" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Raise <a class="reference internal" href="api/errors.html#psycopg.DataError" title="psycopg.DataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataError</span></code></a> instead of whatever internal failure trying to dump a
+<a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.time" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">time</span></code></a> object with with a <code class="xref py py-obj docutils literal notranslate"><span class="pre">tzinfo</span></code> specified as
+<a class="reference external" href="https://docs.python.org/3/library/zoneinfo.html#zoneinfo.ZoneInfo" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ZoneInfo</span></code></a> (ambiguous offset, see ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/652">#652</a>).</p></li>
+<li><p>Handle gracefully EINTR on signals instead of raising <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#InterruptedError" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InterruptedError</span></code></a>,
+consistently with <span class="target" id="index-4"></span><a class="pep reference external" href="https://peps.python.org/pep-0475/"><strong>PEP 475</strong></a> guideline (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/667">#667</a>).</p></li>
+<li><p>Fix support for connection strings with multiple hosts/ports and for the
+<code class="docutils literal notranslate"><span class="pre">load_balance_hosts</span></code> connection parameter (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/674">#674</a>).</p></li>
+<li><p>Fix memory leak receiving notifications in Python implementation
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/679">#679</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-12">
+<h3>Psycopg 3.1.12<a class="headerlink" href="#psycopg-3-1-12" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix possible hanging if a connection is closed while querying (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/608">#608</a>).</p></li>
+<li><p>Fix memory leak when <code class="xref py py-obj docutils literal notranslate"><span class="pre">register_*()</span></code> functions are called repeatedly
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/647">#647</a>).</p></li>
+<li><p>Release Python 3.12 binary packages.</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-11">
+<h3>Psycopg 3.1.11<a class="headerlink" href="#psycopg-3-1-11" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Avoid caching the parsing results of large queries to avoid excessive memory
+usage (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/628">#628</a>).</p></li>
+<li><p>Fix integer overflow in C/binary extension with OID &gt; 2^31 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/630">#630</a>).</p></li>
+<li><p>Fix loading of intervals with days and months or years (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/643">#643</a>).</p></li>
+<li><p>Work around excessive CPU usage on Windows (reported in ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/645">#645</a>).</p></li>
+<li><p>Fix building on Solaris and derivatives (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/632">#632</a>).</p></li>
+<li><p>Fix possible lack of critical section guard in async
+<a class="reference internal" href="api/cursors.html#psycopg.AsyncCursor.executemany" title="psycopg.AsyncCursor.executemany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">executemany()</span></code></a>.</p></li>
+<li><p>Fix missing pipeline fetch in async <a class="reference internal" href="api/cursors.html#psycopg.AsyncCursor.scroll" title="psycopg.AsyncCursor.scroll"><code class="xref py py-obj docutils literal notranslate"><span class="pre">scroll()</span></code></a>.</p></li>
+<li><p>Build binary packages with libpq 15.4, which allows group-readable
+permissions on the SSL certificate on the client (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/528">#528</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-10">
+<h3>Psycopg 3.1.10<a class="headerlink" href="#psycopg-3-1-10" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Allow JSON dumpers to dump <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code></a> directly instead of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>,
+for better compatibility with libraries like orjson and msgspec
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/569">#569</a>)</p></li>
+<li><p>Fix prepared statement cache validation when exiting pipeline mode (or
+<a class="reference internal" href="api/cursors.html#psycopg.Cursor.executemany" title="psycopg.Cursor.executemany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">executemany()</span></code></a>) in case an error occurred within the pipeline
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/585">#585</a>).</p></li>
+<li><p>Fix <a class="reference internal" href="api/module.html#psycopg.connect" title="psycopg.connect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connect()</span></code></a> to avoid “leaking” an open <a class="reference internal" href="api/pq.html#psycopg.pq.PGconn" title="psycopg.pq.PGconn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PGconn</span></code></a> attached to the
+<a class="reference internal" href="api/errors.html#psycopg.OperationalError" title="psycopg.OperationalError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OperationalError</span></code></a> in case of connection failure. <a class="reference internal" href="api/errors.html#psycopg.Error.pgconn" title="psycopg.Error.pgconn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Error.pgconn</span></code></a> is now a
+shallow copy of the real libpq connection, and the latter is closed before
+the exception propagates (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/565">#565</a>).</p></li>
+<li><p>Fix possible (ignored) exception on objects deletion (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/591">#591</a>).</p></li>
+<li><p>Don’t clobber a Python exception raised during COPY FROM with the resulting
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">QueryCanceled</span></code> raised as a consequence (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/593">#593</a>).</p></li>
+<li><p>Fix resetting <a class="reference internal" href="api/connections.html#psycopg.Connection.read_only" title="psycopg.Connection.read_only"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.read_only</span></code></a> and <a class="reference internal" href="api/connections.html#psycopg.Connection.deferrable" title="psycopg.Connection.deferrable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">deferrable</span></code></a> to their
+default value using <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/612">#612</a>).</p></li>
+<li><p>Add support for Python 3.12.</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-9">
+<h3>Psycopg 3.1.9<a class="headerlink" href="#psycopg-3-1-9" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix <code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeInfo.fetch()</span></code> using a connection in <code class="xref py py-obj docutils literal notranslate"><span class="pre">sql_ascii</span></code> encoding
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/503">#503</a>).</p></li>
+<li><p>Fix “filedescriptor out of range” using a large number of files open
+in Python implementation (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/532">#532</a>).</p></li>
+<li><p>Allow JSON dumpers to be registered on <code class="xref py py-obj docutils literal notranslate"><span class="pre">dict</span></code> or any other object, as was
+possible in psycopg2 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/541">#541</a>).</p></li>
+<li><p>Fix canceling running queries on process interruption in async connections
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/543">#543</a>).</p></li>
+<li><p>Fix loading ROW values with different types in the same query using the
+binary protocol (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/545">#545</a>).</p></li>
+<li><p>Fix dumping recursive composite types (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/547">#547</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-8">
+<h3>Psycopg 3.1.8<a class="headerlink" href="#psycopg-3-1-8" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Don’t pollute server logs when types looked for by <code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeInfo.fetch()</span></code>
+are not found (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/473">#473</a>).</p></li>
+<li><p>Set <a class="reference internal" href="api/cursors.html#psycopg.Cursor.rowcount" title="psycopg.Cursor.rowcount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.rowcount</span></code></a> to the number of rows of each result set from
+<a class="reference internal" href="api/cursors.html#psycopg.Cursor.executemany" title="psycopg.Cursor.executemany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">executemany()</span></code></a> when called with <code class="xref py py-obj docutils literal notranslate"><span class="pre">returning=True</span></code> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/479">#479</a>).</p></li>
+<li><p>Fix <code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeInfo.fetch()</span></code> when used with <a class="reference internal" href="api/cursors.html#psycopg.ClientCursor" title="psycopg.ClientCursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClientCursor</span></code></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/484">#484</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-7">
+<h3>Psycopg 3.1.7<a class="headerlink" href="#psycopg-3-1-7" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix server-side cursors using row factories (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/464">#464</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-6">
+<h3>Psycopg 3.1.6<a class="headerlink" href="#psycopg-3-1-6" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix <code class="xref py py-obj docutils literal notranslate"><span class="pre">cursor.copy()</span></code> with cursors using row factories (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/460">#460</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-5">
+<h3>Psycopg 3.1.5<a class="headerlink" href="#psycopg-3-1-5" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix array loading slowness compared to psycopg2 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/359">#359</a>).</p></li>
+<li><p>Improve performance around network communication (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/414">#414</a>).</p></li>
+<li><p>Return <code class="xref py py-obj docutils literal notranslate"><span class="pre">bytes</span></code> instead of <code class="xref py py-obj docutils literal notranslate"><span class="pre">memoryview</span></code> from <code class="xref py py-obj docutils literal notranslate"><span class="pre">pq.Encoding</span></code> methods
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/422">#422</a>).</p></li>
+<li><p>Fix <a class="reference internal" href="api/cursors.html#psycopg.Cursor.rownumber" title="psycopg.Cursor.rownumber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.rownumber</span></code></a> to return <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> when the result has no row to fetch
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/437">#437</a>).</p></li>
+<li><p>Avoid error in Pyright caused by aliasing <code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeAlias</span></code> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/439">#439</a>).</p></li>
+<li><p>Fix <a class="reference internal" href="api/copy.html#psycopg.Copy.set_types" title="psycopg.Copy.set_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Copy.set_types()</span></code></a> used with <code class="xref py py-obj docutils literal notranslate"><span class="pre">varchar</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">name</span></code> types (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/452">#452</a>).</p></li>
+<li><p>Improve performance using <a class="reference internal" href="advanced/rows.html#row-factories"><span class="std std-ref">Row factories</span></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/457">#457</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-4">
+<h3>Psycopg 3.1.4<a class="headerlink" href="#psycopg-3-1-4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Include <a class="reference internal" href="api/errors.html#sqlstate-exceptions"><span class="std std-ref">error classes</span></a> defined in PostgreSQL 15.</p></li>
+<li><p>Add support for Python 3.11 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/305">#305</a>).</p></li>
+<li><p>Build binary packages with libpq from PostgreSQL 15.0.</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-3">
+<h3>Psycopg 3.1.3<a class="headerlink" href="#psycopg-3-1-3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Restore the state of the connection if <a class="reference internal" href="api/cursors.html#psycopg.Cursor.stream" title="psycopg.Cursor.stream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.stream()</span></code></a> is terminated
+prematurely (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/382">#382</a>).</p></li>
+<li><p>Fix regression introduced in 3.1 with different named tuples mangling rules
+for non-ascii attribute names (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/386">#386</a>).</p></li>
+<li><p>Fix handling of queries with escaped percent signs (<code class="docutils literal notranslate"><span class="pre">%%</span></code>) in <a class="reference internal" href="api/cursors.html#psycopg.ClientCursor" title="psycopg.ClientCursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClientCursor</span></code></a>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/399">#399</a>).</p></li>
+<li><p>Fix possible duplicated BEGIN statements emitted in pipeline mode
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/401">#401</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-2">
+<h3>Psycopg 3.1.2<a class="headerlink" href="#psycopg-3-1-2" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix handling of certain invalid time zones causing problems on Windows
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/371">#371</a>).</p></li>
+<li><p>Fix segfault occurring when a loader fails initialization (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/372">#372</a>).</p></li>
+<li><p>Fix invalid SAVEPOINT issued when entering <a class="reference internal" href="api/connections.html#psycopg.Connection.transaction" title="psycopg.Connection.transaction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.transaction()</span></code></a> within
+a pipeline using an implicit transaction (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/374">#374</a>).</p></li>
+<li><p>Fix queries with repeated named parameters in <a class="reference internal" href="api/cursors.html#psycopg.ClientCursor" title="psycopg.ClientCursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ClientCursor</span></code></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/378">#378</a>).</p></li>
+<li><p>Distribute macOS arm64 (Apple M1) binary packages (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/344">#344</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-1-1">
+<h3>Psycopg 3.1.1<a class="headerlink" href="#psycopg-3-1-1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Work around broken Homebrew installation of the libpq in a non-standard path
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/364">#364</a>)</p></li>
+<li><p>Fix possible “unrecognized service” error in async connection when no port
+is specified (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/366">#366</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="psycopg-3-1">
+<h2>Psycopg 3.1<a class="headerlink" href="#psycopg-3-1" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Add <a class="reference internal" href="advanced/pipeline.html#pipeline-mode"><span class="std std-ref">Pipeline mode</span></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/74">#74</a>).</p></li>
+<li><p>Add <a class="reference internal" href="advanced/cursors.html#client-side-binding-cursors"><span class="std std-ref">Client-side-binding cursors</span></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/101">#101</a>).</p></li>
+<li><p>Add <a class="reference external" href="https://www.cockroachlabs.com/">CockroachDB</a> support in <a class="reference internal" href="api/crdb.html#module-psycopg.crdb" title="psycopg.crdb"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg.crdb</span></code></a>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/313">#313</a>).</p></li>
+<li><p>Add <a class="reference internal" href="basic/transactions.html#two-phase-commit"><span class="std std-ref">Two-Phase Commit</span></a> support (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/72">#72</a>).</p></li>
+<li><p>Add <a class="reference internal" href="basic/adapt.html#adapt-enum"><span class="std std-ref">Enum adaptation</span></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/274">#274</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">returning</span></code> parameter to <a class="reference internal" href="api/cursors.html#psycopg.Cursor.executemany" title="psycopg.Cursor.executemany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">executemany()</span></code></a> to retrieve query
+results (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/164">#164</a>).</p></li>
+<li><p><a class="reference internal" href="api/cursors.html#psycopg.Cursor.executemany" title="psycopg.Cursor.executemany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">executemany()</span></code></a> performance improved by using batch mode internally
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/145">#145</a>).</p></li>
+<li><p>Add parameters to <a class="reference internal" href="api/cursors.html#psycopg.Cursor.copy" title="psycopg.Cursor.copy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">copy()</span></code></a>.</p></li>
+<li><p>Add <a class="reference internal" href="api/copy.html#copy-writers"><span class="std std-ref">COPY Writer objects</span></a>.</p></li>
+<li><p>Resolve domain names asynchronously in <a class="reference internal" href="api/connections.html#psycopg.AsyncConnection.connect" title="psycopg.AsyncConnection.connect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection.connect()</span></code></a>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/259">#259</a>).</p></li>
+<li><p>Add <a class="reference internal" href="api/pq.html#psycopg.pq.PGconn.trace" title="psycopg.pq.PGconn.trace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq.PGconn.trace()</span></code></a> and related trace functions (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/167">#167</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">prepare_threshold</span></code> parameter to <a class="reference internal" href="api/connections.html#psycopg.Connection" title="psycopg.Connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code></a> init (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/200">#200</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">cursor_factory</span></code> parameter to <a class="reference internal" href="api/connections.html#psycopg.Connection" title="psycopg.Connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code></a> init.</p></li>
+<li><p>Add <a class="reference internal" href="api/errors.html#psycopg.Error.pgconn" title="psycopg.Error.pgconn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Error.pgconn</span></code></a> and <a class="reference internal" href="api/errors.html#psycopg.Error.pgresult" title="psycopg.Error.pgresult"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Error.pgresult</span></code></a> attributes (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/242">#242</a>).</p></li>
+<li><p>Restrict queries to be <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.LiteralString" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LiteralString</span></code></a> as per <span class="target" id="index-5"></span><a class="pep reference external" href="https://peps.python.org/pep-0675/"><strong>PEP 675</strong></a>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/323">#323</a>).</p></li>
+<li><p>Add explicit type cast to values converted by <a class="reference internal" href="api/sql.html#psycopg.sql.Literal" title="psycopg.sql.Literal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql.Literal</span></code></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/205">#205</a>).</p></li>
+<li><p>Drop support for Python 3.6.</p></li>
+</ul>
+<section id="psycopg-3-0-17">
+<h3>Psycopg 3.0.17<a class="headerlink" href="#psycopg-3-0-17" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix segfaults on fork on some Linux systems using <a class="reference external" href="https://docs.python.org/3/library/ctypes.html#module-ctypes" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ctypes</span></code></a> implementation
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/300">#300</a>).</p></li>
+<li><p>Load bytea as bytes, not memoryview, using <a class="reference external" href="https://docs.python.org/3/library/ctypes.html#module-ctypes" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ctypes</span></code></a> implementation.</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-16">
+<h3>Psycopg 3.0.16<a class="headerlink" href="#psycopg-3-0-16" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix missing <a class="reference internal" href="api/cursors.html#psycopg.Cursor.rowcount" title="psycopg.Cursor.rowcount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rowcount</span></code></a> after SHOW (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/343">#343</a>).</p></li>
+<li><p>Add scripts to build macOS arm64 packages (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/162">#162</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-15">
+<h3>Psycopg 3.0.15<a class="headerlink" href="#psycopg-3-0-15" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix wrong escaping of unprintable chars in COPY (nonetheless correctly
+interpreted by PostgreSQL).</p></li>
+<li><p>Restore the connection to usable state after an error in <a class="reference internal" href="api/cursors.html#psycopg.Cursor.stream" title="psycopg.Cursor.stream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stream()</span></code></a>.</p></li>
+<li><p>Raise <a class="reference internal" href="api/errors.html#psycopg.DataError" title="psycopg.DataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataError</span></code></a> instead of <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OverflowError" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OverflowError</span></code></a> loading binary intervals
+out-of-range.</p></li>
+<li><p>Distribute <code class="docutils literal notranslate"><span class="pre">manylinux2014</span></code> wheel packages (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/124">#124</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-14">
+<h3>Psycopg 3.0.14<a class="headerlink" href="#psycopg-3-0-14" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Raise <a class="reference internal" href="api/errors.html#psycopg.DataError" title="psycopg.DataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataError</span></code></a> dumping arrays of mixed types (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/301">#301</a>).</p></li>
+<li><p>Fix handling of incorrect server results, with blank sqlstate (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/303">#303</a>).</p></li>
+<li><p>Fix bad Float4 conversion on ppc64le/musllinux (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/304">#304</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-13">
+<h3>Psycopg 3.0.13<a class="headerlink" href="#psycopg-3-0-13" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix <a class="reference internal" href="api/cursors.html#psycopg.Cursor.stream" title="psycopg.Cursor.stream"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.stream()</span></code></a> slowness (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/286">#286</a>).</p></li>
+<li><p>Fix oid for lists of integers, which might cause the server choosing
+bad plans (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/293">#293</a>).</p></li>
+<li><p>Make <a class="reference internal" href="api/connections.html#psycopg.Connection.cancel" title="psycopg.Connection.cancel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.cancel()</span></code></a> on a closed connection a no-op instead of an
+error.</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-12">
+<h3>Psycopg 3.0.12<a class="headerlink" href="#psycopg-3-0-12" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Allow <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bytearray</span></code></a>/<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#memoryview" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">memoryview</span></code></a> data too as <a class="reference internal" href="api/copy.html#psycopg.Copy.write" title="psycopg.Copy.write"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Copy.write()</span></code></a> input
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/254">#254</a>).</p></li>
+<li><p>Fix dumping <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.IntEnum" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IntEnum</span></code></a> in text mode, Python implementation.</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-11">
+<h3>Psycopg 3.0.11<a class="headerlink" href="#psycopg-3-0-11" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix <a class="reference internal" href="api/errors.html#psycopg.DataError" title="psycopg.DataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataError</span></code></a> loading arrays with dimensions information (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/253">#253</a>).</p></li>
+<li><p>Fix hanging during COPY in case of memory error (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/255">#255</a>).</p></li>
+<li><p>Fix error propagation from COPY worker thread (mentioned in ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/255">#255</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-10">
+<h3>Psycopg 3.0.10<a class="headerlink" href="#psycopg-3-0-10" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Leave the connection in working state after interrupting a query with Ctrl-C
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/231">#231</a>).</p></li>
+<li><p>Fix <a class="reference internal" href="api/cursors.html#psycopg.Cursor.description" title="psycopg.Cursor.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.description</span></code></a> after a COPY … TO STDOUT operation
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/235">#235</a>).</p></li>
+<li><p>Fix building on FreeBSD and likely other BSD flavours (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/241">#241</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-9">
+<h3>Psycopg 3.0.9<a class="headerlink" href="#psycopg-3-0-9" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Set <a class="reference internal" href="api/errors.html#psycopg.Error.sqlstate" title="psycopg.Error.sqlstate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Error.sqlstate</span></code></a> when an unknown code is received (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/225">#225</a>).</p></li>
+<li><p>Add the <code class="xref py py-obj docutils literal notranslate"><span class="pre">tzdata</span></code> package as a dependency on Windows in order to handle time
+zones (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/223">#223</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-8">
+<h3>Psycopg 3.0.8<a class="headerlink" href="#psycopg-3-0-8" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Decode connection errors in the <code class="docutils literal notranslate"><span class="pre">client_encoding</span></code> specified in the
+connection string, if available (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/194">#194</a>).</p></li>
+<li><p>Fix possible warnings in objects deletion on interpreter shutdown
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/198">#198</a>).</p></li>
+<li><p>Don’t leave connections in ACTIVE state in case of error during COPY … TO
+STDOUT (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/203">#203</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-7">
+<h3>Psycopg 3.0.7<a class="headerlink" href="#psycopg-3-0-7" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix crash in <a class="reference internal" href="api/cursors.html#psycopg.Cursor.executemany" title="psycopg.Cursor.executemany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">executemany()</span></code></a> with no input sequence
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/179">#179</a>).</p></li>
+<li><p>Fix wrong <a class="reference internal" href="api/cursors.html#psycopg.Cursor.rowcount" title="psycopg.Cursor.rowcount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rowcount</span></code></a> after an <a class="reference internal" href="api/cursors.html#psycopg.Cursor.executemany" title="psycopg.Cursor.executemany"><code class="xref py py-obj docutils literal notranslate"><span class="pre">executemany()</span></code></a> returning no
+rows (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/178">#178</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-6">
+<h3>Psycopg 3.0.6<a class="headerlink" href="#psycopg-3-0-6" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Allow to use <a class="reference internal" href="api/cursors.html#psycopg.Cursor.description" title="psycopg.Cursor.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor.description</span></code></a> if the connection is closed
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/172">#172</a>).</p></li>
+<li><p>Don’t raise exceptions on <a class="reference internal" href="api/cursors.html#psycopg.ServerCursor.close" title="psycopg.ServerCursor.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServerCursor.close()</span></code></a> if the connection is closed
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/173">#173</a>).</p></li>
+<li><p>Fail on <a class="reference internal" href="api/connections.html#psycopg.Connection.cursor" title="psycopg.Connection.cursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.cursor()</span></code></a> if the connection is closed (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/174">#174</a>).</p></li>
+<li><p>Raise <a class="reference internal" href="api/errors.html#psycopg.ProgrammingError" title="psycopg.ProgrammingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProgrammingError</span></code></a> if out-of-order exit from transaction contexts is
+detected (tickets <a class="reference external" href="https://github.com/psycopg/psycopg/issues/176">#176</a>, <a class="reference external" href="https://github.com/psycopg/psycopg/issues/177">#177</a>).</p></li>
+<li><p>Add <code class="xref py py-obj docutils literal notranslate"><span class="pre">CHECK_STANDBY</span></code> value to <a class="reference internal" href="api/pq.html#psycopg.pq.ConnStatus" title="psycopg.pq.ConnStatus"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnStatus</span></code></a> enum.</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-5">
+<h3>Psycopg 3.0.5<a class="headerlink" href="#psycopg-3-0-5" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix possible “Too many open files” OS error, reported on macOS but possible
+on other platforms too (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/158">#158</a>).</p></li>
+<li><p>Don’t clobber exceptions if a transaction block exit with error and rollback
+fails (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/165">#165</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-4">
+<h3>Psycopg 3.0.4<a class="headerlink" href="#psycopg-3-0-4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Allow to use the module with strict strings comparison (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/147">#147</a>).</p></li>
+<li><p>Fix segfault on Python 3.6 running in <code class="docutils literal notranslate"><span class="pre">-W</span> <span class="pre">error</span></code> mode, related to
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">backport.zoneinfo</span></code> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/109">#109</a>).
+&lt;<a class="reference external" href="https://github.com/pganssle/zoneinfo/issues/109">https://github.com/pganssle/zoneinfo/issues/109</a>&gt;`__.</p></li>
+<li><p>Build binary package with libpq versions not affected by <a class="reference external" href="https://www.postgresql.org/support/security/CVE-2021-23222/">CVE-2021-23222</a>
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/149">#149</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-3">
+<h3>Psycopg 3.0.3<a class="headerlink" href="#psycopg-3-0-3" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Release musllinux binary packages, compatible with Alpine Linux
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/141">#141</a>).</p></li>
+<li><p>Reduce size of binary package by stripping debug symbols (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/142">#142</a>).</p></li>
+<li><p>Include typing information in the <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_binary</span></code> package.</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-2">
+<h3>Psycopg 3.0.2<a class="headerlink" href="#psycopg-3-0-2" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix type hint for <a class="reference internal" href="api/sql.html#psycopg.sql.SQL.join" title="psycopg.sql.SQL.join"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql.SQL.join()</span></code></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/127">#127</a>).</p></li>
+<li><p>Fix type hint for <a class="reference internal" href="api/connections.html#psycopg.Connection.notifies" title="psycopg.Connection.notifies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.notifies()</span></code></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/128">#128</a>).</p></li>
+<li><p>Fix call to <code class="xref py py-obj docutils literal notranslate"><span class="pre">MultiRange.__setitem__()</span></code> with a non-iterable value and a
+slice, now raising a <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypeError</span></code></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/129">#129</a>).</p></li>
+<li><p>Fix disable cursors methods after close() (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/125">#125</a>).</p></li>
+</ul>
+</section>
+<section id="psycopg-3-0-1">
+<h3>Psycopg 3.0.1<a class="headerlink" href="#psycopg-3-0-1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Fix use of the wrong dumper reusing cursors with the same query but different
+parameter types (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/112">#112</a>).</p></li>
+</ul>
+</section>
+</section>
+<section id="psycopg-3-0">
+<h2>Psycopg 3.0<a class="headerlink" href="#psycopg-3-0" title="Link to this heading">¶</a></h2>
+<p>First stable release. Changed from 3.0b1:</p>
+<ul class="simple">
+<li><p>Add <a class="reference internal" href="basic/pgtypes.html#adapt-shapely"><span class="std std-ref">Geometry adaptation using Shapely</span></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/80">#80</a>).</p></li>
+<li><p>Add <a class="reference internal" href="basic/pgtypes.html#adapt-multirange"><span class="std std-ref">Multirange adaptation</span></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/75">#75</a>).</p></li>
+<li><p>Add <a class="reference internal" href="api/pq.html#psycopg.pq.__build_version__" title="psycopg.pq.__build_version__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq.__build_version__</span></code></a> constant.</p></li>
+<li><p>Don’t use the extended protocol with COPY, (tickets <a class="reference external" href="https://github.com/psycopg/psycopg/issues/78">#78</a>, <a class="reference external" href="https://github.com/psycopg/psycopg/issues/82">#82</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">context</span></code> parameter to <a class="reference internal" href="api/connections.html#psycopg.Connection.connect" title="psycopg.Connection.connect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connect()</span></code></a> (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/83">#83</a>).</p></li>
+<li><p>Fix selection of dumper by oid after <a class="reference internal" href="api/copy.html#psycopg.Copy.set_types" title="psycopg.Copy.set_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_types()</span></code></a>.</p></li>
+<li><p>Drop <code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.client_encoding</span></code>. Use <a class="reference internal" href="api/objects.html#psycopg.ConnectionInfo.encoding" title="psycopg.ConnectionInfo.encoding"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionInfo.encoding</span></code></a> to read
+it, and a <code class="sql docutils literal notranslate"><span class="pre">SET</span></code> statement to change it.</p></li>
+<li><p>Add binary packages for Python 3.10 (ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/103">#103</a>).</p></li>
+</ul>
+<section id="psycopg-3-0b1">
+<h3>Psycopg 3.0b1<a class="headerlink" href="#psycopg-3-0b1" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>First public release on PyPI.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="news_pool.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><code class="docutils literal notranslate"><span class="pre">psycopg_pool</span></code> release notes</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="api/dns.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_dns</span></code> – DNS resolution utilities</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020, Daniele Varrazzo and The Psycopg Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">psycopg</span></code> release notes</a><ul>
+<li><a class="reference internal" href="#current-release">Current release</a><ul>
+<li><a class="reference internal" href="#psycopg-3-3-4">Psycopg 3.3.4</a></li>
+<li><a class="reference internal" href="#psycopg-3-3-3">Psycopg 3.3.3</a></li>
+<li><a class="reference internal" href="#psycopg-3-3-2">Psycopg 3.3.2</a></li>
+<li><a class="reference internal" href="#psycopg-3-3-1">Psycopg 3.3.1</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg-3-3-0">Psycopg 3.3.0</a><ul>
+<li><a class="reference internal" href="#psycopg-3-2-13">Psycopg 3.2.13</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-12">Psycopg 3.2.12</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-11">Psycopg 3.2.11</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-10">Psycopg 3.2.10</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-9">Psycopg 3.2.9</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-8">Psycopg 3.2.8</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-7">Psycopg 3.2.7</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-6">Psycopg 3.2.6</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-5">Psycopg 3.2.5</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-4">Psycopg 3.2.4</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-3">Psycopg 3.2.3</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-2">Psycopg 3.2.2</a></li>
+<li><a class="reference internal" href="#psycopg-3-2-1">Psycopg 3.2.1</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg-3-2">Psycopg 3.2</a><ul>
+<li><a class="reference internal" href="#psycopg-3-1-20">Psycopg 3.1.20</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-19">Psycopg 3.1.19</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-18">Psycopg 3.1.18</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-17">Psycopg 3.1.17</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-16">Psycopg 3.1.16</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-15">Psycopg 3.1.15</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-14">Psycopg 3.1.14</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-13">Psycopg 3.1.13</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-12">Psycopg 3.1.12</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-11">Psycopg 3.1.11</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-10">Psycopg 3.1.10</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-9">Psycopg 3.1.9</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-8">Psycopg 3.1.8</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-7">Psycopg 3.1.7</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-6">Psycopg 3.1.6</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-5">Psycopg 3.1.5</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-4">Psycopg 3.1.4</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-3">Psycopg 3.1.3</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-2">Psycopg 3.1.2</a></li>
+<li><a class="reference internal" href="#psycopg-3-1-1">Psycopg 3.1.1</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg-3-1">Psycopg 3.1</a><ul>
+<li><a class="reference internal" href="#psycopg-3-0-17">Psycopg 3.0.17</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-16">Psycopg 3.0.16</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-15">Psycopg 3.0.15</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-14">Psycopg 3.0.14</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-13">Psycopg 3.0.13</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-12">Psycopg 3.0.12</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-11">Psycopg 3.0.11</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-10">Psycopg 3.0.10</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-9">Psycopg 3.0.9</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-8">Psycopg 3.0.8</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-7">Psycopg 3.0.7</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-6">Psycopg 3.0.6</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-5">Psycopg 3.0.5</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-4">Psycopg 3.0.4</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-3">Psycopg 3.0.3</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-2">Psycopg 3.0.2</a></li>
+<li><a class="reference internal" href="#psycopg-3-0-1">Psycopg 3.0.1</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg-3-0">Psycopg 3.0</a><ul>
+<li><a class="reference internal" href="#psycopg-3-0b1">Psycopg 3.0b1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=4d68d9d3"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

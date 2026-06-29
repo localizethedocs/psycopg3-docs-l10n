@@ -1,0 +1,742 @@
+<!doctype html>
+<html class="no-js" lang="en-US" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Static Typing" href="typing.html"><link rel="prev" title="More advanced topics" href="index.html">
+        <link rel="canonical" href="https://projects.localizethedocs.org/psycopg3-docs-l10n/advanced/async.html">
+        <link rel="prefetch" href="../_static/psycopg.svg" as="image">
+        <link rel="prefetch" href="../_static/psycopg.svg" as="image">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Concurrent operations - psycopg 3.3.4 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/psycopg.css?v=67dada6b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --admonition-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">psycopg 3.3.4 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../_static/psycopg.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../_static/psycopg.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">psycopg 3.3.4 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basic/index.html">Getting started with Psycopg 3</a><input aria-label="Toggle navigation of Getting started with Psycopg 3" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic/install.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/usage.html">Basic module usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/params.html">Passing parameters to SQL queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/tstrings.html">Template string queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/adapt.html">Adapting basic Python types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/pgtypes.html">Adapting other PostgreSQL types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/transactions.html">Transactions management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/copy.html">Using COPY TO and COPY FROM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/from_pg2.html">Differences from <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">More advanced topics</a><input aria-label="Toggle navigation of More advanced topics" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Concurrent operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typing.html">Static Typing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rows.html">Row factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pool.html">Connection pools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cursors.html">Cursor types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapt.html">Data adaptation configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prepare.html">Prepared statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html">Pipeline mode support</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">Psycopg 3 API</a><input aria-label="Toggle navigation of Psycopg 3 API" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/module.html">The <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg</span></code> module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/connections.html">Connection classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cursors.html">Cursor classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/copy.html">COPY-related objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/objects.html">Other top-level objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/sql.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql</span></code> – SQL string composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/rows.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rows</span></code> – row factory implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/errors.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors</span></code> – Package exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/pool.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code> – Connection pool implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/conninfo.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conninfo</span></code> – manipulate connection strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/adapt.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt</span></code> – Types adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/types.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types</span></code> – Types information and adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/abc.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc</span></code> – Psycopg abstract classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/pq.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq</span></code> – libpq wrapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/crdb.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crdb</span></code> – CockroachDB support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/dns.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_dns</span></code> – DNS resolution utilities</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../news.html"><code class="docutils literal notranslate"><span class="pre">psycopg</span></code> release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news_pool.html"><code class="docutils literal notranslate"><span class="pre">psycopg_pool</span></code> release notes</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="concurrent-operations">
+<span id="concurrency"></span><span id="index-0"></span><h1>Concurrent operations<a class="headerlink" href="#concurrent-operations" title="Link to this heading">¶</a></h1>
+<p>Psycopg allows to write <em>concurrent</em> code, executing more than one operation
+at time.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../api/connections.html#psycopg.Connection" title="psycopg.Connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code></a> objects <em>are thread-safe</em>: more than one thread at time can use
+the same connection. Different thread can use the same connection by
+creating different cursors.</p></li>
+<li><p><a class="reference internal" href="../api/cursors.html#psycopg.Cursor" title="psycopg.Cursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor</span></code></a> objects <em>are not thread-safe</em>, and are not designed to be used by
+several threads at the same time. However, cursors are lightweight objects:
+different threads can create each one its own cursor to use independently
+from other threads.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All the cursors that share the same connection <em>will also share the same
+transaction</em>. This means that, if a thread starts a transaction, every
+cursor on the same connection will execute their queries in the same
+transaction and, if one thread causes a database server error, all the
+other cursors will be in error state until transaction rollback.</p>
+<p>It also means that every cursor will see changes made in the same session
+by other cursors, even if the transaction is still uncommitted. This
+effect might be desirable or not, and is something to consider when
+deciding whether to share a connection or not.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Should you use many cursors or many connections?</p>
+<p>Query execution and results retrieval on a connection is serialized: only
+one cursor at time will be able to run a query on the same connection (the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code> object will coordinate different cursors’ access). If your
+program runs a mix of database and non-database operations in several
+threads, then these threads might be able to share the same connection.
+However, if you expect to execute massively parallel operations on the
+database, it might be useful to use more than one connection at time,
+rather than many cursors on the same connection (or a mix of both).</p>
+<p>Using several connections, however, has an impact on the server’s
+performance and usually the number of connections that a server can handle
+is limited by grumpy sysadmins with long beards and a strict control on
+the <a class="reference external" href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-MAX-CONNECTIONS">max_connections</a> server setting.</p>
+<p>If you want to use more than one connection at time, but still avoid to
+create too many connections and starve the server, you might want to use a
+<a class="reference internal" href="pool.html#connection-pools"><span class="std std-ref">connection pool</span></a>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em>Connections are not process-safe</em> and cannot be shared across processes,
+for instance using the facilities of the <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiprocessing</span></code></a> module.</p>
+<p>If you are using Psycopg in a forking framework (for instance in a web
+server that implements concurrency using multiprocessing), you should make
+sure that the database connections are created after the worker process is
+forked. Failing to do so you will probably find the connection in broken
+state.</p>
+</div>
+<section id="asynchronous-operations">
+<span id="async"></span><span id="index-1"></span><h2>Asynchronous operations<a class="headerlink" href="#asynchronous-operations" title="Link to this heading">¶</a></h2>
+<p>Psycopg <a class="reference internal" href="../api/connections.html#psycopg.Connection" title="psycopg.Connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code></a> and <a class="reference internal" href="../api/cursors.html#psycopg.Cursor" title="psycopg.Cursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor</span></code></a> have counterparts <a class="reference internal" href="../api/connections.html#psycopg.AsyncConnection" title="psycopg.AsyncConnection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection</span></code></a> and
+<a class="reference internal" href="../api/cursors.html#psycopg.AsyncCursor" title="psycopg.AsyncCursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncCursor</span></code></a> supporting an <a class="reference external" href="https://docs.python.org/3/library/asyncio.html#module-asyncio" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">asyncio</span></code></a> interface.</p>
+<p>The design of the asynchronous objects is pretty much the same of the sync
+ones: in order to use them you will only have to scatter the <code class="xref py py-obj docutils literal notranslate"><span class="pre">await</span></code> keyword
+here and there.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">AsyncConnection</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+        <span class="s2">&quot;dbname=test user=postgres&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">aconn</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">aconn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">acur</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">acur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">&quot;INSERT INTO test (num, data) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
+            <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="s2">&quot;abc&#39;def&quot;</span><span class="p">))</span>
+        <span class="k">await</span> <span class="n">acur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM test&quot;</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">acur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="c1"># will return (1, 100, &quot;abc&#39;def&quot;)</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">acur</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>An <code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection</span></code> can be used by several <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">asyncio.Task</span></code></a> at the same time.
+However, as with threads, all the <a class="reference internal" href="../api/cursors.html#psycopg.AsyncCursor" title="psycopg.AsyncCursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncCursor</span></code></a> on the same connection will
+share the same session and will have their access to the connection
+serialized.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 3.1: </span><a class="reference internal" href="../api/connections.html#psycopg.AsyncConnection.connect" title="psycopg.AsyncConnection.connect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection.connect()</span></code></a> performs DNS name resolution in a non-blocking
+way.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Before version 3.1, <a class="reference internal" href="../api/connections.html#psycopg.AsyncConnection.connect" title="psycopg.AsyncConnection.connect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection.connect()</span></code></a> may still block on DNS
+name resolution. To avoid that you should <a class="reference external" href="https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-PARAMKEYWORDS">set the hostaddr connection
+parameter</a>, or use the <a class="reference internal" href="../api/dns.html#psycopg._dns.resolve_hostaddr_async" title="psycopg._dns.resolve_hostaddr_async"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resolve_hostaddr_async()</span></code></a> to
+do it automatically.</p>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>On Windows, Psycopg is not compatible with the default
+<a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.ProactorEventLoop" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProactorEventLoop</span></code></a>. Please use a different loop, for instance
+the <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.SelectorEventLoop" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SelectorEventLoop</span></code></a>. See <a class="reference external" href="https://docs.python.org/3.14/library/asyncio-eventloop.html#asyncio.SelectorEventLoop">asyncio documentation</a> for details.</p>
+</div>
+</section>
+<section id="with-async-connections">
+<span id="async-with"></span><span id="index-2"></span><h2><code class="xref py py-obj docutils literal notranslate"><span class="pre">with</span></code> async connections<a class="headerlink" href="#with-async-connections" title="Link to this heading">¶</a></h2>
+<p>As seen in <a class="reference internal" href="../basic/usage.html#usage"><span class="std std-ref">the basic usage</span></a>, connections and cursors can act as
+context managers, so you can run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;dbname=test user=postgres&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="c1"># the cursor is closed upon leaving the context</span>
+<span class="c1"># the transaction is committed, the connection closed</span>
+</pre></div>
+</div>
+<p>For asynchronous connections it’s <em>almost</em> what you’d expect, but
+not quite. Please note that <a class="reference internal" href="../api/connections.html#psycopg.Connection.connect" title="psycopg.Connection.connect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connect()</span></code></a> and <a class="reference internal" href="../api/connections.html#psycopg.Connection.cursor" title="psycopg.Connection.cursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cursor()</span></code></a>
+<em>don’t return a context</em>: they are both factory methods which return <em>an
+object which can be used as a context</em>. That’s because there are several use
+cases where it’s useful to handle the objects manually and only <code class="xref py py-obj docutils literal notranslate"><span class="pre">close()</span></code> them
+when required.</p>
+<p>As a consequence you cannot use <code class="xref py py-obj docutils literal notranslate"><span class="pre">async</span> <span class="pre">with</span> <span class="pre">connect()</span></code>: you have to do it in
+two steps instead, as in</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">aconn</span> <span class="o">=</span> <span class="k">await</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">AsyncConnection</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="k">async</span> <span class="k">with</span> <span class="n">aconn</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">aconn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which can be condensed into <code class="xref py py-obj docutils literal notranslate"><span class="pre">async</span> <span class="pre">with</span> <span class="pre">await</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">with</span> <span class="k">await</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">AsyncConnection</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">aconn</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">aconn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>…but no less than that: you still need to do the double async thing.</p>
+<p>Note that the <a class="reference internal" href="../api/connections.html#psycopg.AsyncConnection.cursor" title="psycopg.AsyncConnection.cursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection.cursor()</span></code></a> function is not an <code class="xref py py-obj docutils literal notranslate"><span class="pre">async</span></code> function
+(it never performs I/O), so you don’t need an <code class="xref py py-obj docutils literal notranslate"><span class="pre">await</span></code> on it; as a consequence
+you can use the normal <code class="xref py py-obj docutils literal notranslate"><span class="pre">async</span> <span class="pre">with</span></code> context manager.</p>
+</section>
+<section id="interrupting-async-operations">
+<span id="async-ctrl-c"></span><span id="index-3"></span><h2>Interrupting async operations<a class="headerlink" href="#interrupting-async-operations" title="Link to this heading">¶</a></h2>
+<p>If a long running operation is interrupted by a Ctrl-C on a normal connection
+running in the main thread, the operation will be cancelled and the connection
+will be put in error state, from which can be recovered with a normal
+<a class="reference internal" href="../api/connections.html#psycopg.Connection.rollback" title="psycopg.Connection.rollback"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rollback()</span></code></a>.</p>
+<p>An async connection provides similar behavior in that if the async task is
+cancelled, any operation on the connection will similarly be cancelled.  This
+can happen either indirectly via Ctrl-C or similar signal, or directly by
+cancelling the Python Task via the normal way.  Psycopg will ask the
+PostgreSQL postmaster to cancel the operation when it encounters the standard
+Python <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#task-cancellation">CancelledError</a>.</p>
+<p>Remember that cancelling the Python Task does not guarantee that the operation
+will not complete, even if the task ultimately exits prematurely due to
+CancelledError.  If you need to know the ultimate outcome of the statement,
+then consider calling <a class="reference internal" href="../api/connections.html#psycopg.Connection.cancel" title="psycopg.Connection.cancel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.cancel()</span></code></a> as an alternative to cancelling
+the task.</p>
+<p>Previous versions of Psycopg recommended setting up signal handlers to
+manually cancel connections.  This should no longer be necessary.</p>
+</section>
+<section id="gevent-support">
+<span id="gevent"></span><span id="index-4"></span><h2>Gevent support<a class="headerlink" href="#gevent-support" title="Link to this heading">¶</a></h2>
+<p>Psycopg 3 supports <a class="reference external" href="https://www.gevent.org/">gevent</a> out of the box. If the
+<a class="reference external" href="https://docs.python.org/3/library/select.html#module-select" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">select</span></code></a> module is found patched by functions such as
+<a class="reference external" href="http://www.gevent.org/api/gevent.monkey.html#gevent.monkey.patch_select">gevent.monkey.patch_select()</a> or <a class="reference external" href="http://www.gevent.org/api/gevent.monkey.html#gevent.monkey.patch_all">patch_all()</a>, psycopg will behave in a
+collaborative way.</p>
+<p>Unlike with <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg2</span></code>, using the <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycogreen</span></code> module is not required.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>gevent support was initially accidental, and was accidentally broken in
+psycopg 3.1.4.</p>
+<p>gevent is officially supported only starting from psycopg 3.1.14.</p>
+</div>
+</section>
+<section id="server-messages">
+<span id="async-messages"></span><span id="index-5"></span><h2>Server messages<a class="headerlink" href="#server-messages" title="Link to this heading">¶</a></h2>
+<p>PostgreSQL can send, together with the query results, <a class="reference external" href="https://www.postgresql.org/docs/current/runtime-config-logging.html#RUNTIME-CONFIG-SEVERITY-LEVELS">informative messages</a>
+about the operation just performed, such as warnings or debug information.
+Notices may be raised even if the operations are successful and don’t indicate
+an error. You are probably familiar with some of them, because they are
+reported by <strong class="program">psql</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psql
+=# ROLLBACK;
+WARNING:  there is no transaction in progress
+ROLLBACK
+</pre></div>
+</div>
+<p>Messages can be also sent by the <a class="reference external" href="https://www.postgresql.org/docs/current/plpgsql-errors-and-messages.html">PL/pgSQL ‘RAISE’ statement</a> (at a level
+lower than EXCEPTION, otherwise the appropriate <a class="reference internal" href="../api/errors.html#psycopg.DatabaseError" title="psycopg.DatabaseError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DatabaseError</span></code></a> will be
+raised). The level of the messages received can be controlled using the
+<a class="reference external" href="https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-CLIENT-MIN-MESSAGES">client_min_messages</a> setting.</p>
+<p>By default, the messages received are ignored. If you want to process them on
+the client you can use the <a class="reference internal" href="../api/connections.html#psycopg.Connection.add_notice_handler" title="psycopg.Connection.add_notice_handler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.add_notice_handler()</span></code></a> function to
+register a function that will be invoked whenever a message is received. The
+message is passed to the callback as a <a class="reference internal" href="../api/errors.html#psycopg.errors.Diagnostic" title="psycopg.errors.Diagnostic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Diagnostic</span></code></a> instance,
+containing all the information passed by the server, such as the message text
+and the severity. The object is the same found on the <a class="reference internal" href="../api/errors.html#psycopg.Error.diag" title="psycopg.Error.diag"><code class="xref py py-obj docutils literal notranslate"><span class="pre">diag</span></code></a>
+attribute of the errors raised by the server:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">psycopg</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">log_notice</span><span class="p">(</span><span class="n">diag</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The server says: </span><span class="si">{</span><span class="n">diag</span><span class="o">.</span><span class="n">severity</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">diag</span><span class="o">.</span><span class="n">message_primary</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">autocommit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">conn</span><span class="o">.</span><span class="n">add_notice_handler</span><span class="p">(</span><span class="n">log_notice</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cur</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;ROLLBACK&quot;</span><span class="p">)</span>
+<span class="go">The server says: WARNING - there is no transaction in progress</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">statusmessage</span><span class="p">)</span>
+<span class="go">ROLLBACK</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="xref py py-obj docutils literal notranslate"><span class="pre">Diagnostic</span></code> object received by the callback should not be used after
+the callback function terminates, because its data is deallocated after
+the callbacks have been processed. If you need to use the information
+later please extract the attributes requested and forward them instead of
+forwarding the whole <code class="xref py py-obj docutils literal notranslate"><span class="pre">Diagnostic</span></code> object.</p>
+</div>
+</section>
+<section id="asynchronous-notifications">
+<span id="async-notify"></span><span id="index-6"></span><h2>Asynchronous notifications<a class="headerlink" href="#asynchronous-notifications" title="Link to this heading">¶</a></h2>
+<p>Psycopg allows asynchronous interaction with other database sessions using the
+facilities offered by PostgreSQL commands <a class="reference external" href="https://www.postgresql.org/docs/current/sql-listen.html"><code class="sql docutils literal notranslate"><span class="pre">LISTEN</span></code></a> and <a class="reference external" href="https://www.postgresql.org/docs/current/sql-notify.html"><code class="sql docutils literal notranslate"><span class="pre">NOTIFY</span></code></a>. Please
+refer to the PostgreSQL documentation for examples about how to use this form
+of communication.</p>
+<p>Because of the way transactions interact with notifications (see <a class="reference external" href="https://www.postgresql.org/docs/current/sql-notify.html"><code class="sql docutils literal notranslate"><span class="pre">NOTIFY</span></code></a>
+documentation), you should keep the connection in <a class="reference internal" href="../api/connections.html#psycopg.Connection.autocommit" title="psycopg.Connection.autocommit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">autocommit</span></code></a>
+mode if you wish to receive or send notifications in a timely manner.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You don’t need an <a class="reference internal" href="../api/connections.html#psycopg.AsyncConnection" title="psycopg.AsyncConnection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection</span></code></a> to handle notifications: a normal
+blocking <a class="reference internal" href="../api/connections.html#psycopg.Connection" title="psycopg.Connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code></a> is perfectly valid.</p>
+</div>
+<p>Notifications are received as instances of the <a class="reference internal" href="../api/objects.html#psycopg.Notify" title="psycopg.Notify"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Notify</span></code></a> object. You can
+receive notifications using either the <a class="reference internal" href="#notifies-generator"><span class="std std-ref">notifies generator</span></a> or a <a class="reference internal" href="#notifies-handlers"><span class="std std-ref">notifies handler</span></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You should use only one of the two methods to receive notifications.</p>
+<p>Since Psycopg 3.2.10 using the generator and handlers at the same time
+raises a runtime warning.</p>
+</div>
+<section id="notifies-generator">
+<span id="id10"></span><h3>Notifies generator<a class="headerlink" href="#notifies-generator" title="Link to this heading">¶</a></h3>
+<p>If you are reserving a connection only to receive notifications, the simplest
+way to receive them is to consume the <a class="reference internal" href="../api/connections.html#psycopg.Connection.notifies" title="psycopg.Connection.notifies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection.notifies()</span></code></a> generator. The
+generator can be stopped using its <code class="xref py py-obj docutils literal notranslate"><span class="pre">close()</span></code> method, or using the parameters
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">timeout</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_after</span></code> to receive notifications only for a certain time
+or up to a certain number.</p>
+<p>The following example will print notifications and stop when one containing
+the <code class="docutils literal notranslate"><span class="pre">&quot;stop&quot;</span></code> message is received.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">psycopg</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">autocommit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;LISTEN mychan&quot;</span><span class="p">)</span>
+<span class="n">gen</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">notifies</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">notify</span> <span class="ow">in</span> <span class="n">gen</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">notify</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">notify</span><span class="o">.</span><span class="n">payload</span> <span class="o">==</span> <span class="s2">&quot;stop&quot;</span><span class="p">:</span>
+        <span class="n">gen</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;there, I stopped&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you run some <code class="sql docutils literal notranslate"><span class="pre">NOTIFY</span></code> in a <strong class="program">psql</strong> session:</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="gp">=#</span><span class="w"> </span><span class="k">NOTIFY</span><span class="w"> </span><span class="n">mychan</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+<span class="go">NOTIFY</span>
+<span class="gp">=#</span><span class="w"> </span><span class="k">NOTIFY</span><span class="w"> </span><span class="n">mychan</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;hey&#39;</span><span class="p">;</span>
+<span class="go">NOTIFY</span>
+<span class="gp">=#</span><span class="w"> </span><span class="k">NOTIFY</span><span class="w"> </span><span class="n">mychan</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;stop&#39;</span><span class="p">;</span>
+<span class="go">NOTIFY</span>
+</pre></div>
+</div>
+<p>You may get output from the Python process such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Notify</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">&#39;mychan&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="mi">961823</span><span class="p">)</span>
+<span class="n">Notify</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">&#39;mychan&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="s1">&#39;hey&#39;</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="mi">961823</span><span class="p">)</span>
+<span class="n">Notify</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s1">&#39;mychan&#39;</span><span class="p">,</span> <span class="n">payload</span><span class="o">=</span><span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="n">pid</span><span class="o">=</span><span class="mi">961823</span><span class="p">)</span>
+<span class="n">there</span><span class="p">,</span> <span class="n">I</span> <span class="n">stopped</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The behaviour of the notifies generator has changed slightly as problems
+were found:</p>
+<ul class="simple">
+<li><p>Before Psycopg 3.2.4, notification received between calling
+<code class="sql docutils literal notranslate"><span class="pre">LISTEN</span></code> and starting the generator were lost.</p></li>
+<li><p>Since <a class="reference internal" href="../news.html#psycopg-3-2-4"><span class="std std-ref">Psycopg 3.2.4</span></a> such notifications are captured and yielded
+by the generator once it is started. However this introduced a leak
+(ticket <a class="reference external" href="https://github.com/psycopg/psycopg/issues/1091">#1091</a>) and, if the generator is not regularly used, some
+memory is allocated indefinitely.</p></li>
+<li><p>Since <a class="reference internal" href="../news.html#psycopg-3-2-10"><span class="std std-ref">Psycopg 3.2.10</span></a> if a handler is registered then
+notifications are not captured when the generator is not running. So the
+behaviour is similar to pre-3.2.4 but <em>only if a handler is registered
+too</em>. Therefore, using handlers and generators together starts seeming a
+bad idea, hence it is since deprecated.</p></li>
+</ul>
+</div>
+</section>
+<section id="notifies-handlers">
+<span id="id11"></span><h3>Notifies handlers<a class="headerlink" href="#notifies-handlers" title="Link to this heading">¶</a></h3>
+<p>Alternatively, you can use <a class="reference internal" href="../api/connections.html#psycopg.Connection.add_notify_handler" title="psycopg.Connection.add_notify_handler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_notify_handler()</span></code></a> to register a
+callback function, which will be invoked whenever a notification is received,
+during the normal query processing; you will be then able to use the
+connection normally. Please note that in this case notifications will not be
+received immediately, but only during a connection operation, such as a query.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">conn</span><span class="o">.</span><span class="n">add_notify_handler</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;got this: </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+
+<span class="c1"># meanwhile in psql...</span>
+<span class="c1"># =# NOTIFY mychan, &#39;hey&#39;;</span>
+<span class="c1"># NOTIFY</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT 1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchone</span><span class="p">())</span>
+<span class="c1"># got this: Notify(channel=&#39;mychan&#39;, payload=&#39;hey&#39;, pid=961823)</span>
+<span class="c1"># (1,)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="detecting-disconnections">
+<span id="disconnections"></span><span id="index-7"></span><h2>Detecting disconnections<a class="headerlink" href="#detecting-disconnections" title="Link to this heading">¶</a></h2>
+<p>Sometimes it is useful to detect immediately when the connection with the
+database is lost. One brutal way to do so is to poll a connection in a loop
+running an endless stream of <code class="sql docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">1</span></code>… <em>Don’t</em> do so: polling is <em>so</em>
+out of fashion. Besides, it is inefficient (unless what you really want is a
+client-server generator of ones), it generates useless traffic and will only
+detect a disconnection with an average delay of half the polling time.</p>
+<p>A more efficient and timely way to detect a server disconnection is to create
+an additional connection and wait for a notification from the OS that this
+connection has something to say: only then you can run some checks. You
+can dedicate a thread (or an asyncio task) to wait on this connection: such
+thread will perform no activity until awaken by the OS.</p>
+<p>In a normal (non asyncio) program you can use the <a class="reference external" href="https://docs.python.org/3/library/selectors.html#module-selectors" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">selectors</span></code></a> module. Because
+the <code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code> implements a <a class="reference internal" href="../api/connections.html#psycopg.Connection.fileno" title="psycopg.Connection.fileno"><code class="xref py py-obj docutils literal notranslate"><span class="pre">fileno()</span></code></a> method you can just
+register it as a file-like object. You can run such code in a dedicated thread
+(and using a dedicated connection) if the rest of the program happens to have
+something else to do too.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">selectors</span>
+
+<span class="n">sel</span> <span class="o">=</span> <span class="n">selectors</span><span class="o">.</span><span class="n">DefaultSelector</span><span class="p">()</span>
+<span class="n">sel</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">selectors</span><span class="o">.</span><span class="n">EVENT_READ</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sel</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mf">60.0</span><span class="p">):</span>
+        <span class="k">continue</span>  <span class="c1"># No FD activity detected in one minute</span>
+
+    <span class="c1"># Activity detected. Is the connection still ok?</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT 1&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">OperationalError</span><span class="p">:</span>
+        <span class="c1"># You were disconnected: do something useful such as panicking</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;we lost our database!&quot;</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In an <a class="reference external" href="https://docs.python.org/3/library/asyncio.html#module-asyncio" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">asyncio</span></code></a> program you can dedicate a <a class="reference external" href="https://docs.python.org/3/library/asyncio-task.html#asyncio.Task" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Task</span></code></a> instead and do
+something similar using <a class="reference external" href="https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.loop.add_reader" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_reader</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="n">ev</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+<span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+<span class="n">loop</span><span class="o">.</span><span class="n">add_reader</span><span class="p">(</span><span class="n">conn</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span> <span class="n">ev</span><span class="o">.</span><span class="n">set</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="n">ev</span><span class="o">.</span><span class="n">wait</span><span class="p">(),</span> <span class="mf">60.0</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">:</span>
+        <span class="k">continue</span>  <span class="c1"># No FD activity detected in one minute</span>
+
+    <span class="c1"># Activity detected. Is the connection still ok?</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT 1&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">psycopg</span><span class="o">.</span><span class="n">OperationalError</span><span class="p">:</span>
+        <span class="c1"># Guess what happened</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="typing.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Static Typing</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">More advanced topics</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020, Daniele Varrazzo and The Psycopg Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Concurrent operations</a><ul>
+<li><a class="reference internal" href="#asynchronous-operations">Asynchronous operations</a></li>
+<li><a class="reference internal" href="#with-async-connections"><code class="xref py py-obj docutils literal notranslate"><span class="pre">with</span></code> async connections</a></li>
+<li><a class="reference internal" href="#interrupting-async-operations">Interrupting async operations</a></li>
+<li><a class="reference internal" href="#gevent-support">Gevent support</a></li>
+<li><a class="reference internal" href="#server-messages">Server messages</a></li>
+<li><a class="reference internal" href="#asynchronous-notifications">Asynchronous notifications</a><ul>
+<li><a class="reference internal" href="#notifies-generator">Notifies generator</a></li>
+<li><a class="reference internal" href="#notifies-handlers">Notifies handlers</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#detecting-disconnections">Detecting disconnections</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=4d68d9d3"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    </body>
+</html>

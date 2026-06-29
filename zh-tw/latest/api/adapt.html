@@ -1,0 +1,650 @@
+<!doctype html>
+<html class="no-js" lang="zh-TW" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜尋" href="../search.html"><link rel="next" title="types -- Types information and adapters" href="types.html"><link rel="prev" title="conninfo -- manipulate connection strings" href="conninfo.html">
+        <link rel="canonical" href="https://projects.localizethedocs.org/psycopg3-docs-l10n/api/adapt.html">
+        <link rel="prefetch" href="../_static/psycopg.png" as="image">
+        <link rel="prefetch" href="../_static/psycopg.png" as="image">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>adapt -- Types adaptation - psycopg 3.3.5.dev1 說明文件</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/psycopg.css?v=67dada6b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --admonition-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">psycopg 3.3.5.dev1 說明文件</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../_static/psycopg.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../_static/psycopg.png" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">psycopg 3.3.5.dev1 說明文件</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜尋" name="q" aria-label="搜尋">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basic/index.html">開始使用 Psycopg 3</a><input aria-label="Toggle navigation of 開始使用 Psycopg 3" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic/install.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/usage.html">Basic module usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/params.html">將參數傳遞給 SQL 查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/tstrings.html">模板字串查詢</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/adapt.html">適配基本的 Python 型別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/pgtypes.html">適配其他 PostgreSQL 型別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/transactions.html">Transactions management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/copy.html">使用 COPY TO 與 COPY FROM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/from_pg2.html">Differences from <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../advanced/index.html">更進階的話題</a><input aria-label="Toggle navigation of 更進階的話題" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/async.html">Concurrent operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/typing.html">靜態型別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/rows.html">Row factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/pool.html">Connection pools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/cursors.html">Cursor types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/adapt.html">Data adaptation configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/prepare.html">Prepared statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced/pipeline.html">Pipeline mode support</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Psycopg 3 API</a><input aria-label="Toggle navigation of Psycopg 3 API" checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="module.html">The <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg</span></code> module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connections.html">Connection classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cursors.html">Cursor classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="copy.html">COPY-related objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="objects.html">Other top-level objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sql.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql</span></code> -- SQL string composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rows.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rows</span></code> -- row factory implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors</span></code> -- Package exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pool.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code> -- Connection pool implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conninfo.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conninfo</span></code> -- manipulate connection strings</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt</span></code> -- Types adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types</span></code> -- Types information and adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="abc.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc</span></code> -- Psycopg 抽象類別</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pq.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq</span></code> -- libpq wrapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crdb.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crdb</span></code> -- CockroachDB 支援</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dns.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_dns</span></code> -- DNS resolution utilities</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../news.html"><code class="docutils literal notranslate"><span class="pre">psycopg</span></code> 發行備註</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news_pool.html"><code class="docutils literal notranslate"><span class="pre">psycopg_pool</span></code> 發行備註</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-psycopg.adapt">
+<span id="adapt-types-adaptation"></span><h1><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt</span></code> -- Types adaptation<a class="headerlink" href="#module-psycopg.adapt" title="連結到這個標頭">¶</a></h1>
+<p>The <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg.adapt</span></code> module exposes a set of objects useful for the
+configuration of <em>data adaptation</em>, which is the conversion of Python objects
+to PostgreSQL data types and back.</p>
+<p>These objects are useful if you need to configure data adaptation, i.e.
+if you need to change the default way that Psycopg converts between types or
+if you want to adapt custom data types and objects. You don't need this object
+in the normal use of Psycopg.</p>
+<p>See <a class="reference internal" href="../advanced/adapt.html#adaptation"><span class="std std-ref">Data adaptation configuration</span></a> for an overview of the Psycopg adaptation system.</p>
+<section id="dumpers-and-loaders">
+<h2>Dumpers and loaders<a class="headerlink" href="#dumpers-and-loaders" title="連結到這個標頭">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.adapt.Dumper">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.adapt.</span></span><span class="sig-name descname"><span class="pre">Dumper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.adapt.Dumper" title="連結到這個定義">¶</a></dt>
+<dd><p>Convert Python object of the type <code class="xref py py-obj docutils literal notranslate"><span class="pre">cls</span></code> to PostgreSQL representation.</p>
+<p>This is an <a class="reference external" href="https://docs.python.org/glossary.html#term-abstract-base-class">abstract base class</a>, partially implementing the
+<a class="reference internal" href="abc.html#psycopg.abc.Dumper" title="psycopg.abc.Dumper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dumper</span></code></a> protocol. Subclasses <em>must</em> at least implement the
+<a class="reference internal" href="#psycopg.adapt.Dumper.dump" title="psycopg.adapt.Dumper.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump()</span></code></a> method and optionally override other members.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.adapt.Dumper.dump">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">dump</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.14)"><span class="pre">bytearray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#memoryview" title="(in Python v3.14)"><span class="pre">memoryview</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.adapt.Dumper.dump" title="連結到這個定義">¶</a></dt>
+<dd><p>將物件 <code class="xref py py-obj docutils literal notranslate"><span class="pre">obj</span></code> 轉換成 PostgreSQL 表示法。</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obj</strong> -- the object to convert.</p>
+</dd>
+</dl>
+<div class="versionchanged">
+<p><span class="versionmodified changed">在 3.2 版的變更: </span><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump()</span></code> can also return <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code>, to represent a <code class="sql docutils literal notranslate"><span class="pre">NULL</span></code> in
+the database.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.adapt.Dumper.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="pq.html#psycopg.pq.Format" title="psycopg.pq.Format"><span class="pre">psycopg.pq.Format</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TEXT</span></span><a class="headerlink" href="#psycopg.adapt.Dumper.format" title="連結到這個定義">¶</a></dt>
+<dd><p>Class attribute. Set it to <code class="xref py py-obj docutils literal notranslate"><span class="pre">BINARY</span></code> if the class
+<a class="reference internal" href="#psycopg.adapt.Dumper.dump" title="psycopg.adapt.Dumper.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump()</span></code></a> methods converts the object to binary format.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.adapt.Dumper.quote">
+<span class="sig-name descname"><span class="pre">quote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.14)"><span class="pre">bytearray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#memoryview" title="(in Python v3.14)"><span class="pre">memoryview</span></a></span></span><a class="headerlink" href="#psycopg.adapt.Dumper.quote" title="連結到這個定義">¶</a></dt>
+<dd><p>By default return the <a class="reference internal" href="#psycopg.adapt.Dumper.dump" title="psycopg.adapt.Dumper.dump"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dump()</span></code></a> value quoted and sanitised, so
+that the result can be used to build a SQL string. This works well
+for most types and you won't likely have to implement this method in a
+subclass.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.adapt.Dumper.get_key">
+<span class="sig-name descname"><span class="pre">get_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#psycopg.adapt.PyFormat" title="psycopg.adapt.PyFormat"><span class="pre">PyFormat</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">abc.DumperKey</span></span></span><a class="headerlink" href="#psycopg.adapt.Dumper.get_key" title="連結到這個定義">¶</a></dt>
+<dd><p>Implementation of the <a class="reference internal" href="abc.html#psycopg.abc.Dumper.get_key" title="psycopg.abc.Dumper.get_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_key()</span></code></a> member of the
+<a class="reference internal" href="abc.html#psycopg.abc.Dumper" title="psycopg.abc.Dumper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dumper</span></code></a> protocol. Look at its definition for details.</p>
+<p>This implementation returns the <code class="xref py py-obj docutils literal notranslate"><span class="pre">cls</span></code> passed in the constructor.
+Subclasses needing to specialise the PostgreSQL type according to the
+<em>value</em> of the object dumped (not only according to to its type)
+should override this class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.adapt.Dumper.upgrade">
+<span class="sig-name descname"><span class="pre">upgrade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#psycopg.adapt.PyFormat" title="psycopg.adapt.PyFormat"><span class="pre">PyFormat</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#psycopg.adapt.Dumper" title="psycopg.adapt.Dumper"><span class="pre">Dumper</span></a></span></span><a class="headerlink" href="#psycopg.adapt.Dumper.upgrade" title="連結到這個定義">¶</a></dt>
+<dd><p>Implementation of the <a class="reference internal" href="abc.html#psycopg.abc.Dumper.upgrade" title="psycopg.abc.Dumper.upgrade"><code class="xref py py-obj docutils literal notranslate"><span class="pre">upgrade()</span></code></a> member of the
+<a class="reference internal" href="abc.html#psycopg.abc.Dumper" title="psycopg.abc.Dumper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dumper</span></code></a> protocol. Look at its definition for details.</p>
+<p>This implementation just returns <code class="xref py py-obj docutils literal notranslate"><span class="pre">self</span></code>. If a subclass implements
+<a class="reference internal" href="#psycopg.adapt.Dumper.get_key" title="psycopg.adapt.Dumper.get_key"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_key()</span></code></a> it should probably override <code class="xref py py-obj docutils literal notranslate"><span class="pre">upgrade()</span></code> too.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.adapt.Loader">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.adapt.</span></span><span class="sig-name descname"><span class="pre">Loader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.adapt.Loader" title="連結到這個定義">¶</a></dt>
+<dd><p>Convert PostgreSQL values with type OID <code class="xref py py-obj docutils literal notranslate"><span class="pre">oid</span></code> to Python objects.</p>
+<p>This is an <a class="reference external" href="https://docs.python.org/glossary.html#term-abstract-base-class">abstract base class</a>, partially implementing the
+<a class="reference internal" href="abc.html#psycopg.abc.Loader" title="psycopg.abc.Loader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Loader</span></code></a> protocol. Subclasses <em>must</em> at least implement the
+<a class="reference internal" href="#psycopg.adapt.Loader.load" title="psycopg.adapt.Loader.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load()</span></code></a> method and optionally override other members.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.adapt.Loader.load">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><span class="pre">bytes</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytearray" title="(in Python v3.14)"><span class="pre">bytearray</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#memoryview" title="(in Python v3.14)"><span class="pre">memoryview</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.14)"><span class="pre">Any</span></a></span></span><a class="headerlink" href="#psycopg.adapt.Loader.load" title="連結到這個定義">¶</a></dt>
+<dd><p>Convert a PostgreSQL value to a Python object.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.adapt.Loader.format">
+<span class="sig-name descname"><span class="pre">format</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="pq.html#psycopg.pq.Format" title="psycopg.pq.Format"><span class="pre">psycopg.pq.Format</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TEXT</span></span><a class="headerlink" href="#psycopg.adapt.Loader.format" title="連結到這個定義">¶</a></dt>
+<dd><p>Class attribute. Set it to <code class="xref py py-obj docutils literal notranslate"><span class="pre">BINARY</span></code> if the class
+<a class="reference internal" href="#psycopg.adapt.Loader.load" title="psycopg.adapt.Loader.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load()</span></code></a> methods converts the object from binary format.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="other-objects-used-in-adaptations">
+<h2>Other objects used in adaptations<a class="headerlink" href="#other-objects-used-in-adaptations" title="連結到這個標頭">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.adapt.PyFormat">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.adapt.</span></span><span class="sig-name descname"><span class="pre">PyFormat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.adapt.PyFormat" title="連結到這個定義">¶</a></dt>
+<dd><p>Enum representing the format wanted for a query argument.</p>
+<p>The value <code class="xref py py-obj docutils literal notranslate"><span class="pre">AUTO</span></code> allows psycopg to choose the best format for a certain
+parameter.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.adapt.AdaptersMap">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.adapt.</span></span><span class="sig-name descname"><span class="pre">AdaptersMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#psycopg.adapt.AdaptersMap" title="psycopg.adapt.AdaptersMap"><span class="pre">AdaptersMap</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="types.html#psycopg.types.TypesRegistry" title="psycopg.types.TypesRegistry"><span class="pre">TypesRegistry</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.adapt.AdaptersMap" title="連結到這個定義">¶</a></dt>
+<dd><p>Establish how types should be converted between Python and PostgreSQL in
+an <a class="reference internal" href="abc.html#psycopg.abc.AdaptContext" title="psycopg.abc.AdaptContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaptContext</span></code></a>.</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaptersMap</span></code> maps Python types to <a class="reference internal" href="#psycopg.adapt.Dumper" title="psycopg.adapt.Dumper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dumper</span></code></a> classes to
+define how Python types are converted to PostgreSQL, and maps OIDs to
+<a class="reference internal" href="#psycopg.adapt.Loader" title="psycopg.adapt.Loader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Loader</span></code></a> classes to establish how query results are
+converted to Python.</p>
+<p>Every <code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaptContext</span></code> object has an underlying <code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaptersMap</span></code> defining how
+types are converted in that context, exposed as the
+<a class="reference internal" href="abc.html#psycopg.abc.AdaptContext.adapters" title="psycopg.abc.AdaptContext.adapters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapters</span></code></a> attribute: changing such map allows
+to customise adaptation in a context without changing separated contexts.</p>
+<p>When a context is created from another context (for instance when a
+<a class="reference internal" href="cursors.html#psycopg.Cursor" title="psycopg.Cursor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cursor</span></code></a> is created from a <a class="reference internal" href="connections.html#psycopg.Connection" title="psycopg.Connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code></a>), the parent's
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">adapters</span></code> are used as template for the child's <code class="xref py py-obj docutils literal notranslate"><span class="pre">adapters</span></code>, so that every
+cursor created from the same connection use the connection's types
+configuration, but separate connections have independent mappings.</p>
+<p>Once created, <code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaptersMap</span></code> are independent. This means that objects
+already created are not affected if a wider scope (e.g. the global one) is
+changed.</p>
+<p>The connections adapters are initialised using a global <code class="xref py py-obj docutils literal notranslate"><span class="pre">AdptersMap</span></code>
+template, exposed as <a class="reference internal" href="module.html#psycopg.adapters" title="psycopg.adapters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg.adapters</span></code></a>: changing such mapping allows to
+customise the type mapping for every connections created afterwards.</p>
+<p>The object can start empty or copy from another object of the same class.
+Copies are copy-on-write: if the maps are updated make a copy. This way
+extending e.g. global map by a connection or a connection map from a cursor
+is cheap: a copy is only made on customisation.</p>
+<div class="admonition seealso">
+<p class="admonition-title">請參閱</p>
+<p><a class="reference internal" href="../advanced/adapt.html#adaptation"><span class="std std-ref">Data adaptation configuration</span></a> for an explanation about how contexts are
+connected.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.adapt.AdaptersMap.register_dumper">
+<span class="sig-name descname"><span class="pre">register_dumper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">dumper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="abc.html#psycopg.abc.Dumper" title="psycopg.abc.Dumper"><span class="pre">Dumper</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.adapt.AdaptersMap.register_dumper" title="連結到這個定義">¶</a></dt>
+<dd><p>Configure the context to use <code class="xref py py-obj docutils literal notranslate"><span class="pre">dumper</span></code> to convert objects of type <code class="xref py py-obj docutils literal notranslate"><span class="pre">cls</span></code>.</p>
+<p>If two dumpers with different <a class="reference internal" href="#psycopg.adapt.Dumper.format" title="psycopg.adapt.Dumper.format"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format</span></code></a> are registered for the
+same type, the last one registered will be chosen when the query
+doesn't specify a format (i.e. when the value is used with a <code class="docutils literal notranslate"><span class="pre">%s</span></code>
+&quot;<code class="xref py py-obj docutils literal notranslate"><span class="pre">AUTO</span></code>&quot; placeholder).</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls</strong> -- The type to manage.</p></li>
+<li><p><strong>dumper</strong> -- The dumper to register for <code class="xref py py-obj docutils literal notranslate"><span class="pre">cls</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>If <code class="xref py py-obj docutils literal notranslate"><span class="pre">cls</span></code> is specified as string it will be lazy-loaded, so that it
+will be possible to register it without importing it before. In this
+case it should be the fully qualified name of the object (e.g.
+<code class="docutils literal notranslate"><span class="pre">&quot;uuid.UUID&quot;</span></code>).</p>
+<p>If <code class="xref py py-obj docutils literal notranslate"><span class="pre">cls</span></code> is None, only use the dumper when looking up using
+<a class="reference internal" href="#psycopg.adapt.AdaptersMap.get_dumper_by_oid" title="psycopg.adapt.AdaptersMap.get_dumper_by_oid"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dumper_by_oid()</span></code></a>, which happens when we know the Postgres type to
+adapt to, but not the Python type that will be adapted (e.g. in COPY
+after using <a class="reference internal" href="copy.html#psycopg.Copy.set_types" title="psycopg.Copy.set_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_types()</span></code></a>).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.adapt.AdaptersMap.register_loader">
+<span class="sig-name descname"><span class="pre">register_loader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">loader</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="abc.html#psycopg.abc.Loader" title="psycopg.abc.Loader"><span class="pre">Loader</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.adapt.AdaptersMap.register_loader" title="連結到這個定義">¶</a></dt>
+<dd><p>Configure the context to use <code class="xref py py-obj docutils literal notranslate"><span class="pre">loader</span></code> to convert data of oid <code class="xref py py-obj docutils literal notranslate"><span class="pre">oid</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>oid</strong> -- The PostgreSQL OID or type name to manage.</p></li>
+<li><p><strong>loader</strong> -- The loar to register for <code class="xref py py-obj docutils literal notranslate"><span class="pre">oid</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>If <code class="xref py py-obj docutils literal notranslate"><span class="pre">oid</span></code> is specified as string, it refers to a type name, which is
+looked up in the <a class="reference internal" href="#psycopg.adapt.AdaptersMap.types" title="psycopg.adapt.AdaptersMap.types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types</span></code></a> registry.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="psycopg.adapt.AdaptersMap.types">
+<span class="sig-name descname"><span class="pre">types</span></span><a class="headerlink" href="#psycopg.adapt.AdaptersMap.types" title="連結到這個定義">¶</a></dt>
+<dd><p>The object where to look up for types information (such as the mapping
+between type names and oids in the specified context).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="types.html#psycopg.types.TypesRegistry" title="psycopg.types.TypesRegistry"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TypesRegistry</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.adapt.AdaptersMap.get_dumper">
+<span class="sig-name descname"><span class="pre">get_dumper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#psycopg.adapt.PyFormat" title="psycopg.adapt.PyFormat"><span class="pre">PyFormat</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="abc.html#psycopg.abc.Dumper" title="psycopg.abc.Dumper"><span class="pre">Dumper</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#psycopg.adapt.AdaptersMap.get_dumper" title="連結到這個定義">¶</a></dt>
+<dd><p>Return the dumper class for the given type and format.</p>
+<p>Raise <a class="reference internal" href="errors.html#psycopg.ProgrammingError" title="psycopg.ProgrammingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProgrammingError</span></code></a> if a class is not available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cls</strong> -- The class to adapt.</p></li>
+<li><p><strong>format</strong> -- The format to dump to. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">AUTO</span></code>,
+use the last one of the dumpers registered on <code class="xref py py-obj docutils literal notranslate"><span class="pre">cls</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.adapt.AdaptersMap.get_dumper_by_oid">
+<span class="sig-name descname"><span class="pre">get_dumper_by_oid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pq.html#psycopg.pq.Format" title="psycopg.pq.Format"><span class="pre">Format</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="abc.html#psycopg.abc.Dumper" title="psycopg.abc.Dumper"><span class="pre">Dumper</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#psycopg.adapt.AdaptersMap.get_dumper_by_oid" title="連結到這個定義">¶</a></dt>
+<dd><p>Return the dumper class for the given oid and format.</p>
+<p>Raise <a class="reference internal" href="errors.html#psycopg.ProgrammingError" title="psycopg.ProgrammingError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ProgrammingError</span></code></a> if a class is not available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>oid</strong> -- The oid of the type to dump to.</p></li>
+<li><p><strong>format</strong> -- The format to dump to.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="psycopg.adapt.AdaptersMap.get_loader">
+<span class="sig-name descname"><span class="pre">get_loader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">oid</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="pq.html#psycopg.pq.Format" title="psycopg.pq.Format"><span class="pre">Format</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#type" title="(in Python v3.14)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="abc.html#psycopg.abc.Loader" title="psycopg.abc.Loader"><span class="pre">Loader</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#psycopg.adapt.AdaptersMap.get_loader" title="連結到這個定義">¶</a></dt>
+<dd><p>Return the loader class for the given oid and format.</p>
+<p>Return <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code> if not found.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>oid</strong> -- The oid of the type to load.</p></li>
+<li><p><strong>format</strong> -- The format to load from.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="psycopg.adapt.Transformer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">psycopg.adapt.</span></span><span class="sig-name descname"><span class="pre">Transformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#psycopg.adapt.Transformer" title="連結到這個定義">¶</a></dt>
+<dd><p>An object that can adapt efficiently between Python and PostgreSQL.</p>
+<p>The life cycle of the object is the query, so it is assumed that attributes
+such as the server version or the connection encoding will not change. The
+object have its state so adapting several values of the same type can be
+optimised.</p>
+<dl class="field-list simple">
+<dt class="field-odd">參數<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>context</strong> (<a class="reference internal" href="abc.html#psycopg.abc.AdaptContext" title="psycopg.abc.AdaptContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaptContext</span></code></a>) -- The context where the transformer should operate.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="types.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types</span></code> -- Types information and adapters</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="conninfo.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conninfo</span></code> -- manipulate connection strings</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020, Daniele Varrazzo and The Psycopg Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt</span></code> -- Types adaptation</a><ul>
+<li><a class="reference internal" href="#dumpers-and-loaders">Dumpers and loaders</a><ul>
+<li><a class="reference internal" href="#psycopg.adapt.Dumper"><code class="docutils literal notranslate"><span class="pre">Dumper</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.adapt.Dumper.dump"><code class="docutils literal notranslate"><span class="pre">Dumper.dump()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.Dumper.format"><code class="docutils literal notranslate"><span class="pre">Dumper.format</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.Dumper.quote"><code class="docutils literal notranslate"><span class="pre">Dumper.quote()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.Dumper.get_key"><code class="docutils literal notranslate"><span class="pre">Dumper.get_key()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.Dumper.upgrade"><code class="docutils literal notranslate"><span class="pre">Dumper.upgrade()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg.adapt.Loader"><code class="docutils literal notranslate"><span class="pre">Loader</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.adapt.Loader.load"><code class="docutils literal notranslate"><span class="pre">Loader.load()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.Loader.format"><code class="docutils literal notranslate"><span class="pre">Loader.format</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-objects-used-in-adaptations">Other objects used in adaptations</a><ul>
+<li><a class="reference internal" href="#psycopg.adapt.PyFormat"><code class="docutils literal notranslate"><span class="pre">PyFormat</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.AdaptersMap"><code class="docutils literal notranslate"><span class="pre">AdaptersMap</span></code></a><ul>
+<li><a class="reference internal" href="#psycopg.adapt.AdaptersMap.register_dumper"><code class="docutils literal notranslate"><span class="pre">AdaptersMap.register_dumper()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.AdaptersMap.register_loader"><code class="docutils literal notranslate"><span class="pre">AdaptersMap.register_loader()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.AdaptersMap.types"><code class="docutils literal notranslate"><span class="pre">AdaptersMap.types</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.AdaptersMap.get_dumper"><code class="docutils literal notranslate"><span class="pre">AdaptersMap.get_dumper()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.AdaptersMap.get_dumper_by_oid"><code class="docutils literal notranslate"><span class="pre">AdaptersMap.get_dumper_by_oid()</span></code></a></li>
+<li><a class="reference internal" href="#psycopg.adapt.AdaptersMap.get_loader"><code class="docutils literal notranslate"><span class="pre">AdaptersMap.get_loader()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#psycopg.adapt.Transformer"><code class="docutils literal notranslate"><span class="pre">Transformer</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=a60bbb32"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/translations.js?v=cbf116e0"></script>
+    </body>
+</html>

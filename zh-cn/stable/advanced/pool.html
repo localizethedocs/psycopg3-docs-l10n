@@ -1,0 +1,848 @@
+<!doctype html>
+<html class="no-js" lang="zh-CN" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="../genindex.html"><link rel="search" title="搜索" href="../search.html"><link rel="next" title="Cursor types" href="cursors.html"><link rel="prev" title="Row factories" href="rows.html">
+        <link rel="canonical" href="https://projects.localizethedocs.org/psycopg3-docs-l10n/advanced/pool.html">
+        <link rel="prefetch" href="../_static/psycopg.svg" as="image">
+        <link rel="prefetch" href="../_static/psycopg.svg" as="image">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Connection pools - psycopg 3.3.4 文档</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/psycopg.css?v=67dada6b" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --admonition-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style>
+
+<script type="text/javascript" src="../ltd-provenance.js"></script>
+<script type="text/javascript" src="../ltd-current.js"></script>
+<script type="text/javascript" src="../../../ltd-config.js"></script>
+<script type="text/javascript" src="../../../ltd-flyout.js"></script>
+</head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">psycopg 3.3.4 文档</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../_static/psycopg.svg" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../_static/psycopg.svg" alt="Dark Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">psycopg 3.3.4 文档</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="搜索" name="q" aria-label="搜索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../basic/index.html">Getting started with Psycopg 3</a><input aria-label="Toggle navigation of Getting started with Psycopg 3" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../basic/install.html">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/usage.html">Basic module usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/params.html">Passing parameters to SQL queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/tstrings.html">Template string queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/adapt.html">Adapting basic Python types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/pgtypes.html">Adapting other PostgreSQL types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/transactions.html">Transactions management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/copy.html">Using COPY TO and COPY FROM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic/from_pg2.html">Differences from <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">More advanced topics</a><input aria-label="Toggle navigation of More advanced topics" checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="async.html">Concurrent operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typing.html">Static Typing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rows.html">Row factories</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Connection pools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cursors.html">Cursor types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="adapt.html">Data adaptation configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="prepare.html">Prepared statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline.html">Pipeline mode support</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">Psycopg 3 API</a><input aria-label="Toggle navigation of Psycopg 3 API" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/module.html">The <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg</span></code> module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/connections.html">Connection classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/cursors.html">Cursor classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/copy.html">COPY-related objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/objects.html">Other top-level objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/sql.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sql</span></code> -- SQL string composition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/rows.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rows</span></code> -- row factory implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/errors.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">errors</span></code> -- Package exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/pool.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code> -- Connection pool implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/conninfo.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">conninfo</span></code> -- manipulate connection strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/adapt.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">adapt</span></code> -- Types adaptation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/types.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types</span></code> -- Types information and adapters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/abc.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abc</span></code> -- Psycopg abstract classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/pq.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pq</span></code> -- libpq wrapper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/crdb.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">crdb</span></code> -- CockroachDB support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/dns.html"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_dns</span></code> -- DNS resolution utilities</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../news.html"><code class="docutils literal notranslate"><span class="pre">psycopg</span></code> release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../news_pool.html"><code class="docutils literal notranslate"><span class="pre">psycopg_pool</span></code> release notes</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="connection-pools">
+<span id="id1"></span><h1>Connection pools<a class="headerlink" href="#connection-pools" title="链接到此标题。">¶</a></h1>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Connection_pool">connection pool</a> is an object managing a set of connections and allowing
+their use in functions needing one. Because the time to establish a new
+connection can be relatively long, keeping connections open can reduce latency.</p>
+<p>This page explains a few basic concepts of Psycopg connection pool's
+behaviour. Please refer to the <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool" title="psycopg_pool.ConnectionPool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionPool</span></code></a> object API for details about
+the pool operations.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>The connection pool objects are distributed in a package separate
+from the main <a class="reference internal" href="../api/module.html#module-psycopg" title="psycopg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg</span></code></a> package: use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;psycopg[pool]&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span>
+<span class="pre">install</span> <span class="pre">psycopg_pool</span></code> to make the <a class="reference internal" href="../api/pool.html#module-psycopg_pool" title="psycopg_pool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code></a> package available. See
+<a class="reference internal" href="../basic/install.html#pool-installation"><span class="std std-ref">Installing the connection pool</span></a>.</p>
+</div>
+<section id="basic-connection-pool-usage">
+<h2>Basic connection pool usage<a class="headerlink" href="#basic-connection-pool-usage" title="链接到此标题。">¶</a></h2>
+<p>A <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool" title="psycopg_pool.ConnectionPool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionPool</span></code></a> object can be used to request connections from multiple
+concurrent threads. A simple and safe way to use it is as a <em>context manager</em>.
+Within the <code class="xref py py-obj docutils literal notranslate"><span class="pre">with</span></code> block, you can request the pool a connection using the
+<a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.connection" title="psycopg_pool.ConnectionPool.connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connection()</span></code></a> method, and use it as a context manager too:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ConnectionPool</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">pool</span><span class="o">.</span><span class="n">connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT something FROM somewhere ...&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
+            <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT something else...&quot;</span><span class="p">)</span>
+
+    <span class="c1"># At the end of the `connection()` context, the transaction is committed</span>
+    <span class="c1"># or rolled back, and the connection returned to the pool</span>
+
+<span class="c1"># At the end of the pool context, all the resources used by the pool are released</span>
+</pre></div>
+</div>
+<p>The <code class="xref py py-obj docutils literal notranslate"><span class="pre">connection()</span></code> context behaves like the <a class="reference internal" href="../api/connections.html#psycopg.Connection" title="psycopg.Connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code></a> object
+context: at the end of the block, if there is a transaction open, it will be
+committed if the context is exited normally, or rolled back if the context is
+exited with an exception. See <a class="reference internal" href="../basic/transactions.html#transaction-context"><span class="std std-ref">Transaction contexts</span></a> for details.</p>
+<p>The pool manages a certain amount of connections (between <code class="xref py py-obj docutils literal notranslate"><span class="pre">min_size</span></code> and
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">max_size</span></code>). If the pool has a connection ready in its state, it is served
+immediately to the <code class="xref py py-obj docutils literal notranslate"><span class="pre">connection()</span></code> caller, otherwise the caller is put in a
+queue and is served a connection as soon as it's available.</p>
+<p>If instead of threads your application uses async code you can use the
+<a class="reference internal" href="../api/pool.html#psycopg_pool.AsyncConnectionPool" title="psycopg_pool.AsyncConnectionPool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnectionPool</span></code></a> instead and use the <code class="xref py py-obj docutils literal notranslate"><span class="pre">async</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">await</span></code> keywords with
+the methods requiring them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">with</span> <span class="n">AsyncConnectionPool</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">with</span> <span class="n">pool</span><span class="o">.</span><span class="n">connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT something FROM somewhere ...&quot;</span><span class="p">)</span>
+
+        <span class="k">async</span> <span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="k">as</span> <span class="n">cur</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT something else...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="pool-startup-check">
+<h2>Pool startup check<a class="headerlink" href="#pool-startup-check" title="链接到此标题。">¶</a></h2>
+<p>After a pool is open, it can accept new clients even if it doesn't have
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">min_size</span></code> connections ready yet. However, if the application is
+misconfigured and cannot connect to the database server, the clients will
+block until failing with a <a class="reference internal" href="../api/pool.html#psycopg_pool.PoolTimeout" title="psycopg_pool.PoolTimeout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PoolTimeout</span></code></a>.</p>
+<p>If you want to make sure early in the application lifetime that the
+environment is well configured, you can use the <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.wait" title="psycopg_pool.ConnectionPool.wait"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait()</span></code></a> method
+after opening the pool, which will block until <code class="xref py py-obj docutils literal notranslate"><span class="pre">min_size</span></code> connections have
+been acquired, or fail with a <code class="xref py py-obj docutils literal notranslate"><span class="pre">PoolTimeout</span></code> if it doesn't happen in time:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ConnectionPool</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+    <span class="n">use_the</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="connections-life-cycle">
+<h2>Connections life cycle<a class="headerlink" href="#connections-life-cycle" title="链接到此标题。">¶</a></h2>
+<p>When the pool needs a new connection (because it was just opened, or because
+an existing connection was closed, or because a spike of activity requires new
+connections), it uses a background pool worker to prepare it in the background:</p>
+<ul class="simple">
+<li><p>the worker creates a connection according to the parameters <code class="xref py py-obj docutils literal notranslate"><span class="pre">conninfo</span></code>,
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">kwargs</span></code>, and <code class="xref py py-obj docutils literal notranslate"><span class="pre">connection_class</span></code> passed to <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool" title="psycopg_pool.ConnectionPool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionPool</span></code></a> constructor,
+calling something similar to <code class="samp docutils literal notranslate"><em><span class="pre">connection_class</span></em><span class="pre">(</span><em><span class="pre">conninfo</span></em><span class="pre">,</span>
+<span class="pre">**</span><em><span class="pre">kwargs</span></em><span class="pre">)</span></code>;</p></li>
+<li><p>if a <code class="xref py py-obj docutils literal notranslate"><span class="pre">configure</span></code> callback was provided, it is called with the new connection
+as parameter. This can be used, for instance, to configure the connection
+adapters.</p></li>
+</ul>
+<p>Once the connection is prepared, it is stored in the pool state, or it is
+passed to a client if someone is already in the requests queue.</p>
+<p>When a client asks for a connection (typically entering a
+<a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.connection" title="psycopg_pool.ConnectionPool.connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connection()</span></code></a> context):</p>
+<ul class="simple">
+<li><p>if there is a connection available in the pool, it is served to the client
+immediately;</p></li>
+<li><p>if no connection is available, the client is put in a queue, and will be
+served a connection once one becomes available (because returned by another
+client or because a new one is created);</p></li>
+<li><p>if a <code class="xref py py-obj docutils literal notranslate"><span class="pre">check</span></code> callback was provided, it is called on the connection before
+passing the connection to the client. If the check fails, a new connection
+will be obtained.</p></li>
+</ul>
+<p>When a client has finished to use the connection (typically at the end of the
+context stared by <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.connection" title="psycopg_pool.ConnectionPool.connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connection()</span></code></a>):</p>
+<ul class="simple">
+<li><p>if there is a transaction open, the transaction is committed (if the block
+is exited normally) or rolled back (if it is exited with an exception);</p></li>
+<li><p>if a <code class="xref py py-obj docutils literal notranslate"><span class="pre">reset</span></code> callback was provided, the connection is passed to it, to
+allow application-specific cleanup if needed;</p></li>
+<li><p>if, along this process, the connection is found in broken state, or if it
+passed the <code class="xref py py-obj docutils literal notranslate"><span class="pre">max_lifetime</span></code> configured at pool creation, it is discarded and
+a new connection is requested to a worker;</p></li>
+<li><p>the connection is finally returned to the pool, or, if there are clients in
+the queue, to the first client waiting.</p></li>
+</ul>
+</section>
+<section id="other-ways-to-create-a-pool">
+<h2>Other ways to create a pool<a class="headerlink" href="#other-ways-to-create-a-pool" title="链接到此标题。">¶</a></h2>
+<p>Using the pool as a context manager is not mandatory: pools can be created and
+used without using the context pattern. However, using the context is the
+safest way to manage its resources.</p>
+<p>When the pool is created, if its <code class="xref py py-obj docutils literal notranslate"><span class="pre">open</span></code> parameter is <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>, the connection
+process starts immediately. In a simple program you might create a pool as a
+global object and use it from the rest of your code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># module db.py in your program</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">psycopg_pool</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConnectionPool</span>
+
+<span class="n">pool</span> <span class="o">=</span> <span class="n">ConnectionPool</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="nb">open</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="c1"># the pool starts connecting immediately.</span>
+
+<span class="c1"># in another module</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">pool</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_function</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pool</span><span class="o">.</span><span class="n">connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Using this pattern, the pool will start the connection process already at
+import time. If that's too early, and you want to delay opening connections
+until the application is ready, you can specify to create a closed pool and
+call the <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.open" title="psycopg_pool.ConnectionPool.open"><code class="xref py py-obj docutils literal notranslate"><span class="pre">open()</span></code></a> method.</p>
+<p>If you are not using the pool as context manager, you are advised to call the
+<a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.close" title="psycopg_pool.ConnectionPool.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close()</span></code></a> method on program exit: on some Python versions this
+might cause a program exit delay. How to ensure it depends on the way you are
+writing your program. One simple method is to use the <a class="reference external" href="https://docs.python.org/3/library/atexit.html#module-atexit" title="(位于 Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">atexit</span></code></a> module:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Other frameworks might provide suitable hooks. For example, in FastAPI, you
+can use a <a class="reference external" href="https://fastapi.tiangolo.com/advanced/events/#lifespan">lifespan</a> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pool</span> <span class="o">=</span> <span class="n">AsyncConnectionPool</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="nb">open</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="nd">@asynccontextmanager</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">lifespan</span><span class="p">(</span><span class="n">instance</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">pool</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+    <span class="k">yield</span>
+    <span class="k">await</span> <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">lifespan</span><span class="o">=</span><span class="n">lifespan</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>The current default for the <code class="xref py py-obj docutils literal notranslate"><span class="pre">open</span></code> parameter is <code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code>. However this
+proved to be not the best idea and, in future releases, the default might
+be changed to <code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code>. As a consequence, if you rely on the pool to be
+opened on creation, you should specify <code class="xref py py-obj docutils literal notranslate"><span class="pre">open=True</span></code> explicitly.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>Opening an async pool in the constructor is deprecated and will be removed
+in the future. When using <a class="reference internal" href="../api/pool.html#psycopg_pool.AsyncConnectionPool" title="psycopg_pool.AsyncConnectionPool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnectionPool</span></code></a> you should call <code class="xref py py-obj docutils literal notranslate"><span class="pre">await</span>
+<span class="pre">pool.open()</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">async</span> <span class="pre">with</span> <span class="pre">...</span> <span class="pre">as</span> <span class="pre">pool</span></code> explicitly.</p>
+</div>
+</section>
+<section id="null-connection-pools">
+<span id="null-pool"></span><h2>Null connection pools<a class="headerlink" href="#null-connection-pools" title="链接到此标题。">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.1 版本加入.</span></p>
+</div>
+<p>Sometimes you may want leave the choice of using or not using a connection
+pool as a configuration parameter of your application. For instance, you might
+want to use a pool if you are deploying a &quot;large instance&quot; of your application
+and can dedicate it a handful of connections; conversely you might not want to
+use it if you deploy the application in several instances, behind a load
+balancer, and/or using an external connection pool process such as PgBouncer.</p>
+<p>Switching between using or not using a pool requires some code change, because
+the <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool" title="psycopg_pool.ConnectionPool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionPool</span></code></a> API is different from the normal <a class="reference internal" href="../api/module.html#psycopg.connect" title="psycopg.connect"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connect()</span></code></a>
+function and because the pool can perform additional connection configuration
+(in the <code class="xref py py-obj docutils literal notranslate"><span class="pre">configure</span></code> parameter) that, if the pool is removed, should be
+performed in some different code path of your application.</p>
+<p>The <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code> 3.1 package introduces the <a class="reference internal" href="../api/pool.html#psycopg_pool.NullConnectionPool" title="psycopg_pool.NullConnectionPool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NullConnectionPool</span></code></a> class.
+This class has the same interface, and largely the same behaviour, of the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionPool</span></code>, but doesn't create any connection beforehand. When a
+connection is returned, unless there are other clients already waiting, it
+is closed immediately and not kept in the pool state.</p>
+<p>A null pool is not only a configuration convenience, but can also be used to
+regulate the access to the server by a client program. If <code class="xref py py-obj docutils literal notranslate"><span class="pre">max_size</span></code> is set to
+a value greater than 0, the pool will make sure that no more than <code class="xref py py-obj docutils literal notranslate"><span class="pre">max_size</span></code>
+connections are created at any given time. If more clients ask for further
+connections, they will be queued and served a connection as soon as a previous
+client has finished using it, like for the basic pool. Other mechanisms to
+throttle client requests (such as <code class="xref py py-obj docutils literal notranslate"><span class="pre">timeout</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">max_waiting</span></code>) are respected
+too.</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>Queued clients will be handed an already established connection, as soon
+as a previous client has finished using it (and after the pool has
+returned it to idle state and called <code class="xref py py-obj docutils literal notranslate"><span class="pre">reset()</span></code> on it, if necessary).</p>
+</div>
+<p>Because normally (i.e. unless queued) every client will be served a new
+connection, the time to obtain the connection is paid by the waiting client;
+background workers are not normally involved in obtaining new connections.</p>
+</section>
+<section id="pool-connection-and-sizing">
+<h2>Pool connection and sizing<a class="headerlink" href="#pool-connection-and-sizing" title="链接到此标题。">¶</a></h2>
+<p>A pool can have a fixed size (specifying no <code class="xref py py-obj docutils literal notranslate"><span class="pre">max_size</span></code> or <code class="xref py py-obj docutils literal notranslate"><span class="pre">max_size</span></code> =
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">min_size</span></code>) or a dynamic size (when <code class="xref py py-obj docutils literal notranslate"><span class="pre">max_size</span></code> &gt; <code class="xref py py-obj docutils literal notranslate"><span class="pre">min_size</span></code>). In both
+cases, as soon as the pool is created, it will try to acquire <code class="xref py py-obj docutils literal notranslate"><span class="pre">min_size</span></code>
+connections in the background.</p>
+<p>If an attempt to create a connection fails, a new attempt will be made soon
+after, using an exponential backoff to increase the time between attempts,
+until a maximum of <code class="xref py py-obj docutils literal notranslate"><span class="pre">reconnect_timeout</span></code> is reached. When that happens, the pool
+will call the <code class="xref py py-obj docutils literal notranslate"><span class="pre">reconnect_failed()</span></code> function, if provided to the pool, and just
+start a new connection attempt. You can use this function either to send
+alerts or to interrupt the program and allow the rest of your infrastructure
+to restart it.</p>
+<p>If more than <code class="xref py py-obj docutils literal notranslate"><span class="pre">min_size</span></code> connections are requested concurrently, new ones are
+created, up to <code class="xref py py-obj docutils literal notranslate"><span class="pre">max_size</span></code>. Note that the connections are always created by the
+background workers, not by the thread asking for the connection: if a client
+requests a new connection, and a previous client terminates its job before the
+new connection is ready, the waiting client will be served the existing
+connection. This is especially useful in scenarios where the time to establish
+a connection dominates the time for which the connection is used (see <a class="reference external" href="https://github.com/brettwooldridge/HikariCP/blob/dev/documents/Welcome-To-The-Jungle.md">this
+analysis</a>, for instance).</p>
+<p>If a pool grows above <code class="xref py py-obj docutils literal notranslate"><span class="pre">min_size</span></code>, but its usage decreases afterwards, a number
+of connections are eventually closed: one every time a connection is unused
+after the <code class="xref py py-obj docutils literal notranslate"><span class="pre">max_idle</span></code> time specified in the pool constructor.</p>
+<section id="what-s-the-right-size-for-the-pool">
+<h3>What's the right size for the pool?<a class="headerlink" href="#what-s-the-right-size-for-the-pool" title="链接到此标题。">¶</a></h3>
+<p>Big question. Who knows. However, probably not as large as you imagine. Please
+take a look at <a class="reference external" href="https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing">this analysis</a> for some ideas.</p>
+<p>Something useful you can do is probably to use the
+<a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.get_stats" title="psycopg_pool.ConnectionPool.get_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_stats()</span></code></a> method and monitor the behaviour of your program
+to tune the configuration parameters. The size of the pool can also be changed
+at runtime using the <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.resize" title="psycopg_pool.ConnectionPool.resize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">resize()</span></code></a> method.</p>
+</section>
+</section>
+<section id="connection-quality">
+<h2>Connection quality<a class="headerlink" href="#connection-quality" title="链接到此标题。">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.2 版本加入.</span></p>
+</div>
+<p>The pool doesn't actively check the state of the connections held in its
+state. This means that, if communication with the server is lost, or if a
+connection is closed for other reasons (such as a server configured with an
+<a class="reference external" href="https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-IDLE-SESSION-TIMEOUT">idle_session_timeout</a> killing connections that haven't been used for some
+time), the application might be served a connection in broken state.</p>
+<p>If you want to configure the pool to check the state of the connection, and
+make sure that the application always receives a working connection, you can
+configure a <code class="xref py py-obj docutils literal notranslate"><span class="pre">check</span></code> callback. The callback can perform some operation to
+verify the quality of the connection and, if it completes without raising
+exception, the connection is passed to the client. This, of course, will imply
+some network time that the pool client will have to pay.</p>
+<p>A simple implementation is available as the static method
+<a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.check_connection" title="psycopg_pool.ConnectionPool.check_connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConnectionPool.check_connection</span></code></a>, which can be used as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">ConnectionPool</span><span class="p">(</span>
+    <span class="o">...</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="n">ConnectionPool</span><span class="o">.</span><span class="n">check_connection</span><span class="p">,</span> <span class="o">...</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+</section>
+<section id="pool-operations-logging">
+<span id="pool-logging"></span><h2>Pool operations logging<a class="headerlink" href="#pool-operations-logging" title="链接到此标题。">¶</a></h2>
+<p>The pool uses the <a class="reference external" href="https://docs.python.org/3/library/logging.html#module-logging" title="(位于 Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logging</span></code></a> module to log some key operations to the
+<code class="docutils literal notranslate"><span class="pre">psycopg.pool</span></code> logger. If you are trying to debug the pool behaviour you may
+try to log at least the <code class="docutils literal notranslate"><span class="pre">INFO</span></code> operations on that logger.</p>
+<p>For example, the script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadPoolExecutor</span><span class="p">,</span> <span class="n">as_completed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">psycopg_pool</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConnectionPool</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2"> </span><span class="si">%(name)s</span><span class="s2">: </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+<span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;psycopg.pool&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+<span class="n">pool</span> <span class="o">=</span> <span class="n">ConnectionPool</span><span class="p">(</span><span class="n">min_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">pool</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;pool ready&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">square</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">pool</span><span class="o">.</span><span class="n">connection</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">rec</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT </span><span class="si">%s</span><span class="s2"> * </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The square of </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">[</span><span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+        <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>might print something like:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2023-09-20 11:02:39,718 INFO psycopg.pool: waiting for pool &#39;pool-1&#39; initialization
+2023-09-20 11:02:39,720 INFO psycopg.pool: adding new connection to the pool
+2023-09-20 11:02:39,720 INFO psycopg.pool: adding new connection to the pool
+2023-09-20 11:02:39,720 INFO psycopg.pool: pool &#39;pool-1&#39; is ready to use
+2023-09-20 11:02:39,720 INFO root: pool ready
+2023-09-20 11:02:39,721 INFO psycopg.pool: connection requested from &#39;pool-1&#39;
+2023-09-20 11:02:39,721 INFO psycopg.pool: connection given by &#39;pool-1&#39;
+2023-09-20 11:02:39,721 INFO psycopg.pool: connection requested from &#39;pool-1&#39;
+2023-09-20 11:02:39,721 INFO psycopg.pool: connection given by &#39;pool-1&#39;
+2023-09-20 11:02:39,721 INFO psycopg.pool: connection requested from &#39;pool-1&#39;
+2023-09-20 11:02:39,722 INFO psycopg.pool: connection requested from &#39;pool-1&#39;
+2023-09-20 11:02:40,724 INFO root: The square of 0 is 0.
+2023-09-20 11:02:40,724 INFO root: The square of 1 is 1.
+2023-09-20 11:02:40,725 INFO psycopg.pool: returning connection to &#39;pool-1&#39;
+2023-09-20 11:02:40,725 INFO psycopg.pool: connection given by &#39;pool-1&#39;
+2023-09-20 11:02:40,725 INFO psycopg.pool: returning connection to &#39;pool-1&#39;
+2023-09-20 11:02:40,726 INFO psycopg.pool: connection given by &#39;pool-1&#39;
+2023-09-20 11:02:41,728 INFO root: The square of 3 is 9.
+2023-09-20 11:02:41,729 INFO root: The square of 2 is 4.
+2023-09-20 11:02:41,729 INFO psycopg.pool: returning connection to &#39;pool-1&#39;
+2023-09-20 11:02:41,730 INFO psycopg.pool: returning connection to &#39;pool-1&#39;
+</pre></div>
+</div>
+<p>Please do not rely on the messages generated to remain unchanged across
+versions: they don't constitute a stable interface.</p>
+</section>
+<section id="pool-stats">
+<span id="id7"></span><h2>Pool stats<a class="headerlink" href="#pool-stats" title="链接到此标题。">¶</a></h2>
+<p>The pool can return information about its usage using the methods
+<a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.get_stats" title="psycopg_pool.ConnectionPool.get_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_stats()</span></code></a> or <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.pop_stats" title="psycopg_pool.ConnectionPool.pop_stats"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop_stats()</span></code></a>. Both methods
+return the same values, but the latter reset the counters after its use. The
+values can be sent to a monitoring system such as <a class="reference external" href="https://graphiteapp.org/">Graphite</a> or <a class="reference external" href="https://prometheus.io/">Prometheus</a>.</p>
+<p>The following values should be provided, but please don't consider them as a
+rigid interface: it is possible that they might change in the future. Keys
+whose value is 0 may not be returned.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pool_min</span></code></p></td>
+<td><p>Current value for <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.min_size" title="psycopg_pool.ConnectionPool.min_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">min_size</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pool_max</span></code></p></td>
+<td><p>Current value for <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.max_size" title="psycopg_pool.ConnectionPool.max_size"><code class="xref py py-obj docutils literal notranslate"><span class="pre">max_size</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pool_size</span></code></p></td>
+<td><p>Number of connections currently managed by the pool
+(in the pool, given to clients, being prepared)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pool_available</span></code></p></td>
+<td><p>Number of connections currently idle in the pool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">requests_waiting</span></code></p></td>
+<td><p>Number of requests currently waiting in a queue to
+receive a connection</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">usage_ms</span></code></p></td>
+<td><p>Total usage time of the connections outside the pool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">requests_num</span></code></p></td>
+<td><p>Number of connections requested to the pool</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">requests_queued</span></code></p></td>
+<td><p>Number of requests queued because a connection wasn't
+immediately available in the pool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">requests_wait_ms</span></code></p></td>
+<td><p>Total time in the queue for the clients waiting</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">requests_errors</span></code></p></td>
+<td><p>Number of connection requests resulting in an error
+(timeouts, queue full...)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">returns_bad</span></code></p></td>
+<td><p>Number of connections returned to the pool in a bad
+state</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">connections_num</span></code></p></td>
+<td><p>Number of connection attempts made by the pool to the
+server</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">connections_ms</span></code></p></td>
+<td><p>Total time spent to establish connections with the
+server</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">connections_errors</span></code></p></td>
+<td><p>Number of failed connection attempts</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">connections_lost</span></code></p></td>
+<td><p>Number of connections lost identified by
+<a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.check" title="psycopg_pool.ConnectionPool.check"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check()</span></code></a> or by the <code class="xref py py-obj docutils literal notranslate"><span class="pre">check</span></code> callback</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="integration-with-sqlalchemy">
+<span id="pool-sqlalchemy"></span><h2>Integration with SQLAlchemy<a class="headerlink" href="#integration-with-sqlalchemy" title="链接到此标题。">¶</a></h2>
+<div class="versionadded">
+<p><span class="versionmodified added">在 3.3 版本加入.</span></p>
+</div>
+<p>If you want to use <a class="reference external" href="https://sqlalchemy.org">SQLAlchemy</a> with psycopg's connection pool you can use the
+SQLAlchemy's <a class="reference external" href="https://docs.sqlalchemy.org/en/20/core/pooling.html#sqlalchemy.pool.NullPool">NullPool</a> feature, using the pool's <a class="reference internal" href="../api/pool.html#psycopg_pool.ConnectionPool.getconn" title="psycopg_pool.ConnectionPool.getconn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getconn</span></code></a>
+as <code class="xref py py-obj docutils literal notranslate"><span class="pre">creator</span></code> function. However, SQLAlchemy expects that calling
+<a class="reference internal" href="../api/connections.html#psycopg.Connection.close" title="psycopg.Connection.close"><code class="xref py py-obj docutils literal notranslate"><span class="pre">close()</span></code></a> on the connection will return the connection to
+the pool, which is not Psycopg's default behaviour.</p>
+<p>Since <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code> version 3.3, the <code class="xref py py-obj docutils literal notranslate"><span class="pre">close_returns</span></code> parameter of the pool
+allows to change this behaviour, telling its connections to return to the
+pool, instead of closing, when <code class="xref py py-obj docutils literal notranslate"><span class="pre">close()</span></code> is called.</p>
+<p>For example, the initialization in an async application may look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">psycopg_pool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sqlalchemy.pool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sqlalchemy.ext.asyncio</span>
+
+<span class="n">db_url</span> <span class="o">=</span> <span class="s2">&quot;postgresql://postgres:postgres@hostname:port/database&quot;</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Create and open a Psycopg pool</span>
+    <span class="n">pgpool</span> <span class="o">=</span> <span class="n">psycopg_pool</span><span class="o">.</span><span class="n">AsyncConnectionPool</span><span class="p">(</span>
+        <span class="n">conninfo</span><span class="o">=</span><span class="n">db_url</span><span class="p">,</span> <span class="nb">open</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">close_returns</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="k">await</span> <span class="n">mypool</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+
+    <span class="c1"># Create a SQLAlchemy engine using the pool just created</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">sqlalchemy</span><span class="o">.</span><span class="n">ext</span><span class="o">.</span><span class="n">asyncio</span><span class="o">.</span><span class="n">create_async_engine</span><span class="p">(</span>
+        <span class="n">url</span><span class="o">=</span><span class="s2">&quot;postgresql+psycopg://&quot;</span><span class="p">,</span>
+        <span class="n">poolclass</span><span class="o">=</span><span class="n">sqlalchemy</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">NullPool</span><span class="p">,</span>
+        <span class="n">async_creator</span><span class="o">=</span><span class="n">pgpool</span><span class="o">.</span><span class="n">getconn</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Use the `engine` in the rest of your application.</span>
+    <span class="k">await</span> <span class="n">run_my_app</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>If you want to integrate the Psycopg pool with SQLAlchemy using a <code class="xref py py-obj docutils literal notranslate"><span class="pre">psycopg_pool</span></code>
+version older than 3.3, you will need to create a subclass of the
+<a class="reference internal" href="../api/connections.html#psycopg.Connection" title="psycopg.Connection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Connection</span></code></a> or <a class="reference internal" href="../api/connections.html#psycopg.AsyncConnection" title="psycopg.AsyncConnection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsyncConnection</span></code></a> class, overriding the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">close()</span></code> method, with an implementation similar to the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MyAsyncConnection</span><span class="p">(</span><span class="n">psycopg</span><span class="o">.</span><span class="n">AsyncConnection</span><span class="p">):</span>
+    <span class="c1"># If you need to subclass a sync connection, just drop the</span>
+    <span class="c1"># &#39;async&#39; and &#39;await&#39; keywords from this example.</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">pool</span> <span class="o">:=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_pool&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="c1"># Connection currently checked out from the pool.</span>
+            <span class="c1"># Instead of closing it, return it to the pool.</span>
+            <span class="k">await</span> <span class="n">pool</span><span class="o">.</span><span class="n">putconn</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Connection not part of any pool, or currently into the pool.</span>
+            <span class="c1"># Close the connection for real.</span>
+            <span class="k">await</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Using a connection implementing this method you will not need to specify
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">close_returns</span></code> in the pool constructor, but just <code class="xref py py-obj docutils literal notranslate"><span class="pre">connection_class</span></code>; the
+example above would be modified as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pgpool</span> <span class="o">=</span> <span class="n">psycopg_pool</span><span class="o">.</span><span class="n">AsyncConnectionPool</span><span class="p">(</span>
+    <span class="n">conninfo</span><span class="o">=</span><span class="n">db_url</span><span class="p">,</span> <span class="nb">open</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">connection_class</span><span class="o">=</span><span class="n">MyAsyncConnection</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="cursors.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Cursor types</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="rows.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Row factories</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2020, Daniele Varrazzo and The Psycopg Team
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Connection pools</a><ul>
+<li><a class="reference internal" href="#basic-connection-pool-usage">Basic connection pool usage</a></li>
+<li><a class="reference internal" href="#pool-startup-check">Pool startup check</a></li>
+<li><a class="reference internal" href="#connections-life-cycle">Connections life cycle</a></li>
+<li><a class="reference internal" href="#other-ways-to-create-a-pool">Other ways to create a pool</a></li>
+<li><a class="reference internal" href="#null-connection-pools">Null connection pools</a></li>
+<li><a class="reference internal" href="#pool-connection-and-sizing">Pool connection and sizing</a><ul>
+<li><a class="reference internal" href="#what-s-the-right-size-for-the-pool">What's the right size for the pool?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#connection-quality">Connection quality</a></li>
+<li><a class="reference internal" href="#pool-operations-logging">Pool operations logging</a></li>
+<li><a class="reference internal" href="#pool-stats">Pool stats</a></li>
+<li><a class="reference internal" href="#integration-with-sqlalchemy">Integration with SQLAlchemy</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=fc3f9bd0"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/translations.js?v=540d3cec"></script>
+    </body>
+</html>
