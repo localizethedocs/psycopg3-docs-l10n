@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../advanced/prepare.rst:3 ../../../advanced/prepare.rst:9
+msgid "Prepared statements"
+msgstr ""
+
+#: ../../../advanced/prepare.rst:11
+msgid ""
+"Psycopg uses an automatic system to manage *prepared statements*. When a "
+"query is prepared, its parsing and planning is stored in the server session, "
+"so that further executions of the same query on the same connection (even "
+"with different parameters) are optimised."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:16
+msgid ""
+"A query is prepared automatically after it is executed more than "
+"`~Connection.prepare_threshold` times on a connection. `!psycopg` will make "
+"sure that no more than `~Connection.prepared_max` statements are planned: if "
+"further queries are executed, the least recently used ones are deallocated "
+"and the associated resources freed."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:22
+msgid "Statement preparation can be controlled in several ways:"
+msgstr ""
+
+#: ../../../advanced/prepare.rst:24
+msgid ""
+"You can decide to prepare a query immediately by passing `!prepare=True` to "
+"`Connection.execute()` or `Cursor.execute()`. The query is prepared, if it "
+"wasn't already, and executed as prepared from its first use."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:28
+msgid ""
+"Conversely, passing `!prepare=False` to `!execute()` will avoid to prepare "
+"the query, regardless of the number of times it is executed. The default for "
+"the parameter is `!None`, meaning that the query is prepared if the "
+"conditions described above are met."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:33
+msgid ""
+"You can disable the use of prepared statements on a connection by setting "
+"its `~Connection.prepare_threshold` attribute to `!None`."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:36
+msgid ""
+"You can set `!prepare_threshold` as a `~Connection.connect()` keyword "
+"parameter too."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:42
+msgid ""
+"The `PREPARE`__ PostgreSQL documentation contains plenty of details about "
+"prepared statements in PostgreSQL."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:45
+msgid ""
+"Note however that Psycopg doesn't use SQL statements such as :sql:`PREPARE` "
+"and :sql:`EXECUTE`, but protocol level commands such as the ones exposed by :"
+"pq:`PQsendPrepare`, :pq:`PQsendQueryPrepared`."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:55
+msgid "Using prepared statements with PgBouncer"
+msgstr ""
+
+#: ../../../advanced/prepare.rst:59
+msgid ""
+"Unless a connection pooling middleware explicitly declares otherwise, they "
+"are not compatible with prepared statements, because the same client "
+"connection may change the server session it refers to. If such middleware is "
+"used you should disable prepared statements, by setting the `Connection."
+"prepare_threshold` attribute to `!None`."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:65
+msgid ""
+"Starting from 3.2, Psycopg supports prepared statements when using the "
+"PgBouncer__ middleware, using the following caveats:"
+msgstr ""
+
+#: ../../../advanced/prepare.rst:68
+msgid "PgBouncer version must be version `1.22`__ or newer."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:69
+msgid "PgBouncer `max_prepared_statements`__ must be greater than 0."
+msgstr "PgBouncer 的 `max_prepared_statements`__ 必須大於 0。"
+
+#: ../../../advanced/prepare.rst:70
+msgid ""
+"The libpq version on the client must be from PostgreSQL 17 or newer (you can "
+"check the `~Capabilities.has_send_close_prepared()` capability to verify "
+"that the libpq implements the features required by PgBouncer)."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:80
+msgid ""
+"If libpq 17 is not available on your client, but PgBouncer is 1.22 or "
+"higher, you can still use Psycopg *as long as you disable deallocation*."
+msgstr ""
+
+#: ../../../advanced/prepare.rst:83
+msgid "You can do so by setting `Connection.prepared_max` to `!None`."
+msgstr ""

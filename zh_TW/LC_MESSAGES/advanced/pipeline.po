@@ -1,0 +1,484 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../advanced/pipeline.rst:6
+msgid "Pipeline mode support"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:10
+msgid ""
+"The *pipeline mode* allows PostgreSQL client applications to send a query "
+"without having to read the result of the previously sent query. Taking "
+"advantage of the pipeline mode, a client will wait less for the server, "
+"since multiple queries/results can be sent/received in a single network "
+"roundtrip. Pipeline mode can provide a significant performance boost to the "
+"application."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:16
+msgid ""
+"Pipeline mode is most useful when the server is distant, i.e., network "
+"latency (“ping time”) is high, and also when many small operations are being "
+"performed in rapid succession. There is usually less benefit in using "
+"pipelined commands when each query takes many multiples of the client/server "
+"round-trip time to execute. A 100-statement operation run on a server 300 ms "
+"round-trip-time away would take 30 seconds in network latency alone without "
+"pipelining; with pipelining it may spend as little as 0.3 s waiting for "
+"results from the server."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:25
+msgid ""
+"The server executes statements, and returns results, in the order the client "
+"sends them. The server will begin executing the commands in the pipeline "
+"immediately, not waiting for the end of the pipeline. Note that results are "
+"buffered on the server side; the server flushes that buffer when a :ref:"
+"`synchronization point <pipeline-sync>` is established."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:33
+msgid "The PostgreSQL documentation about:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:35
+msgid "`pipeline mode`__"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:36
+msgid "`extended query message flow`__"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:38
+msgid ""
+"contains many details around when it is most useful to use the pipeline mode "
+"and about errors management and interaction with transactions."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:46
+msgid "Client-server messages flow"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:48
+msgid ""
+"In order to understand better how the pipeline mode works, we should take a "
+"closer look at the `PostgreSQL client-server message flow`__."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:51
+msgid ""
+"During normal querying, each statement is transmitted by the client to the "
+"server as a stream of request messages, terminating with a **Sync** message "
+"to tell it that it should process the messages sent so far. The server will "
+"execute the statement and describe the results back as a stream of messages, "
+"terminating with a **ReadyForQuery**, telling the client that it may now "
+"send a new query."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:58
+msgid "For example, the statement (returning no result):"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:60
+msgid "conn.execute(\"INSERT INTO mytable (data) VALUES (%s)\", [\"hello\"])"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:64
+msgid "results in the following two groups of messages:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:70 ../../../advanced/pipeline.rst:98
+#: ../../../advanced/pipeline.rst:133
+msgid "Direction"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:70 ../../../advanced/pipeline.rst:98
+#: ../../../advanced/pipeline.rst:133
+msgid "Message"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:72 ../../../advanced/pipeline.rst:83
+#: ../../../advanced/pipeline.rst:100 ../../../advanced/pipeline.rst:110
+#: ../../../advanced/pipeline.rst:135 ../../../advanced/pipeline.rst:149
+msgid "Python"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:74 ../../../advanced/pipeline.rst:102
+#: ../../../advanced/pipeline.rst:137
+msgid "|>|"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:76 ../../../advanced/pipeline.rst:79
+#: ../../../advanced/pipeline.rst:104 ../../../advanced/pipeline.rst:106
+#: ../../../advanced/pipeline.rst:139 ../../../advanced/pipeline.rst:145
+msgid "PostgreSQL"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:72
+msgid ""
+"Parse ``INSERT INTO ... (VALUE $1)`` (skipped if :ref:`the statement is "
+"prepared <prepared-statements>`)"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:74 ../../../advanced/pipeline.rst:136
+msgid "Bind ``'hello'``"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:75 ../../../advanced/pipeline.rst:102
+#: ../../../advanced/pipeline.rst:137 ../../../advanced/pipeline.rst:141
+msgid "Describe"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:76 ../../../advanced/pipeline.rst:103
+#: ../../../advanced/pipeline.rst:138 ../../../advanced/pipeline.rst:142
+msgid "Execute"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:77 ../../../advanced/pipeline.rst:104
+msgid "Sync"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:81 ../../../advanced/pipeline.rst:108
+#: ../../../advanced/pipeline.rst:147
+msgid "|<|"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:79 ../../../advanced/pipeline.rst:106
+#: ../../../advanced/pipeline.rst:145 ../../../advanced/pipeline.rst:149
+msgid "ParseComplete"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:80 ../../../advanced/pipeline.rst:107
+#: ../../../advanced/pipeline.rst:146 ../../../advanced/pipeline.rst:150
+msgid "BindComplete"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:81 ../../../advanced/pipeline.rst:147
+msgid "NoData"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:82 ../../../advanced/pipeline.rst:148
+msgid "CommandComplete ``INSERT 0 1``"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:83 ../../../advanced/pipeline.rst:111
+msgid "ReadyForQuery"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:86
+msgid "and the query:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:88
+msgid "conn.execute(\"SELECT data FROM mytable WHERE id = %s\", [1])"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:92
+msgid "results in the two groups of messages:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:100 ../../../advanced/pipeline.rst:139
+msgid "Parse ``SELECT data FROM mytable WHERE id = $1``"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:101 ../../../advanced/pipeline.rst:140
+msgid "Bind ``1``"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:108 ../../../advanced/pipeline.rst:151
+msgid "RowDescription    ``data``"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:109 ../../../advanced/pipeline.rst:152
+msgid "DataRow           ``hello``"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:110 ../../../advanced/pipeline.rst:153
+msgid "CommandComplete ``SELECT 1``"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:114
+msgid ""
+"The two statements, sent consecutively, pay the communication overhead four "
+"times, once per leg."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:117
+msgid ""
+"The pipeline mode allows the client to combine several operations in longer "
+"streams of messages to the server, then to receive more than one response in "
+"a single batch. If we execute the two operations above in a pipeline:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:121
+msgid ""
+"with conn.pipeline():\n"
+"    conn.execute(\"INSERT INTO mytable (data) VALUES (%s)\", [\"hello\"])\n"
+"    conn.execute(\"SELECT data FROM mytable WHERE id = %s\", [1])"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:127
+msgid ""
+"they will result in a single roundtrip between the client and the server:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:135
+msgid "Parse ``INSERT INTO ... (VALUE $1)``"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:143
+msgid "Sync (sent only once)"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:154
+msgid "ReadyForQuery (sent only once)"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:166
+msgid "Pipeline mode usage"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:168
+msgid ""
+"Psycopg supports the pipeline mode via the `Connection.pipeline()` method. "
+"The method is a context manager: entering the ``with`` block yields a "
+"`Pipeline` object. At the end of block, the connection resumes the normal "
+"operation mode."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:172
+msgid ""
+"Within the pipeline block, you can use normally one or more cursors to "
+"execute several operations, using `Connection.execute()`, `Cursor.execute()` "
+"and `~Cursor.executemany()`."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:176
+msgid ""
+">>> with conn.pipeline():\n"
+"...     conn.execute(\"INSERT INTO mytable VALUES (%s)\", [\"hello\"])\n"
+"...     with conn.cursor() as cur:\n"
+"...         cur.execute(\"INSERT INTO othertable VALUES (%s)\", "
+"[\"world\"])\n"
+"...         cur.executemany(\n"
+"...             \"INSERT INTO elsewhere VALUES (%s)\",\n"
+"...             [(\"one\",), (\"two\",), (\"four\",)])"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:186
+msgid ""
+"Unlike in normal mode, Psycopg will not wait for the server to receive the "
+"result of each query; the client will receive results in batches when the "
+"server flushes it output buffer. You can receive more than a single result "
+"by using more than one cursor in the same pipeline."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:191
+msgid ""
+"If any statement encounters an error, the server aborts the current "
+"transaction and will not execute any subsequent command in the queue until "
+"the next :ref:`synchronization point <pipeline-sync>`; a `~errors."
+"PipelineAborted` exception is raised for each such command. Query processing "
+"resumes after the synchronization point."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:199
+msgid "Certain features are not available in pipeline mode, including:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:201
+msgid "COPY is not supported in pipeline mode by PostgreSQL."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:202
+msgid ""
+"`Cursor.stream()` doesn't make sense in pipeline mode (its job is the "
+"opposite of batching!)."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:204
+msgid "`ServerCursor` are currently not implemented in pipeline mode."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:205
+msgid ""
+"You cannot execute :ref:`multiple statements in the same query <multi-"
+"statements>`."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:210
+msgid ""
+"Starting from Psycopg 3.1, `~Cursor.executemany()` makes use internally of "
+"the pipeline mode; as a consequence there is no need to handle a pipeline "
+"block just to call `!executemany()` once."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:218
+msgid "Synchronization points"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:220
+msgid ""
+"Flushing query results to the client can happen either when a "
+"synchronization point is established by Psycopg:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:223
+msgid "using the `Pipeline.sync()` method;"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:224
+msgid "on `Connection.commit()` or `~Connection.rollback()`;"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:225
+msgid "at the end of a `!Pipeline` block;"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:226
+msgid "possibly when opening a nested `!Pipeline` block;"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:227
+msgid ""
+"using a fetch method such as `Cursor.fetchone()` (which only flushes the "
+"query but doesn't issue a Sync and doesn't reset a pipeline state error)."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:230
+msgid ""
+"The server might perform a flush on its own initiative, for instance when "
+"the output buffer is full."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:233
+msgid ""
+"Note that, even in :ref:`autocommit <autocommit>`, the server wraps the "
+"statements sent in pipeline mode in an implicit transaction, which will be "
+"only committed when the Sync is received. As such, a failure in a group of "
+"statements will probably invalidate the effect of statements executed after "
+"the previous Sync, and will propagate to the following Sync."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:239
+msgid "For example, in the following block:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:241
+msgid ""
+">>> with psycopg.connect(autocommit=True) as conn:\n"
+"...     with conn.pipeline() as p, conn.cursor() as cur:\n"
+"...         try:\n"
+"...             cur.execute(\"INSERT INTO mytable (data) VALUES (%s)\", "
+"[\"one\"])\n"
+"...             cur.execute(\"INSERT INTO no_such_table (data) VALUES "
+"(%s)\", [\"two\"])\n"
+"...             conn.execute(\"INSERT INTO mytable (data) VALUES (%s)\", "
+"[\"three\"])\n"
+"...             p.sync()\n"
+"...         except psycopg.errors.UndefinedTable:\n"
+"...             pass\n"
+"...         cur.execute(\"INSERT INTO mytable (data) VALUES (%s)\", "
+"[\"four\"])"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:254
+msgid ""
+"there will be an error in the block, ``relation \"no_such_table\" does not "
+"exist`` caused by the insert ``two``, but probably raised by the `!sync()` "
+"call. At at the end of the block, the table will contain:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:258
+msgid ""
+"=# SELECT * FROM mytable;\n"
+"+----+------+\n"
+"| id | data |\n"
+"+----+------+\n"
+"|  2 | four |\n"
+"+----+------+\n"
+"(1 row)"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:268
+msgid "because:"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:270
+msgid ""
+"the value 1 of the sequence is consumed by the statement ``one``, but the "
+"record discarded because of the error in the same implicit transaction;"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:272
+msgid ""
+"the statement ``three`` is not executed because the pipeline is aborted (so "
+"it doesn't consume a sequence item);"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:274
+msgid ""
+"the statement ``four`` is executed with success after the Sync has "
+"terminated the failed transaction."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:279
+msgid ""
+"The exact Python statement where an exception caused by a server error is "
+"raised is somewhat arbitrary: it depends on when the server flushes its "
+"buffered result."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:283
+msgid ""
+"If you want to make sure that a group of statements is applied atomically by "
+"the server, do make use of transaction methods such as `~Connection."
+"commit()` or `~Connection.transaction()`: these methods will also sync the "
+"pipeline and raise an exception if there was any error in the commands "
+"executed so far."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:291
+msgid "The fine prints"
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:295
+msgid "The Pipeline mode is an experimental feature."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:297
+msgid ""
+"Its behaviour, especially around error conditions and concurrency, hasn't "
+"been explored as much as the normal request-response messages pattern, and "
+"its async nature makes it inherently more complex."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:301
+msgid ""
+"As we gain more experience and feedback (which is welcome), we might find "
+"bugs and shortcomings forcing us to change the current interface or "
+"behaviour."
+msgstr ""
+
+#: ../../../advanced/pipeline.rst:305
+msgid ""
+"The pipeline mode is available on any currently supported PostgreSQL "
+"version, but, in order to make use of it, the client must use a libpq from "
+"PostgreSQL 14 or higher. You can use the `~Capabilities.has_pipeline` "
+"capability to make sure your client has the right library."
+msgstr ""

@@ -1,0 +1,270 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/rows.rst:4
+msgid "`rows` -- row factory implementations"
+msgstr ""
+
+#: ../../../api/rows.rst:8
+msgid ""
+"The module exposes a few generic `~psycopg.RowFactory` implementation, which "
+"can be used to retrieve data from the database in more complex structures "
+"than the basic tuples."
+msgstr ""
+
+#: ../../../api/rows.rst:12
+msgid ""
+"Check out :ref:`row-factory-create` for information about how to use these "
+"objects."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.tuple_row:1
+msgid "Row factory to represent rows as simple tuples."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.tuple_row:3
+msgid ""
+"This is the default factory, used when `~psycopg.Connection.connect()` or "
+"`~psycopg.Connection.cursor()` are called without a `!row_factory` parameter."
+msgstr ""
+
+#: ../../../api/rows.rst:16 ../../../api/rows.rst:24 ../../../api/rows.rst:32
+#: ../../../api/rows.rst:40 ../../../api/rows.rst:54
+msgid "Example::"
+msgstr ""
+
+#: ../../../api/rows.rst:18
+msgid ""
+">>> cur = conn.cursor(row_factory=tuple_row)\n"
+">>> cur.execute(\"SELECT 10 AS foo, 'hello' AS bar\").fetchone()\n"
+"(10, 'hello')"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.dict_row:1
+msgid "Row factory to represent rows as dictionaries."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.dict_row:3
+msgid ""
+"The dictionary keys are taken from the column names of the returned columns."
+msgstr ""
+
+#: ../../../api/rows.rst:26
+msgid ""
+">>> cur = conn.cursor(row_factory=dict_row)\n"
+">>> cur.execute(\"SELECT 10 AS foo, 'hello' AS bar\").fetchone()\n"
+"{'foo': 10, 'bar': 'hello'}"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.namedtuple_row:1
+msgid "Row factory to represent rows as `~collections.namedtuple`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.namedtuple_row:3
+msgid ""
+"The field names are taken from the column names of the returned columns, "
+"with some mangling to deal with invalid names."
+msgstr ""
+
+#: ../../../api/rows.rst:34
+msgid ""
+">>> cur = conn.cursor(row_factory=namedtuple_row)\n"
+">>> cur.execute(\"SELECT 10 AS foo, 'hello' AS bar\").fetchone()\n"
+"Row(foo=10, bar='hello')"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.scalar_row:1
+msgid "Generate a row factory returning the first column as a scalar value."
+msgstr ""
+
+#: ../../../api/rows.rst:42
+msgid ""
+">>> cur = conn.cursor(row_factory=scalar_row)\n"
+">>> cur.execute(\"SELECT 10 AS foo, 'hello' AS bar\").fetchone()\n"
+"10"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.class_row:1
+msgid ""
+"Generate a row factory to represent rows as instances of the class `!cls`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.class_row:3
+msgid "The class must support every output column name as a keyword parameter."
+msgstr ""
+
+#: ../../../api/rows.rst:0
+msgid "Parameters"
+msgstr "參數"
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.class_row:5
+msgid ""
+"The class to return for each row. It must support the fields returned by the "
+"query as keyword arguments."
+msgstr ""
+
+#: ../../../api/rows.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.class_row:7
+msgid "`!Callable[[Cursor],` `RowMaker`\\[~T]]"
+msgstr ""
+
+#: ../../../api/rows.rst:50
+msgid ""
+"This is not a row factory, but rather a factory of row factories. Specifying "
+"`!row_factory=class_row(MyClass)` will create connections and cursors "
+"returning `!MyClass` objects on fetch."
+msgstr ""
+
+#: ../../../api/rows.rst:56
+msgid ""
+"from dataclasses import dataclass\n"
+"import psycopg\n"
+"from psycopg.rows import class_row\n"
+"\n"
+"@dataclass\n"
+"class Person:\n"
+"    first_name: str\n"
+"    last_name: str\n"
+"    age: int = None\n"
+"\n"
+"conn = psycopg.connect()\n"
+"cur = conn.cursor(row_factory=class_row(Person))\n"
+"\n"
+"cur.execute(\"select 'John' as first_name, 'Smith' as last_name\")."
+"fetchone()\n"
+"# Person(first_name='John', last_name='Smith', age=None)"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.args_row:1
+msgid ""
+"Generate a row factory calling `!func` with positional parameters for every "
+"row."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.args_row:3
+msgid ""
+"The function to call for each row. It must support the fields returned by "
+"the query as positional arguments."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.kwargs_row:1
+msgid ""
+"Generate a row factory calling `!func` with keyword parameters for every row."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.kwargs_row:3
+msgid ""
+"The function to call for each row. It must support the fields returned by "
+"the query as keyword arguments."
+msgstr ""
+
+#: ../../../api/rows.rst:77
+msgid "Formal rows protocols"
+msgstr ""
+
+#: ../../../api/rows.rst:79
+msgid ""
+"These objects can be used to describe your own rows adapter for static "
+"typing checks, such as mypy_."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.RowMaker:1
+msgid "Callable protocol taking a sequence of value and returning an object."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.RowMaker:3
+msgid ""
+"The sequence of value is what is returned from a database query, already "
+"adapted to the right Python types. The return value is the object that your "
+"program would like to receive: by default (`tuple_row()`) it is a simple "
+"tuple, but it may be any type of object."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.RowMaker:8
+msgid "Typically, `!RowMaker` functions are returned by `RowFactory`."
+msgstr ""
+
+#: ../../../api/rows.rst:89
+msgid "Convert a sequence of values from the database to a finished object."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.RowFactory:1
+msgid ""
+"Callable protocol taking a `~psycopg.Cursor` and returning a `RowMaker`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.RowFactory:3
+msgid ""
+"A `!RowFactory` is typically called when a `!Cursor` receives a result. This "
+"way it can inspect the cursor state (for instance the `~psycopg.Cursor."
+"description` attribute) and help a `!RowMaker` to create a complete object."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.RowFactory:8
+msgid ""
+"For instance the `dict_row()` `!RowFactory` uses the names of the column to "
+"define the dictionary key and returns a `!RowMaker` function which would use "
+"the values to create a dictionary for each record."
+msgstr ""
+
+#: ../../../api/rows.rst:96
+msgid "Inspect the result on a cursor and return a `RowMaker` to convert rows."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.AsyncRowFactory:1
+msgid "Like `RowFactory`, taking an async cursor as argument."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring
+#: of psycopg.rows.BaseRowFactory:1
+msgid "Like `RowFactory`, taking either type of cursor as argument."
+msgstr ""
+
+#: ../../../api/rows.rst:102
+msgid ""
+"Note that it's easy to implement an object implementing both `!RowFactory` "
+"and `!AsyncRowFactory`: usually, everything you need to implement a row "
+"factory is to access the cursor's `~psycopg.Cursor.description`, which is "
+"provided by both the cursor flavours."
+msgstr ""

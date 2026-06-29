@@ -1,0 +1,2762 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/errors.rst:2
+msgid "`errors` -- Package exceptions"
+msgstr ""
+
+#: ../../../api/errors.rst:9
+msgid "This module exposes objects to represent and examine database errors."
+msgstr ""
+
+#: ../../../api/errors.rst:20
+msgid "DB-API exceptions"
+msgstr ""
+
+#: ../../../api/errors.rst:22
+msgid ""
+"In compliance with the DB-API, all the exceptions raised by Psycopg derive "
+"from the following classes:"
+msgstr ""
+
+#: ../../../api/errors.rst:27
+msgid ""
+"`!Exception`\n"
+"\\|__ `Warning`\n"
+"\\|__ `Error`\n"
+"    \\|__ `InterfaceError`\n"
+"    \\|__ `DatabaseError`\n"
+"        \\|__ `DataError`\n"
+"        \\|__ `OperationalError`\n"
+"        \\|__ `IntegrityError`\n"
+"        \\|__ `InternalError`\n"
+"        \\|__ `ProgrammingError`\n"
+"        \\|__ `NotSupportedError`"
+msgstr ""
+
+#: ../../../api/errors.rst:39
+msgid ""
+"These classes are exposed both by this module and the root `psycopg` module."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Error:1
+msgid "Base exception for all the errors psycopg will raise."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Error:3
+msgid ""
+"Exception that is the base class of all other error exceptions. You can use "
+"this to catch all errors with one single `!except` statement."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Error:6
+msgid "This exception is guaranteed to be picklable."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Error.diag:1
+msgid ""
+"A `Diagnostic` object to inspect details of the errors from the database."
+msgstr ""
+
+#: ../../../api/errors.rst:46
+msgid "The code of the error, if received from the server."
+msgstr ""
+
+#: ../../../api/errors.rst:48
+msgid ""
+"This attribute is also available as class attribute on the :ref:`sqlstate-"
+"exceptions` classes."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Error.pgconn:1
+msgid ""
+"The connection object, if the error was raised from a connection attempt."
+msgstr ""
+
+#: ../../../api/errors.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../../api/errors.rst:53
+msgid ""
+"It has been closed and will be in `~psycopg.pq.ConnStatus.BAD` state; "
+"however it might be useful to verify precisely what went wrong, for instance "
+"checking the `~psycopg.pq.PGconn.needs_password` and `~psycopg.pq.PGconn."
+"used_password` attributes. Attempting to operate this connection will raise "
+"an :exc:`OperationalError`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Error.pgresult:1
+msgid "The result object, if the exception was raised after a failed query."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Warning:1
+msgid "Exception raised for important warnings."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.Warning:3
+msgid "Defined for DBAPI compatibility, but never raised by ``psycopg``."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.InterfaceError:1
+msgid ""
+"An error related to the database interface rather than the database itself."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.DatabaseError:1
+msgid "Exception raised for errors that are related to the database."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.DataError:1
+msgid "An error caused by problems with the processed data."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.DataError:3
+msgid "Examples may be division by zero, numeric value out of range, etc."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.OperationalError:1
+msgid "An error related to the database's operation."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.OperationalError:3
+msgid ""
+"These errors are not necessarily under the control of the programmer, e.g. "
+"an unexpected disconnect occurs, the data source name is not found, a "
+"transaction could not be processed, a memory allocation error occurred "
+"during processing, etc."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.IntegrityError:1
+msgid ""
+"An error caused when the relational integrity of the database is affected."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.IntegrityError:3
+msgid "An example may be a foreign key check failed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.InternalError:1
+msgid "An error generated when the database encounters an internal error,"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.InternalError:3
+msgid ""
+"Examples could be the cursor is not valid anymore, the transaction is out of "
+"sync, etc."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.ProgrammingError:1
+msgid "Exception raised for programming errors"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.ProgrammingError:3
+msgid ""
+"Examples may be table not found or already exists, syntax error in the SQL "
+"statement, wrong number of parameters specified, etc."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.NotSupportedError:1
+msgid ""
+"A method or database API was used which is not supported by the database."
+msgstr ""
+
+#: ../../../api/errors.rst:79
+msgid "Other Psycopg errors"
+msgstr ""
+
+#: ../../../api/errors.rst:84
+msgid ""
+"In addition to the standard DB-API errors, Psycopg defines a few more "
+"specific ones."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
+#: of psycopg.errors.ConnectionTimeout:1
+msgid ""
+"Exception raised on timeout of the `~psycopg.Connection.connect()` method."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
+#: of psycopg.errors.ConnectionTimeout:3
+msgid ""
+"The error is raised if the ``connect_timeout`` is specified and a connection "
+"is not obtained in useful time."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
+#: of psycopg.errors.CancellationTimeout:4 psycopg.errors.ConnectionTimeout:6
+#: psycopg.errors.PipelineAborted:3
+msgid "Subclass of `~psycopg.OperationalError`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
+#: of psycopg.errors.CancellationTimeout:1
+msgid ""
+"Exception raised on timeout of connection's `~psycopg.Connection."
+"cancel_safe()` method."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
+#: of psycopg.errors.PipelineAborted:1
+msgid ""
+"Raised when a operation fails because the current pipeline is in aborted "
+"state."
+msgstr ""
+
+#: ../../../api/errors.rst:97
+msgid "Error diagnostics"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
+#: of psycopg.errors.Diagnostic:1
+msgid "Details from a database error report."
+msgstr ""
+
+#: ../../../api/errors.rst:101
+msgid ""
+"The object is available as the `~psycopg.Error`.\\ `~psycopg.Error.diag` "
+"attribute and is passed to the callback functions registered with `~psycopg."
+"Connection.add_notice_handler()`."
+msgstr ""
+
+#: ../../../api/errors.rst:105
+msgid ""
+"All the information available from the :pq:`PQresultErrorField()` function "
+"are exposed as attributes by the object. For instance the `!severity` "
+"attribute returns the `!PG_DIAG_SEVERITY` code. Please refer to the "
+"PostgreSQL documentation for the meaning of all the attributes."
+msgstr ""
+
+#: ../../../api/errors.rst:110
+msgid "The attributes available are:"
+msgstr ""
+
+#: ../../../api/errors.rst:132
+msgid ""
+"A string with the error field if available; `!None` if not available. The "
+"attribute value is available only for errors sent by the server: not all the "
+"fields are available for all the errors and for all the server versions."
+msgstr ""
+
+#: ../../../api/errors.rst:141
+msgid "SQLSTATE exceptions"
+msgstr ""
+
+#: ../../../api/errors.rst:143
+msgid ""
+"Errors coming from a database server (as opposite as ones generated client-"
+"side, such as connection failed) usually have a 5-letters error code called "
+"SQLSTATE (available in the `~Diagnostic.sqlstate` attribute of the error's "
+"`~psycopg.Error.diag` attribute)."
+msgstr ""
+
+#: ../../../api/errors.rst:148
+msgid ""
+"Psycopg exposes a different class for each SQLSTATE value, allowing to write "
+"idiomatic error handling code according to specific conditions happening in "
+"the database:"
+msgstr ""
+
+#: ../../../api/errors.rst:152
+msgid ""
+"try:\n"
+"    cur.execute(\"LOCK TABLE mytable IN ACCESS EXCLUSIVE MODE NOWAIT\")\n"
+"except psycopg.errors.LockNotAvailable:\n"
+"    locked = True"
+msgstr ""
+
+#: ../../../api/errors.rst:159
+msgid ""
+"The exception names are generated from the PostgreSQL source code and "
+"includes classes for every error defined by PostgreSQL in versions between "
+"9.6 and 15. Every class in the module is named after what referred as "
+"\"condition name\" `in the documentation`__, converted to CamelCase: e.g. "
+"the error 22012, ``division_by_zero`` is exposed by this module as the class "
+"`!DivisionByZero`. There is a handful of... exceptions to this rule, "
+"required for disambiguate name clashes: please refer to the :ref:`table "
+"below <exceptions-list>` for all the classes defined."
+msgstr ""
+
+#: ../../../api/errors.rst:170
+msgid ""
+"Every exception class is a subclass of one of the :ref:`standard DB-API "
+"exception <dbapi-exceptions>`, thus exposing the `~psycopg.Error` interface."
+msgstr ""
+
+#: ../../../api/errors.rst:173
+msgid "Added exceptions introduced in PostgreSQL 15."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
+#: of psycopg.errors.lookup:1
+msgid ""
+"Lookup an error code or `constant name`__ and return its exception class."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
+#: of psycopg.errors.lookup:3
+msgid "Raise `!KeyError` if the code is not found."
+msgstr ""
+
+#: ../../../api/errors.rst:178
+msgid ""
+"Example: if you have code using constant names or sql codes you can use them "
+"to look up the exception class."
+msgstr ""
+
+#: ../../../api/errors.rst:181
+msgid ""
+"try:\n"
+"    cur.execute(\"LOCK TABLE mytable IN ACCESS EXCLUSIVE MODE NOWAIT\")\n"
+"except psycopg.errors.lookup(\"UNDEFINED_TABLE\"):\n"
+"    missing = True\n"
+"except psycopg.errors.lookup(\"55P03\"):\n"
+"    locked = True"
+msgstr ""
+
+#: ../../../api/errors.rst:194
+msgid "List of known exceptions"
+msgstr ""
+
+#: ../../../api/errors.rst:196
+msgid ""
+"The following are all the SQLSTATE-related error classed defined by this "
+"module, together with the base DBAPI exception they derive from."
+msgstr ""
+
+#: ../../../api/errors.rst:202
+msgid "SQLSTATE"
+msgstr ""
+
+#: ../../../api/errors.rst:202
+msgid "Exception"
+msgstr ""
+
+#: ../../../api/errors.rst:202
+msgid "Base exception"
+msgstr ""
+
+#: ../../../api/errors.rst:204
+msgid ""
+"**Class 02** - No Data (this is also a warning class per the SQL standard)"
+msgstr ""
+
+#: ../../../api/errors.rst:206
+msgid "``02000``"
+msgstr ""
+
+#: ../../../api/errors.rst:206
+msgid "`!NoData`"
+msgstr ""
+
+#: ../../../api/errors.rst:206 ../../../api/errors.rst:207
+#: ../../../api/errors.rst:210 ../../../api/errors.rst:222
+#: ../../../api/errors.rst:228 ../../../api/errors.rst:231
+#: ../../../api/errors.rst:232 ../../../api/errors.rst:235
+#: ../../../api/errors.rst:236 ../../../api/errors.rst:239
+#: ../../../api/errors.rst:242 ../../../api/errors.rst:243
+#: ../../../api/errors.rst:496
+msgid "`!DatabaseError`"
+msgstr ""
+
+#: ../../../api/errors.rst:207
+msgid "``02001``"
+msgstr ""
+
+#: ../../../api/errors.rst:207
+msgid "`!NoAdditionalDynamicResultSetsReturned`"
+msgstr ""
+
+#: ../../../api/errors.rst:208
+msgid "**Class 03** - SQL Statement Not Yet Complete"
+msgstr ""
+
+#: ../../../api/errors.rst:210
+msgid "``03000``"
+msgstr ""
+
+#: ../../../api/errors.rst:210
+msgid "`!SqlStatementNotYetComplete`"
+msgstr ""
+
+#: ../../../api/errors.rst:211
+msgid "**Class 08** - Connection Exception"
+msgstr ""
+
+#: ../../../api/errors.rst:213
+msgid "``08000``"
+msgstr ""
+
+#: ../../../api/errors.rst:213
+msgid "`!ConnectionException`"
+msgstr ""
+
+#: ../../../api/errors.rst:213 ../../../api/errors.rst:214
+#: ../../../api/errors.rst:215 ../../../api/errors.rst:216
+#: ../../../api/errors.rst:217 ../../../api/errors.rst:218
+#: ../../../api/errors.rst:219 ../../../api/errors.rst:355
+#: ../../../api/errors.rst:358 ../../../api/errors.rst:359
+#: ../../../api/errors.rst:369 ../../../api/errors.rst:370
+#: ../../../api/errors.rst:371 ../../../api/errors.rst:372
+#: ../../../api/errors.rst:373 ../../../api/errors.rst:379
+#: ../../../api/errors.rst:380 ../../../api/errors.rst:381
+#: ../../../api/errors.rst:382 ../../../api/errors.rst:383
+#: ../../../api/errors.rst:386 ../../../api/errors.rst:387
+#: ../../../api/errors.rst:388 ../../../api/errors.rst:389
+#: ../../../api/errors.rst:390 ../../../api/errors.rst:391
+#: ../../../api/errors.rst:394 ../../../api/errors.rst:395
+#: ../../../api/errors.rst:404 ../../../api/errors.rst:405
+#: ../../../api/errors.rst:406 ../../../api/errors.rst:407
+#: ../../../api/errors.rst:408 ../../../api/errors.rst:460
+#: ../../../api/errors.rst:461 ../../../api/errors.rst:462
+#: ../../../api/errors.rst:463 ../../../api/errors.rst:464
+#: ../../../api/errors.rst:467 ../../../api/errors.rst:468
+#: ../../../api/errors.rst:469 ../../../api/errors.rst:470
+#: ../../../api/errors.rst:473 ../../../api/errors.rst:474
+#: ../../../api/errors.rst:475 ../../../api/errors.rst:476
+#: ../../../api/errors.rst:477 ../../../api/errors.rst:480
+#: ../../../api/errors.rst:481 ../../../api/errors.rst:482
+#: ../../../api/errors.rst:483 ../../../api/errors.rst:484
+#: ../../../api/errors.rst:485 ../../../api/errors.rst:486
+#: ../../../api/errors.rst:489 ../../../api/errors.rst:490
+#: ../../../api/errors.rst:491 ../../../api/errors.rst:492
+#: ../../../api/errors.rst:493 ../../../api/errors.rst:499
+#: ../../../api/errors.rst:500 ../../../api/errors.rst:503
+#: ../../../api/errors.rst:504 ../../../api/errors.rst:505
+#: ../../../api/errors.rst:506 ../../../api/errors.rst:507
+#: ../../../api/errors.rst:508 ../../../api/errors.rst:509
+#: ../../../api/errors.rst:510 ../../../api/errors.rst:511
+#: ../../../api/errors.rst:512 ../../../api/errors.rst:513
+#: ../../../api/errors.rst:514 ../../../api/errors.rst:515
+#: ../../../api/errors.rst:516 ../../../api/errors.rst:517
+#: ../../../api/errors.rst:518 ../../../api/errors.rst:519
+#: ../../../api/errors.rst:520 ../../../api/errors.rst:521
+#: ../../../api/errors.rst:522 ../../../api/errors.rst:523
+#: ../../../api/errors.rst:524 ../../../api/errors.rst:525
+#: ../../../api/errors.rst:526 ../../../api/errors.rst:527
+#: ../../../api/errors.rst:528 ../../../api/errors.rst:529
+msgid "`!OperationalError`"
+msgstr ""
+
+#: ../../../api/errors.rst:214
+msgid "``08001``"
+msgstr ""
+
+#: ../../../api/errors.rst:214
+msgid "`!SqlclientUnableToEstablishSqlconnection`"
+msgstr ""
+
+#: ../../../api/errors.rst:215
+msgid "``08003``"
+msgstr ""
+
+#: ../../../api/errors.rst:215
+msgid "`!ConnectionDoesNotExist`"
+msgstr ""
+
+#: ../../../api/errors.rst:216
+msgid "``08004``"
+msgstr ""
+
+#: ../../../api/errors.rst:216
+msgid "`!SqlserverRejectedEstablishmentOfSqlconnection`"
+msgstr ""
+
+#: ../../../api/errors.rst:217
+msgid "``08006``"
+msgstr ""
+
+#: ../../../api/errors.rst:217
+msgid "`!ConnectionFailure`"
+msgstr ""
+
+#: ../../../api/errors.rst:218
+msgid "``08007``"
+msgstr ""
+
+#: ../../../api/errors.rst:218
+msgid "`!TransactionResolutionUnknown`"
+msgstr ""
+
+#: ../../../api/errors.rst:219
+msgid "``08P01``"
+msgstr ""
+
+#: ../../../api/errors.rst:219
+msgid "`!ProtocolViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:220
+msgid "**Class 09** - Triggered Action Exception"
+msgstr ""
+
+#: ../../../api/errors.rst:222
+msgid "``09000``"
+msgstr ""
+
+#: ../../../api/errors.rst:222
+msgid "`!TriggeredActionException`"
+msgstr ""
+
+#: ../../../api/errors.rst:223
+msgid "**Class 0A** - Feature Not Supported"
+msgstr ""
+
+#: ../../../api/errors.rst:225
+msgid "``0A000``"
+msgstr ""
+
+#: ../../../api/errors.rst:225
+msgid "`!FeatureNotSupported`"
+msgstr ""
+
+#: ../../../api/errors.rst:225
+msgid "`!NotSupportedError`"
+msgstr ""
+
+#: ../../../api/errors.rst:226
+msgid "**Class 0B** - Invalid Transaction Initiation"
+msgstr ""
+
+#: ../../../api/errors.rst:228
+msgid "``0B000``"
+msgstr ""
+
+#: ../../../api/errors.rst:228
+msgid "`!InvalidTransactionInitiation`"
+msgstr ""
+
+#: ../../../api/errors.rst:229
+msgid "**Class 0F** - Locator Exception"
+msgstr ""
+
+#: ../../../api/errors.rst:231
+msgid "``0F000``"
+msgstr ""
+
+#: ../../../api/errors.rst:231
+msgid "`!LocatorException`"
+msgstr ""
+
+#: ../../../api/errors.rst:232
+msgid "``0F001``"
+msgstr ""
+
+#: ../../../api/errors.rst:232
+msgid "`!InvalidLocatorSpecification`"
+msgstr ""
+
+#: ../../../api/errors.rst:233
+msgid "**Class 0L** - Invalid Grantor"
+msgstr ""
+
+#: ../../../api/errors.rst:235
+msgid "``0L000``"
+msgstr ""
+
+#: ../../../api/errors.rst:235
+msgid "`!InvalidGrantor`"
+msgstr ""
+
+#: ../../../api/errors.rst:236
+msgid "``0LP01``"
+msgstr ""
+
+#: ../../../api/errors.rst:236
+msgid "`!InvalidGrantOperation`"
+msgstr ""
+
+#: ../../../api/errors.rst:237
+msgid "**Class 0P** - Invalid Role Specification"
+msgstr ""
+
+#: ../../../api/errors.rst:239
+msgid "``0P000``"
+msgstr ""
+
+#: ../../../api/errors.rst:239
+msgid "`!InvalidRoleSpecification`"
+msgstr ""
+
+#: ../../../api/errors.rst:240
+msgid "**Class 0Z** - Diagnostics Exception"
+msgstr ""
+
+#: ../../../api/errors.rst:242
+msgid "``0Z000``"
+msgstr ""
+
+#: ../../../api/errors.rst:242
+msgid "`!DiagnosticsException`"
+msgstr ""
+
+#: ../../../api/errors.rst:243
+msgid "``0Z002``"
+msgstr ""
+
+#: ../../../api/errors.rst:243
+msgid "`!StackedDiagnosticsAccessedWithoutActiveHandler`"
+msgstr ""
+
+#: ../../../api/errors.rst:244
+msgid "**Class 10** - XQuery Error"
+msgstr ""
+
+#: ../../../api/errors.rst:246
+msgid "``10608``"
+msgstr ""
+
+#: ../../../api/errors.rst:246
+msgid "`!InvalidArgumentForXquery`"
+msgstr ""
+
+#: ../../../api/errors.rst:246 ../../../api/errors.rst:249
+#: ../../../api/errors.rst:252 ../../../api/errors.rst:352
+#: ../../../api/errors.rst:376 ../../../api/errors.rst:398
+#: ../../../api/errors.rst:401 ../../../api/errors.rst:411
+#: ../../../api/errors.rst:412 ../../../api/errors.rst:413
+#: ../../../api/errors.rst:414 ../../../api/errors.rst:415
+#: ../../../api/errors.rst:416 ../../../api/errors.rst:417
+#: ../../../api/errors.rst:418 ../../../api/errors.rst:419
+#: ../../../api/errors.rst:420 ../../../api/errors.rst:421
+#: ../../../api/errors.rst:422 ../../../api/errors.rst:423
+#: ../../../api/errors.rst:424 ../../../api/errors.rst:425
+#: ../../../api/errors.rst:426 ../../../api/errors.rst:427
+#: ../../../api/errors.rst:428 ../../../api/errors.rst:429
+#: ../../../api/errors.rst:430 ../../../api/errors.rst:431
+#: ../../../api/errors.rst:432 ../../../api/errors.rst:433
+#: ../../../api/errors.rst:434 ../../../api/errors.rst:435
+#: ../../../api/errors.rst:436 ../../../api/errors.rst:437
+#: ../../../api/errors.rst:438 ../../../api/errors.rst:439
+#: ../../../api/errors.rst:440 ../../../api/errors.rst:441
+#: ../../../api/errors.rst:442 ../../../api/errors.rst:443
+#: ../../../api/errors.rst:444 ../../../api/errors.rst:445
+#: ../../../api/errors.rst:446 ../../../api/errors.rst:447
+#: ../../../api/errors.rst:448 ../../../api/errors.rst:449
+#: ../../../api/errors.rst:450 ../../../api/errors.rst:451
+#: ../../../api/errors.rst:452 ../../../api/errors.rst:453
+#: ../../../api/errors.rst:454 ../../../api/errors.rst:457
+#: ../../../api/errors.rst:532 ../../../api/errors.rst:533
+#: ../../../api/errors.rst:534 ../../../api/errors.rst:535
+#: ../../../api/errors.rst:536
+msgid "`!ProgrammingError`"
+msgstr ""
+
+#: ../../../api/errors.rst:247
+msgid "**Class 20** - Case Not Found"
+msgstr ""
+
+#: ../../../api/errors.rst:249
+msgid "``20000``"
+msgstr ""
+
+#: ../../../api/errors.rst:249
+msgid "`!CaseNotFound`"
+msgstr ""
+
+#: ../../../api/errors.rst:250
+msgid "**Class 21** - Cardinality Violation"
+msgstr ""
+
+#: ../../../api/errors.rst:252
+msgid "``21000``"
+msgstr ""
+
+#: ../../../api/errors.rst:252
+msgid "`!CardinalityViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:253
+msgid "**Class 22** - Data Exception"
+msgstr ""
+
+#: ../../../api/errors.rst:255
+msgid "``22000``"
+msgstr ""
+
+#: ../../../api/errors.rst:255
+msgid "`!DataException`"
+msgstr ""
+
+#: ../../../api/errors.rst:255 ../../../api/errors.rst:256
+#: ../../../api/errors.rst:257 ../../../api/errors.rst:258
+#: ../../../api/errors.rst:259 ../../../api/errors.rst:260
+#: ../../../api/errors.rst:261 ../../../api/errors.rst:262
+#: ../../../api/errors.rst:263 ../../../api/errors.rst:264
+#: ../../../api/errors.rst:265 ../../../api/errors.rst:266
+#: ../../../api/errors.rst:267 ../../../api/errors.rst:268
+#: ../../../api/errors.rst:269 ../../../api/errors.rst:270
+#: ../../../api/errors.rst:271 ../../../api/errors.rst:272
+#: ../../../api/errors.rst:273 ../../../api/errors.rst:274
+#: ../../../api/errors.rst:275 ../../../api/errors.rst:276
+#: ../../../api/errors.rst:277 ../../../api/errors.rst:278
+#: ../../../api/errors.rst:279 ../../../api/errors.rst:280
+#: ../../../api/errors.rst:281 ../../../api/errors.rst:282
+#: ../../../api/errors.rst:283 ../../../api/errors.rst:284
+#: ../../../api/errors.rst:285 ../../../api/errors.rst:286
+#: ../../../api/errors.rst:287 ../../../api/errors.rst:288
+#: ../../../api/errors.rst:289 ../../../api/errors.rst:290
+#: ../../../api/errors.rst:291 ../../../api/errors.rst:292
+#: ../../../api/errors.rst:293 ../../../api/errors.rst:294
+#: ../../../api/errors.rst:295 ../../../api/errors.rst:296
+#: ../../../api/errors.rst:297 ../../../api/errors.rst:298
+#: ../../../api/errors.rst:299 ../../../api/errors.rst:300
+#: ../../../api/errors.rst:301 ../../../api/errors.rst:302
+#: ../../../api/errors.rst:303 ../../../api/errors.rst:304
+#: ../../../api/errors.rst:305 ../../../api/errors.rst:306
+#: ../../../api/errors.rst:307 ../../../api/errors.rst:308
+#: ../../../api/errors.rst:309 ../../../api/errors.rst:310
+#: ../../../api/errors.rst:311 ../../../api/errors.rst:312
+#: ../../../api/errors.rst:313 ../../../api/errors.rst:314
+#: ../../../api/errors.rst:315 ../../../api/errors.rst:316
+#: ../../../api/errors.rst:317 ../../../api/errors.rst:318
+#: ../../../api/errors.rst:319 ../../../api/errors.rst:320
+#: ../../../api/errors.rst:321 ../../../api/errors.rst:322
+msgid "`!DataError`"
+msgstr ""
+
+#: ../../../api/errors.rst:256
+msgid "``22001``"
+msgstr ""
+
+#: ../../../api/errors.rst:256
+msgid "`!StringDataRightTruncation`"
+msgstr ""
+
+#: ../../../api/errors.rst:257
+msgid "``22002``"
+msgstr ""
+
+#: ../../../api/errors.rst:257
+msgid "`!NullValueNoIndicatorParameter`"
+msgstr ""
+
+#: ../../../api/errors.rst:258
+msgid "``22003``"
+msgstr ""
+
+#: ../../../api/errors.rst:258
+msgid "`!NumericValueOutOfRange`"
+msgstr ""
+
+#: ../../../api/errors.rst:259
+msgid "``22004``"
+msgstr ""
+
+#: ../../../api/errors.rst:259
+msgid "`!NullValueNotAllowed`"
+msgstr ""
+
+#: ../../../api/errors.rst:260
+msgid "``22005``"
+msgstr ""
+
+#: ../../../api/errors.rst:260
+msgid "`!ErrorInAssignment`"
+msgstr ""
+
+#: ../../../api/errors.rst:261
+msgid "``22007``"
+msgstr ""
+
+#: ../../../api/errors.rst:261
+msgid "`!InvalidDatetimeFormat`"
+msgstr ""
+
+#: ../../../api/errors.rst:262
+msgid "``22008``"
+msgstr ""
+
+#: ../../../api/errors.rst:262
+msgid "`!DatetimeFieldOverflow`"
+msgstr ""
+
+#: ../../../api/errors.rst:263
+msgid "``22009``"
+msgstr ""
+
+#: ../../../api/errors.rst:263
+msgid "`!InvalidTimeZoneDisplacementValue`"
+msgstr ""
+
+#: ../../../api/errors.rst:264
+msgid "``2200B``"
+msgstr ""
+
+#: ../../../api/errors.rst:264
+msgid "`!EscapeCharacterConflict`"
+msgstr ""
+
+#: ../../../api/errors.rst:265
+msgid "``2200C``"
+msgstr ""
+
+#: ../../../api/errors.rst:265
+msgid "`!InvalidUseOfEscapeCharacter`"
+msgstr ""
+
+#: ../../../api/errors.rst:266
+msgid "``2200D``"
+msgstr ""
+
+#: ../../../api/errors.rst:266
+msgid "`!InvalidEscapeOctet`"
+msgstr ""
+
+#: ../../../api/errors.rst:267
+msgid "``2200F``"
+msgstr ""
+
+#: ../../../api/errors.rst:267
+msgid "`!ZeroLengthCharacterString`"
+msgstr ""
+
+#: ../../../api/errors.rst:268
+msgid "``2200G``"
+msgstr ""
+
+#: ../../../api/errors.rst:268
+msgid "`!MostSpecificTypeMismatch`"
+msgstr ""
+
+#: ../../../api/errors.rst:269
+msgid "``2200H``"
+msgstr ""
+
+#: ../../../api/errors.rst:269
+msgid "`!SequenceGeneratorLimitExceeded`"
+msgstr ""
+
+#: ../../../api/errors.rst:270
+msgid "``2200L``"
+msgstr ""
+
+#: ../../../api/errors.rst:270
+msgid "`!NotAnXmlDocument`"
+msgstr ""
+
+#: ../../../api/errors.rst:271
+msgid "``2200M``"
+msgstr ""
+
+#: ../../../api/errors.rst:271
+msgid "`!InvalidXmlDocument`"
+msgstr ""
+
+#: ../../../api/errors.rst:272
+msgid "``2200N``"
+msgstr ""
+
+#: ../../../api/errors.rst:272
+msgid "`!InvalidXmlContent`"
+msgstr ""
+
+#: ../../../api/errors.rst:273
+msgid "``2200S``"
+msgstr ""
+
+#: ../../../api/errors.rst:273
+msgid "`!InvalidXmlComment`"
+msgstr ""
+
+#: ../../../api/errors.rst:274
+msgid "``2200T``"
+msgstr ""
+
+#: ../../../api/errors.rst:274
+msgid "`!InvalidXmlProcessingInstruction`"
+msgstr ""
+
+#: ../../../api/errors.rst:275
+msgid "``22010``"
+msgstr ""
+
+#: ../../../api/errors.rst:275
+msgid "`!InvalidIndicatorParameterValue`"
+msgstr ""
+
+#: ../../../api/errors.rst:276
+msgid "``22011``"
+msgstr ""
+
+#: ../../../api/errors.rst:276
+msgid "`!SubstringError`"
+msgstr ""
+
+#: ../../../api/errors.rst:277
+msgid "``22012``"
+msgstr ""
+
+#: ../../../api/errors.rst:277
+msgid "`!DivisionByZero`"
+msgstr ""
+
+#: ../../../api/errors.rst:278
+msgid "``22013``"
+msgstr ""
+
+#: ../../../api/errors.rst:278
+msgid "`!InvalidPrecedingOrFollowingSize`"
+msgstr ""
+
+#: ../../../api/errors.rst:279
+msgid "``22014``"
+msgstr ""
+
+#: ../../../api/errors.rst:279
+msgid "`!InvalidArgumentForNtileFunction`"
+msgstr ""
+
+#: ../../../api/errors.rst:280
+msgid "``22015``"
+msgstr ""
+
+#: ../../../api/errors.rst:280
+msgid "`!IntervalFieldOverflow`"
+msgstr ""
+
+#: ../../../api/errors.rst:281
+msgid "``22016``"
+msgstr ""
+
+#: ../../../api/errors.rst:281
+msgid "`!InvalidArgumentForNthValueFunction`"
+msgstr ""
+
+#: ../../../api/errors.rst:282
+msgid "``22018``"
+msgstr ""
+
+#: ../../../api/errors.rst:282
+msgid "`!InvalidCharacterValueForCast`"
+msgstr ""
+
+#: ../../../api/errors.rst:283
+msgid "``22019``"
+msgstr ""
+
+#: ../../../api/errors.rst:283
+msgid "`!InvalidEscapeCharacter`"
+msgstr ""
+
+#: ../../../api/errors.rst:284
+msgid "``2201B``"
+msgstr ""
+
+#: ../../../api/errors.rst:284
+msgid "`!InvalidRegularExpression`"
+msgstr ""
+
+#: ../../../api/errors.rst:285
+msgid "``2201E``"
+msgstr ""
+
+#: ../../../api/errors.rst:285
+msgid "`!InvalidArgumentForLogarithm`"
+msgstr ""
+
+#: ../../../api/errors.rst:286
+msgid "``2201F``"
+msgstr ""
+
+#: ../../../api/errors.rst:286
+msgid "`!InvalidArgumentForPowerFunction`"
+msgstr ""
+
+#: ../../../api/errors.rst:287
+msgid "``2201G``"
+msgstr ""
+
+#: ../../../api/errors.rst:287
+msgid "`!InvalidArgumentForWidthBucketFunction`"
+msgstr ""
+
+#: ../../../api/errors.rst:288
+msgid "``2201W``"
+msgstr ""
+
+#: ../../../api/errors.rst:288
+msgid "`!InvalidRowCountInLimitClause`"
+msgstr ""
+
+#: ../../../api/errors.rst:289
+msgid "``2201X``"
+msgstr ""
+
+#: ../../../api/errors.rst:289
+msgid "`!InvalidRowCountInResultOffsetClause`"
+msgstr ""
+
+#: ../../../api/errors.rst:290
+msgid "``22021``"
+msgstr ""
+
+#: ../../../api/errors.rst:290
+msgid "`!CharacterNotInRepertoire`"
+msgstr ""
+
+#: ../../../api/errors.rst:291
+msgid "``22022``"
+msgstr ""
+
+#: ../../../api/errors.rst:291
+msgid "`!IndicatorOverflow`"
+msgstr ""
+
+#: ../../../api/errors.rst:292
+msgid "``22023``"
+msgstr ""
+
+#: ../../../api/errors.rst:292
+msgid "`!InvalidParameterValue`"
+msgstr ""
+
+#: ../../../api/errors.rst:293
+msgid "``22024``"
+msgstr ""
+
+#: ../../../api/errors.rst:293
+msgid "`!UnterminatedCString`"
+msgstr ""
+
+#: ../../../api/errors.rst:294
+msgid "``22025``"
+msgstr ""
+
+#: ../../../api/errors.rst:294
+msgid "`!InvalidEscapeSequence`"
+msgstr ""
+
+#: ../../../api/errors.rst:295
+msgid "``22026``"
+msgstr ""
+
+#: ../../../api/errors.rst:295
+msgid "`!StringDataLengthMismatch`"
+msgstr ""
+
+#: ../../../api/errors.rst:296
+msgid "``22027``"
+msgstr ""
+
+#: ../../../api/errors.rst:296
+msgid "`!TrimError`"
+msgstr ""
+
+#: ../../../api/errors.rst:297
+msgid "``2202E``"
+msgstr ""
+
+#: ../../../api/errors.rst:297
+msgid "`!ArraySubscriptError`"
+msgstr ""
+
+#: ../../../api/errors.rst:298
+msgid "``2202G``"
+msgstr ""
+
+#: ../../../api/errors.rst:298
+msgid "`!InvalidTablesampleRepeat`"
+msgstr ""
+
+#: ../../../api/errors.rst:299
+msgid "``2202H``"
+msgstr ""
+
+#: ../../../api/errors.rst:299
+msgid "`!InvalidTablesampleArgument`"
+msgstr ""
+
+#: ../../../api/errors.rst:300
+msgid "``22030``"
+msgstr ""
+
+#: ../../../api/errors.rst:300
+msgid "`!DuplicateJsonObjectKeyValue`"
+msgstr ""
+
+#: ../../../api/errors.rst:301
+msgid "``22031``"
+msgstr ""
+
+#: ../../../api/errors.rst:301
+msgid "`!InvalidArgumentForSqlJsonDatetimeFunction`"
+msgstr ""
+
+#: ../../../api/errors.rst:302
+msgid "``22032``"
+msgstr ""
+
+#: ../../../api/errors.rst:302
+msgid "`!InvalidJsonText`"
+msgstr ""
+
+#: ../../../api/errors.rst:303
+msgid "``22033``"
+msgstr ""
+
+#: ../../../api/errors.rst:303
+msgid "`!InvalidSqlJsonSubscript`"
+msgstr ""
+
+#: ../../../api/errors.rst:304
+msgid "``22034``"
+msgstr ""
+
+#: ../../../api/errors.rst:304
+msgid "`!MoreThanOneSqlJsonItem`"
+msgstr ""
+
+#: ../../../api/errors.rst:305
+msgid "``22035``"
+msgstr ""
+
+#: ../../../api/errors.rst:305
+msgid "`!NoSqlJsonItem`"
+msgstr ""
+
+#: ../../../api/errors.rst:306
+msgid "``22036``"
+msgstr ""
+
+#: ../../../api/errors.rst:306
+msgid "`!NonNumericSqlJsonItem`"
+msgstr ""
+
+#: ../../../api/errors.rst:307
+msgid "``22037``"
+msgstr ""
+
+#: ../../../api/errors.rst:307
+msgid "`!NonUniqueKeysInAJsonObject`"
+msgstr ""
+
+#: ../../../api/errors.rst:308
+msgid "``22038``"
+msgstr ""
+
+#: ../../../api/errors.rst:308
+msgid "`!SingletonSqlJsonItemRequired`"
+msgstr ""
+
+#: ../../../api/errors.rst:309
+msgid "``22039``"
+msgstr ""
+
+#: ../../../api/errors.rst:309
+msgid "`!SqlJsonArrayNotFound`"
+msgstr ""
+
+#: ../../../api/errors.rst:310
+msgid "``2203A``"
+msgstr ""
+
+#: ../../../api/errors.rst:310
+msgid "`!SqlJsonMemberNotFound`"
+msgstr ""
+
+#: ../../../api/errors.rst:311
+msgid "``2203B``"
+msgstr ""
+
+#: ../../../api/errors.rst:311
+msgid "`!SqlJsonNumberNotFound`"
+msgstr ""
+
+#: ../../../api/errors.rst:312
+msgid "``2203C``"
+msgstr ""
+
+#: ../../../api/errors.rst:312
+msgid "`!SqlJsonObjectNotFound`"
+msgstr ""
+
+#: ../../../api/errors.rst:313
+msgid "``2203D``"
+msgstr ""
+
+#: ../../../api/errors.rst:313
+msgid "`!TooManyJsonArrayElements`"
+msgstr ""
+
+#: ../../../api/errors.rst:314
+msgid "``2203E``"
+msgstr ""
+
+#: ../../../api/errors.rst:314
+msgid "`!TooManyJsonObjectMembers`"
+msgstr ""
+
+#: ../../../api/errors.rst:315
+msgid "``2203F``"
+msgstr ""
+
+#: ../../../api/errors.rst:315
+msgid "`!SqlJsonScalarRequired`"
+msgstr ""
+
+#: ../../../api/errors.rst:316
+msgid "``2203G``"
+msgstr ""
+
+#: ../../../api/errors.rst:316
+msgid "`!SqlJsonItemCannotBeCastToTargetType`"
+msgstr ""
+
+#: ../../../api/errors.rst:317
+msgid "``22P01``"
+msgstr ""
+
+#: ../../../api/errors.rst:317
+msgid "`!FloatingPointException`"
+msgstr ""
+
+#: ../../../api/errors.rst:318
+msgid "``22P02``"
+msgstr ""
+
+#: ../../../api/errors.rst:318
+msgid "`!InvalidTextRepresentation`"
+msgstr ""
+
+#: ../../../api/errors.rst:319
+msgid "``22P03``"
+msgstr ""
+
+#: ../../../api/errors.rst:319
+msgid "`!InvalidBinaryRepresentation`"
+msgstr ""
+
+#: ../../../api/errors.rst:320
+msgid "``22P04``"
+msgstr ""
+
+#: ../../../api/errors.rst:320
+msgid "`!BadCopyFileFormat`"
+msgstr ""
+
+#: ../../../api/errors.rst:321
+msgid "``22P05``"
+msgstr ""
+
+#: ../../../api/errors.rst:321
+msgid "`!UntranslatableCharacter`"
+msgstr ""
+
+#: ../../../api/errors.rst:322
+msgid "``22P06``"
+msgstr ""
+
+#: ../../../api/errors.rst:322
+msgid "`!NonstandardUseOfEscapeCharacter`"
+msgstr ""
+
+#: ../../../api/errors.rst:323
+msgid "**Class 23** - Integrity Constraint Violation"
+msgstr ""
+
+#: ../../../api/errors.rst:325
+msgid "``23000``"
+msgstr ""
+
+#: ../../../api/errors.rst:325
+msgid "`!IntegrityConstraintViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:325 ../../../api/errors.rst:326
+#: ../../../api/errors.rst:327 ../../../api/errors.rst:328
+#: ../../../api/errors.rst:329 ../../../api/errors.rst:330
+#: ../../../api/errors.rst:331
+msgid "`!IntegrityError`"
+msgstr ""
+
+#: ../../../api/errors.rst:326
+msgid "``23001``"
+msgstr ""
+
+#: ../../../api/errors.rst:326
+msgid "`!RestrictViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:327
+msgid "``23502``"
+msgstr ""
+
+#: ../../../api/errors.rst:327
+msgid "`!NotNullViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:328
+msgid "``23503``"
+msgstr ""
+
+#: ../../../api/errors.rst:328
+msgid "`!ForeignKeyViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:329
+msgid "``23505``"
+msgstr ""
+
+#: ../../../api/errors.rst:329
+msgid "`!UniqueViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:330
+msgid "``23514``"
+msgstr ""
+
+#: ../../../api/errors.rst:330
+msgid "`!CheckViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:331
+msgid "``23P01``"
+msgstr ""
+
+#: ../../../api/errors.rst:331
+msgid "`!ExclusionViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:332
+msgid "**Class 24** - Invalid Cursor State"
+msgstr ""
+
+#: ../../../api/errors.rst:334
+msgid "``24000``"
+msgstr ""
+
+#: ../../../api/errors.rst:334
+msgid "`!InvalidCursorState`"
+msgstr ""
+
+#: ../../../api/errors.rst:334 ../../../api/errors.rst:337
+#: ../../../api/errors.rst:338 ../../../api/errors.rst:339
+#: ../../../api/errors.rst:340 ../../../api/errors.rst:341
+#: ../../../api/errors.rst:342 ../../../api/errors.rst:343
+#: ../../../api/errors.rst:344 ../../../api/errors.rst:345
+#: ../../../api/errors.rst:346 ../../../api/errors.rst:347
+#: ../../../api/errors.rst:348 ../../../api/errors.rst:349
+#: ../../../api/errors.rst:362 ../../../api/errors.rst:363
+#: ../../../api/errors.rst:366 ../../../api/errors.rst:539
+#: ../../../api/errors.rst:540 ../../../api/errors.rst:541
+msgid "`!InternalError`"
+msgstr ""
+
+#: ../../../api/errors.rst:335
+msgid "**Class 25** - Invalid Transaction State"
+msgstr ""
+
+#: ../../../api/errors.rst:337
+msgid "``25000``"
+msgstr ""
+
+#: ../../../api/errors.rst:337
+msgid "`!InvalidTransactionState`"
+msgstr ""
+
+#: ../../../api/errors.rst:338
+msgid "``25001``"
+msgstr ""
+
+#: ../../../api/errors.rst:338
+msgid "`!ActiveSqlTransaction`"
+msgstr ""
+
+#: ../../../api/errors.rst:339
+msgid "``25002``"
+msgstr ""
+
+#: ../../../api/errors.rst:339
+msgid "`!BranchTransactionAlreadyActive`"
+msgstr ""
+
+#: ../../../api/errors.rst:340
+msgid "``25003``"
+msgstr ""
+
+#: ../../../api/errors.rst:340
+msgid "`!InappropriateAccessModeForBranchTransaction`"
+msgstr ""
+
+#: ../../../api/errors.rst:341
+msgid "``25004``"
+msgstr ""
+
+#: ../../../api/errors.rst:341
+msgid "`!InappropriateIsolationLevelForBranchTransaction`"
+msgstr ""
+
+#: ../../../api/errors.rst:342
+msgid "``25005``"
+msgstr ""
+
+#: ../../../api/errors.rst:342
+msgid "`!NoActiveSqlTransactionForBranchTransaction`"
+msgstr ""
+
+#: ../../../api/errors.rst:343
+msgid "``25006``"
+msgstr ""
+
+#: ../../../api/errors.rst:343
+msgid "`!ReadOnlySqlTransaction`"
+msgstr ""
+
+#: ../../../api/errors.rst:344
+msgid "``25007``"
+msgstr ""
+
+#: ../../../api/errors.rst:344
+msgid "`!SchemaAndDataStatementMixingNotSupported`"
+msgstr ""
+
+#: ../../../api/errors.rst:345
+msgid "``25008``"
+msgstr ""
+
+#: ../../../api/errors.rst:345
+msgid "`!HeldCursorRequiresSameIsolationLevel`"
+msgstr ""
+
+#: ../../../api/errors.rst:346
+msgid "``25P01``"
+msgstr ""
+
+#: ../../../api/errors.rst:346
+msgid "`!NoActiveSqlTransaction`"
+msgstr ""
+
+#: ../../../api/errors.rst:347
+msgid "``25P02``"
+msgstr ""
+
+#: ../../../api/errors.rst:347
+msgid "`!InFailedSqlTransaction`"
+msgstr ""
+
+#: ../../../api/errors.rst:348
+msgid "``25P03``"
+msgstr ""
+
+#: ../../../api/errors.rst:348
+msgid "`!IdleInTransactionSessionTimeout`"
+msgstr ""
+
+#: ../../../api/errors.rst:349
+msgid "``25P04``"
+msgstr ""
+
+#: ../../../api/errors.rst:349
+msgid "`!TransactionTimeout`"
+msgstr ""
+
+#: ../../../api/errors.rst:350
+msgid "**Class 26** - Invalid SQL Statement Name"
+msgstr ""
+
+#: ../../../api/errors.rst:352
+msgid "``26000``"
+msgstr ""
+
+#: ../../../api/errors.rst:352
+msgid "`!InvalidSqlStatementName`"
+msgstr ""
+
+#: ../../../api/errors.rst:353
+msgid "**Class 27** - Triggered Data Change Violation"
+msgstr ""
+
+#: ../../../api/errors.rst:355
+msgid "``27000``"
+msgstr ""
+
+#: ../../../api/errors.rst:355
+msgid "`!TriggeredDataChangeViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:356
+msgid "**Class 28** - Invalid Authorization Specification"
+msgstr ""
+
+#: ../../../api/errors.rst:358
+msgid "``28000``"
+msgstr ""
+
+#: ../../../api/errors.rst:358
+msgid "`!InvalidAuthorizationSpecification`"
+msgstr ""
+
+#: ../../../api/errors.rst:359
+msgid "``28P01``"
+msgstr ""
+
+#: ../../../api/errors.rst:359
+msgid "`!InvalidPassword`"
+msgstr ""
+
+#: ../../../api/errors.rst:360
+msgid "**Class 2B** - Dependent Privilege Descriptors Still Exist"
+msgstr ""
+
+#: ../../../api/errors.rst:362
+msgid "``2B000``"
+msgstr ""
+
+#: ../../../api/errors.rst:362
+msgid "`!DependentPrivilegeDescriptorsStillExist`"
+msgstr ""
+
+#: ../../../api/errors.rst:363
+msgid "``2BP01``"
+msgstr ""
+
+#: ../../../api/errors.rst:363
+msgid "`!DependentObjectsStillExist`"
+msgstr ""
+
+#: ../../../api/errors.rst:364
+msgid "**Class 2D** - Invalid Transaction Termination"
+msgstr ""
+
+#: ../../../api/errors.rst:366
+msgid "``2D000``"
+msgstr ""
+
+#: ../../../api/errors.rst:366
+msgid "`!InvalidTransactionTermination`"
+msgstr ""
+
+#: ../../../api/errors.rst:367
+msgid "**Class 2F** - SQL Routine Exception"
+msgstr ""
+
+#: ../../../api/errors.rst:369
+msgid "``2F000``"
+msgstr ""
+
+#: ../../../api/errors.rst:369
+msgid "`!SqlRoutineException`"
+msgstr ""
+
+#: ../../../api/errors.rst:370
+msgid "``2F002``"
+msgstr ""
+
+#: ../../../api/errors.rst:370
+msgid "`!ModifyingSqlDataNotPermitted`"
+msgstr ""
+
+#: ../../../api/errors.rst:371
+msgid "``2F003``"
+msgstr ""
+
+#: ../../../api/errors.rst:371
+msgid "`!ProhibitedSqlStatementAttempted`"
+msgstr ""
+
+#: ../../../api/errors.rst:372
+msgid "``2F004``"
+msgstr ""
+
+#: ../../../api/errors.rst:372
+msgid "`!ReadingSqlDataNotPermitted`"
+msgstr ""
+
+#: ../../../api/errors.rst:373
+msgid "``2F005``"
+msgstr ""
+
+#: ../../../api/errors.rst:373
+msgid "`!FunctionExecutedNoReturnStatement`"
+msgstr ""
+
+#: ../../../api/errors.rst:374
+msgid "**Class 34** - Invalid Cursor Name"
+msgstr ""
+
+#: ../../../api/errors.rst:376
+msgid "``34000``"
+msgstr ""
+
+#: ../../../api/errors.rst:376
+msgid "`!InvalidCursorName`"
+msgstr ""
+
+#: ../../../api/errors.rst:377
+msgid "**Class 38** - External Routine Exception"
+msgstr ""
+
+#: ../../../api/errors.rst:379
+msgid "``38000``"
+msgstr ""
+
+#: ../../../api/errors.rst:379
+msgid "`!ExternalRoutineException`"
+msgstr ""
+
+#: ../../../api/errors.rst:380
+msgid "``38001``"
+msgstr ""
+
+#: ../../../api/errors.rst:380
+msgid "`!ContainingSqlNotPermitted`"
+msgstr ""
+
+#: ../../../api/errors.rst:381
+msgid "``38002``"
+msgstr ""
+
+#: ../../../api/errors.rst:381
+msgid "`!ModifyingSqlDataNotPermittedExt`"
+msgstr ""
+
+#: ../../../api/errors.rst:382
+msgid "``38003``"
+msgstr ""
+
+#: ../../../api/errors.rst:382
+msgid "`!ProhibitedSqlStatementAttemptedExt`"
+msgstr ""
+
+#: ../../../api/errors.rst:383
+msgid "``38004``"
+msgstr ""
+
+#: ../../../api/errors.rst:383
+msgid "`!ReadingSqlDataNotPermittedExt`"
+msgstr ""
+
+#: ../../../api/errors.rst:384
+msgid "**Class 39** - External Routine Invocation Exception"
+msgstr ""
+
+#: ../../../api/errors.rst:386
+msgid "``39000``"
+msgstr ""
+
+#: ../../../api/errors.rst:386
+msgid "`!ExternalRoutineInvocationException`"
+msgstr ""
+
+#: ../../../api/errors.rst:387
+msgid "``39001``"
+msgstr ""
+
+#: ../../../api/errors.rst:387
+msgid "`!InvalidSqlstateReturned`"
+msgstr ""
+
+#: ../../../api/errors.rst:388
+msgid "``39004``"
+msgstr ""
+
+#: ../../../api/errors.rst:388
+msgid "`!NullValueNotAllowedExt`"
+msgstr ""
+
+#: ../../../api/errors.rst:389
+msgid "``39P01``"
+msgstr ""
+
+#: ../../../api/errors.rst:389
+msgid "`!TriggerProtocolViolated`"
+msgstr ""
+
+#: ../../../api/errors.rst:390
+msgid "``39P02``"
+msgstr ""
+
+#: ../../../api/errors.rst:390
+msgid "`!SrfProtocolViolated`"
+msgstr ""
+
+#: ../../../api/errors.rst:391
+msgid "``39P03``"
+msgstr ""
+
+#: ../../../api/errors.rst:391
+msgid "`!EventTriggerProtocolViolated`"
+msgstr ""
+
+#: ../../../api/errors.rst:392
+msgid "**Class 3B** - Savepoint Exception"
+msgstr ""
+
+#: ../../../api/errors.rst:394
+msgid "``3B000``"
+msgstr ""
+
+#: ../../../api/errors.rst:394
+msgid "`!SavepointException`"
+msgstr ""
+
+#: ../../../api/errors.rst:395
+msgid "``3B001``"
+msgstr ""
+
+#: ../../../api/errors.rst:395
+msgid "`!InvalidSavepointSpecification`"
+msgstr ""
+
+#: ../../../api/errors.rst:396
+msgid "**Class 3D** - Invalid Catalog Name"
+msgstr ""
+
+#: ../../../api/errors.rst:398
+msgid "``3D000``"
+msgstr ""
+
+#: ../../../api/errors.rst:398
+msgid "`!InvalidCatalogName`"
+msgstr ""
+
+#: ../../../api/errors.rst:399
+msgid "**Class 3F** - Invalid Schema Name"
+msgstr ""
+
+#: ../../../api/errors.rst:401
+msgid "``3F000``"
+msgstr ""
+
+#: ../../../api/errors.rst:401
+msgid "`!InvalidSchemaName`"
+msgstr ""
+
+#: ../../../api/errors.rst:402
+msgid "**Class 40** - Transaction Rollback"
+msgstr ""
+
+#: ../../../api/errors.rst:404
+msgid "``40000``"
+msgstr ""
+
+#: ../../../api/errors.rst:404
+msgid "`!TransactionRollback`"
+msgstr ""
+
+#: ../../../api/errors.rst:405
+msgid "``40001``"
+msgstr ""
+
+#: ../../../api/errors.rst:405
+msgid "`!SerializationFailure`"
+msgstr ""
+
+#: ../../../api/errors.rst:406
+msgid "``40002``"
+msgstr ""
+
+#: ../../../api/errors.rst:406
+msgid "`!TransactionIntegrityConstraintViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:407
+msgid "``40003``"
+msgstr ""
+
+#: ../../../api/errors.rst:407
+msgid "`!StatementCompletionUnknown`"
+msgstr ""
+
+#: ../../../api/errors.rst:408
+msgid "``40P01``"
+msgstr ""
+
+#: ../../../api/errors.rst:408
+msgid "`!DeadlockDetected`"
+msgstr ""
+
+#: ../../../api/errors.rst:409
+msgid "**Class 42** - Syntax Error or Access Rule Violation"
+msgstr ""
+
+#: ../../../api/errors.rst:411
+msgid "``42000``"
+msgstr ""
+
+#: ../../../api/errors.rst:411
+msgid "`!SyntaxErrorOrAccessRuleViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:412
+msgid "``42501``"
+msgstr ""
+
+#: ../../../api/errors.rst:412
+msgid "`!InsufficientPrivilege`"
+msgstr ""
+
+#: ../../../api/errors.rst:413
+msgid "``42601``"
+msgstr ""
+
+#: ../../../api/errors.rst:413
+msgid "`!SyntaxError`"
+msgstr ""
+
+#: ../../../api/errors.rst:414
+msgid "``42602``"
+msgstr ""
+
+#: ../../../api/errors.rst:414
+msgid "`!InvalidName`"
+msgstr ""
+
+#: ../../../api/errors.rst:415
+msgid "``42611``"
+msgstr ""
+
+#: ../../../api/errors.rst:415
+msgid "`!InvalidColumnDefinition`"
+msgstr ""
+
+#: ../../../api/errors.rst:416
+msgid "``42622``"
+msgstr ""
+
+#: ../../../api/errors.rst:416
+msgid "`!NameTooLong`"
+msgstr ""
+
+#: ../../../api/errors.rst:417
+msgid "``42701``"
+msgstr ""
+
+#: ../../../api/errors.rst:417
+msgid "`!DuplicateColumn`"
+msgstr ""
+
+#: ../../../api/errors.rst:418
+msgid "``42702``"
+msgstr ""
+
+#: ../../../api/errors.rst:418
+msgid "`!AmbiguousColumn`"
+msgstr ""
+
+#: ../../../api/errors.rst:419
+msgid "``42703``"
+msgstr ""
+
+#: ../../../api/errors.rst:419
+msgid "`!UndefinedColumn`"
+msgstr ""
+
+#: ../../../api/errors.rst:420
+msgid "``42704``"
+msgstr ""
+
+#: ../../../api/errors.rst:420
+msgid "`!UndefinedObject`"
+msgstr ""
+
+#: ../../../api/errors.rst:421
+msgid "``42710``"
+msgstr ""
+
+#: ../../../api/errors.rst:421
+msgid "`!DuplicateObject`"
+msgstr ""
+
+#: ../../../api/errors.rst:422
+msgid "``42712``"
+msgstr ""
+
+#: ../../../api/errors.rst:422
+msgid "`!DuplicateAlias`"
+msgstr ""
+
+#: ../../../api/errors.rst:423
+msgid "``42723``"
+msgstr ""
+
+#: ../../../api/errors.rst:423
+msgid "`!DuplicateFunction`"
+msgstr ""
+
+#: ../../../api/errors.rst:424
+msgid "``42725``"
+msgstr ""
+
+#: ../../../api/errors.rst:424
+msgid "`!AmbiguousFunction`"
+msgstr ""
+
+#: ../../../api/errors.rst:425
+msgid "``42803``"
+msgstr ""
+
+#: ../../../api/errors.rst:425
+msgid "`!GroupingError`"
+msgstr ""
+
+#: ../../../api/errors.rst:426
+msgid "``42804``"
+msgstr ""
+
+#: ../../../api/errors.rst:426
+msgid "`!DatatypeMismatch`"
+msgstr ""
+
+#: ../../../api/errors.rst:427
+msgid "``42809``"
+msgstr ""
+
+#: ../../../api/errors.rst:427
+msgid "`!WrongObjectType`"
+msgstr ""
+
+#: ../../../api/errors.rst:428
+msgid "``42830``"
+msgstr ""
+
+#: ../../../api/errors.rst:428
+msgid "`!InvalidForeignKey`"
+msgstr ""
+
+#: ../../../api/errors.rst:429
+msgid "``42846``"
+msgstr ""
+
+#: ../../../api/errors.rst:429
+msgid "`!CannotCoerce`"
+msgstr ""
+
+#: ../../../api/errors.rst:430
+msgid "``42883``"
+msgstr ""
+
+#: ../../../api/errors.rst:430
+msgid "`!UndefinedFunction`"
+msgstr ""
+
+#: ../../../api/errors.rst:431
+msgid "``428C9``"
+msgstr ""
+
+#: ../../../api/errors.rst:431
+msgid "`!GeneratedAlways`"
+msgstr ""
+
+#: ../../../api/errors.rst:432
+msgid "``42939``"
+msgstr ""
+
+#: ../../../api/errors.rst:432
+msgid "`!ReservedName`"
+msgstr ""
+
+#: ../../../api/errors.rst:433
+msgid "``42P01``"
+msgstr ""
+
+#: ../../../api/errors.rst:433
+msgid "`!UndefinedTable`"
+msgstr ""
+
+#: ../../../api/errors.rst:434
+msgid "``42P02``"
+msgstr ""
+
+#: ../../../api/errors.rst:434
+msgid "`!UndefinedParameter`"
+msgstr ""
+
+#: ../../../api/errors.rst:435
+msgid "``42P03``"
+msgstr ""
+
+#: ../../../api/errors.rst:435
+msgid "`!DuplicateCursor`"
+msgstr ""
+
+#: ../../../api/errors.rst:436
+msgid "``42P04``"
+msgstr ""
+
+#: ../../../api/errors.rst:436
+msgid "`!DuplicateDatabase`"
+msgstr ""
+
+#: ../../../api/errors.rst:437
+msgid "``42P05``"
+msgstr ""
+
+#: ../../../api/errors.rst:437
+msgid "`!DuplicatePreparedStatement`"
+msgstr ""
+
+#: ../../../api/errors.rst:438
+msgid "``42P06``"
+msgstr ""
+
+#: ../../../api/errors.rst:438
+msgid "`!DuplicateSchema`"
+msgstr ""
+
+#: ../../../api/errors.rst:439
+msgid "``42P07``"
+msgstr ""
+
+#: ../../../api/errors.rst:439
+msgid "`!DuplicateTable`"
+msgstr ""
+
+#: ../../../api/errors.rst:440
+msgid "``42P08``"
+msgstr ""
+
+#: ../../../api/errors.rst:440
+msgid "`!AmbiguousParameter`"
+msgstr ""
+
+#: ../../../api/errors.rst:441
+msgid "``42P09``"
+msgstr ""
+
+#: ../../../api/errors.rst:441
+msgid "`!AmbiguousAlias`"
+msgstr ""
+
+#: ../../../api/errors.rst:442
+msgid "``42P10``"
+msgstr ""
+
+#: ../../../api/errors.rst:442
+msgid "`!InvalidColumnReference`"
+msgstr ""
+
+#: ../../../api/errors.rst:443
+msgid "``42P11``"
+msgstr ""
+
+#: ../../../api/errors.rst:443
+msgid "`!InvalidCursorDefinition`"
+msgstr ""
+
+#: ../../../api/errors.rst:444
+msgid "``42P12``"
+msgstr ""
+
+#: ../../../api/errors.rst:444
+msgid "`!InvalidDatabaseDefinition`"
+msgstr ""
+
+#: ../../../api/errors.rst:445
+msgid "``42P13``"
+msgstr ""
+
+#: ../../../api/errors.rst:445
+msgid "`!InvalidFunctionDefinition`"
+msgstr ""
+
+#: ../../../api/errors.rst:446
+msgid "``42P14``"
+msgstr ""
+
+#: ../../../api/errors.rst:446
+msgid "`!InvalidPreparedStatementDefinition`"
+msgstr ""
+
+#: ../../../api/errors.rst:447
+msgid "``42P15``"
+msgstr ""
+
+#: ../../../api/errors.rst:447
+msgid "`!InvalidSchemaDefinition`"
+msgstr ""
+
+#: ../../../api/errors.rst:448
+msgid "``42P16``"
+msgstr ""
+
+#: ../../../api/errors.rst:448
+msgid "`!InvalidTableDefinition`"
+msgstr ""
+
+#: ../../../api/errors.rst:449
+msgid "``42P17``"
+msgstr ""
+
+#: ../../../api/errors.rst:449
+msgid "`!InvalidObjectDefinition`"
+msgstr ""
+
+#: ../../../api/errors.rst:450
+msgid "``42P18``"
+msgstr ""
+
+#: ../../../api/errors.rst:450
+msgid "`!IndeterminateDatatype`"
+msgstr ""
+
+#: ../../../api/errors.rst:451
+msgid "``42P19``"
+msgstr ""
+
+#: ../../../api/errors.rst:451
+msgid "`!InvalidRecursion`"
+msgstr ""
+
+#: ../../../api/errors.rst:452
+msgid "``42P20``"
+msgstr ""
+
+#: ../../../api/errors.rst:452
+msgid "`!WindowingError`"
+msgstr ""
+
+#: ../../../api/errors.rst:453
+msgid "``42P21``"
+msgstr ""
+
+#: ../../../api/errors.rst:453
+msgid "`!CollationMismatch`"
+msgstr ""
+
+#: ../../../api/errors.rst:454
+msgid "``42P22``"
+msgstr ""
+
+#: ../../../api/errors.rst:454
+msgid "`!IndeterminateCollation`"
+msgstr ""
+
+#: ../../../api/errors.rst:455
+msgid "**Class 44** - WITH CHECK OPTION Violation"
+msgstr ""
+
+#: ../../../api/errors.rst:457
+msgid "``44000``"
+msgstr ""
+
+#: ../../../api/errors.rst:457
+msgid "`!WithCheckOptionViolation`"
+msgstr ""
+
+#: ../../../api/errors.rst:458
+msgid "**Class 53** - Insufficient Resources"
+msgstr ""
+
+#: ../../../api/errors.rst:460
+msgid "``53000``"
+msgstr ""
+
+#: ../../../api/errors.rst:460
+msgid "`!InsufficientResources`"
+msgstr ""
+
+#: ../../../api/errors.rst:461
+msgid "``53100``"
+msgstr ""
+
+#: ../../../api/errors.rst:461
+msgid "`!DiskFull`"
+msgstr ""
+
+#: ../../../api/errors.rst:462
+msgid "``53200``"
+msgstr ""
+
+#: ../../../api/errors.rst:462
+msgid "`!OutOfMemory`"
+msgstr ""
+
+#: ../../../api/errors.rst:463
+msgid "``53300``"
+msgstr ""
+
+#: ../../../api/errors.rst:463
+msgid "`!TooManyConnections`"
+msgstr ""
+
+#: ../../../api/errors.rst:464
+msgid "``53400``"
+msgstr ""
+
+#: ../../../api/errors.rst:464
+msgid "`!ConfigurationLimitExceeded`"
+msgstr ""
+
+#: ../../../api/errors.rst:465
+msgid "**Class 54** - Program Limit Exceeded"
+msgstr ""
+
+#: ../../../api/errors.rst:467
+msgid "``54000``"
+msgstr ""
+
+#: ../../../api/errors.rst:467
+msgid "`!ProgramLimitExceeded`"
+msgstr ""
+
+#: ../../../api/errors.rst:468
+msgid "``54001``"
+msgstr ""
+
+#: ../../../api/errors.rst:468
+msgid "`!StatementTooComplex`"
+msgstr ""
+
+#: ../../../api/errors.rst:469
+msgid "``54011``"
+msgstr ""
+
+#: ../../../api/errors.rst:469
+msgid "`!TooManyColumns`"
+msgstr ""
+
+#: ../../../api/errors.rst:470
+msgid "``54023``"
+msgstr ""
+
+#: ../../../api/errors.rst:470
+msgid "`!TooManyArguments`"
+msgstr ""
+
+#: ../../../api/errors.rst:471
+msgid "**Class 55** - Object Not In Prerequisite State"
+msgstr ""
+
+#: ../../../api/errors.rst:473
+msgid "``55000``"
+msgstr ""
+
+#: ../../../api/errors.rst:473
+msgid "`!ObjectNotInPrerequisiteState`"
+msgstr ""
+
+#: ../../../api/errors.rst:474
+msgid "``55006``"
+msgstr ""
+
+#: ../../../api/errors.rst:474
+msgid "`!ObjectInUse`"
+msgstr ""
+
+#: ../../../api/errors.rst:475
+msgid "``55P02``"
+msgstr ""
+
+#: ../../../api/errors.rst:475
+msgid "`!CantChangeRuntimeParam`"
+msgstr ""
+
+#: ../../../api/errors.rst:476
+msgid "``55P03``"
+msgstr ""
+
+#: ../../../api/errors.rst:476
+msgid "`!LockNotAvailable`"
+msgstr ""
+
+#: ../../../api/errors.rst:477
+msgid "``55P04``"
+msgstr ""
+
+#: ../../../api/errors.rst:477
+msgid "`!UnsafeNewEnumValueUsage`"
+msgstr ""
+
+#: ../../../api/errors.rst:478
+msgid "**Class 57** - Operator Intervention"
+msgstr ""
+
+#: ../../../api/errors.rst:480
+msgid "``57000``"
+msgstr ""
+
+#: ../../../api/errors.rst:480
+msgid "`!OperatorIntervention`"
+msgstr ""
+
+#: ../../../api/errors.rst:481
+msgid "``57014``"
+msgstr ""
+
+#: ../../../api/errors.rst:481
+msgid "`!QueryCanceled`"
+msgstr ""
+
+#: ../../../api/errors.rst:482
+msgid "``57P01``"
+msgstr ""
+
+#: ../../../api/errors.rst:482
+msgid "`!AdminShutdown`"
+msgstr ""
+
+#: ../../../api/errors.rst:483
+msgid "``57P02``"
+msgstr ""
+
+#: ../../../api/errors.rst:483
+msgid "`!CrashShutdown`"
+msgstr ""
+
+#: ../../../api/errors.rst:484
+msgid "``57P03``"
+msgstr ""
+
+#: ../../../api/errors.rst:484
+msgid "`!CannotConnectNow`"
+msgstr ""
+
+#: ../../../api/errors.rst:485
+msgid "``57P04``"
+msgstr ""
+
+#: ../../../api/errors.rst:485
+msgid "`!DatabaseDropped`"
+msgstr ""
+
+#: ../../../api/errors.rst:486
+msgid "``57P05``"
+msgstr ""
+
+#: ../../../api/errors.rst:486
+msgid "`!IdleSessionTimeout`"
+msgstr ""
+
+#: ../../../api/errors.rst:487
+msgid "**Class 58** - System Error (errors external to PostgreSQL itself)"
+msgstr ""
+
+#: ../../../api/errors.rst:489
+msgid "``58000``"
+msgstr ""
+
+#: ../../../api/errors.rst:489
+msgid "`!SystemError`"
+msgstr ""
+
+#: ../../../api/errors.rst:490
+msgid "``58030``"
+msgstr ""
+
+#: ../../../api/errors.rst:490
+msgid "`!IoError`"
+msgstr ""
+
+#: ../../../api/errors.rst:491
+msgid "``58P01``"
+msgstr ""
+
+#: ../../../api/errors.rst:491
+msgid "`!UndefinedFile`"
+msgstr ""
+
+#: ../../../api/errors.rst:492
+msgid "``58P02``"
+msgstr ""
+
+#: ../../../api/errors.rst:492
+msgid "`!DuplicateFile`"
+msgstr ""
+
+#: ../../../api/errors.rst:493
+msgid "``58P03``"
+msgstr ""
+
+#: ../../../api/errors.rst:493
+msgid "`!FileNameTooLong`"
+msgstr ""
+
+#: ../../../api/errors.rst:494
+msgid "**Class 72** - Snapshot Failure"
+msgstr ""
+
+#: ../../../api/errors.rst:496
+msgid "``72000``"
+msgstr ""
+
+#: ../../../api/errors.rst:496
+msgid "`!SnapshotTooOld`"
+msgstr ""
+
+#: ../../../api/errors.rst:497
+msgid "**Class F0** - Configuration File Error"
+msgstr ""
+
+#: ../../../api/errors.rst:499
+msgid "``F0000``"
+msgstr ""
+
+#: ../../../api/errors.rst:499
+msgid "`!ConfigFileError`"
+msgstr ""
+
+#: ../../../api/errors.rst:500
+msgid "``F0001``"
+msgstr ""
+
+#: ../../../api/errors.rst:500
+msgid "`!LockFileExists`"
+msgstr ""
+
+#: ../../../api/errors.rst:501
+msgid "**Class HV** - Foreign Data Wrapper Error (SQL/MED)"
+msgstr ""
+
+#: ../../../api/errors.rst:503
+msgid "``HV000``"
+msgstr ""
+
+#: ../../../api/errors.rst:503
+msgid "`!FdwError`"
+msgstr ""
+
+#: ../../../api/errors.rst:504
+msgid "``HV001``"
+msgstr ""
+
+#: ../../../api/errors.rst:504
+msgid "`!FdwOutOfMemory`"
+msgstr ""
+
+#: ../../../api/errors.rst:505
+msgid "``HV002``"
+msgstr ""
+
+#: ../../../api/errors.rst:505
+msgid "`!FdwDynamicParameterValueNeeded`"
+msgstr ""
+
+#: ../../../api/errors.rst:506
+msgid "``HV004``"
+msgstr ""
+
+#: ../../../api/errors.rst:506
+msgid "`!FdwInvalidDataType`"
+msgstr ""
+
+#: ../../../api/errors.rst:507
+msgid "``HV005``"
+msgstr ""
+
+#: ../../../api/errors.rst:507
+msgid "`!FdwColumnNameNotFound`"
+msgstr ""
+
+#: ../../../api/errors.rst:508
+msgid "``HV006``"
+msgstr ""
+
+#: ../../../api/errors.rst:508
+msgid "`!FdwInvalidDataTypeDescriptors`"
+msgstr ""
+
+#: ../../../api/errors.rst:509
+msgid "``HV007``"
+msgstr ""
+
+#: ../../../api/errors.rst:509
+msgid "`!FdwInvalidColumnName`"
+msgstr ""
+
+#: ../../../api/errors.rst:510
+msgid "``HV008``"
+msgstr ""
+
+#: ../../../api/errors.rst:510
+msgid "`!FdwInvalidColumnNumber`"
+msgstr ""
+
+#: ../../../api/errors.rst:511
+msgid "``HV009``"
+msgstr ""
+
+#: ../../../api/errors.rst:511
+msgid "`!FdwInvalidUseOfNullPointer`"
+msgstr ""
+
+#: ../../../api/errors.rst:512
+msgid "``HV00A``"
+msgstr ""
+
+#: ../../../api/errors.rst:512
+msgid "`!FdwInvalidStringFormat`"
+msgstr ""
+
+#: ../../../api/errors.rst:513
+msgid "``HV00B``"
+msgstr ""
+
+#: ../../../api/errors.rst:513
+msgid "`!FdwInvalidHandle`"
+msgstr ""
+
+#: ../../../api/errors.rst:514
+msgid "``HV00C``"
+msgstr ""
+
+#: ../../../api/errors.rst:514
+msgid "`!FdwInvalidOptionIndex`"
+msgstr ""
+
+#: ../../../api/errors.rst:515
+msgid "``HV00D``"
+msgstr ""
+
+#: ../../../api/errors.rst:515
+msgid "`!FdwInvalidOptionName`"
+msgstr ""
+
+#: ../../../api/errors.rst:516
+msgid "``HV00J``"
+msgstr ""
+
+#: ../../../api/errors.rst:516
+msgid "`!FdwOptionNameNotFound`"
+msgstr ""
+
+#: ../../../api/errors.rst:517
+msgid "``HV00K``"
+msgstr ""
+
+#: ../../../api/errors.rst:517
+msgid "`!FdwReplyHandle`"
+msgstr ""
+
+#: ../../../api/errors.rst:518
+msgid "``HV00L``"
+msgstr ""
+
+#: ../../../api/errors.rst:518
+msgid "`!FdwUnableToCreateExecution`"
+msgstr ""
+
+#: ../../../api/errors.rst:519
+msgid "``HV00M``"
+msgstr ""
+
+#: ../../../api/errors.rst:519
+msgid "`!FdwUnableToCreateReply`"
+msgstr ""
+
+#: ../../../api/errors.rst:520
+msgid "``HV00N``"
+msgstr ""
+
+#: ../../../api/errors.rst:520
+msgid "`!FdwUnableToEstablishConnection`"
+msgstr ""
+
+#: ../../../api/errors.rst:521
+msgid "``HV00P``"
+msgstr ""
+
+#: ../../../api/errors.rst:521
+msgid "`!FdwNoSchemas`"
+msgstr ""
+
+#: ../../../api/errors.rst:522
+msgid "``HV00Q``"
+msgstr ""
+
+#: ../../../api/errors.rst:522
+msgid "`!FdwSchemaNotFound`"
+msgstr ""
+
+#: ../../../api/errors.rst:523
+msgid "``HV00R``"
+msgstr ""
+
+#: ../../../api/errors.rst:523
+msgid "`!FdwTableNotFound`"
+msgstr ""
+
+#: ../../../api/errors.rst:524
+msgid "``HV010``"
+msgstr ""
+
+#: ../../../api/errors.rst:524
+msgid "`!FdwFunctionSequenceError`"
+msgstr ""
+
+#: ../../../api/errors.rst:525
+msgid "``HV014``"
+msgstr ""
+
+#: ../../../api/errors.rst:525
+msgid "`!FdwTooManyHandles`"
+msgstr ""
+
+#: ../../../api/errors.rst:526
+msgid "``HV021``"
+msgstr ""
+
+#: ../../../api/errors.rst:526
+msgid "`!FdwInconsistentDescriptorInformation`"
+msgstr ""
+
+#: ../../../api/errors.rst:527
+msgid "``HV024``"
+msgstr ""
+
+#: ../../../api/errors.rst:527
+msgid "`!FdwInvalidAttributeValue`"
+msgstr ""
+
+#: ../../../api/errors.rst:528
+msgid "``HV090``"
+msgstr ""
+
+#: ../../../api/errors.rst:528
+msgid "`!FdwInvalidStringLengthOrBufferLength`"
+msgstr ""
+
+#: ../../../api/errors.rst:529
+msgid "``HV091``"
+msgstr ""
+
+#: ../../../api/errors.rst:529
+msgid "`!FdwInvalidDescriptorFieldIdentifier`"
+msgstr ""
+
+#: ../../../api/errors.rst:530
+msgid "**Class P0** - PL/pgSQL Error"
+msgstr ""
+
+#: ../../../api/errors.rst:532
+msgid "``P0000``"
+msgstr ""
+
+#: ../../../api/errors.rst:532
+msgid "`!PlpgsqlError`"
+msgstr ""
+
+#: ../../../api/errors.rst:533
+msgid "``P0001``"
+msgstr ""
+
+#: ../../../api/errors.rst:533
+msgid "`!RaiseException`"
+msgstr ""
+
+#: ../../../api/errors.rst:534
+msgid "``P0002``"
+msgstr ""
+
+#: ../../../api/errors.rst:534
+msgid "`!NoDataFound`"
+msgstr ""
+
+#: ../../../api/errors.rst:535
+msgid "``P0003``"
+msgstr ""
+
+#: ../../../api/errors.rst:535
+msgid "`!TooManyRows`"
+msgstr ""
+
+#: ../../../api/errors.rst:536
+msgid "``P0004``"
+msgstr ""
+
+#: ../../../api/errors.rst:536
+msgid "`!AssertFailure`"
+msgstr ""
+
+#: ../../../api/errors.rst:537
+msgid "**Class XX** - Internal Error"
+msgstr ""
+
+#: ../../../api/errors.rst:539
+msgid "``XX000``"
+msgstr ""
+
+#: ../../../api/errors.rst:539
+msgid "`!InternalError_`"
+msgstr ""
+
+#: ../../../api/errors.rst:540
+msgid "``XX001``"
+msgstr ""
+
+#: ../../../api/errors.rst:540
+msgid "`!DataCorrupted`"
+msgstr ""
+
+#: ../../../api/errors.rst:541
+msgid "``XX002``"
+msgstr ""
+
+#: ../../../api/errors.rst:541
+msgid "`!IndexCorrupted`"
+msgstr ""
+
+#: ../../../api/errors.rst:546
+msgid ""
+"Exception `!SqlJsonItemCannotBeCastToTargetType`, introduced in PostgreSQL "
+"15."
+msgstr ""
+
+#: ../../../api/errors.rst:549
+msgid "Exception `!TransactionTimeout`, introduced in PostgreSQL 17."
+msgstr ""
+
+#: ../../../api/errors.rst:552
+msgid ""
+"Exception `!InvalidArgumentForXquery`, `FileNameTooLong`, introduced in "
+"PostgreSQL 18."
+msgstr ""
+
+#: ../../../api/errors.rst:6
+msgid "Error"
+msgstr ""
+
+#: ../../../api/errors.rst:6
+msgid "Class"
+msgstr ""
+
+#: ../../../api/errors.rst:14 ../../../api/errors.rst:93
+msgid "Exceptions"
+msgstr ""
+
+#: ../../../api/errors.rst:14
+msgid "DB-API"
+msgstr ""
+
+#: ../../../api/errors.rst:93
+msgid "PostgreSQL"
+msgstr ""

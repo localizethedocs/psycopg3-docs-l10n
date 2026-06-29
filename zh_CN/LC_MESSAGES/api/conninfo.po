@@ -1,0 +1,94 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/conninfo.rst:4
+msgid "`conninfo` -- manipulate connection strings"
+msgstr ""
+
+#: ../../../api/conninfo.rst:6
+msgid ""
+"This module contains a few utility functions to manipulate database "
+"connection strings."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/conninfo.py:docstring
+#: of psycopg.conninfo.conninfo_to_dict:1
+msgid "Convert the `!conninfo` string into a dictionary of parameters."
+msgstr ""
+
+#: ../../../api/conninfo.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/conninfo.py:docstring
+#: of psycopg.conninfo.conninfo_to_dict:3 psycopg.conninfo.make_conninfo:3
+msgid "A `connection string`__ as accepted by PostgreSQL."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/conninfo.py:docstring
+#: of psycopg.conninfo.conninfo_to_dict:4 psycopg.conninfo.make_conninfo:4
+msgid "Parameters overriding the ones specified in `!conninfo`."
+msgstr ""
+
+#: ../../../api/conninfo.rst:0
+msgid "Returns"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/conninfo.py:docstring
+#: of psycopg.conninfo.conninfo_to_dict:5
+msgid "Dictionary with the parameters parsed from `!conninfo` and `!kwargs`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/conninfo.py:docstring
+#: of psycopg.conninfo.conninfo_to_dict:8
+msgid ""
+"Raise `~psycopg.ProgrammingError` if `!conninfo` is not a a valid connection "
+"string."
+msgstr ""
+
+#: ../../../api/conninfo.rst:13
+msgid ""
+">>> conninfo_to_dict(\"postgres://jeff@example.com/db\", user=\"piro\")\n"
+"{'user': 'piro', 'dbname': 'db', 'host': 'example.com'}"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/conninfo.py:docstring
+#: of psycopg.conninfo.make_conninfo:1
+msgid "Merge a string and keyword params into a single conninfo string."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/conninfo.py:docstring
+#: of psycopg.conninfo.make_conninfo:5
+msgid ""
+"A connection string valid for PostgreSQL, with the `!kwargs` parameters "
+"merged."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/conninfo.py:docstring
+#: of psycopg.conninfo.make_conninfo:8
+msgid ""
+"Raise `~psycopg.ProgrammingError` if the input doesn't make a valid conninfo "
+"string."
+msgstr ""
+
+#: ../../../api/conninfo.rst:21
+msgid ""
+">>> make_conninfo(\"dbname=db user=jeff\", user=\"piro\", port=5432)\n"
+"'dbname=db user=piro port=5432'"
+msgstr ""

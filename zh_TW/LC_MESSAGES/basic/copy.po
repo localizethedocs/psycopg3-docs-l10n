@@ -1,0 +1,305 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg latest\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../basic/copy.rst:9
+msgid "Using COPY TO and COPY FROM"
+msgstr "使用 COPY TO 與 COPY FROM"
+
+#: ../../../basic/copy.rst:11
+msgid ""
+"Psycopg allows to operate with `PostgreSQL COPY protocol`__. :sql:`COPY` is "
+"one of the most efficient ways to load data into the database (and to modify "
+"it, with some SQL creativity)."
+msgstr ""
+
+#: ../../../basic/copy.rst:17
+msgid ""
+"Copy is supported using the `Cursor.copy()` method, passing it a query of "
+"the form :sql:`COPY ... FROM STDIN` or :sql:`COPY ... TO STDOUT`, and "
+"managing the resulting `Copy` object in a `!with` block:"
+msgstr ""
+
+#: ../../../basic/copy.rst:21
+msgid ""
+"with cursor.copy(\"COPY table_name (col1, col2) FROM STDIN\") as copy:\n"
+"    # pass data to the 'copy' object using write()/write_row()"
+msgstr ""
+
+#: ../../../basic/copy.rst:26
+msgid ""
+"You can compose a COPY statement dynamically by using objects from the "
+"`psycopg.sql` module:"
+msgstr ""
+
+#: ../../../basic/copy.rst:29
+msgid ""
+"with cursor.copy(\n"
+"    sql.SQL(\"COPY {} TO STDOUT\").format(sql.Identifier(\"table_name\"))\n"
+") as copy:\n"
+"    # read data from the 'copy' object using read()/read_row()"
+msgstr ""
+
+#: ../../../basic/copy.rst:38
+msgid "You can also pass parameters to `!copy()`, like in `~Cursor.execute()`:"
+msgstr ""
+
+#: ../../../basic/copy.rst:40
+msgid ""
+"with cur.copy(\"COPY (SELECT * FROM table_name LIMIT %s) TO STDOUT\", (3,)) "
+"as copy:\n"
+"    # expect no more than three records"
+msgstr ""
+
+#: ../../../basic/copy.rst:45
+msgid ""
+"The connection is subject to the usual transaction behaviour, so, unless the "
+"connection is in autocommit, at the end of the COPY operation you will still "
+"have to commit the pending changes and you can still roll them back. See :"
+"ref:`transactions` for details."
+msgstr ""
+
+#: ../../../basic/copy.rst:54
+msgid "Writing data row-by-row"
+msgstr ""
+
+#: ../../../basic/copy.rst:56
+msgid ""
+"Using a copy operation you can load data into the database from any Python "
+"iterable (a list of tuples, or any iterable of sequences): the Python values "
+"are adapted as they would be in normal querying. To perform such operation "
+"use a :sql:`COPY ... FROM STDIN` with `Cursor.copy()` and use `~Copy."
+"write_row()` on the resulting object in a `!with` block. On exiting the "
+"block the operation will be concluded:"
+msgstr ""
+
+#: ../../../basic/copy.rst:63
+msgid ""
+"records = [(10, 20, \"hello\"), (40, None, \"world\")]\n"
+"\n"
+"with cursor.copy(\"COPY sample (col1, col2, col3) FROM STDIN\") as copy:\n"
+"    for record in records:\n"
+"        copy.write_row(record)"
+msgstr ""
+"records = [(10, 20, \"hello\"), (40, None, \"world\")]\n"
+"\n"
+"with cursor.copy(\"COPY sample (col1, col2, col3) FROM STDIN\") as copy:\n"
+"    for record in records:\n"
+"        copy.write_row(record)"
+
+#: ../../../basic/copy.rst:71
+msgid ""
+"If an exception is raised inside the block, the operation is interrupted and "
+"the records inserted so far are discarded."
+msgstr ""
+
+#: ../../../basic/copy.rst:74
+msgid ""
+"In order to read or write from `!Copy` row-by-row you must not specify :sql:"
+"`COPY` options such as :sql:`FORMAT CSV`, :sql:`DELIMITER`, :sql:`NULL`: "
+"please leave these details alone, thank you :)"
+msgstr ""
+
+#: ../../../basic/copy.rst:82
+msgid "Reading data row-by-row"
+msgstr ""
+
+#: ../../../basic/copy.rst:84
+msgid ""
+"You can also do the opposite, reading rows out of a :sql:`COPY ... TO "
+"STDOUT` operation, by iterating on `~Copy.rows()`. However this is not "
+"something you may want to do normally: usually the normal query process will "
+"be easier to use."
+msgstr ""
+
+#: ../../../basic/copy.rst:89
+msgid ""
+"PostgreSQL, currently, doesn't give complete type information on :sql:`COPY "
+"TO`, so the rows returned will have unparsed data, as strings or bytes, "
+"according to the format."
+msgstr ""
+
+#: ../../../basic/copy.rst:93
+msgid ""
+"with cur.copy(\"COPY (VALUES (10::int, current_date)) TO STDOUT\") as copy:\n"
+"    for row in copy.rows():\n"
+"        print(row)  # return unparsed data: ('10', '2046-12-24')"
+msgstr ""
+
+#: ../../../basic/copy.rst:99
+msgid ""
+"You can improve the results by using `~Copy.set_types()` before reading, but "
+"you have to specify them yourself."
+msgstr ""
+
+#: ../../../basic/copy.rst:102
+msgid ""
+"with cur.copy(\"COPY (VALUES (10::int, current_date)) TO STDOUT\") as copy:\n"
+"    copy.set_types([\"int4\", \"date\"])\n"
+"    for row in copy.rows():\n"
+"        print(row)  # (10, datetime.date(2046, 12, 24))"
+msgstr ""
+
+#: ../../../basic/copy.rst:113
+msgid "Copying block-by-block"
+msgstr ""
+
+#: ../../../basic/copy.rst:115
+msgid ""
+"If data is already formatted in a way suitable for copy (for instance "
+"because it is coming from a file resulting from a previous `COPY TO` "
+"operation) it can be loaded into the database using `Copy.write()` instead."
+msgstr ""
+
+#: ../../../basic/copy.rst:119
+msgid ""
+"with open(\"data\", \"r\") as f:\n"
+"    with cursor.copy(\"COPY data FROM STDIN\") as copy:\n"
+"        while data := f.read(BLOCK_SIZE):\n"
+"            copy.write(data)"
+msgstr ""
+
+#: ../../../basic/copy.rst:126
+msgid ""
+"In this case you can use any :sql:`COPY` option and format, as long as the "
+"input data is compatible with what the operation in `!copy()` expects. Data "
+"can be passed as `!str`, if the copy is in :sql:`FORMAT TEXT`, or as `!"
+"bytes`, which works with both :sql:`FORMAT TEXT` and :sql:`FORMAT BINARY`."
+msgstr ""
+
+#: ../../../basic/copy.rst:131
+msgid ""
+"In order to produce data in :sql:`COPY` format you can use a :sql:`COPY ... "
+"TO STDOUT` statement and iterate over the resulting `Copy` object, which "
+"will produce a stream of `!bytes` objects:"
+msgstr ""
+
+#: ../../../basic/copy.rst:135
+msgid ""
+"with open(\"data.out\", \"wb\") as f:\n"
+"    with cursor.copy(\"COPY table_name TO STDOUT\") as copy:\n"
+"        for data in copy:\n"
+"            f.write(data)"
+msgstr ""
+
+#: ../../../basic/copy.rst:146
+msgid "Binary copy"
+msgstr ""
+
+#: ../../../basic/copy.rst:148
+msgid ""
+"Binary copy is supported by specifying :sql:`FORMAT BINARY` in the :sql:"
+"`COPY` statement. In order to import binary data using `~Copy.write_row()`, "
+"all the types passed to the database must have a binary dumper registered; "
+"this is not necessary if the data is copied :ref:`block-by-block <copy-"
+"block>` using `~Copy.write()`."
+msgstr ""
+
+#: ../../../basic/copy.rst:156
+msgid ""
+"PostgreSQL is particularly finicky when loading data in binary mode and will "
+"apply **no cast rules**. This means, for example, that passing the value 100 "
+"to an `integer` column **will fail**, because Psycopg will pass it as a "
+"`smallint` value, and the server will reject it because its size doesn't "
+"match what expected."
+msgstr ""
+
+#: ../../../basic/copy.rst:162
+msgid ""
+"You can work around the problem using the `~Copy.set_types()` method of the "
+"`!Copy` object and specifying carefully the types to load."
+msgstr ""
+
+#: ../../../basic/copy.rst:165
+msgid "See :ref:`binary-data` for further info about binary querying."
+msgstr ""
+
+#: ../../../basic/copy.rst:171
+msgid "Asynchronous copy support"
+msgstr "異步複製支援"
+
+#: ../../../basic/copy.rst:173
+msgid ""
+"Asynchronous operations are supported using the same patterns as above, "
+"using the objects obtained by an `AsyncConnection`. For instance, if `!f` is "
+"an object supporting an asynchronous `!read()` method returning :sql:`COPY` "
+"data, a fully-async copy operation could be:"
+msgstr ""
+
+#: ../../../basic/copy.rst:178
+msgid ""
+"async with cursor.copy(\"COPY data FROM STDIN\") as copy:\n"
+"    while data := await f.read():\n"
+"        await copy.write(data)"
+msgstr ""
+
+#: ../../../basic/copy.rst:184
+msgid ""
+"The `AsyncCopy` object documentation describes the signature of the "
+"asynchronous methods and the differences from its sync `Copy` counterpart."
+msgstr ""
+
+#: ../../../basic/copy.rst:187
+msgid "See :ref:`async` for further info about using async objects."
+msgstr ""
+
+#: ../../../basic/copy.rst:191
+msgid "Example: copying a table across servers"
+msgstr ""
+
+#: ../../../basic/copy.rst:193
+msgid ""
+"In order to copy a table, or a portion of a table, across servers, you can "
+"use two COPY operations on two different connections, reading from the first "
+"and writing to the second."
+msgstr ""
+
+#: ../../../basic/copy.rst:197
+msgid ""
+"with psycopg.connect(dsn_src) as conn1, psycopg.connect(dsn_tgt) as conn2:\n"
+"    with conn1.cursor().copy(\"COPY src TO STDOUT (FORMAT BINARY)\") as "
+"copy1:\n"
+"        with conn2.cursor().copy(\"COPY tgt FROM STDIN (FORMAT BINARY)\") as "
+"copy2:\n"
+"            for data in copy1:\n"
+"                copy2.write(data)"
+msgstr ""
+
+#: ../../../basic/copy.rst:205
+msgid ""
+"Using :sql:`FORMAT BINARY` usually gives a performance boost, but it only "
+"works if the source and target schema are *perfectly identical*. If the "
+"tables are only *compatible* (for example, if you are copying an :sql:"
+"`integer` field into a :sql:`bigint` destination field) you should omit the "
+"`BINARY` option and perform a text-based copy. See :ref:`copy-binary` for "
+"details."
+msgstr ""
+
+#: ../../../basic/copy.rst:211
+msgid ""
+"The same pattern can be adapted to use :ref:`async objects <async>` in order "
+"to perform an :ref:`async copy <copy-async>`."
+msgstr ""
+
+#: ../../../basic/copy.rst:3
+msgid "COPY"
+msgstr ""
+
+#: ../../../basic/copy.rst:3
+msgid "SQL command"
+msgstr "SQL 命令"
