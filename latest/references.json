@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-05-21 16:48:39 -0700",
-      "hash" : "57db5c86b71741a967001e62b784984115741525",
-      "title" : "Merge pull request #1307 from psycopg/fix-discarding"
+      "date" : "2026-06-28 12:47:31 +0200",
+      "hash" : "6a52e77dc38827214b294759823a072841b4819f",
+      "title" : "dev: gitignore any directory prefixed with .venv"
     }
   },
   "type" : "branch",
