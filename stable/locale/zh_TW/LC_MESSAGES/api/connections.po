@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../api/connections.rst:4
 msgid "Connection classes"
-msgstr ""
+msgstr "Connection 類別"
 
 #: ../../../api/connections.rst:6
 msgid ""

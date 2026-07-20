@@ -31,6 +31,9 @@ msgid ""
 "source .venv/bin/activate\n"
 "make serve"
 msgstr ""
+"make env\n"
+"source .venv/bin/activate\n"
+"make serve"
 
 #: ../../../README.rst:12
 msgid "and connect to <http://localhost:8000>."

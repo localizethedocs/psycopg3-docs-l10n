@@ -33,6 +33,8 @@ msgid ""
 "the same connection. Different thread can use the same connection by "
 "creating different cursors."
 msgstr ""
+"`Connection` 是執行緒安全的物件：同一時間可以有多個執行緒使用同一個連線。不同"
+"的執行緒可以透過建立各自的游標來共用同一個連線。"
 
 #: ../../../advanced/async.rst:18
 msgid ""
