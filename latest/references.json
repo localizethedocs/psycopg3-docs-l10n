@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-05-21 16:48:39 -0700",
-      "hash" : "57db5c86b71741a967001e62b784984115741525",
-      "title" : "Merge pull request #1307 from psycopg/fix-discarding"
+      "date" : "2026-07-20 03:02:14 +0200",
+      "hash" : "c079c37c959a89a8684a3d3858cbaff7e5543e71",
+      "title" : "fix: raise DataError on malformed data in multirange binary loading"
     }
   },
   "type" : "branch",
