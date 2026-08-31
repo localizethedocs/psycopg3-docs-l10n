@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-07-20 03:02:14 +0200",
-      "hash" : "c079c37c959a89a8684a3d3858cbaff7e5543e71",
-      "title" : "fix: raise DataError on malformed data in multirange binary loading"
+      "date" : "2026-08-31 12:36:57 +0100",
+      "hash" : "2f2fcfbf35af4b80a4755fff75fe8b8f5e059193",
+      "title" : "Merge pull request #1364 from DylanYoung/fix_client_encoding_aliases"
     }
   },
   "type" : "branch",

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: psycopg latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:46+0000\n"
+"POT-Creation-Date: 2026-08-31 15:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -220,46 +220,52 @@ msgstr ""
 
 #: ../../../release.rst:124
 msgid ""
+"Move the upper bounds of the Python version to test in 3rd party tests, in "
+"``.github/workflows/3rd-party-tests.yml``."
+msgstr ""
+
+#: ../../../release.rst:127
+msgid ""
 "Update ``docs/basic/install.rst`` with the correct range of supported Python "
 "versions."
 msgstr ""
 
-#: ../../../release.rst:127
+#: ../../../release.rst:130
 msgid ""
 "Add the ``Programming Language :: Python :: 3.<X>`` classifier to ``psycopg/"
 "pyproject.toml``, ``psycopg_c/pyproject.toml``, and ``psycopg_pool/pyproject."
 "toml``."
 msgstr ""
 
-#: ../../../release.rst:133
+#: ../../../release.rst:136
 msgid "When dropping end-of-life Python versions"
 msgstr ""
 
-#: ../../../release.rst:135
+#: ../../../release.rst:138
 msgid ""
 "Update project metadata, ``requires-python`` and (maybe) package "
 "dependencies in ``pyproject.toml`` files of the corresponding ``psycopg`` "
 "directories."
 msgstr ""
 
-#: ../../../release.rst:138
+#: ../../../release.rst:141
 msgid ""
 "Update GitHub Actions workflow files in the ``.github/workflows/`` "
 "directory, e.g., ``tests.yml``, ``.3rd-party-tests.yml``, ``packages-bin."
 "yml``."
 msgstr ""
 
-#: ../../../release.rst:141
+#: ../../../release.rst:144
 msgid "Bump versions in the ``tests/constraints.txt`` file if it is necessary."
 msgstr ""
 
-#: ../../../release.rst:143
+#: ../../../release.rst:146
 msgid ""
 "bump ``build-system.requires`` in ``*/pyproject.toml``. Install the packages "
 "with ``pip install ./psycopg*/`` and check eventual warnings."
 msgstr ""
 
-#: ../../../release.rst:146
+#: ../../../release.rst:149
 msgid ""
 "You may grep throughout the project for occurrences of a version to be "
 "dropped. However, favouring smaller pull requests is convenient and easy to "
@@ -267,22 +273,22 @@ msgid ""
 "python>` Python 3.8::"
 msgstr ""
 
-#: ../../../release.rst:150
+#: ../../../release.rst:153
 msgid ""
 "git grep -E -e '\\b3\\.8\\b' -e '\\b(cp)?38\\b' -e '\\b3, 8\\b'\n"
 "git grep -E -e '\\b3\\.9\\b' -e '\\b(cp)?39\\b' -e '\\b3, 9\\b'"
 msgstr ""
 
-#: ../../../release.rst:153
+#: ../../../release.rst:156
 msgid ""
 "Consider using pyupgrade_ with ``--py3NN-plus`` in order to refresh syntax "
 "to Python 3.NN (the new minimum supported version)."
 msgstr ""
 
-#: ../../../release.rst:158
+#: ../../../release.rst:161
 msgid "Examples:"
 msgstr ""
 
-#: ../../../release.rst:160
+#: ../../../release.rst:163
 msgid "`PR #977 <https://github.com/psycopg/psycopg/pull/977>`_"
 msgstr ""
