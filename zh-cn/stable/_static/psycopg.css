@@ -1,0 +1,11 @@
+/* style rubric in furo (too small IMO) */
+p.rubric {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* override a silly default */
+table.align-default td,
+table.align-default th {
+  text-align: left;
+}
