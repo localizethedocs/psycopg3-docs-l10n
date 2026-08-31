@@ -1,0 +1,33 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/index.rst:10
+msgid "Contents:"
+msgstr ""
+
+#: ../../../api/index.rst:2
+msgid "Psycopg 3 API"
+msgstr ""
+
+#: ../../../api/index.rst:6
+msgid ""
+"This sections is a reference for all the public objects exposed by the "
+"`psycopg` module. For a more conceptual description you can take a look at :"
+"ref:`basic` and :ref:`advanced`."
+msgstr ""

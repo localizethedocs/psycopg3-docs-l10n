@@ -1,0 +1,766 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../basic/pgtypes.rst:11
+msgid "Adapting other PostgreSQL types"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:13
+msgid ""
+"PostgreSQL offers other data types which don't map to native Python types. "
+"Psycopg offers wrappers and conversion functions to allow their use."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:25
+msgid "Composite types adaptation"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:27
+msgid ""
+"Psycopg can adapt PostgreSQL composite types (either created with the |"
+"CREATE TYPE|_ command or implicitly defined after a table row type) to and "
+"from Python tuples, `~collections.namedtuple`, or any suitably configured "
+"object."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:34
+msgid ""
+"Before using a composite type it is necessary to get information about it "
+"using the `~psycopg.types.composite.CompositeInfo` class and to register it "
+"using `~psycopg.types.composite.register_composite()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/composite.py:docstring
+#: of psycopg.types.composite.CompositeInfo:1
+msgid "Manage information about a composite type."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:40
+msgid ""
+"`!CompositeInfo` is a `~psycopg.types.TypeInfo` subclass: check its "
+"documentation for the general usage, especially the `~psycopg.types.TypeInfo."
+"fetch()` method."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:47
+msgid "Tuple containing the field names of the composite type."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:52
+msgid "Tuple containing the field OIDs of the composite type."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:57
+msgid ""
+"After `register_composite()` is called, it will contain the Python type "
+"adapting the registered composite."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/composite.py:docstring
+#: of psycopg.types.composite.register_composite:1
+msgid "Register the adapters to load and dump a composite type."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/composite.py:docstring
+#: of psycopg.types.composite.register_composite:3
+msgid "The object with the information about the composite to register."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/composite.py:docstring
+#: of psycopg.types.composite.register_composite:5
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/hstore.py:docstring
+#: psycopg.types.hstore.register_hstore:4
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
+#: psycopg.types.multirange.register_multirange:4
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: psycopg.types.range.register_range:4 ../../../basic/pgtypes.rst:431
+msgid ""
+"The context where to register the adapters. If `!None`, register it globally."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/composite.py:docstring
+#: of psycopg.types.composite.register_composite:8
+msgid ""
+"Callable to create a Python object from the sequence of attributes read from "
+"the composite."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/composite.py:docstring
+#: of psycopg.types.composite.register_composite:11
+msgid ""
+"optional function that will be used when loading a composite type from the "
+"database if the Python type is not a sequence compatible with the composite "
+"fields"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/composite.py:docstring
+#: of psycopg.types.composite.register_composite:15
+msgid ""
+"optional function that will be used when dumping an object to the database "
+"if the object is not a sequence compatible with the composite fields"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/composite.py:docstring
+#: of psycopg.types.composite.register_composite:22
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/hstore.py:docstring
+#: psycopg.types.hstore.register_hstore:9
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
+#: psycopg.types.multirange.register_multirange:12
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: psycopg.types.range.register_range:12 ../../../basic/pgtypes.rst:436
+msgid ""
+"Registering the adapters doesn't affect objects already created, even if "
+"they are children of the registered context. For instance, registering the "
+"adapter globally doesn't affect already existing connections."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:62
+msgid ""
+"After registering the `CompositeInfo`, fetching data of the registered "
+"composite type will invoke `!factory` to create corresponding Python "
+"objects. If no factory is specified, Psycopg will generate a `~collection."
+"namedtuple` with the same fields of the composite type, and use it to return "
+"fetched data. The factory will be made available on `!info.`\\ "
+"`~CompositeInfo.python_type`."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:69
+msgid ""
+"If the `!factory` is a type (and not a generic callable) then dumpers for "
+"such type are created and registered too, so that passing objects of that "
+"type to a query will adapt them to the registered composite type. This "
+"assumes that the `!factory` type is a sequence; if this is not the case you "
+"can specify the `!make_sequence` parameter: a function taking the object to "
+"dump and the composite info and returning a sequence of values. See :ref:"
+"`composite-non-sequence`."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:77
+msgid ""
+"The `!factory` callable will be called with the sequence of value from the "
+"composite. If passing the sequence of positional arguments is not suitable "
+"for the `!factory` type you can specify the `!make_object` parameter: a "
+"function taking the sequence of composite values and the type info, and "
+"which should return a new instance of the object to load. See :ref:"
+"`composite-non-sequence`."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:84
+msgid "the `!make_object` and `!make_sequence` parameters."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:91
+msgid "Example: Python sequence"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:93
+msgid ""
+"Registering a composite without `!factory` information will create a type on "
+"the fly, stored in `!CompositeInfo.python_type`. ::"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:96
+msgid ""
+">>> from psycopg.types.composite import CompositeInfo, register_composite\n"
+"\n"
+">>> conn.execute(\"CREATE TYPE card AS (value int, suit text)\")\n"
+"\n"
+">>> info = CompositeInfo.fetch(conn, \"card\")\n"
+">>> register_composite(info, conn)\n"
+"\n"
+">>> my_card = info.python_type(8, \"hearts\")\n"
+">>> my_card\n"
+"card(value=8, suit='hearts')\n"
+"\n"
+">>> conn.execute(\n"
+"...     \"SELECT pg_typeof(%(card)s), (%(card)s).suit\", {\"card\": "
+"my_card}\n"
+"...     ).fetchone()\n"
+"('card', 'hearts')\n"
+"\n"
+">>> conn.execute(\"SELECT (%s, %s)::card\", [1, \"spades\"]).fetchone()[0]\n"
+"card(value=1, suit='spades')"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:116
+msgid ""
+"Nested composite types are handled as expected, provided that the type of "
+"the composite components are registered as well::"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:119
+msgid ""
+">>> conn.execute(\"CREATE TYPE card_back AS (face card, back text)\")\n"
+"\n"
+">>> info2 = CompositeInfo.fetch(conn, \"card_back\")\n"
+">>> register_composite(info2, conn)\n"
+"\n"
+">>> conn.execute(\"SELECT ((8, 'hearts'), 'blue')::card_back\").fetchone()"
+"[0]\n"
+"card_back(face=card(value=8, suit='hearts'), back='blue')"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:131
+msgid "Example: non-sequence Python object"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:135
+msgid ""
+"If your Python type takes keyword arguments, or if the sequence of value "
+"coming from the PostgreSQL type is not suitable for it, it is possible to "
+"specify a :samp:`make_object({values}, {info})` function to adapt the values "
+"from the composite to the Python object to create, eventually making use of "
+"the information in the type `~types.composite.CompositeInfo`, for example::"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:141
+msgid ""
+">>> from dataclasses import dataclass\n"
+">>> from typing import Any, Sequence\n"
+"\n"
+">>> @dataclass\n"
+"... class Card:\n"
+"...     suit: str\n"
+"...     value: int\n"
+"\n"
+">>> def card_from_db(values: Sequence[Any], info: CompositeInfo) -> Card:\n"
+"...     return Card(**dict(zip(info.field_names, values)))\n"
+"\n"
+">>> register_composite(info, conn, make_object=card_from_db)\n"
+">>> conn.execute(\"select '(1,spades)'::card\").fetchone()[0]\n"
+"Card(suit='spades', value=1)"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:156
+msgid ""
+"The previous example only configures loaders to convert data from PostgreSQL "
+"to Python. If we are also interested in dumping Python `!Card` objects we "
+"need to specify `!Card` as the factory (to declare which object we want to "
+"dump) and, because `!Card` is not a sequence, we need to specify a :samp:"
+"`make_sequence({object}, {info})` function to convert objects attributes "
+"into a sequence matching the composite fields::"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:163
+msgid ""
+">>> def card_to_db(card: Card, info: CompositeInfo) -> Sequence[Any]:\n"
+"...     return [getattr(card, name) for name in info.field_names]\n"
+"\n"
+">>> register_composite(\n"
+"...     info, conn, factory=Card,\n"
+"...     make_object=card_from_db, make_sequence=card_to_db)\n"
+"\n"
+">>> conn.execute(\n"
+"...     \"select %(card)s.value + 1, %(card)s.suit\",\n"
+"...     {\"card\": Card(suit=\"hearts\", value=8)},\n"
+"...     ).fetchone()\n"
+"(9, 'hearts')"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:183
+msgid "Range adaptation"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:185
+msgid ""
+"PostgreSQL `range types`__ are a family of data types representing a range "
+"of values between two elements. The type of the element is called the range "
+"*subtype*. PostgreSQL offers a few built-in range types and allows the "
+"definition of custom ones."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:192
+msgid ""
+"All the PostgreSQL range types are loaded as the `~psycopg.types.range."
+"Range` Python type, which is a `~typing.Generic` type and can hold bounds of "
+"different types."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range:1
+msgid "Python representation for a PostgreSQL range type."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range:3
+msgid "lower bound for the range. `!None` means unbound"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range:4
+msgid "upper bound for the range. `!None` means unbound"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range:5
+msgid ""
+"one of the literal strings ``()``, ``[)``, ``(]``, ``[]``, representing "
+"whether the lower or upper bounds are included"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range:7
+msgid "if `!True`, the range is empty"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:198
+msgid ""
+"This Python type is only used to pass and retrieve range values to and from "
+"PostgreSQL and doesn't attempt to replicate the PostgreSQL range features: "
+"it doesn't perform normalization and doesn't implement all the operators__ "
+"supported by the database."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:203
+msgid ""
+"PostgreSQL will perform normalisation on `!Range` objects used as query "
+"parameters, so, when they are fetched back, they will be found in the normal "
+"form (for instance ranges on integers will have `[)` bounds)."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:209
+msgid ""
+"`!Range` objects are immutable, hashable, and support the `!in` operator "
+"(checking if an element is within the range). They can be tested for "
+"equivalence. Empty ranges evaluate to `!False` in a boolean context, "
+"nonempty ones evaluate to `!True`."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:214
+msgid "`!Range` objects have the following attributes:"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range.isempty:1
+msgid "`!True` if the range is empty."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range.lower:1
+msgid "The lower bound of the range. `!None` if empty or unbound."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range.upper:1
+msgid "The upper bound of the range. `!None` if empty or unbound."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range.lower_inc:1
+msgid "`!True` if the lower bound is included in the range."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range.upper_inc:1
+msgid "`!True` if the upper bound is included in the range."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range.lower_inf:1
+msgid "`!True` if the range doesn't have a lower bound."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.Range.upper_inf:1
+msgid "`!True` if the range doesn't have an upper bound."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:224
+msgid ""
+"The built-in range objects are adapted automatically: if a `!Range` objects "
+"contains `~datetime.date` bounds, it is dumped using the :sql:`daterange` "
+"OID, and of course :sql:`daterange` values are loaded back as `!Range[date]`."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:228
+msgid ""
+"If you create your own range type you can use `~psycopg.types.range."
+"RangeInfo` and `~psycopg.types.range.register_range()` to associate the "
+"range type with its subtype and make it work like the builtin ones."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.RangeInfo:1
+msgid "Manage information about a range type."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:234
+msgid ""
+"`!RangeInfo` is a `~psycopg.types.TypeInfo` subclass: check its "
+"documentation for generic details, especially the `~psycopg.types.TypeInfo."
+"fetch()` method."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: of psycopg.types.range.register_range:1
+msgid "Register the adapters to load and dump a range type."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
+#: of psycopg.types.multirange.register_multirange:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: psycopg.types.range.register_range:3
+msgid "The object with the information about the range to register."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
+#: of psycopg.types.multirange.register_multirange:7
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
+#: psycopg.types.range.register_range:7
+msgid ""
+"Register loaders so that loading data of this type will result in a `Range` "
+"with bounds parsed as the right subtype."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:240 ../../../basic/pgtypes.rst:311
+#: ../../../basic/pgtypes.rst:368 ../../../basic/pgtypes.rst:441
+msgid "Example::"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:242
+msgid ""
+">>> from psycopg.types.range import Range, RangeInfo, register_range\n"
+"\n"
+">>> conn.execute(\"CREATE TYPE strrange AS RANGE (SUBTYPE = text)\")\n"
+">>> info = RangeInfo.fetch(conn, \"strrange\")\n"
+">>> register_range(info, conn)\n"
+"\n"
+">>> conn.execute(\"SELECT pg_typeof(%s)\", [Range(\"a\", \"z\")]).fetchone()"
+"[0]\n"
+"'strrange'\n"
+"\n"
+">>> conn.execute(\"SELECT '[a,z]'::strrange\").fetchone()[0]\n"
+"Range('a', 'z', '[]')"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:261
+msgid "Multirange adaptation"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:263
+msgid ""
+"Since PostgreSQL 14, every range type is associated with a multirange__, a "
+"type representing a disjoint set of ranges. A multirange is automatically "
+"available for every range, built-in and user-defined."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:269
+msgid ""
+"All the PostgreSQL range types are loaded as the `~psycopg.types.multirange."
+"Multirange` Python type, which is a mutable sequence of `~psycopg.types."
+"range.Range` elements."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
+#: of psycopg.types.multirange.Multirange:1
+msgid "Python representation for a PostgreSQL multirange type."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
+#: of psycopg.types.multirange.Multirange:3
+msgid "Sequence of ranges to initialise the object."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:275
+msgid ""
+"This Python type is only used to pass and retrieve multirange values to and "
+"from PostgreSQL and doesn't attempt to replicate the PostgreSQL multirange "
+"features: overlapping items are not merged, empty ranges are not discarded, "
+"the items are not ordered, the behaviour of `multirange operators`__ is not "
+"replicated in Python."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:281
+msgid ""
+"PostgreSQL will perform normalisation on `!Multirange` objects used as query "
+"parameters, so, when they are fetched back, they will be found ordered, with "
+"overlapping ranges merged, etc."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:287
+msgid ""
+"`!Multirange` objects are a `~collections.abc.MutableSequence` and are "
+"totally ordered: they behave pretty much like a list of `!Range`. Like "
+"Range, they are `~typing.Generic` on the subtype of their range, so you can "
+"declare a variable to be `!Multirange[date]` and mypy will complain if you "
+"try to add it a `Range[Decimal]`."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:293
+msgid ""
+"Like for `~psycopg.types.range.Range`, built-in multirange objects are "
+"adapted automatically: if a `!Multirange` object contains `!Range` with "
+"`~datetime.date` bounds, it is dumped using the :sql:`datemultirange` OID, "
+"and :sql:`datemultirange` values are loaded back as `!Multirange[date]`."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:298
+msgid ""
+"If you have created your own range type you can use `~psycopg.types."
+"multirange.MultirangeInfo` and `~psycopg.types.multirange."
+"register_multirange()` to associate the resulting multirange type with its "
+"subtype and make it work like the builtin ones."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
+#: of psycopg.types.multirange.MultirangeInfo:1
+msgid "Manage information about a multirange type."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:305
+msgid ""
+"`!MultirangeInfo` is a `~psycopg.types.TypeInfo` subclass: check its "
+"documentation for general details, especially the `~psycopg.types.TypeInfo."
+"fetch()` method."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
+#: of psycopg.types.multirange.register_multirange:1
+msgid "Register the adapters to load and dump a multirange type."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:313
+msgid ""
+">>> from psycopg.types.multirange import \\\n"
+"...     Multirange, MultirangeInfo, register_multirange\n"
+">>> from psycopg.types.range import Range\n"
+"\n"
+">>> conn.execute(\"CREATE TYPE strrange AS RANGE (SUBTYPE = text)\")\n"
+">>> info = MultirangeInfo.fetch(conn, \"strmultirange\")\n"
+">>> register_multirange(info, conn)\n"
+"\n"
+">>> rec = conn.execute(\n"
+"...     \"SELECT pg_typeof(%(mr)s), %(mr)s\",\n"
+"...     {\"mr\": Multirange([Range(\"a\", \"q\"), Range(\"l\", \"z\")])})."
+"fetchone()\n"
+"\n"
+">>> rec[0]\n"
+"'strmultirange'\n"
+">>> rec[1]\n"
+"Multirange([Range('a', 'z', '[)')])"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:338
+msgid "Hstore adaptation"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:340
+msgid ""
+"The |hstore|_ data type is a key-value store embedded in PostgreSQL. It "
+"supports GiST or GIN indexes allowing search by keys or key/value pairs as "
+"well as regular BTree indexes for equality, uniqueness etc."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:347
+msgid ""
+"Psycopg can convert Python `!dict` objects to and from |hstore| structures. "
+"Only dictionaries with string keys and values are supported. `!None` is also "
+"allowed as value but not as a key."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:351
+msgid ""
+"In order to use the |hstore| data type it is necessary to load it in a "
+"database using:"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:354
+msgid "=# CREATE EXTENSION hstore;"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:358
+msgid ""
+"Because |hstore| is distributed as a contrib module, its oid is not well "
+"known, so it is necessary to use `!TypeInfo`\\. `~psycopg.types.TypeInfo."
+"fetch()` to query the database and get its oid. The resulting object can be "
+"passed to `~psycopg.types.hstore.register_hstore()` to configure dumping `!"
+"dict` to |hstore| and parsing |hstore| back to `!dict`, in the context where "
+"the adapter is registered."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/hstore.py:docstring
+#: of psycopg.types.hstore.register_hstore:1
+msgid "Register the adapters to load and dump hstore."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/hstore.py:docstring
+#: of psycopg.types.hstore.register_hstore:3
+msgid "The object with the information about the hstore type."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:370
+msgid ""
+">>> from psycopg.types import TypeInfo\n"
+">>> from psycopg.types.hstore import register_hstore\n"
+"\n"
+">>> info = TypeInfo.fetch(conn, \"hstore\")\n"
+">>> register_hstore(info, conn)\n"
+"\n"
+">>> conn.execute(\"SELECT pg_typeof(%s)\", [{\"a\": \"b\"}]).fetchone()[0]\n"
+"'hstore'\n"
+"\n"
+">>> conn.execute(\"SELECT 'foo => bar'::hstore\").fetchone()[0]\n"
+"{'foo': 'bar'}"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:390
+msgid "Geometry adaptation using Shapely"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:392
+msgid ""
+"When using the PostGIS_ extension, it can be useful to retrieve geometry_ "
+"values and have them automatically converted to Shapely_ instances. "
+"Likewise, you may want to store such instances in the database and have the "
+"conversion happen automatically."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:398
+msgid ""
+"Psycopg doesn't have a dependency on the ``shapely`` package: you should "
+"install the library as an additional dependency of your project."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:402
+msgid ""
+"This module is experimental and might be changed in the future according to "
+"users' feedback."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:410
+msgid ""
+"Since PostgGIS is an extension, the :sql:`geometry` type oid is not well "
+"known, so it is necessary to use `!TypeInfo`\\. `~psycopg.types.TypeInfo."
+"fetch()` to query the database and find it. The resulting object can be "
+"passed to `~psycopg.types.shapely.register_shapely()` to configure dumping "
+"`shape`_ instances to :sql:`geometry` columns and parsing :sql:`geometry` "
+"data back to `!shape` instances, in the context where the adapters are "
+"registered."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:420
+msgid "Register Shapely dumper and loaders."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:422
+msgid ""
+"After invoking this function on an adapter, the queries retrieving PostGIS "
+"geometry objects will return Shapely's shape object instances both in text "
+"and binary mode."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:426
+msgid "Similarly, shape objects can be sent to the database."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:428
+msgid "This requires the Shapely library to be installed."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:430
+msgid "The object with the information about the geometry type."
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:443
+msgid ""
+">>> from psycopg.types import TypeInfo\n"
+">>> from psycopg.types.shapely import register_shapely\n"
+">>> from shapely.geometry import Point\n"
+"\n"
+">>> info = TypeInfo.fetch(conn, \"geometry\")\n"
+">>> register_shapely(info, conn)\n"
+"\n"
+">>> conn.execute(\"SELECT pg_typeof(%s)\", [Point(1.2, 3.4)]).fetchone()[0]\n"
+"'geometry'\n"
+"\n"
+">>> conn.execute(\"\"\"\n"
+"... SELECT ST_GeomFromGeoJSON('{\n"
+"...     \"type\":\"Point\",\n"
+"...     \"coordinates\":[-48.23456,20.12345]}')\n"
+"... \"\"\").fetchone()[0]\n"
+"<shapely.geometry.multipolygon.MultiPolygon object at 0x7fb131f3cd90>"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:460
+msgid ""
+"Notice that, if the geometry adapters are registered on a specific object (a "
+"connection or cursor), other connections and cursors will be unaffected::"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:463
+msgid ""
+">>> conn2 = psycopg.connect(CONN_STR)\n"
+">>> conn2.execute(\"\"\"\n"
+"... SELECT ST_GeomFromGeoJSON('{\n"
+"...     \"type\":\"Point\",\n"
+"...     \"coordinates\":[-48.23456,20.12345]}')\n"
+"... \"\"\").fetchone()[0]\n"
+"'0101000020E61000009279E40F061E48C0F2B0506B9A1F3440'"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:3 ../../../basic/pgtypes.rst:17
+#: ../../../basic/pgtypes.rst:331
+msgid "Adaptation"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:3
+msgid "Objects"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:3 ../../../basic/pgtypes.rst:17
+#: ../../../basic/pgtypes.rst:177 ../../../basic/pgtypes.rst:255
+#: ../../../basic/pgtypes.rst:331 ../../../basic/pgtypes.rst:383
+msgid "Data types"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:17
+msgid "Composite types"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:17
+msgid "tuple"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:17
+msgid "namedtuple"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:177 ../../../basic/pgtypes.rst:255
+msgid "range"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:331
+msgid "hstore"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:331
+msgid "dict"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:383
+msgid "geometry"
+msgstr ""
+
+#: ../../../basic/pgtypes.rst:383
+msgid "PostGIS"
+msgstr ""

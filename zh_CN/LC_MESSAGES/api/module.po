@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/module.rst:2
+msgid "The `!psycopg` module"
+msgstr ""
+
+#: ../../../api/module.rst:4
+msgid ""
+"Psycopg implements the `Python Database DB API 2.0 specification`__. As such "
+"it also exposes the `module-level objects`__ required by the specifications."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/connection.py:docstring
+#: of psycopg.connection.Connection.connect:1
+msgid "Connect to a database server and return a new `Connection` instance."
+msgstr ""
+
+#: ../../../api/module.rst:14
+msgid ""
+"This is an alias of the class method `Connection.connect`: see its "
+"documentation for details."
+msgstr ""
+
+#: ../../../api/module.rst:17
+msgid ""
+"If you need an asynchronous connection use `AsyncConnection.connect` instead."
+msgstr ""
+
+#: ../../../api/module.rst:22
+msgid ""
+"An object that can be used to verify that the client library used by psycopg "
+"implements a certain feature. For instance::"
+msgstr ""
+
+#: ../../../api/module.rst:25
+msgid ""
+"# Fail at import time if encrypted passwords is not available\n"
+"import psycopg\n"
+"psycopg.capabilities.has_encrypt_password(check=True)\n"
+"\n"
+"# Verify at runtime if a feature can be used\n"
+"if psycopg.capabilities.has_hostaddr():\n"
+"    print(conn.info.hostaddr)\n"
+"else:\n"
+"    print(\"unknown connection hostadd\")"
+msgstr ""
+
+#: ../../../api/module.rst:0
+msgid "type"
+msgstr ""
+
+#: ../../../api/module.rst:35
+msgid "`Capabilities`"
+msgstr ""
+
+#: ../../../api/module.rst:41
+msgid "Exceptions"
+msgstr ""
+
+#: ../../../api/module.rst:42
+msgid ""
+"The standard `DBAPI exceptions`__ are exposed both by the `!psycopg` module "
+"and by the `psycopg.errors` module. The latter also exposes more specific "
+"exceptions, mapping to the database error states (see :ref:`sqlstate-"
+"exceptions`)."
+msgstr ""
+
+#: ../../../api/module.rst:51
+msgid ""
+"`!Exception`\n"
+"\\|__ `Warning`\n"
+"\\|__ `Error`\n"
+"    \\|__ `InterfaceError`\n"
+"    \\|__ `DatabaseError`\n"
+"        \\|__ `DataError`\n"
+"        \\|__ `OperationalError`\n"
+"        \\|__ `IntegrityError`\n"
+"        \\|__ `InternalError`\n"
+"        \\|__ `ProgrammingError`\n"
+"        \\|__ `NotSupportedError`"
+msgstr ""
+
+#: ../../../api/module.rst:66
+msgid ""
+"The default adapters map establishing how Python and PostgreSQL types are "
+"converted into each other."
+msgstr ""
+
+#: ../../../api/module.rst:69
+msgid ""
+"This map is used as a template when new connections are created, using "
+"`psycopg.connect()`. Its `~psycopg.adapt.AdaptersMap.types` attribute is a "
+"`~psycopg.types.TypesRegistry` containing information about every PostgreSQL "
+"builtin type, useful for adaptation customisation (see :ref:`adaptation`)::"
+msgstr ""
+
+#: ../../../api/module.rst:75
+msgid ""
+">>> psycopg.adapters.types[\"int4\"]\n"
+"<TypeInfo: int4 (oid: 23, array oid: 1007)>"
+msgstr ""
+
+#: ../../../api/module.rst:78
+msgid "`~psycopg.adapt.AdaptersMap`"
+msgstr ""
