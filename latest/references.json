@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-07-20 03:02:14 +0200",
-      "hash" : "c079c37c959a89a8684a3d3858cbaff7e5543e71",
-      "title" : "fix: raise DataError on malformed data in multirange binary loading"
+      "date" : "2026-09-01 00:50:32 +0200",
+      "hash" : "646a4c8cc8eefe4cbd39288ce68db828d42711e3",
+      "title" : "chore: bump psycopg package version to 3.3.6.dev1"
     }
   },
   "type" : "branch",
