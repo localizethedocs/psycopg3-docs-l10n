@@ -1,0 +1,317 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/copy.rst:4
+msgid "COPY-related objects"
+msgstr ""
+
+#: ../../../api/copy.rst:6
+msgid ""
+"The main objects (`Copy`, `AsyncCopy`) present the main interface to "
+"exchange data during a COPY operations. These objects are normally obtained "
+"by the methods `Cursor.copy()` and `AsyncCursor.copy()`; however, they can "
+"be also created directly, for instance to write to a destination which is "
+"not a database (e.g. using a `~psycopg.copy.FileWriter`)."
+msgstr ""
+
+#: ../../../api/copy.rst:12
+msgid "See :ref:`copy` for details."
+msgstr ""
+
+#: ../../../api/copy.rst:16
+msgid "Main Copy objects"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.AsyncCopy:1 psycopg.Copy:1
+msgid "Manage an asynchronous :sql:`COPY` operation."
+msgstr ""
+
+#: ../../../api/copy.rst:0
+msgid "Parameters"
+msgstr "參數"
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.AsyncCopy:3 psycopg.Copy:3
+msgid "the cursor where the operation is performed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.AsyncCopy:4 psycopg.Copy:4
+msgid "if `!True`, write binary format."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.AsyncCopy:5 psycopg.Copy:5
+msgid ""
+"the object to write to destination. If not specified, write to the `!cursor` "
+"connection."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
+#: of psycopg.AsyncCopy:8 psycopg.Copy:8
+msgid ""
+"Choosing `!binary` is not necessary if the cursor has executed a :sql:`COPY` "
+"operation, because the operation result describes the format too. The "
+"parameter is useful when a `!Copy` object is created manually and no "
+"operation is performed on the cursor, such as when using ``writer=`` "
+"`~psycopg.copy.FileWriter`."
+msgstr ""
+
+#: ../../../api/copy.rst:20
+msgid "The object is normally returned by `!with` `Cursor.copy()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Copy.write_row:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncCopy.write_row:1
+msgid "Write a record to a table after a :sql:`COPY FROM` operation."
+msgstr ""
+
+#: ../../../api/copy.rst:24
+msgid ""
+"The data in the tuple will be converted as configured on the cursor; see :"
+"ref:`adaptation` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Copy.write:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncCopy.write:1
+msgid "Write a block of data to a table after a :sql:`COPY FROM` operation."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Copy.write:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncCopy.write:3
+msgid ""
+"If the :sql:`COPY` is in binary format `!buffer` must be `!bytes`. In text "
+"mode it can be either `!bytes` or `!str`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Copy.read:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncCopy.read:1
+msgid "Read an unparsed row after a :sql:`COPY TO` operation."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Copy.read:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncCopy.read:3
+msgid "Return an empty string when the data is finished."
+msgstr ""
+
+#: ../../../api/copy.rst:30
+msgid ""
+"Instead of using `!read()` you can iterate on the `!Copy` object to read its "
+"data row by row, using ``for row in copy: ...``."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Copy.rows:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncCopy.rows:1
+msgid "Iterate on the result of a :sql:`COPY TO` operation record by record."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Copy.read_row:5 psycopg._copy.Copy.rows:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncCopy.read_row:5
+#: psycopg._copy_async.AsyncCopy.rows:3
+msgid ""
+"Note that the records returned will be tuples of unparsed strings or bytes, "
+"unless data types are specified using `set_types()`."
+msgstr ""
+
+#: ../../../api/copy.rst:35
+msgid "Equivalent of iterating on `read_row()` until it returns `!None`"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Copy.read_row:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncCopy.read_row:1
+msgid ""
+"Read a parsed row of data from a table after a :sql:`COPY TO` operation."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Copy.read_row:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncCopy.read_row:3
+msgid "Return `!None` when the data is finished."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_base.py:docstring
+#: of psycopg._copy_base.BaseCopy.set_types:1
+msgid "Set the types expected in a COPY operation."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_base.py:docstring
+#: of psycopg._copy_base.BaseCopy.set_types:3
+msgid ""
+"The types must be specified as a sequence of oid or PostgreSQL type names (e."
+"g. ``int4``, ``timestamptz[]``)."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_base.py:docstring
+#: of psycopg._copy_base.BaseCopy.set_types:6
+msgid ""
+"This operation overcomes the lack of metadata returned by PostgreSQL when a "
+"COPY operation begins:"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_base.py:docstring
+#: of psycopg._copy_base.BaseCopy.set_types:9
+msgid ""
+"On :sql:`COPY TO`, `!set_types()` allows to specify what types the operation "
+"returns. If `!set_types()` is not used, the data will be returned as "
+"unparsed strings or bytes instead of Python objects."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_base.py:docstring
+#: of psycopg._copy_base.BaseCopy.set_types:13
+msgid ""
+"On :sql:`COPY FROM`, `!set_types()` allows to choose what type the database "
+"expects. This is especially useful in binary copy, because PostgreSQL will "
+"apply no cast rule."
+msgstr ""
+
+#: ../../../api/copy.rst:43
+msgid ""
+"The object is normally returned by ``async with`` `AsyncCursor.copy()`. Its "
+"methods are similar to the ones of the `Copy` object but offering an "
+"`asyncio` interface (`await`, `async for`, `async with`)."
+msgstr ""
+
+#: ../../../api/copy.rst:51
+msgid ""
+"Instead of using `!read()` you can iterate on the `!AsyncCopy` object to "
+"read its data row by row, using ``async for row in copy: ...``."
+msgstr ""
+
+#: ../../../api/copy.rst:56
+msgid "Use it as `async for record in copy.rows():` ..."
+msgstr ""
+
+#: ../../../api/copy.rst:64
+msgid "Writer objects"
+msgstr ""
+
+#: ../../../api/copy.rst:70
+msgid ""
+"Copy writers are helper objects to specify where to write COPY-formatted "
+"data. By default, data is written to the database (using the `LibpqWriter`). "
+"It is possible to write copy-data for offline use by using a `FileWriter`, "
+"or to customize further writing by implementing your own `Writer` or "
+"`AsyncWriter` subclass."
+msgstr ""
+
+#: ../../../api/copy.rst:76
+msgid ""
+"Writers instances can be used passing them to the cursor `~psycopg.Cursor."
+"copy()` method or to the `~psycopg.Copy` constructor, as the `!writer` "
+"argument."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Writer:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncWriter:1
+msgid "A class to write copy data somewhere (for async connections)."
+msgstr ""
+
+#: ../../../api/copy.rst:82
+msgid ""
+"This is an abstract base class: subclasses are required to implement their "
+"`write()` method."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Writer.write:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncWriter.write:1
+msgid "Write some data to destination."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Writer.finish:1
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncWriter.finish:1
+msgid "Called when write operations are finished."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
+#: of psycopg._copy.Writer.finish:3
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_async.py:docstring
+#: psycopg._copy_async.AsyncWriter.finish:3
+msgid "If operations finished with an error, it will be passed to ``exc``."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/copy.py:docstring
+#: of psycopg.copy.LibpqWriter:1
+msgid "An `Writer` to write copy data to a Postgres database."
+msgstr ""
+
+#: ../../../api/copy.rst:91
+msgid "This is the writer used by default if none is specified."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/copy.py:docstring
+#: of psycopg.copy.FileWriter:1
+msgid "A `Writer` to write copy data to a file-like object."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/copy.py:docstring
+#: of psycopg.copy.FileWriter:3
+msgid ""
+"the file where to write copy data. It must be open for writing in binary "
+"mode."
+msgstr ""
+
+#: ../../../api/copy.rst:96
+msgid ""
+"This writer should be used without executing a :sql:`COPY` operation on the "
+"database. For example, if `records` is a list of tuples containing data to "
+"save in COPY format to a file (e.g. for later import), it can be used as:"
+msgstr ""
+
+#: ../../../api/copy.rst:101
+msgid ""
+"with open(\"target-file.pgcopy\", \"wb\") as f:\n"
+"    with Copy(cur, writer=FileWriter(f)) as copy:\n"
+"        for record in records\n"
+"            copy.write_row(record)"
+msgstr ""
+
+#: ../../../api/copy.rst:111
+msgid ""
+"This class methods have the same semantics of the ones of `Writer`, but "
+"offer an async interface."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/copy.py:docstring
+#: of psycopg.copy.AsyncLibpqWriter:1
+msgid "An `AsyncWriter` to write copy data to a Postgres database."
+msgstr ""
