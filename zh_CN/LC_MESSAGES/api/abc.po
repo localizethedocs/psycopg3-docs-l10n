@@ -1,0 +1,282 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/abc.rst:2
+msgid "`!abc` -- Psycopg abstract classes"
+msgstr ""
+
+#: ../../../api/abc.rst:4
+msgid ""
+"The module exposes Psycopg definitions which can be used for static type "
+"checking."
+msgstr ""
+
+#: ../../../api/abc.rst:11
+msgid ""
+":ref:`adapt-life-cycle` for more information about how these objects are "
+"used by Psycopg,"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper:1
+msgid "Convert Python objects of type `!cls` to PostgreSQL representation."
+msgstr ""
+
+#: ../../../api/abc.rst:17
+msgid ""
+"This class is a formal `~typing.Protocol`. A partial implementation of this "
+"protocol (implementing everything except the `dump()` method) is available "
+"as `psycopg.adapt.Dumper`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:0 psycopg.abc.Dumper.upgrade:0
+#: ../../../api/abc.rst:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../api/abc.rst:21 ../../../api/abc.rst:72
+msgid "The type that will be managed by this dumper."
+msgstr ""
+
+#: ../../../api/abc.rst:23 ../../../api/abc.rst:74
+msgid ""
+"The context where the transformation is performed. If not specified the "
+"conversion might be inaccurate, for instance it will not be possible to know "
+"the connection encoding or the server date format."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/sphinx/ext/autodoc/_sentinels.py:docstring
+#: of psycopg.abc.Dumper.format:1
+msgid ""
+"The format that this class `dump()` method produces, `~psycopg.pq.Format."
+"TEXT` or `~psycopg.pq.Format.BINARY`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/sphinx/ext/autodoc/_sentinels.py:docstring
+#: of psycopg.abc.Dumper.format:4 psycopg.abc.Loader.format:4
+msgid "This is a class attribute."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.dump:1
+msgid "Convert the object `!obj` to PostgreSQL representation."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.dump:3 psycopg.abc.Dumper.quote:3
+msgid "the object to convert."
+msgstr ""
+
+#: ../../../api/abc.rst:32
+msgid "The format returned by dump shouldn't contain quotes or escaped values."
+msgstr ""
+
+#: ../../../api/abc.rst:37
+msgid ""
+"`!dump()` can also return `!None`, to represent a :sql:`NULL` in the "
+"database."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.quote:1
+msgid "Convert the object `!obj` to escaped representation."
+msgstr ""
+
+#: ../../../api/abc.rst:44
+msgid ""
+"This method will be used by `~psycopg.sql.Literal` to convert a value client-"
+"side."
+msgstr ""
+
+#: ../../../api/abc.rst:47
+msgid ""
+"This method only makes sense for text dumpers; the result of calling it on a "
+"binary dumper is undefined. It might scratch your car, or burn your cake. "
+"Don't tell me I didn't warn you."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/sphinx/ext/autodoc/_sentinels.py:docstring
+#: of psycopg.abc.Dumper.oid:1
+msgid "The oid to pass to the server, if known; 0 otherwise (class attribute)."
+msgstr ""
+
+#: ../../../api/abc.rst:53
+msgid ""
+"If the OID is not specified, PostgreSQL will try to infer the type from the "
+"context, but this may fail in some contexts and may require a cast (e.g. "
+"specifying :samp:`%s::{type}` for its placeholder)."
+msgstr ""
+
+#: ../../../api/abc.rst:57
+msgid ""
+"You can use the `psycopg.adapters`\\ ``.`` `~psycopg.adapt.AdaptersMap."
+"types` registry to find the OID of builtin types, and you can use `~psycopg."
+"types.TypeInfo` to extend the registry to custom types."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:1
+msgid "Return an alternative key to upgrade the dumper to represent `!obj`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:3 psycopg.abc.Dumper.upgrade:3
+msgid "The object to convert"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:4 psycopg.abc.Dumper.upgrade:4
+msgid "The format to convert to"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:6
+msgid ""
+"Normally the type of the object is all it takes to define how to dump the "
+"object to the database. For instance, a Python `~datetime.date` can be "
+"simply converted into a PostgreSQL :sql:`date`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:10
+msgid "In a few cases, just the type is not enough. For example:"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:12
+msgid ""
+"A Python `~datetime.datetime` could be represented as a :sql:`timestamptz` "
+"or a :sql:`timestamp`, according to whether it specifies a `!tzinfo` or not."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:16
+msgid ""
+"A Python int could be stored as several Postgres types: int2, int4, int8, "
+"numeric. If a type too small is used, it may result in an overflow. If a "
+"type too large is used, PostgreSQL may not want to cast it to a smaller type."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:21
+msgid ""
+"Python lists should be dumped according to the type they contain to convert "
+"them to e.g. array of strings, array of ints (and which size of int?...)"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:25
+msgid ""
+"In these cases, a dumper can implement `!get_key()` and return a new class, "
+"or sequence of classes, that can be used to identify the same dumper again. "
+"If the mechanism is not needed, the method should return the same `!cls` "
+"object passed in the constructor."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.get_key:30
+msgid ""
+"If a dumper implements `get_key()` it should also implement `upgrade()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.upgrade:1
+msgid "Return a new dumper to manage `!obj`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Dumper.upgrade:6
+msgid ""
+"Once `Transformer.get_dumper()` has been notified by `get_key()` that this "
+"Dumper class cannot handle `!obj` itself, it will invoke `!upgrade()`, which "
+"should return a new `Dumper` instance, which will be reused for every "
+"objects for which `!get_key()` returns the same result."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Loader:1
+msgid "Convert PostgreSQL values with type OID `!oid` to Python objects."
+msgstr ""
+
+#: ../../../api/abc.rst:68
+msgid ""
+"This class is a formal `~typing.Protocol`. A partial implementation of this "
+"protocol (implementing everything except the `load()` method) is available "
+"as `psycopg.adapt.Loader`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/sphinx/ext/autodoc/_sentinels.py:docstring
+#: of psycopg.abc.Loader.format:1
+msgid ""
+"The format that this class `load()` method can convert, `~psycopg.pq.Format."
+"TEXT` or `~psycopg.pq.Format.BINARY`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Loader.load:1
+msgid "Convert the data returned by the database into a Python object."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.Loader.load:3
+msgid "the data to convert."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.AdaptContext:1
+msgid "A context describing how types are adapted."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.AdaptContext:3
+msgid ""
+"Example of `!AdaptContext` are `~psycopg.Connection`, `~psycopg.Cursor`, "
+"`~psycopg.adapt.Transformer`, `~psycopg.adapt.AdaptersMap`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.AdaptContext:6
+msgid ""
+"Note that this is a `~typing.Protocol`, so objects implementing `!"
+"AdaptContext` don't need to explicitly inherit from this class."
+msgstr ""
+
+#: ../../../api/abc.rst:87
+msgid ":ref:`adaptation` for an explanation about how contexts are connected."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.AdaptContext.adapters:1
+msgid "The adapters configuration that this object uses."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.AdaptContext.connection:1
+msgid "The connection used by this object, if available."
+msgstr ""
+
+#: ../../../api/abc.rst:0
+msgid "Return type"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
+#: of psycopg.abc.AdaptContext.connection:3
+msgid "`~psycopg.Connection` or `~psycopg.AsyncConnection` or `!None`"
+msgstr ""
