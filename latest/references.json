@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-07-20 03:02:14 +0200",
-      "hash" : "c079c37c959a89a8684a3d3858cbaff7e5543e71",
-      "title" : "fix: raise DataError on malformed data in multirange binary loading"
+      "date" : "2026-09-14 15:15:30 +0200",
+      "hash" : "6b9b1e2cefa13ff6006a30e1c00cd4deebf9a2ce",
+      "title" : "test: run server cancellation tests on windows too"
     }
   },
   "type" : "branch",
