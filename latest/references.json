@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-07-20 03:02:14 +0200",
-      "hash" : "c079c37c959a89a8684a3d3858cbaff7e5543e71",
-      "title" : "fix: raise DataError on malformed data in multirange binary loading"
+      "date" : "2026-09-19 14:33:56 +0200",
+      "hash" : "8327aaa78e975704a4237c150e36aa164080f4ff",
+      "title" : "test: handle overlapping of discrete multirange elements"
     }
   },
   "type" : "branch",
