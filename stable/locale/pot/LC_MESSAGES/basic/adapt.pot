@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: psycopg stable\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"POT-Creation-Date: 2026-09-21 14:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -83,13 +84,39 @@ msgid ""
 "Python `~decimal.Decimal` values are converted to PostgreSQL :sql:`numeric`."
 msgstr ""
 
-#: ../../../basic/adapt.rst:69
+#: ../../../basic/adapt.rst:71
+msgid ""
+"The Python `int` type has arbitrary precision, but PostgreSQL integers "
+"don't: a value outside the type range (e.g. larger than 2 ** 63 - 1 for a :"
+"sql:`bigint`) passed to a query will be treated as :sql:`numeric`. Comparing "
+"an :sql:`integer`/:sql:`bigint` column against a :sql:`numeric` value casts "
+"the *column* to :sql:`numeric`, which makes an index on the column unusable: "
+"the query degrades to a sequential scan, which can take orders of magnitude "
+"longer on a large table, and can be used as a DoS vector if the value comes "
+"from user input."
+msgstr ""
+
+#: ../../../basic/adapt.rst:80
+msgid ""
+"To avoid it, you can validate the value against the type range before "
+"passing it to the query, or cast the value explicitly to the column type (e."
+"g. ``%s::bigint``): with the explicit cast an out-of-range value fails with "
+"a clear error instead of silently degrading the query plan."
+msgstr ""
+
+#: ../../../basic/adapt.rst:85
+msgid ""
+"See the article `Forcing sequential scans on PostgreSQL (2022)`__ for the "
+"details of this behaviour."
+msgstr ""
+
+#: ../../../basic/adapt.rst:90
 msgid ""
 "On the way back, smaller types (:sql:`int2`, :sql:`int4`, :sql:`float4`) are "
 "promoted to the larger Python counterpart."
 msgstr ""
 
-#: ../../../basic/adapt.rst:74
+#: ../../../basic/adapt.rst:95
 msgid ""
 "Sometimes you may prefer to receive :sql:`numeric` data as `!float` instead, "
 "for performance reason or ease of manipulation: you can configure an adapter "
@@ -97,27 +124,27 @@ msgid ""
 "This of course may imply a loss of precision."
 msgstr ""
 
-#: ../../../basic/adapt.rst:81
+#: ../../../basic/adapt.rst:102
 msgid "NumPy integer__ and `floating point`__ values can be dumped too."
 msgstr ""
 
-#: ../../../basic/adapt.rst:95
+#: ../../../basic/adapt.rst:116
 msgid "Strings adaptation"
 msgstr ""
 
-#: ../../../basic/adapt.rst:99
+#: ../../../basic/adapt.rst:120
 msgid ""
 "`PostgreSQL character types <https://www.postgresql.org/docs/current/"
 "datatype-character.html>`__"
 msgstr ""
 
-#: ../../../basic/adapt.rst:102
+#: ../../../basic/adapt.rst:123
 msgid ""
 "Python `str` are converted to PostgreSQL string syntax, and PostgreSQL types "
 "such as :sql:`text` and :sql:`varchar` are converted back to Python `!str`:"
 msgstr ""
 
-#: ../../../basic/adapt.rst:105
+#: ../../../basic/adapt.rst:126
 msgid ""
 "conn = psycopg.connect()\n"
 "conn.execute(\n"
@@ -127,7 +154,7 @@ msgid ""
 "'Crème Brûlée at 4.99€'"
 msgstr ""
 
-#: ../../../basic/adapt.rst:114
+#: ../../../basic/adapt.rst:135
 msgid ""
 "PostgreSQL databases `have an encoding`__, and `the session has an "
 "encoding`__ too, exposed in the `!Connection.info.`\\ `~ConnectionInfo."
@@ -137,7 +164,7 @@ msgid ""
 "handle; failing to do so may result in encoding/decoding errors:"
 msgstr ""
 
-#: ../../../basic/adapt.rst:124
+#: ../../../basic/adapt.rst:145
 msgid ""
 "# The encoding is set at connection time according to the db configuration\n"
 "conn.info.encoding\n"
@@ -158,46 +185,46 @@ msgid ""
 "# in encoding \"UTF8\" has no equivalent in encoding \"LATIN1\""
 msgstr ""
 
-#: ../../../basic/adapt.rst:144
+#: ../../../basic/adapt.rst:165
 msgid ""
 "In rare cases you may have strings with unexpected encodings in the "
 "database. Using the ``SQL_ASCII`` client encoding  will disable decoding of "
 "the data coming from the database, which will be returned as `bytes`:"
 msgstr ""
 
-#: ../../../basic/adapt.rst:148
+#: ../../../basic/adapt.rst:169
 msgid ""
 "conn.execute(\"SET client_encoding TO SQL_ASCII\")\n"
 "conn.execute(\"SELECT entry FROM menu WHERE id = 1\").fetchone()[0]\n"
 "b'Cr\\xc3\\xa8me Br\\xc3\\xbbl\\xc3\\xa9e at 4.99\\xe2\\x82\\xac'"
 msgstr ""
 
-#: ../../../basic/adapt.rst:154
+#: ../../../basic/adapt.rst:175
 msgid ""
 "Alternatively you can cast the unknown encoding data to :sql:`bytea` to "
 "retrieve it as bytes, leaving other strings unaltered: see :ref:`adapt-"
 "binary`"
 msgstr ""
 
-#: ../../../basic/adapt.rst:157
+#: ../../../basic/adapt.rst:178
 msgid ""
 "Note that PostgreSQL text cannot contain the ``0x00`` byte. If you need to "
 "store Python strings that may contain binary zeros you should use a :sql:"
 "`bytea` field."
 msgstr ""
 
-#: ../../../basic/adapt.rst:172
+#: ../../../basic/adapt.rst:193
 msgid "Binary adaptation"
 msgstr ""
 
-#: ../../../basic/adapt.rst:174
+#: ../../../basic/adapt.rst:195
 msgid ""
 "Python types representing binary objects (`bytes`, `bytearray`, "
 "`memoryview`) are converted by default to :sql:`bytea` fields. By default "
 "data received is returned as `!bytes`."
 msgstr ""
 
-#: ../../../basic/adapt.rst:178
+#: ../../../basic/adapt.rst:199
 msgid ""
 "If you are storing large binary data in bytea fields (such as binary "
 "documents or images) you should probably use the binary format to pass and "
@@ -205,41 +232,41 @@ msgid ""
 "some CPU time and more bandwidth. See :ref:`binary-data` for details."
 msgstr ""
 
-#: ../../../basic/adapt.rst:189
+#: ../../../basic/adapt.rst:210
 msgid "Date/time types adaptation"
 msgstr ""
 
-#: ../../../basic/adapt.rst:193
+#: ../../../basic/adapt.rst:214
 msgid ""
 "`PostgreSQL date/time types <https://www.postgresql.org/docs/current/"
 "datatype-datetime.html>`__"
 msgstr ""
 
-#: ../../../basic/adapt.rst:196
+#: ../../../basic/adapt.rst:217
 msgid ""
 "Python `~datetime.date` objects are converted to PostgreSQL :sql:`date`."
 msgstr ""
 
-#: ../../../basic/adapt.rst:197
+#: ../../../basic/adapt.rst:218
 msgid ""
 "Python `~datetime.datetime` objects are converted to PostgreSQL :sql:"
 "`timestamp` (if they don't have a `!tzinfo` set) or :sql:`timestamptz` (if "
 "they do)."
 msgstr ""
 
-#: ../../../basic/adapt.rst:200
+#: ../../../basic/adapt.rst:221
 msgid ""
 "Python `~datetime.time` objects are converted to PostgreSQL :sql:`time` (if "
 "they don't have a `!tzinfo` set) or :sql:`timetz` (if they do)."
 msgstr ""
 
-#: ../../../basic/adapt.rst:202
+#: ../../../basic/adapt.rst:223
 msgid ""
 "Python `~datetime.timedelta` objects are converted to PostgreSQL :sql:"
 "`interval`."
 msgstr ""
 
-#: ../../../basic/adapt.rst:205
+#: ../../../basic/adapt.rst:226
 msgid ""
 "PostgreSQL :sql:`timestamptz` values are returned with a timezone set to the "
 "`connection TimeZone setting`__, which is available as a Python `~zoneinfo."
@@ -247,7 +274,7 @@ msgid ""
 "attribute::"
 msgstr ""
 
-#: ../../../basic/adapt.rst:210
+#: ../../../basic/adapt.rst:231
 msgid ""
 ">>> conn.info.timezone\n"
 "zoneinfo.ZoneInfo(key='Europe/London')\n"
@@ -257,14 +284,14 @@ msgid ""
 "London'))"
 msgstr ""
 
-#: ../../../basic/adapt.rst:220
+#: ../../../basic/adapt.rst:241
 msgid ""
 "PostgreSQL :sql:`timestamptz` doesn't store \"a timestamp with a timezone "
 "attached\": it stores a timestamp always in UTC, which is converted, on "
 "output, to the connection TimeZone setting::"
 msgstr ""
 
-#: ../../../basic/adapt.rst:224
+#: ../../../basic/adapt.rst:245
 msgid ""
 ">>> conn.execute(\"SET TIMEZONE to 'Europe/Rome'\")  # UTC+2 in summer\n"
 "\n"
@@ -274,19 +301,19 @@ msgid ""
 "Rome'))"
 msgstr ""
 
-#: ../../../basic/adapt.rst:229
+#: ../../../basic/adapt.rst:250
 msgid ""
 "Check out the `PostgreSQL documentation about timezones`__ for all the "
 "details."
 msgstr ""
 
-#: ../../../basic/adapt.rst:237
+#: ../../../basic/adapt.rst:258
 msgid ""
 "Times with timezone are silly objects, because you cannot know the offset of "
 "a timezone with daylight saving time rules without knowing the date too."
 msgstr ""
 
-#: ../../../basic/adapt.rst:241
+#: ../../../basic/adapt.rst:262
 msgid ""
 "Although silly, times with timezone are supported both by Python and by "
 "PostgreSQL. However they are only supported with fixed offset timezones: "
@@ -295,7 +322,7 @@ msgid ""
 "instance by a `~datetime.timezone` value::"
 msgstr ""
 
-#: ../../../basic/adapt.rst:247
+#: ../../../basic/adapt.rst:268
 msgid ""
 ">>> conn.execute(\"SET TIMEZONE to 'Europe/Rome'\")\n"
 "\n"
@@ -312,7 +339,7 @@ msgid ""
 "timedelta(seconds=7200)))"
 msgstr ""
 
-#: ../../../basic/adapt.rst:257
+#: ../../../basic/adapt.rst:278
 msgid ""
 "Dumping Python `!time` objects is only supported with fixed offset `!"
 "tzinfo`, such as the ones returned by Postgres, or by whatever `~datetime."
@@ -320,35 +347,35 @@ msgid ""
 "returning a value."
 msgstr ""
 
-#: ../../../basic/adapt.rst:266
+#: ../../../basic/adapt.rst:287
 msgid "Dates and times limits in Python"
 msgstr ""
 
-#: ../../../basic/adapt.rst:268
+#: ../../../basic/adapt.rst:289
 msgid ""
 "PostgreSQL date and time objects can represent values that cannot be "
 "represented by the Python `datetime` objects:"
 msgstr ""
 
-#: ../../../basic/adapt.rst:271
+#: ../../../basic/adapt.rst:292
 msgid ""
 "dates and timestamps after the year 9999, the special value \"infinity\";"
 msgstr ""
 
-#: ../../../basic/adapt.rst:272
+#: ../../../basic/adapt.rst:293
 msgid ""
 "dates and timestamps before the year 1, the special value \"-infinity\";"
 msgstr ""
 
-#: ../../../basic/adapt.rst:273
+#: ../../../basic/adapt.rst:294
 msgid "the time 24:00:00."
 msgstr ""
 
-#: ../../../basic/adapt.rst:275
+#: ../../../basic/adapt.rst:296
 msgid "Loading these values will raise a `~psycopg.DataError`."
 msgstr ""
 
-#: ../../../basic/adapt.rst:277
+#: ../../../basic/adapt.rst:298
 msgid ""
 "If you need to handle these values you can define your own mapping (for "
 "instance mapping every value greater than `datetime.date.max` to `!date."
@@ -357,56 +384,56 @@ msgid ""
 "<adapt-example-inf-date>` for a reference."
 msgstr ""
 
-#: ../../../basic/adapt.rst:291
+#: ../../../basic/adapt.rst:312
 msgid "DateStyle and IntervalStyle limits"
 msgstr ""
 
-#: ../../../basic/adapt.rst:293
+#: ../../../basic/adapt.rst:314
 msgid ""
 "Loading :sql:`timestamp with time zone` in text format is only supported if "
 "the connection DateStyle__ is set to `ISO` format; time and time zone "
 "representation in other formats is ambiguous."
 msgstr ""
 
-#: ../../../basic/adapt.rst:299
+#: ../../../basic/adapt.rst:320
 msgid ""
 "Furthermore, at the time of writing, the only supported value for "
 "IntervalStyle__ is ``postgres``; loading :sql:`interval` data in text format "
 "with a different setting is not supported."
 msgstr ""
 
-#: ../../../basic/adapt.rst:305
+#: ../../../basic/adapt.rst:326
 msgid ""
 "If your server is configured with different settings by default, you can "
 "obtain a connection in a supported style using the ``options`` connection "
 "parameter; for example::"
 msgstr ""
 
-#: ../../../basic/adapt.rst:309
+#: ../../../basic/adapt.rst:330
 msgid ""
 ">>> conn = psycopg.connect(options=\"-c datestyle=ISO,YMD\")\n"
 ">>> conn.execute(\"show datestyle\").fetchone()[0]\n"
 "# 'ISO, YMD'"
 msgstr ""
 
-#: ../../../basic/adapt.rst:313
+#: ../../../basic/adapt.rst:334
 msgid ""
 "These GUC parameters only affects loading in text format; loading timestamps "
 "or intervals in :ref:`binary format <binary-data>` is not affected by "
 "DateStyle or IntervalStyle."
 msgstr ""
 
-#: ../../../basic/adapt.rst:321
+#: ../../../basic/adapt.rst:342
 msgid "JSON adaptation"
 msgstr ""
 
-#: ../../../basic/adapt.rst:323
+#: ../../../basic/adapt.rst:344
 msgid ""
 "Psycopg can map between Python objects and PostgreSQL `json/jsonb types`__, "
 "allowing to customise the load and dump function used."
 msgstr ""
 
-#: ../../../basic/adapt.rst:328
+#: ../../../basic/adapt.rst:349
 msgid ""
 "Because several Python objects could be considered JSON (dicts, lists, "
 "scalars, even date/time if using a dumps function customised to use them), "
@@ -414,7 +441,7 @@ msgid ""
 "either `psycopg.types.json.Json` or `~psycopg.types.json.Jsonb`."
 msgstr ""
 
-#: ../../../basic/adapt.rst:333
+#: ../../../basic/adapt.rst:354
 msgid ""
 "from psycopg.types.json import Jsonb\n"
 "\n"
@@ -422,7 +449,7 @@ msgid ""
 "conn.execute(\"INSERT INTO mytable VALUES (%s)\", [Jsonb(thing)])"
 msgstr ""
 
-#: ../../../basic/adapt.rst:340
+#: ../../../basic/adapt.rst:361
 msgid ""
 "By default Psycopg uses the standard library `json.dumps` and `json.loads` "
 "functions to serialize and de-serialize Python objects to JSON. If you want "
@@ -433,7 +460,7 @@ msgid ""
 "specific context (connection or cursor)."
 msgstr ""
 
-#: ../../../basic/adapt.rst:348
+#: ../../../basic/adapt.rst:369
 msgid ""
 "from functools import partial\n"
 "from psycopg.types.json import Jsonb, set_json_dumps, set_json_loads\n"
@@ -449,7 +476,7 @@ msgid ""
 "# {'value': Decimal('123.45')}"
 msgstr ""
 
-#: ../../../basic/adapt.rst:363
+#: ../../../basic/adapt.rst:384
 msgid ""
 "If you need an even more specific dump customisation only for certain "
 "objects (including different configurations in the same query) you can "
@@ -458,7 +485,7 @@ msgid ""
 "by `!set_json_dumps()`."
 msgstr ""
 
-#: ../../../basic/adapt.rst:369
+#: ../../../basic/adapt.rst:390
 msgid ""
 "from uuid import UUID, uuid4\n"
 "\n"
@@ -475,24 +502,24 @@ msgid ""
 "# will insert: {'uuid': '0a40799d-3980-4c65-8315-2956b18ab0e1'}"
 msgstr ""
 
-#: ../../../basic/adapt.rst:389
+#: ../../../basic/adapt.rst:410
 msgid "Lists adaptation"
 msgstr ""
 
-#: ../../../basic/adapt.rst:391
+#: ../../../basic/adapt.rst:412
 msgid ""
 "Python `list` objects are adapted to `PostgreSQL arrays`__ and back. Only "
 "lists containing objects of the same type can be dumped to PostgreSQL (but "
 "the list may contain `!None` elements)."
 msgstr ""
 
-#: ../../../basic/adapt.rst:399
+#: ../../../basic/adapt.rst:420
 msgid ""
 "If you have a list of values which you want to use with the :sql:`IN` "
 "operator... don't. It won't work (neither with a list nor with a tuple)::"
 msgstr ""
 
-#: ../../../basic/adapt.rst:402
+#: ../../../basic/adapt.rst:423
 msgid ""
 ">>> conn.execute(\"SELECT * FROM mytable WHERE id IN %s\", [[10,20,30]])\n"
 "Traceback (most recent call last):\n"
@@ -502,28 +529,28 @@ msgid ""
 "                                          ^"
 msgstr ""
 
-#: ../../../basic/adapt.rst:409
+#: ../../../basic/adapt.rst:430
 msgid ""
 "What you want to do instead is to use the `'= ANY()' expression`__ and pass "
 "the values as a list (not a tuple)."
 msgstr ""
 
-#: ../../../basic/adapt.rst:414
+#: ../../../basic/adapt.rst:435
 msgid ""
 "This has also the advantage of working with an empty list, whereas ``IN ()`` "
 "is not valid SQL."
 msgstr ""
 
-#: ../../../basic/adapt.rst:424
+#: ../../../basic/adapt.rst:445
 msgid "UUID adaptation"
 msgstr ""
 
-#: ../../../basic/adapt.rst:426
+#: ../../../basic/adapt.rst:447
 msgid ""
 "Python `uuid.UUID` objects are adapted to PostgreSQL `UUID type`__ and back::"
 msgstr ""
 
-#: ../../../basic/adapt.rst:428
+#: ../../../basic/adapt.rst:449
 msgid ""
 ">>> conn.execute(\"select gen_random_uuid()\").fetchone()[0]\n"
 "UUID('97f0dd62-3bd2-459e-89b8-a5e36ea3c16c')\n"
@@ -534,17 +561,17 @@ msgid ""
 "False  # long shot"
 msgstr ""
 
-#: ../../../basic/adapt.rst:441
+#: ../../../basic/adapt.rst:462
 msgid "Network data types adaptation"
 msgstr ""
 
-#: ../../../basic/adapt.rst:443
+#: ../../../basic/adapt.rst:464
 msgid ""
 "Objects from the `ipaddress` module are converted to PostgreSQL `network "
 "address types`__:"
 msgstr ""
 
-#: ../../../basic/adapt.rst:446
+#: ../../../basic/adapt.rst:467
 msgid ""
 "`~ipaddress.IPv4Address`, `~ipaddress.IPv4Interface` objects are converted "
 "to the PostgreSQL :sql:`inet` type. On the way back, :sql:`inet` values "
@@ -552,20 +579,20 @@ msgid ""
 "are converted to `!IPv4Interface`"
 msgstr ""
 
-#: ../../../basic/adapt.rst:451
+#: ../../../basic/adapt.rst:472
 msgid ""
 "`~ipaddress.IPv4Network` objects are converted to the :sql:`cidr` type and "
 "back."
 msgstr ""
 
-#: ../../../basic/adapt.rst:454
+#: ../../../basic/adapt.rst:475
 msgid ""
 "`~ipaddress.IPv6Address`, `~ipaddress.IPv6Interface`, `~ipaddress."
 "IPv6Network` objects follow the same rules, with IPv6 :sql:`inet` and :sql:"
 "`cidr` values."
 msgstr ""
 
-#: ../../../basic/adapt.rst:460
+#: ../../../basic/adapt.rst:481
 msgid ""
 ">>> conn.execute(\"select '192.168.0.1'::inet, '192.168.0.1/24'::inet\")."
 "fetchone()\n"
@@ -575,17 +602,17 @@ msgid ""
 "IPv6Network('::ffff:102:300/120')"
 msgstr ""
 
-#: ../../../basic/adapt.rst:472
+#: ../../../basic/adapt.rst:493
 msgid "Enum adaptation"
 msgstr ""
 
-#: ../../../basic/adapt.rst:476
+#: ../../../basic/adapt.rst:497
 msgid ""
 "Psycopg can adapt Python `~enum.Enum` subclasses into PostgreSQL enum types "
 "(created with the |CREATE TYPE AS ENUM|_ command)."
 msgstr ""
 
-#: ../../../basic/adapt.rst:482
+#: ../../../basic/adapt.rst:503
 msgid ""
 "In order to set up a bidirectional enum mapping, you should get information "
 "about the PostgreSQL enum using the `~types.enum.EnumInfo` class and "
@@ -593,48 +620,48 @@ msgid ""
 "unregistered and registered enums is different."
 msgstr ""
 
-#: ../../../basic/adapt.rst:487
+#: ../../../basic/adapt.rst:508
 msgid "If the enum is not registered with `register_enum()`:"
 msgstr ""
 
-#: ../../../basic/adapt.rst:489
+#: ../../../basic/adapt.rst:510
 msgid ""
 "Pure `!Enum` classes are dumped as normal strings, using their member names "
 "as value. The unknown oid is used, so PostgreSQL should be able to use this "
 "string in most contexts (such as an enum or a text field)."
 msgstr ""
 
-#: ../../../basic/adapt.rst:493
+#: ../../../basic/adapt.rst:514
 msgid ""
 "In previous version dumping pure enums is not supported and raise a \"cannot "
 "adapt\" error."
 msgstr ""
 
-#: ../../../basic/adapt.rst:497
+#: ../../../basic/adapt.rst:518
 msgid ""
 "Mix-in enums are dumped according to their mix-in type (because a `class "
 "MyIntEnum(int, Enum)` is more specifically an `!int` than an `!Enum`, so "
 "it's dumped by default according to `!int` rules)."
 msgstr ""
 
-#: ../../../basic/adapt.rst:501
+#: ../../../basic/adapt.rst:522
 msgid ""
 "PostgreSQL enums are loaded as Python strings. If you want to load arrays of "
 "such enums you will have to find their OIDs using `types.TypeInfo.fetch()` "
 "and register them using `~types.TypeInfo.register()`."
 msgstr ""
 
-#: ../../../basic/adapt.rst:505
+#: ../../../basic/adapt.rst:526
 msgid ""
 "If the enum is registered (using `~types.enum.EnumInfo`\\ `!.fetch()` and "
 "`~types.enum.register_enum()`):"
 msgstr ""
 
-#: ../../../basic/adapt.rst:508
+#: ../../../basic/adapt.rst:529
 msgid "Enums classes, both pure and mixed-in, are dumped by name."
 msgstr ""
 
-#: ../../../basic/adapt.rst:510
+#: ../../../basic/adapt.rst:531
 msgid ""
 "The registered PostgreSQL enum is loaded back as the registered Python enum "
 "members."
@@ -645,20 +672,20 @@ msgstr ""
 msgid "Manage information about an enum type."
 msgstr ""
 
-#: ../../../basic/adapt.rst:515
+#: ../../../basic/adapt.rst:536
 msgid ""
 "`!EnumInfo` is a subclass of `~psycopg.types.TypeInfo`: refer to the "
 "latter's documentation for generic usage, especially the `~psycopg.types."
 "TypeInfo.fetch()` method."
 msgstr ""
 
-#: ../../../basic/adapt.rst:521
+#: ../../../basic/adapt.rst:542
 msgid ""
 "After `~psycopg.types.TypeInfo.fetch()`, it contains the labels defined in "
 "the PostgreSQL enum type."
 msgstr ""
 
-#: ../../../basic/adapt.rst:526
+#: ../../../basic/adapt.rst:547
 msgid ""
 "After `register_enum()` is called, it will contain the Python type mapping "
 "to the registered enum."
@@ -696,23 +723,23 @@ msgstr ""
 msgid "Override the mapping between `!enum` members and `!info` labels."
 msgstr ""
 
-#: ../../../basic/adapt.rst:531
+#: ../../../basic/adapt.rst:552
 msgid ""
 "After registering, fetching data of the registered enum will cast PostgreSQL "
 "enum labels into corresponding Python enum members."
 msgstr ""
 
-#: ../../../basic/adapt.rst:534
+#: ../../../basic/adapt.rst:555
 msgid ""
 "If no `!enum` is specified, a new `Enum` is created based on PostgreSQL enum "
 "labels."
 msgstr ""
 
-#: ../../../basic/adapt.rst:537
+#: ../../../basic/adapt.rst:558
 msgid "Example::"
 msgstr ""
 
-#: ../../../basic/adapt.rst:539
+#: ../../../basic/adapt.rst:560
 msgid ""
 ">>> from enum import Enum, auto\n"
 ">>> from psycopg.types.enum import EnumInfo, register_enum\n"
@@ -745,7 +772,7 @@ msgid ""
 "[<UserRole.ADMIN: 1>, <UserRole.GUEST: 3>]"
 msgstr ""
 
-#: ../../../basic/adapt.rst:568
+#: ../../../basic/adapt.rst:589
 msgid ""
 "If the Python and the PostgreSQL enum don't match 1:1 (for instance if "
 "members have a different name, or if more than one Python enum should map to "
@@ -753,7 +780,7 @@ msgid ""
 "using the `!mapping` parameter."
 msgstr ""
 
-#: ../../../basic/adapt.rst:573
+#: ../../../basic/adapt.rst:594
 msgid ""
 "`!mapping` should be a dictionary with Python enum members as keys and the "
 "matching PostgreSQL enum labels as values, or a list of `(member, label)` "
@@ -762,7 +789,7 @@ msgid ""
 "pair in the sequence will take precedence::"
 msgstr ""
 
-#: ../../../basic/adapt.rst:579
+#: ../../../basic/adapt.rst:600
 msgid ""
 "# Legacy roles, defined in medieval times.\n"
 ">>> conn.execute(\n"
@@ -786,14 +813,14 @@ msgid ""
 "['ABBOT', 'MONK', 'GUEST']"
 msgstr ""
 
-#: ../../../basic/adapt.rst:598
+#: ../../../basic/adapt.rst:619
 msgid ""
 "A particularly useful case is when the PostgreSQL labels match the *values* "
 "of a `!str`\\-based Enum. In this case it is possible to use something like "
 "``{m: m.value for m in enum}`` as mapping::"
 msgstr ""
 
-#: ../../../basic/adapt.rst:602
+#: ../../../basic/adapt.rst:623
 msgid ""
 ">>> class LowercaseRole(str, Enum):\n"
 "...     ADMIN = \"admin\"\n"
@@ -814,8 +841,8 @@ msgid ""
 msgstr ""
 
 #: ../../../basic/adapt.rst:3 ../../../basic/adapt.rst:21
-#: ../../../basic/adapt.rst:41 ../../../basic/adapt.rst:87
-#: ../../../basic/adapt.rst:162
+#: ../../../basic/adapt.rst:41 ../../../basic/adapt.rst:108
+#: ../../../basic/adapt.rst:183
 msgid "Adaptation"
 msgstr ""
 
@@ -847,46 +874,46 @@ msgstr ""
 msgid "Decimal"
 msgstr ""
 
-#: ../../../basic/adapt.rst:87
+#: ../../../basic/adapt.rst:108
 msgid "Strings"
 msgstr ""
 
-#: ../../../basic/adapt.rst:87
+#: ../../../basic/adapt.rst:108
 msgid "Unicode"
 msgstr ""
 
-#: ../../../basic/adapt.rst:87
+#: ../../../basic/adapt.rst:108
 msgid "Encoding"
 msgstr ""
 
-#: ../../../basic/adapt.rst:87
+#: ../../../basic/adapt.rst:108
 msgid "SQL_ASCII"
 msgstr ""
 
-#: ../../../basic/adapt.rst:162
+#: ../../../basic/adapt.rst:183
 msgid "bytea"
 msgstr ""
 
-#: ../../../basic/adapt.rst:162
+#: ../../../basic/adapt.rst:183
 msgid "bytes"
 msgstr ""
 
-#: ../../../basic/adapt.rst:162
+#: ../../../basic/adapt.rst:183
 msgid "bytearray"
 msgstr ""
 
-#: ../../../basic/adapt.rst:162
+#: ../../../basic/adapt.rst:183
 msgid "memoryview"
 msgstr ""
 
-#: ../../../basic/adapt.rst:162
+#: ../../../basic/adapt.rst:183
 msgid "Binary string"
 msgstr ""
 
-#: ../../../basic/adapt.rst:284
+#: ../../../basic/adapt.rst:305
 msgid "DateStyle"
 msgstr ""
 
-#: ../../../basic/adapt.rst:284
+#: ../../../basic/adapt.rst:305
 msgid "IntervalStyle"
 msgstr ""
