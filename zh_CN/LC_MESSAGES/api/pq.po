@@ -1,0 +1,558 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../api/pq.rst:4
+msgid "`pq` -- libpq wrapper module"
+msgstr ""
+
+#: ../../../api/pq.rst:11
+msgid ""
+"Psycopg is built around the libpq_, the PostgreSQL client library, which "
+"performs most of the network communications and returns query results in C "
+"structures."
+msgstr ""
+
+#: ../../../api/pq.rst:17
+msgid ""
+"The low-level functions of the library are exposed by the objects in the `!"
+"psycopg.pq` module."
+msgstr ""
+
+#: ../../../api/pq.rst:24
+msgid "``pq`` module implementations"
+msgstr ""
+
+#: ../../../api/pq.rst:26
+msgid ""
+"There are actually several implementations of the module, all offering the "
+"same interface. Current implementations are:"
+msgstr ""
+
+#: ../../../api/pq.rst:29
+msgid ""
+"``python``: a pure-python implementation, implemented using the `ctypes` "
+"module. It is less performing than the others, but it doesn't need a C "
+"compiler to install. It requires the libpq installed in the system."
+msgstr ""
+
+#: ../../../api/pq.rst:33
+msgid ""
+"``c``: a C implementation of the libpq wrapper (more precisely, implemented "
+"in Cython_). It is much better performing than the ``python`` "
+"implementation, however it requires development packages installed on the "
+"client machine. It can be installed using the ``c`` extra, i.e. running "
+"``pip install \"psycopg[c]\"``."
+msgstr ""
+
+#: ../../../api/pq.rst:39
+msgid ""
+"``binary``: a pre-compiled C implementation, bundled with all the required "
+"libraries. It is the easiest option to deal with, fast to install and it "
+"should require no development tool or client library, however it may be not "
+"available for every platform. You can install it using the ``binary`` extra, "
+"i.e. running ``pip install \"psycopg[binary]\"``."
+msgstr ""
+
+#: ../../../api/pq.rst:47
+msgid ""
+"The implementation currently used is available in the `~psycopg.pq.__impl__` "
+"module constant."
+msgstr ""
+
+#: ../../../api/pq.rst:50
+msgid ""
+"At import time, Psycopg 3 will try to use the best implementation available "
+"and will fail if none is usable. You can force the use of a specific "
+"implementation by exporting the env var :envvar:`PSYCOPG_IMPL`: importing "
+"the library will fail if the requested implementation is not available::"
+msgstr ""
+
+#: ../../../api/pq.rst:55
+msgid ""
+"$ PSYCOPG_IMPL=c python -c \"import psycopg\"\n"
+"Traceback (most recent call last):\n"
+"   ...\n"
+"ImportError: couldn't import requested psycopg 'c' implementation: No module "
+"named 'psycopg_c'"
+msgstr ""
+
+#: ../../../api/pq.rst:62
+msgid "Module content"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.__impl__:1
+msgid "The currently loaded implementation of the `!psycopg.pq` package."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.__impl__:3
+msgid "Possible values include ``python``, ``c``, ``binary``."
+msgstr ""
+
+#: ../../../api/pq.rst:66
+msgid ""
+"The choice of implementation is automatic but can be forced setting the :"
+"envvar:`PSYCOPG_IMPL` env var."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.version:1
+msgid "Return the version number of the libpq currently loaded."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.version:3
+msgid ""
+"The number is in the same format of `~psycopg.ConnectionInfo.server_version`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.version:5
+msgid ""
+"Certain features might not be available if the libpq library used is too old."
+msgstr ""
+
+#: ../../../api/pq.rst:72
+msgid "the :pq:`PQlibVersion()` function"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.__build_version__:1
+msgid "The libpq version the C package was built with."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.__build_version__:3
+msgid ""
+"A number in the same format of `~psycopg.ConnectionInfo.server_version` "
+"representing the libpq used to build the speedup module (``c``, ``binary``) "
+"if available."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.__build_version__:7
+msgid ""
+"Certain features might not be available if the built version is too old."
+msgstr ""
+
+#: ../../../api/pq.rst:79
+msgid "Objects wrapping libpq structures and functions"
+msgstr ""
+
+#: ../../../api/pq.rst:81
+msgid "TODO"
+msgstr ""
+
+#: ../../../api/pq.rst:83
+msgid "finish documentation"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn:1
+msgid "Python representation of a libpq connection."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGconn.pgconn_ptr:1
+msgid "The pointer to the underlying `!PGconn` structure, as integer."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGconn.pgconn_ptr:3
+msgid "`!None` if the connection is closed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGconn.pgconn_ptr:5 psycopg.pq.PGresult.pgresult_ptr:5
+msgid ""
+"The value can be used to pass the structure to libpq functions which psycopg "
+"doesn't (currently) wrap, either in C or in Python using FFI libraries such "
+"as `ctypes`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.cancel_conn:1
+msgid "Create a connection over which a cancel request can be sent."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.cancel_conn:3
+msgid "See :pq:`PQcancelCreate` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.get_cancel:1
+msgid "Create an object with the information needed to cancel a command."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.get_cancel:3
+msgid "See :pq:`PQgetCancel` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGconn.needs_password:1
+msgid ""
+"True if the connection authentication method required a password, but none "
+"was available."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGconn.needs_password:4
+msgid "See :pq:`PQconnectionNeedsPassword` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGconn.used_password:1
+msgid "True if the connection authentication method used a password."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGconn.used_password:3
+msgid "See :pq:`PQconnectionUsedPassword` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGconn.used_gssapi:1
+msgid "True if the connection authentication method used GSSAPI."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGconn.used_gssapi:3
+msgid "See :pq:`PQconnectionUsedGSSAPI` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.encrypt_password:1
+msgid "Return the encrypted form of a PostgreSQL password."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.encrypt_password:3
+msgid "See :pq:`PQencryptPasswordConn` for details."
+msgstr ""
+
+#: ../../../api/pq.rst:98
+msgid ""
+">>> enc = conn.info.encoding\n"
+">>> encrypted = conn.pgconn.encrypt_password(password.encode(enc), rolename."
+"encode(enc))\n"
+"b'SCRAM-SHA-256$4096:..."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.change_password:1
+msgid "Change a PostgreSQL password."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.change_password:0
+msgid "Raises"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.change_password:3
+msgid "if the command to change password failed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.change_password:5
+msgid "See :pq:`PQchangePassword` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.trace:1
+msgid "Enable tracing of the client/server communication to a file stream."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.trace:3
+msgid "See :pq:`PQtrace` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.set_trace_flags:1
+msgid "Configure tracing behavior of client/server communication."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.set_trace_flags:0
+msgid "Parameters"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.set_trace_flags:3
+msgid "operating mode of tracing."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.set_trace_flags:5
+msgid "See :pq:`PQsetTraceFlags` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.untrace:1
+msgid "Disable tracing, previously enabled through `trace()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGconn.untrace:3
+msgid "See :pq:`PQuntrace` for details."
+msgstr ""
+
+#: ../../../api/pq.rst:110
+msgid ""
+">>> conn.pgconn.trace(sys.stderr.fileno())\n"
+">>> conn.pgconn.set_trace_flags(pq.Trace.SUPPRESS_TIMESTAMPS | pq.Trace."
+"REGRESS_MODE)\n"
+">>> conn.execute(\"select now()\")\n"
+"F       13      Parse    \"\" \"BEGIN\" 0\n"
+"F       14      Bind     \"\" \"\" 0 0 1 0\n"
+"F       6       Describe         P \"\"\n"
+"F       9       Execute  \"\" 0\n"
+"F       4       Sync\n"
+"B       4       ParseComplete\n"
+"B       4       BindComplete\n"
+"B       4       NoData\n"
+"B       10      CommandComplete  \"BEGIN\"\n"
+"B       5       ReadyForQuery    T\n"
+"F       17      Query    \"select now()\"\n"
+"B       28      RowDescription   1 \"now\" NNNN 0 NNNN 8 -1 0\n"
+"B       39      DataRow  1 29 '2022-09-14 14:12:16.648035+02'\n"
+"B       13      CommandComplete  \"SELECT 1\"\n"
+"B       5       ReadyForQuery    T\n"
+"<psycopg.Cursor [TUPLES_OK] [INTRANS] (database=postgres) at "
+"0x7f18a18ba040>\n"
+">>> conn.pgconn.untrace()"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGresult:1
+msgid "Python representation of a libpq result."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGresult.pgresult_ptr:1
+msgid "The pointer to the underlying `!PGresult` structure, as integer."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PGresult.pgresult_ptr:3
+msgid "`!None` if the result was cleared."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.Conninfo:1
+msgid "Utility object to manipulate connection strings."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.Escaping:1
+msgid "Utility object to escape strings for SQL interpolation."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancelConn:1
+msgid "Token to handle non-blocking cancellation requests."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancelConn:3
+msgid "Created by `PGconn.cancel_conn()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancelConn.start:1
+msgid ""
+"Requests that the server abandons processing of the current command in a non-"
+"blocking manner."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancelConn.start:4
+msgid "See :pq:`PQcancelStart` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancelConn.blocking:1
+msgid ""
+"Requests that the server abandons processing of the current command in a "
+"blocking manner."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancelConn.blocking:4
+msgid "See :pq:`PQcancelBlocking` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancelConn.finish:1
+msgid "Free the data structure created by `PQcancelCreate()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancel.free:3
+#: psycopg.pq.pq_ctypes.PGcancelConn.finish:3
+msgid "Automatically invoked by `!__del__()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancelConn.finish:5
+msgid "See :pq:`PQcancelFinish()` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancel:1
+msgid "Token to cancel the current operation on a connection."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancel:3
+msgid "Created by `PGconn.get_cancel()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancel.free:1
+msgid "Free the data structure created by :pq:`PQgetCancel()`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancel.free:5
+msgid "See :pq:`PQfreeCancel()` for details."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancel.cancel:1
+msgid "Requests that the server abandon processing of the current command."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
+#: of psycopg.pq.pq_ctypes.PGcancel.cancel:3
+msgid "See :pq:`PQcancel()` for details."
+msgstr ""
+
+#: ../../../api/pq.rst:149
+msgid "Enumerations"
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.ConnStatus:1
+msgid "Current status of the connection."
+msgstr ""
+
+#: ../../../api/pq.rst:154
+msgid ""
+"There are other values in this enum, but only `OK` and `BAD` are seen after "
+"a connection has been established. Other statuses might only be seen during "
+"the connection phase and are considered internal. `ALLOCATED` is only "
+"expected to be returned by `PGcancelConn.status`."
+msgstr ""
+
+#: ../../../api/pq.rst:159
+msgid ":pq:`PQstatus()` and :pq:`PQcancelStatus()` return this value."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PollingStatus:1
+msgid "The status of the socket during a connection."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PollingStatus:3
+msgid "If ``READING`` or ``WRITING`` you may select before polling again."
+msgstr ""
+
+#: ../../../api/pq.rst:165
+msgid ":pq:`PQconnectPoll` for a description of these states."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.TransactionStatus:1
+msgid "The transaction status of a connection."
+msgstr ""
+
+#: ../../../api/pq.rst:171
+msgid ":pq:`PQtransactionStatus` for a description of these states."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.ExecStatus:1
+msgid "The status of a command."
+msgstr ""
+
+#: ../../../api/pq.rst:177
+msgid ":pq:`PQresultStatus` for a description of these states."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.PipelineStatus:1
+msgid "Pipeline mode status of the libpq connection."
+msgstr ""
+
+#: ../../../api/pq.rst:183
+msgid ":pq:`PQpipelineStatus` for a description of these states."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.Format:1
+msgid "Enum representing the format of a query argument or return value."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.Format:3
+msgid ""
+"These values are only the ones managed by the libpq. `~psycopg` may also "
+"support automatically-chosen values: see `psycopg.adapt.PyFormat`."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.DiagnosticField:1
+msgid "Fields in an error report."
+msgstr ""
+
+#: ../../../api/pq.rst:192
+msgid "Available attributes:"
+msgstr ""
+
+#: ../../../api/pq.rst:214
+msgid ":pq:`PQresultErrorField` for a description of these values."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.Ping:1
+msgid "Response from a ping attempt."
+msgstr ""
+
+#: ../../../api/pq.rst:220
+msgid ":pq:`PQpingParams` for a description of these values."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/__init__.py:docstring
+#: of psycopg.pq.Trace:1
+msgid "Enum to control tracing of the client/server communication."
+msgstr ""
+
+#: ../../../api/pq.rst:225
+msgid ":pq:`PQsetTraceFlags` for a description of these values."
+msgstr ""
+
+#: ../../../api/pq.rst:6
+msgid "libpq"
+msgstr ""

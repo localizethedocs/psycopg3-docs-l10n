@@ -1,0 +1,641 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../advanced/async.rst:9
+msgid "Concurrent operations"
+msgstr ""
+
+#: ../../../advanced/async.rst:11
+msgid ""
+"Psycopg allows to write *concurrent* code, executing more than one operation "
+"at time."
+msgstr ""
+
+#: ../../../advanced/async.rst:14
+msgid ""
+"`Connection` objects *are thread-safe*: more than one thread at time can use "
+"the same connection. Different thread can use the same connection by "
+"creating different cursors."
+msgstr ""
+
+#: ../../../advanced/async.rst:18
+msgid ""
+"`Cursor` objects *are not thread-safe*, and are not designed to be used by "
+"several threads at the same time. However, cursors are lightweight objects: "
+"different threads can create each one its own cursor to use independently "
+"from other threads."
+msgstr ""
+
+#: ../../../advanced/async.rst:25
+msgid ""
+"All the cursors that share the same connection *will also share the same "
+"transaction*. This means that, if a thread starts a transaction, every "
+"cursor on the same connection will execute their queries in the same "
+"transaction and, if one thread causes a database server error, all the other "
+"cursors will be in error state until transaction rollback."
+msgstr ""
+
+#: ../../../advanced/async.rst:31
+msgid ""
+"It also means that every cursor will see changes made in the same session by "
+"other cursors, even if the transaction is still uncommitted. This effect "
+"might be desirable or not, and is something to consider when deciding "
+"whether to share a connection or not."
+msgstr ""
+
+#: ../../../advanced/async.rst:38
+msgid "Should you use many cursors or many connections?"
+msgstr ""
+
+#: ../../../advanced/async.rst:40
+msgid ""
+"Query execution and results retrieval on a connection is serialized: only "
+"one cursor at time will be able to run a query on the same connection (the `!"
+"Connection` object will coordinate different cursors' access). If your "
+"program runs a mix of database and non-database operations in several "
+"threads, then these threads might be able to share the same connection. "
+"However, if you expect to execute massively parallel operations on the "
+"database, it might be useful to use more than one connection at time, rather "
+"than many cursors on the same connection (or a mix of both)."
+msgstr ""
+
+#: ../../../advanced/async.rst:49
+msgid ""
+"Using several connections, however, has an impact on the server's "
+"performance and usually the number of connections that a server can handle "
+"is limited by grumpy sysadmins with long beards and a strict control on the "
+"`max_connections`__ server setting."
+msgstr ""
+
+#: ../../../advanced/async.rst:54
+msgid ""
+"If you want to use more than one connection at time, but still avoid to "
+"create too many connections and starve the server, you might want to use a :"
+"ref:`connection pool <connection-pools>`."
+msgstr ""
+
+#: ../../../advanced/async.rst:62
+msgid ""
+"*Connections are not process-safe* and cannot be shared across processes, "
+"for instance using the facilities of the `multiprocessing` module."
+msgstr ""
+
+#: ../../../advanced/async.rst:65
+msgid ""
+"If you are using Psycopg in a forking framework (for instance in a web "
+"server that implements concurrency using multiprocessing), you should make "
+"sure that the database connections are created after the worker process is "
+"forked. Failing to do so you will probably find the connection in broken "
+"state."
+msgstr ""
+
+#: ../../../advanced/async.rst:77
+msgid "Asynchronous operations"
+msgstr ""
+
+#: ../../../advanced/async.rst:79
+msgid ""
+"Psycopg `Connection` and `Cursor` have counterparts `AsyncConnection` and "
+"`AsyncCursor` supporting an `asyncio` interface."
+msgstr ""
+
+#: ../../../advanced/async.rst:82
+msgid ""
+"The design of the asynchronous objects is pretty much the same of the sync "
+"ones: in order to use them you will only have to scatter the `!await` "
+"keyword here and there."
+msgstr ""
+
+#: ../../../advanced/async.rst:86
+msgid ""
+"async with await psycopg.AsyncConnection.connect(\n"
+"        \"dbname=test user=postgres\") as aconn:\n"
+"    async with aconn.cursor() as acur:\n"
+"        await acur.execute(\n"
+"            \"INSERT INTO test (num, data) VALUES (%s, %s)\",\n"
+"            (100, \"abc'def\"))\n"
+"        await acur.execute(\"SELECT * FROM test\")\n"
+"        await acur.fetchone()\n"
+"        # will return (1, 100, \"abc'def\")\n"
+"        async for record in acur:\n"
+"            print(record)"
+msgstr ""
+
+#: ../../../advanced/async.rst:100
+msgid ""
+"An `!AsyncConnection` can be used by several `asyncio.Task` at the same "
+"time. However, as with threads, all the `AsyncCursor` on the same connection "
+"will share the same session and will have their access to the connection "
+"serialized."
+msgstr ""
+
+#: ../../../advanced/async.rst:108
+msgid ""
+"`AsyncConnection.connect()` performs DNS name resolution in a non-blocking "
+"way."
+msgstr ""
+
+#: ../../../advanced/async.rst:113
+msgid ""
+"Before version 3.1, `AsyncConnection.connect()` may still block on DNS name "
+"resolution. To avoid that you should `set the hostaddr connection "
+"parameter`__, or use the `~psycopg._dns.resolve_hostaddr_async()` to do it "
+"automatically."
+msgstr ""
+
+#: ../../../advanced/async.rst:123
+msgid ""
+"On Windows, Psycopg is not compatible with the default `~asyncio."
+"ProactorEventLoop`. Please use a different loop, for instance the `~asyncio."
+"SelectorEventLoop`. See `asyncio documentation`__ for details."
+msgstr ""
+
+#: ../../../advanced/async.rst:136
+msgid "`!with` async connections"
+msgstr ""
+
+#: ../../../advanced/async.rst:138
+msgid ""
+"As seen in :ref:`the basic usage <usage>`, connections and cursors can act "
+"as context managers, so you can run:"
+msgstr ""
+
+#: ../../../advanced/async.rst:141
+msgid ""
+"with psycopg.connect(\"dbname=test user=postgres\") as conn:\n"
+"    with conn.cursor() as cur:\n"
+"        cur.execute(...)\n"
+"    # the cursor is closed upon leaving the context\n"
+"# the transaction is committed, the connection closed"
+msgstr ""
+
+#: ../../../advanced/async.rst:149
+msgid ""
+"For asynchronous connections it's *almost* what you'd expect, but not quite. "
+"Please note that `~Connection.connect()` and `~Connection.cursor()` *don't "
+"return a context*: they are both factory methods which return *an object "
+"which can be used as a context*. That's because there are several use cases "
+"where it's useful to handle the objects manually and only `!close()` them "
+"when required."
+msgstr ""
+
+#: ../../../advanced/async.rst:156
+msgid ""
+"As a consequence you cannot use `!async with connect()`: you have to do it "
+"in two steps instead, as in"
+msgstr ""
+
+#: ../../../advanced/async.rst:159
+msgid ""
+"aconn = await psycopg.AsyncConnection.connect()\n"
+"async with aconn:\n"
+"    async with aconn.cursor() as cur:\n"
+"        await cur.execute(...)"
+msgstr ""
+
+#: ../../../advanced/async.rst:166
+msgid "which can be condensed into `!async with await`:"
+msgstr ""
+
+#: ../../../advanced/async.rst:168
+msgid ""
+"async with await psycopg.AsyncConnection.connect() as aconn:\n"
+"    async with aconn.cursor() as cur:\n"
+"        await cur.execute(...)"
+msgstr ""
+
+#: ../../../advanced/async.rst:174
+msgid "...but no less than that: you still need to do the double async thing."
+msgstr ""
+
+#: ../../../advanced/async.rst:176
+msgid ""
+"Note that the `AsyncConnection.cursor()` function is not an `!async` "
+"function (it never performs I/O), so you don't need an `!await` on it; as a "
+"consequence you can use the normal `async with` context manager."
+msgstr ""
+
+#: ../../../advanced/async.rst:186
+msgid "Interrupting async operations"
+msgstr ""
+
+#: ../../../advanced/async.rst:188
+msgid ""
+"If a long running operation is interrupted by a Ctrl-C on a normal "
+"connection running in the main thread, the operation will be cancelled and "
+"the connection will be put in error state, from which can be recovered with "
+"a normal `~Connection.rollback()`."
+msgstr ""
+
+#: ../../../advanced/async.rst:193
+msgid ""
+"An async connection provides similar behavior in that if the async task is "
+"cancelled, any operation on the connection will similarly be cancelled.  "
+"This can happen either indirectly via Ctrl-C or similar signal, or directly "
+"by cancelling the Python Task via the normal way.  Psycopg will ask the "
+"PostgreSQL postmaster to cancel the operation when it encounters the "
+"standard Python `CancelledError`__."
+msgstr ""
+
+#: ../../../advanced/async.rst:200
+msgid ""
+"Remember that cancelling the Python Task does not guarantee that the "
+"operation will not complete, even if the task ultimately exits prematurely "
+"due to CancelledError.  If you need to know the ultimate outcome of the "
+"statement, then consider calling `Connection.cancel()` as an alternative to "
+"cancelling the task."
+msgstr ""
+
+#: ../../../advanced/async.rst:206
+msgid ""
+"Previous versions of Psycopg recommended setting up signal handlers to "
+"manually cancel connections.  This should no longer be necessary."
+msgstr ""
+
+#: ../../../advanced/async.rst:218
+msgid "Gevent support"
+msgstr ""
+
+#: ../../../advanced/async.rst:220
+msgid ""
+"Psycopg 3 supports `gevent <https://www.gevent.org/>`__ out of the box. If "
+"the `select` module is found patched by functions such as `gevent.monkey."
+"patch_select()`__ or `patch_all()`__, psycopg will behave in a collaborative "
+"way."
+msgstr ""
+
+#: ../../../advanced/async.rst:225
+msgid ""
+"Unlike with `!psycopg2`, using the `!psycogreen` module is not required."
+msgstr ""
+
+#: ../../../advanced/async.rst:232
+msgid ""
+"gevent support was initially accidental, and was accidentally broken in "
+"psycopg 3.1.4."
+msgstr ""
+
+#: ../../../advanced/async.rst:235
+msgid "gevent is officially supported only starting from psycopg 3.1.14."
+msgstr ""
+
+#: ../../../advanced/async.rst:246
+msgid "Server messages"
+msgstr ""
+
+#: ../../../advanced/async.rst:248
+msgid ""
+"PostgreSQL can send, together with the query results, `informative "
+"messages`__ about the operation just performed, such as warnings or debug "
+"information. Notices may be raised even if the operations are successful and "
+"don't indicate an error. You are probably familiar with some of them, "
+"because they are reported by :program:`psql`::"
+msgstr ""
+
+#: ../../../advanced/async.rst:254
+msgid ""
+"$ psql\n"
+"=# ROLLBACK;\n"
+"WARNING:  there is no transaction in progress\n"
+"ROLLBACK"
+msgstr ""
+
+#: ../../../advanced/async.rst:262
+msgid ""
+"Messages can be also sent by the `PL/pgSQL 'RAISE' statement`__ (at a level "
+"lower than EXCEPTION, otherwise the appropriate `DatabaseError` will be "
+"raised). The level of the messages received can be controlled using the "
+"client_min_messages__ setting."
+msgstr ""
+
+#: ../../../advanced/async.rst:272
+msgid ""
+"By default, the messages received are ignored. If you want to process them "
+"on the client you can use the `Connection.add_notice_handler()` function to "
+"register a function that will be invoked whenever a message is received. The "
+"message is passed to the callback as a `~errors.Diagnostic` instance, "
+"containing all the information passed by the server, such as the message "
+"text and the severity. The object is the same found on the `~psycopg.Error."
+"diag` attribute of the errors raised by the server:"
+msgstr ""
+
+#: ../../../advanced/async.rst:280
+msgid ""
+">>> import psycopg\n"
+"\n"
+">>> def log_notice(diag):\n"
+"...     print(f\"The server says: {diag.severity} - {diag."
+"message_primary}\")\n"
+"\n"
+">>> conn = psycopg.connect(autocommit=True)\n"
+">>> conn.add_notice_handler(log_notice)\n"
+"\n"
+">>> cur = conn.execute(\"ROLLBACK\")\n"
+"The server says: WARNING - there is no transaction in progress\n"
+">>> print(cur.statusmessage)\n"
+"ROLLBACK"
+msgstr ""
+
+#: ../../../advanced/async.rst:297
+msgid ""
+"The `!Diagnostic` object received by the callback should not be used after "
+"the callback function terminates, because its data is deallocated after the "
+"callbacks have been processed. If you need to use the information later "
+"please extract the attributes requested and forward them instead of "
+"forwarding the whole `!Diagnostic` object."
+msgstr ""
+
+#: ../../../advanced/async.rst:312
+msgid "Asynchronous notifications"
+msgstr ""
+
+#: ../../../advanced/async.rst:314
+msgid ""
+"Psycopg allows asynchronous interaction with other database sessions using "
+"the facilities offered by PostgreSQL commands |LISTEN|_ and |NOTIFY|_. "
+"Please refer to the PostgreSQL documentation for examples about how to use "
+"this form of communication."
+msgstr ""
+
+#: ../../../advanced/async.rst:324
+msgid ""
+"Because of the way transactions interact with notifications (see |NOTIFY|_ "
+"documentation), you should keep the connection in `~Connection.autocommit` "
+"mode if you wish to receive or send notifications in a timely manner."
+msgstr ""
+
+#: ../../../advanced/async.rst:330
+msgid ""
+"You don't need an `AsyncConnection` to handle notifications: a normal "
+"blocking `Connection` is perfectly valid."
+msgstr ""
+
+#: ../../../advanced/async.rst:333
+msgid ""
+"Notifications are received as instances of the `Notify` object. You can "
+"receive notifications using either the :ref:`notifies generator <notifies-"
+"generator>` or a :ref:`notifies handler <notifies-handlers>`."
+msgstr ""
+
+#: ../../../advanced/async.rst:339
+msgid "You should use only one of the two methods to receive notifications."
+msgstr ""
+
+#: ../../../advanced/async.rst:341
+msgid ""
+"Since Psycopg 3.2.10 using the generator and handlers at the same time "
+"raises a runtime warning."
+msgstr ""
+
+#: ../../../advanced/async.rst:348
+msgid "Notifies generator"
+msgstr ""
+
+#: ../../../advanced/async.rst:350
+msgid ""
+"If you are reserving a connection only to receive notifications, the "
+"simplest way to receive them is to consume the `Connection.notifies()` "
+"generator. The generator can be stopped using its `!close()` method, or "
+"using the parameters `!timeout` or `!stop_after` to receive notifications "
+"only for a certain time or up to a certain number."
+msgstr ""
+
+#: ../../../advanced/async.rst:356
+msgid ""
+"The following example will print notifications and stop when one containing "
+"the ``\"stop\"`` message is received."
+msgstr ""
+
+#: ../../../advanced/async.rst:359
+msgid ""
+"import psycopg\n"
+"conn = psycopg.connect(\"\", autocommit=True)\n"
+"conn.execute(\"LISTEN mychan\")\n"
+"gen = conn.notifies()\n"
+"for notify in gen:\n"
+"    print(notify)\n"
+"    if notify.payload == \"stop\":\n"
+"        gen.close()\n"
+"print(\"there, I stopped\")"
+msgstr ""
+
+#: ../../../advanced/async.rst:371
+msgid "If you run some :sql:`NOTIFY` in a :program:`psql` session:"
+msgstr ""
+
+#: ../../../advanced/async.rst:373
+msgid ""
+"=# NOTIFY mychan, 'hello';\n"
+"NOTIFY\n"
+"=# NOTIFY mychan, 'hey';\n"
+"NOTIFY\n"
+"=# NOTIFY mychan, 'stop';\n"
+"NOTIFY"
+msgstr ""
+
+#: ../../../advanced/async.rst:382
+msgid "You may get output from the Python process such as::"
+msgstr ""
+
+#: ../../../advanced/async.rst:384
+msgid ""
+"Notify(channel='mychan', payload='hello', pid=961823)\n"
+"Notify(channel='mychan', payload='hey', pid=961823)\n"
+"Notify(channel='mychan', payload='stop', pid=961823)\n"
+"there, I stopped"
+msgstr ""
+
+#: ../../../advanced/async.rst:391
+msgid ""
+"The behaviour of the notifies generator has changed slightly as problems "
+"were found:"
+msgstr ""
+
+#: ../../../advanced/async.rst:394
+msgid ""
+"Before Psycopg 3.2.4, notification received between calling :sql:`LISTEN` "
+"and starting the generator were lost."
+msgstr ""
+
+#: ../../../advanced/async.rst:397
+msgid ""
+"Since :ref:`psycopg-3.2.4` such notifications are captured and yielded by "
+"the generator once it is started. However this introduced a leak (:ticket:"
+"`#1091`) and, if the generator is not regularly used, some memory is "
+"allocated indefinitely."
+msgstr ""
+
+#: ../../../advanced/async.rst:402
+msgid ""
+"Since :ref:`psycopg-3.2.10` if a handler is registered then notifications "
+"are not captured when the generator is not running. So the behaviour is "
+"similar to pre-3.2.4 but *only if a handler is registered too*. Therefore, "
+"using handlers and generators together starts seeming a bad idea, hence it "
+"is since deprecated."
+msgstr ""
+
+#: ../../../advanced/async.rst:412
+msgid "Notifies handlers"
+msgstr ""
+
+#: ../../../advanced/async.rst:414
+msgid ""
+"Alternatively, you can use `~Connection.add_notify_handler()` to register a "
+"callback function, which will be invoked whenever a notification is "
+"received, during the normal query processing; you will be then able to use "
+"the connection normally. Please note that in this case notifications will "
+"not be received immediately, but only during a connection operation, such as "
+"a query."
+msgstr ""
+
+#: ../../../advanced/async.rst:420
+msgid ""
+"conn.add_notify_handler(lambda n: print(f\"got this: {n}\"))\n"
+"\n"
+"# meanwhile in psql...\n"
+"# =# NOTIFY mychan, 'hey';\n"
+"# NOTIFY\n"
+"\n"
+"print(conn.execute(\"SELECT 1\").fetchone())\n"
+"# got this: Notify(channel='mychan', payload='hey', pid=961823)\n"
+"# (1,)"
+msgstr ""
+
+#: ../../../advanced/async.rst:438
+msgid "Detecting disconnections"
+msgstr ""
+
+#: ../../../advanced/async.rst:440
+msgid ""
+"Sometimes it is useful to detect immediately when the connection with the "
+"database is lost. One brutal way to do so is to poll a connection in a loop "
+"running an endless stream of :sql:`SELECT 1`... *Don't* do so: polling is "
+"*so* out of fashion. Besides, it is inefficient (unless what you really want "
+"is a client-server generator of ones), it generates useless traffic and will "
+"only detect a disconnection with an average delay of half the polling time."
+msgstr ""
+
+#: ../../../advanced/async.rst:447
+msgid ""
+"A more efficient and timely way to detect a server disconnection is to "
+"create an additional connection and wait for a notification from the OS that "
+"this connection has something to say: only then you can run some checks. You "
+"can dedicate a thread (or an asyncio task) to wait on this connection: such "
+"thread will perform no activity until awaken by the OS."
+msgstr ""
+
+#: ../../../advanced/async.rst:453
+msgid ""
+"In a normal (non asyncio) program you can use the `selectors` module. "
+"Because the `!Connection` implements a `~Connection.fileno()` method you can "
+"just register it as a file-like object. You can run such code in a dedicated "
+"thread (and using a dedicated connection) if the rest of the program happens "
+"to have something else to do too."
+msgstr ""
+
+#: ../../../advanced/async.rst:459
+msgid ""
+"import selectors\n"
+"\n"
+"sel = selectors.DefaultSelector()\n"
+"sel.register(conn, selectors.EVENT_READ)\n"
+"while True:\n"
+"    if not sel.select(timeout=60.0):\n"
+"        continue  # No FD activity detected in one minute\n"
+"\n"
+"    # Activity detected. Is the connection still ok?\n"
+"    try:\n"
+"        conn.execute(\"SELECT 1\")\n"
+"    except psycopg.OperationalError:\n"
+"        # You were disconnected: do something useful such as panicking\n"
+"        logger.error(\"we lost our database!\")\n"
+"        sys.exit(1)"
+msgstr ""
+
+#: ../../../advanced/async.rst:477
+msgid ""
+"In an `asyncio` program you can dedicate a `~asyncio.Task` instead and do "
+"something similar using `~asyncio.loop.add_reader`:"
+msgstr ""
+
+#: ../../../advanced/async.rst:480
+msgid ""
+"import asyncio\n"
+"\n"
+"ev = asyncio.Event()\n"
+"loop = asyncio.get_event_loop()\n"
+"loop.add_reader(conn.fileno(), ev.set)\n"
+"\n"
+"while True:\n"
+"    try:\n"
+"        await asyncio.wait_for(ev.wait(), 60.0)\n"
+"    except asyncio.TimeoutError:\n"
+"        continue  # No FD activity detected in one minute\n"
+"\n"
+"    # Activity detected. Is the connection still ok?\n"
+"    try:\n"
+"        await conn.execute(\"SELECT 1\")\n"
+"    except psycopg.OperationalError:\n"
+"        # Guess what happened\n"
+"        ..."
+msgstr ""
+
+#: ../../../advanced/async.rst:4
+msgid "threads"
+msgstr ""
+
+#: ../../../advanced/async.rst:72
+msgid "asyncio"
+msgstr ""
+
+#: ../../../advanced/async.rst:131
+msgid "with"
+msgstr ""
+
+#: ../../../advanced/async.rst:181
+msgid "Ctrl-C"
+msgstr ""
+
+#: ../../../advanced/async.rst:213
+msgid "gevent"
+msgstr ""
+
+#: ../../../advanced/async.rst:238 ../../../advanced/async.rst:304
+msgid "Asynchronous"
+msgstr ""
+
+#: ../../../advanced/async.rst:238 ../../../advanced/async.rst:304
+msgid "Notifications"
+msgstr ""
+
+#: ../../../advanced/async.rst:238 ../../../advanced/async.rst:304
+msgid "LISTEN"
+msgstr ""
+
+#: ../../../advanced/async.rst:238 ../../../advanced/async.rst:304
+msgid "SQL command"
+msgstr ""
+
+#: ../../../advanced/async.rst:238 ../../../advanced/async.rst:304
+msgid "NOTIFY"
+msgstr ""
+
+#: ../../../advanced/async.rst:433
+msgid "disconnections"
+msgstr ""
