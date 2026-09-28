@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-07-20 03:02:14 +0200",
-      "hash" : "c079c37c959a89a8684a3d3858cbaff7e5543e71",
-      "title" : "fix: raise DataError on malformed data in multirange binary loading"
+      "date" : "2026-09-26 13:39:02 +0200",
+      "hash" : "3d43a1a2420f240d7278f426e756554855384f1d",
+      "title" : "fix(async-to-sync): fix logging and errors report"
     }
   },
   "type" : "branch",
