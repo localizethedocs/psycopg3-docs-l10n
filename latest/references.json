@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-07-20 03:02:14 +0200",
-      "hash" : "c079c37c959a89a8684a3d3858cbaff7e5543e71",
-      "title" : "fix: raise DataError on malformed data in multirange binary loading"
+      "date" : "2026-10-02 18:58:42 +0200",
+      "hash" : "7b45cbc304e6a8a264f7dbc444a87cfae5b15064",
+      "title" : "fix(pool): fix handling of reconnect_failed callback in null pools"
     }
   },
   "type" : "branch",
