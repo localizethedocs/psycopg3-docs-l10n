@@ -11,7 +11,7 @@
 </ul>
 </details>
 
-<h2 id="table-of-contents">Table of Contents</h2>
+<h2 id="table-of-contents">目次表</h2>
 
 <ul>
   <li><a href="#introduction">介绍</a></li>
@@ -58,7 +58,7 @@
 
 <p></p>
 
-The goal of this project is to translate The Psycopg 3 Documentation into multiple languages. Translations are contributed via the Crowdin platform, automatically synchronized with the GitHub repository, and can be previewed on GitHub Pages.
+The goal of this project is to translate The Psycopg 3 Documentation into multiple languages. 翻译是通过 Crowdin 平台进行贡献，并自动与 GitHub 仓库进行同步，且可以在 GitHub Pages 进行预览。
 
 > [!NOTE]
 > The translation is <strong>unofficial</strong> and <strong>community-driven</strong>. If you find any inaccuracies, always refer to the <a href="https://www.psycopg.org/psycopg3/docs/">official documentation</a> or the <a href="https://github.com/psycopg/psycopg">source repository</a> of the upstream project for the most reliable information.
@@ -117,7 +117,7 @@ The goal of this project is to translate The Psycopg 3 Documentation into multip
     </tr>
     <tr>
       <th rowspan="1" colspan="1" align="center" style="text-align: center;"><div>分支</div></th>
-      <th rowspan="1" colspan="1" align="center" style="text-align: center;"><div>Description</div></th>
+      <th rowspan="1" colspan="1" align="center" style="text-align: center;"><div>描述</div></th>
     </tr>
   </thead>
   <tbody>
@@ -157,7 +157,7 @@ The goal of this project is to translate The Psycopg 3 Documentation into multip
     </tr>
     <tr>
       <th rowspan="1" colspan="1" align="center" style="text-align: center;"><div>状态</div></th>
-      <th rowspan="1" colspan="1" align="center" style="text-align: center;"><div>Description</div></th>
+      <th rowspan="1" colspan="1" align="center" style="text-align: center;"><div>描述</div></th>
     </tr>
   </thead>
   <tbody>
@@ -278,7 +278,7 @@ The goal of this project is to translate The Psycopg 3 Documentation into multip
       <th rowspan="1" colspan="1" align="center" style="text-align: center;"><div>Locale</div></th>
       <th rowspan="1" colspan="1" align="center" style="text-align: center;">
         <div>
-          <div>English Name</div>
+          <div>英文名称</div>
           <div>本地名称</div>
         </div>
       </th>
@@ -428,7 +428,7 @@ You can sponsor the projects through the following platforms:
     <!-- Row 1 -->
     <tr>
       <th rowspan="1" colspan="1" align="center" style="text-align: center; width: 50%;"><div>Patreon</div></th>
-      <th rowspan="1" colspan="1" align="center" style="text-align: center; width: 50%;"><div>Afdian</div></th>
+      <th rowspan="1" colspan="1" align="center" style="text-align: center; width: 50%;"><div>爱发电</div></th>
     </tr>
     <!-- Row 2 -->
     <tr>
@@ -469,9 +469,9 @@ Maintenance of the projects is made possible by the generous support of our spon
 
 All original and translated text in the <code>.pot</code> and<code>.po</code> files stored in the <code>l10n</code> branch is made available under the same license as <a href="https://github.com/psycopg/psycopg">the upstream project</a>.
 
-All CMake script files (e.g., <code>CMakeLists.txt</code>, <code>CMakePresets.json</code>, and <code>cmake/\*\*/\*</code> files), GitHub workflow files (e.g., <code>.github/workflows/\*.yml</code> files), and configuration files (e.g., <code>versions.json</code>, <code>languages.json</code>, <code>crowdin.yml</code>, and so on) of this project are licensed under <a href="https://opensource.org/license/bsd-3-clause/">3-Clause BSD</a> license. See <a href="./LICENSE-BSD">LICENSE-BSD</a> for details.
+All CMake script files (e.g., <code>CMakeLists.txt</code>, <code>CMakePresets.json</code>, and <code>cmake/\*\*/\*</code> files), GitHub workflow files (e.g., <code>.github/workflows/\*.yml</code> files), and configuration files (e.g., <code>versions.json</code>, <code>languages.json</code>, <code>crowdin.yml</code>, and so on) of this project are licensed under <a href="https://opensource.org/license/bsd-3-clause/">3-Clause BSD</a> license. 详情请参见 <a href="./LICENSE-BSD">LICENSE-BSD</a>。
 
-All document files (e.g., <code>README.md</code>) of this project are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> license. See <a href="./LICENSE-CC">LICENSE-CC</a> for details.
+All document files (e.g., <code>README.md</code>) of this project are licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International</a> license. 详情请参见 <a href="./LICENSE-CC">LICENSE-CC</a>。
 
 <a href="http://creativecommons.org/licenses/by-sa/4.0/" title="CC BY SA 4.0" target="_blank">
   <img alt="CC BY SA 4.0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/>
