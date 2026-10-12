@@ -493,7 +493,7 @@ msgstr ""
 
 #: ../../../basic/transactions.rst:411
 msgid "Two-Phase Commit protocol support"
-msgstr ""
+msgstr "兩階段送交協定支援"
 
 #: ../../../basic/transactions.rst:415
 msgid ""
