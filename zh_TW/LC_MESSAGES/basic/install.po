@@ -1,0 +1,463 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2020, Daniele Varrazzo and The Psycopg Team
+# This file is distributed under the same license as the psycopg package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: psycopg stable\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-02 15:31+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../../basic/install.rst:4
+msgid "Installation"
+msgstr ""
+
+#: ../../../basic/install.rst:6
+msgid ""
+"In short, if you use one of the :ref:`supported systems<supported-systems>`, "
+"run::"
+msgstr ""
+
+#: ../../../basic/install.rst:9
+msgid ""
+"pip install --upgrade pip\n"
+"pip install \"psycopg[binary]\""
+msgstr ""
+
+#: ../../../basic/install.rst:12
+msgid ""
+"and you should be :ref:`ready to start <module-usage>`. Read further for "
+"alternative ways to install."
+msgstr ""
+
+#: ../../../basic/install.rst:16
+msgid "Fun fact: there is no ``psycopg3`` package, only ``psycopg``!"
+msgstr ""
+
+#: ../../../basic/install.rst:22
+msgid "Supported systems"
+msgstr ""
+
+#: ../../../basic/install.rst:24
+msgid ""
+"The Psycopg version documented here has *official and tested* support for:"
+msgstr ""
+
+#: ../../../basic/install.rst:26
+msgid "Python: from version 3.10 to 3.14"
+msgstr ""
+
+#: ../../../basic/install.rst:28
+msgid "Python 3.8 and 3.9 are supported before Psycopg 3.3"
+msgstr ""
+
+#: ../../../basic/install.rst:29
+msgid "Python 3.7 is supported before Psycopg 3.2"
+msgstr ""
+
+#: ../../../basic/install.rst:30
+msgid "Python 3.6 is supported before Psycopg 3.1"
+msgstr ""
+
+#: ../../../basic/install.rst:32
+msgid "PyPy: from version 3.10 to 3.11"
+msgstr ""
+
+#: ../../../basic/install.rst:34
+msgid "PyPy 3.9 is supported before Psycopg 3.3"
+msgstr ""
+
+#: ../../../basic/install.rst:35
+msgid "**Note:** Only the pure Python installation is currently supported."
+msgstr ""
+
+#: ../../../basic/install.rst:37
+msgid "PostgreSQL: from version 10 to 18"
+msgstr ""
+
+#: ../../../basic/install.rst:39
+msgid ""
+"**Note:** PostgreSQL `currently supported release`__ are actively tested in "
+"the CI. Out-of-support releases are supported on a best-effort basis."
+msgstr ""
+
+#: ../../../basic/install.rst:42
+msgid "OS: Linux, macOS, Windows"
+msgstr ""
+
+#: ../../../basic/install.rst:44
+msgid "Pip: 20.3 or newer"
+msgstr ""
+
+#: ../../../basic/install.rst:48
+msgid ""
+"The tests to verify the supported systems run in `Github workflows`__: "
+"anything that is not tested there is not officially supported. This includes:"
+msgstr ""
+
+#: ../../../basic/install.rst:53
+msgid "Unofficial Python distributions such as Conda;"
+msgstr ""
+
+#: ../../../basic/install.rst:54
+msgid "Alternative PostgreSQL implementation;"
+msgstr ""
+
+#: ../../../basic/install.rst:55
+msgid "Other platforms such as BSD or Solaris."
+msgstr ""
+
+#: ../../../basic/install.rst:57
+msgid ""
+"If you use an unsupported system, things might work (because, for instance, "
+"the database may use the same wire protocol as PostgreSQL) but we cannot "
+"guarantee the correct working or a smooth ride."
+msgstr ""
+
+#: ../../../basic/install.rst:65
+msgid "What to install?"
+msgstr ""
+
+#: ../../../basic/install.rst:67
+msgid ""
+"There are a few different options to install Psycopg 3. This is a quick "
+"summary of their differences; follow the links for more details."
+msgstr ""
+
+#: ../../../basic/install.rst:73
+msgid "Installation Option"
+msgstr ""
+
+#: ../../../basic/install.rst:74
+msgid "Command"
+msgstr ""
+
+#: ../../../basic/install.rst:75
+msgid "Description"
+msgstr ""
+
+#: ../../../basic/install.rst:76
+msgid "Perfor­mance"
+msgstr ""
+
+#: ../../../basic/install.rst:77
+msgid "Needs Local libpq?"
+msgstr ""
+
+#: ../../../basic/install.rst:78
+msgid "Needs Build Tools?"
+msgstr ""
+
+#: ../../../basic/install.rst:80
+msgid ":ref:`binary-installation` (recommended for most users)"
+msgstr ""
+
+#: ../../../basic/install.rst:81
+msgid "``pip install psycopg[binary]``"
+msgstr ""
+
+#: ../../../basic/install.rst:82
+msgid "Precompiled C extensions, packaged with client libraries."
+msgstr ""
+
+#: ../../../basic/install.rst:83 ../../../basic/install.rst:91
+msgid "🐇 Fast"
+msgstr ""
+
+#: ../../../basic/install.rst:84 ../../../basic/install.rst:85
+#: ../../../basic/install.rst:100
+msgid "❌ No"
+msgstr ""
+
+#: ../../../basic/install.rst:87
+msgid ":ref:`local-installation`"
+msgstr ""
+
+#: ../../../basic/install.rst:88
+msgid "``pip install psycopg[c]``"
+msgstr ""
+
+#: ../../../basic/install.rst:89
+msgid ""
+"Builds C extensions from source. Requires build tools and client libraries."
+msgstr ""
+
+#: ../../../basic/install.rst:92 ../../../basic/install.rst:93
+#: ../../../basic/install.rst:99
+msgid "✅ Yes"
+msgstr ""
+
+#: ../../../basic/install.rst:95
+msgid ":ref:`pure-python-installation`"
+msgstr ""
+
+#: ../../../basic/install.rst:96
+msgid "``pip install psycopg``"
+msgstr ""
+
+#: ../../../basic/install.rst:97
+msgid "Pure Python implementation only. Requires client libraries."
+msgstr ""
+
+#: ../../../basic/install.rst:98
+msgid "🐢 Slow"
+msgstr ""
+
+#: ../../../basic/install.rst:106
+msgid "Binary installation"
+msgstr ""
+
+#: ../../../basic/install.rst:108
+msgid ""
+"The quickest way to start developing with Psycopg 3 is to install the binary "
+"packages by running::"
+msgstr ""
+
+#: ../../../basic/install.rst:111
+msgid "pip install \"psycopg[binary]\""
+msgstr ""
+
+#: ../../../basic/install.rst:113
+msgid ""
+"This will install a self-contained package with all the libraries needed. If "
+"you are coming from Psycopg 2, this is the equivalent of installing the "
+"``psycopg2-binary`` package."
+msgstr ""
+
+#: ../../../basic/install.rst:119
+msgid ""
+"Did Psycopg 3 install ok? Great! You can now move on to the :ref:`basic "
+"module usage <module-usage>` to learn how it works."
+msgstr ""
+
+#: ../../../basic/install.rst:122
+msgid ""
+"Keep on reading if the above method didn't work and you need a different way "
+"to install Psycopg 3."
+msgstr ""
+
+#: ../../../basic/install.rst:125
+msgid ""
+"For further information about the differences between the packages see :ref:"
+"`pq-impl`."
+msgstr ""
+
+#: ../../../basic/install.rst:128
+msgid ""
+"If your platform is not supported, or if the libpq packaged is not suitable, "
+"you should proceed to a :ref:`local installation <local-installation>` or a :"
+"ref:`pure Python installation <pure-python-installation>`."
+msgstr ""
+
+#: ../../../basic/install.rst:134
+msgid ""
+"Binary packages are produced on a best-effort basis; the supported platforms "
+"depend on the CI runners available to build the packages. This means that:"
+msgstr ""
+
+#: ../../../basic/install.rst:138
+msgid ""
+"binary packages for a new version of Python are made available once the "
+"runners used for the build support it. You can check the `psycopg-binary "
+"PyPI files`__ to verify whether your platform is supported;"
+msgstr ""
+
+#: ../../../basic/install.rst:143
+msgid ""
+"the libpq version included in the binary packages depends on the version "
+"available on the runners. You can use the `psycopg.pq.version()` function "
+"and `~psycopg.pq.__build_version__` constant to infer the features available."
+msgstr ""
+
+#: ../../../basic/install.rst:153
+msgid ""
+"Starting from Psycopg 3.1.20, ARM64 macOS binary packages (i.e. for Apple M1 "
+"machines) are no more available for macOS versions before 14.0. Please "
+"upgrade your OS to at least 14.0 or use a :ref:`local <local-installation>` "
+"or a :ref:`Python <pure-python-installation>` installation."
+msgstr ""
+
+#: ../../../basic/install.rst:159
+msgid "The binary installation is not supported by PyPy."
+msgstr ""
+
+#: ../../../basic/install.rst:166
+msgid "Local installation"
+msgstr ""
+
+#: ../../../basic/install.rst:168
+msgid ""
+"A \"Local installation\" results in a performing and maintainable library. "
+"The library will include the speed-up C module and will be linked to the "
+"system libraries (``libpq``, ``libssl``...) so that system upgrade of "
+"libraries will upgrade the libraries used by Psycopg 3 too. This is the "
+"preferred way to install Psycopg for a production site."
+msgstr ""
+
+#: ../../../basic/install.rst:174
+msgid "In order to perform a local installation you need some prerequisites:"
+msgstr ""
+
+#: ../../../basic/install.rst:176
+msgid "a C compiler,"
+msgstr ""
+
+#: ../../../basic/install.rst:177
+msgid "Python development headers (e.g. the ``python3-dev`` package)."
+msgstr ""
+
+#: ../../../basic/install.rst:178
+msgid "PostgreSQL client development headers (e.g. the ``libpq-dev`` package)."
+msgstr ""
+
+#: ../../../basic/install.rst:179
+msgid "The :program:`pg_config` program available in the :envvar:`PATH`."
+msgstr ""
+
+#: ../../../basic/install.rst:181
+msgid ""
+"You **must be able** to troubleshoot an extension build, for instance you "
+"must be able to read your compiler's error message. If you are not, please "
+"don't try this and use the :ref:`binary-installation` instead."
+msgstr ""
+
+#: ../../../basic/install.rst:185
+msgid "If your build prerequisites are in place you can run::"
+msgstr ""
+
+#: ../../../basic/install.rst:187
+msgid "pip install \"psycopg[c]\""
+msgstr ""
+
+#: ../../../basic/install.rst:189
+msgid ""
+"This will install a self-contained package with all the libraries needed. If "
+"you are coming from Psycopg 2, this is the equivalent of installing the "
+"``psycopg2`` package, both in terms of build requirements and system "
+"dependencies at runtime."
+msgstr ""
+
+#: ../../../basic/install.rst:196
+msgid "The local installation is not supported by PyPy."
+msgstr ""
+
+#: ../../../basic/install.rst:202
+msgid "Pure Python installation"
+msgstr ""
+
+#: ../../../basic/install.rst:204
+msgid "If you simply install::"
+msgstr ""
+
+#: ../../../basic/install.rst:206
+msgid "pip install psycopg"
+msgstr ""
+
+#: ../../../basic/install.rst:208
+msgid ""
+"without ``[c]`` or ``[binary]`` extras you will obtain a pure Python "
+"implementation. This is particularly handy for debugging and hacking."
+msgstr ""
+
+#: ../../../basic/install.rst:213
+msgid ""
+"The pure Python installation is much slower than the :ref:`binary-"
+"installation` or :ref:`local-installation`. It is likely sufficient for "
+"local developments or small tasks but, for production loads, you might want "
+"to install one of the speed-up extensions too."
+msgstr ""
+
+#: ../../../basic/install.rst:218
+msgid ""
+"In order to use the pure Python installation you will need the ``libpq`` "
+"PostgreSQL client library installed on your client (which will be imported "
+"dynamically via `ctypes`); for example on Debian systems you will probably "
+"need::"
+msgstr ""
+
+#: ../../../basic/install.rst:223
+msgid "sudo apt install libpq5"
+msgstr ""
+
+#: ../../../basic/install.rst:225
+msgid ""
+"If you are not able to fulfill this requirement please use a :ref:`binary-"
+"installation`, which packages its own copy of the ``libpq``."
+msgstr ""
+
+#: ../../../basic/install.rst:230
+msgid ""
+"The ``libpq`` is the client library also used by :program:`psql`, the "
+"PostgreSQL command line client, to connect to the database.  On most "
+"systems, installing :program:`psql` will install the ``libpq`` too as a "
+"dependency."
+msgstr ""
+
+#: ../../../basic/install.rst:239
+msgid "Installing the connection pool"
+msgstr ""
+
+#: ../../../basic/install.rst:241
+msgid ""
+"The :ref:`Psycopg connection pools <connection-pools>` are distributed in a "
+"separate package from the `!psycopg` package itself, in order to allow a "
+"different release cycle."
+msgstr ""
+
+#: ../../../basic/install.rst:245
+msgid ""
+"In order to use the pool you must install the ``pool`` extra, using ``pip "
+"install \"psycopg[pool]\"``, or install the `psycopg_pool` package "
+"separately, which would allow to specify the release to install more "
+"precisely."
+msgstr ""
+
+#: ../../../basic/install.rst:253
+msgid "Handling dependencies"
+msgstr ""
+
+#: ../../../basic/install.rst:255
+msgid ""
+"If you need to specify your project dependencies (for instance in a "
+"``requirements.txt`` file, ``setup.py``, ``pyproject.toml`` dependencies...) "
+"you should probably specify one of the following:"
+msgstr ""
+
+#: ../../../basic/install.rst:259
+msgid ""
+"If your project is a library, add a dependency on ``psycopg``. This will "
+"make sure that your library will have the ``psycopg`` package with the right "
+"interface and leaves the possibility of choosing a specific implementation "
+"to the end user of your library."
+msgstr ""
+
+#: ../../../basic/install.rst:264
+msgid ""
+"If your project is a final application (e.g. a service running on a server) "
+"you can require a specific implementation, for instance ``psycopg[c]``, "
+"after you have made sure that the prerequisites are met (e.g. the depending "
+"libraries and tools are installed in the host machine)."
+msgstr ""
+
+#: ../../../basic/install.rst:269
+msgid ""
+"In both cases you can specify which version of Psycopg to use using "
+"`requirement specifiers`__."
+msgstr ""
+
+#: ../../../basic/install.rst:274
+msgid ""
+"If you want to make sure that a specific implementation is used you can "
+"specify the :envvar:`PSYCOPG_IMPL` environment variable: importing the "
+"library will fail if the implementation specified is not available. See :ref:"
+"`pq-impl`."
+msgstr ""
