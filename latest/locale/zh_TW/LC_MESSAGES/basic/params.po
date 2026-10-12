@@ -46,7 +46,7 @@ msgstr ""
 
 #: ../../../basic/params.rst:29
 msgid "`!execute()` arguments"
-msgstr ""
+msgstr "`!execute()` 引數"
 
 #: ../../../basic/params.rst:31
 msgid ""
@@ -64,6 +64,11 @@ msgid ""
 "    \"\"\",\n"
 "    (10, datetime.date(2020, 11, 18), \"O'Reilly\"))"
 msgstr ""
+"cur.execute(\"\"\"\n"
+"    INSERT INTO some_table (id, created_at, last_name)\n"
+"    VALUES (%s, %s, %s);\n"
+"    \"\"\",\n"
+"    (10, datetime.date(2020, 11, 18), \"O'Reilly\"))"
 
 #: ../../../basic/params.rst:44
 msgid "is *roughly* equivalent to the SQL command:"
@@ -74,6 +79,8 @@ msgid ""
 "INSERT INTO some_table (id, created_at, last_name)\n"
 "VALUES (10, '2020-11-18', 'O''Reilly');"
 msgstr ""
+"INSERT INTO some_table (id, created_at, last_name)\n"
+"VALUES (10, '2020-11-18', 'O''Reilly');"
 
 #: ../../../basic/params.rst:51
 msgid ""
@@ -98,6 +105,11 @@ msgid ""
 "    \"\"\",\n"
 "    {'id': 10, 'name': \"O'Reilly\", 'created': datetime.date(2020, 11, 18)})"
 msgstr ""
+"cur.execute(\"\"\"\n"
+"    INSERT INTO some_table (id, created_at, updated_at, last_name)\n"
+"    VALUES (%(id)s, %(created)s, %(created)s, %(name)s);\n"
+"    \"\"\",\n"
+"    {'id': 10, 'name': \"O'Reilly\", 'created': datetime.date(2020, 11, 18)})"
 
 #: ../../../basic/params.rst:66
 msgid ""
@@ -356,6 +368,10 @@ msgid ""
 "binary=True)\n"
 "data = cur.fetchone()[0]"
 msgstr ""
+"cur.execute(\n"
+"    \"SELECT image_data FROM images WHERE id = %s\", [image_id], "
+"binary=True)\n"
+"data = cur.fetchone()[0]"
 
 #: ../../../basic/params.rst:252
 msgid ""

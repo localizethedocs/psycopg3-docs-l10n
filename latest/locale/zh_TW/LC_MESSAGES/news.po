@@ -27,7 +27,7 @@ msgstr ""
 
 #: ../../../news.rst:14
 msgid "Psycopg 3.3.5 (unreleased)"
-msgstr ""
+msgstr "Psycopg 3.3.5（尚未發行）"
 
 #: ../../../news.rst:16
 msgid ""
@@ -56,11 +56,11 @@ msgstr ""
 
 #: ../../../news.rst:28
 msgid "Current release"
-msgstr ""
+msgstr "當前發行版"
 
 #: ../../../news.rst:31
 msgid "Psycopg 3.3.4"
-msgstr ""
+msgstr "Psycopg 3.3.4"
 
 #: ../../../news.rst:33
 msgid ""
@@ -82,7 +82,7 @@ msgstr ""
 
 #: ../../../news.rst:42
 msgid "Psycopg 3.3.3"
-msgstr ""
+msgstr "Psycopg 3.3.3"
 
 #: ../../../news.rst:44
 msgid ""
@@ -98,7 +98,7 @@ msgstr ""
 
 #: ../../../news.rst:51
 msgid "Psycopg 3.3.2"
-msgstr ""
+msgstr "Psycopg 3.3.2"
 
 #: ../../../news.rst:53
 msgid "Fix race condition in adapters at startup (:ticket:`#1230`)."
