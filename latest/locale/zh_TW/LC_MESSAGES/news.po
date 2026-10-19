@@ -1622,6 +1622,3 @@ msgstr "發行備註"
 #: ../../../news.rst:3
 msgid "News"
 msgstr ""
-
-#~ msgid "Psycopg 3.3.5 (unreleased)"
-#~ msgstr "Psycopg 3.3.5（尚未發行）"
