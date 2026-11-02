@@ -40,8 +40,8 @@ msgstr ""
 #: ../../../api/types.rst:18
 msgid ""
 "helper objects to represent PostgreSQL data types which :ref:`don't have a "
-"straightforward Python representation <extra-adaptation>`, such as `~range."
-"Range`."
+"straightforward Python representation <extra-adaptation>`, such as "
+"`~range.Range`."
 msgstr ""
 
 #: ../../../api/types.rst:24
@@ -58,9 +58,9 @@ msgstr ""
 #: ../../../api/types.rst:30
 msgid ""
 "You can use `TypeInfo.fetch()` to query information from a database catalog, "
-"which is then used by helper functions, such as `~psycopg.types.hstore."
-"register_hstore()`, to register adapters on types whose OID is not known "
-"upfront or to create more specialised adapters."
+"which is then used by helper functions, such as "
+"`~psycopg.types.hstore.register_hstore()`, to register adapters on types "
+"whose OID is not known upfront or to create more specialised adapters."
 msgstr ""
 
 #: ../../../api/types.rst:35
@@ -152,8 +152,9 @@ msgstr ""
 
 #: ../../../api/types.rst:93
 msgid ""
-"the context where the type is registered, for instance a `~psycopg."
-"Connection` or `~psycopg.Cursor`. `!None` registers the `!TypeInfo` globally."
+"the context where the type is registered, for instance a "
+"`~psycopg.Connection` or `~psycopg.Cursor`. `!None` registers the `!"
+"TypeInfo` globally."
 msgstr ""
 
 #: ../../../api/types.rst:98
@@ -168,9 +169,9 @@ msgstr ""
 msgid ""
 "In order to get information about dynamic PostgreSQL types, Psycopg offers a "
 "few `!TypeInfo` subclasses, whose `!fetch()` method can extract more "
-"complete information about the type, such as `~psycopg.types.composite."
-"CompositeInfo`, `~psycopg.types.range.RangeInfo`, `~psycopg.types.multirange."
-"MultirangeInfo`, `~psycopg.types.enum.EnumInfo`."
+"complete information about the type, such as "
+"`~psycopg.types.composite.CompositeInfo`, `~psycopg.types.range.RangeInfo`, "
+"`~psycopg.types.multirange.MultirangeInfo`, `~psycopg.types.enum.EnumInfo`."
 msgstr ""
 
 #: ../../../api/types.rst:110
@@ -187,9 +188,9 @@ msgstr ""
 
 #: ../../../api/types.rst:116
 msgid ""
-"`!TypeRegistry` instances are typically exposed by `~psycopg.adapt."
-"AdaptersMap` objects in adapt contexts such as `~psycopg.Connection` or "
-"`~psycopg.Cursor` (e.g. `!conn.adapters.types`)."
+"`!TypeRegistry` instances are typically exposed by "
+"`~psycopg.adapt.AdaptersMap` objects in adapt contexts such as "
+"`~psycopg.Connection` or `~psycopg.Cursor` (e.g. `!conn.adapters.types`)."
 msgstr ""
 
 #: ../../../api/types.rst:120
@@ -265,8 +266,9 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
 #: of psycopg._typeinfo.TypesRegistry.get_by_subtype:3
 msgid ""
-"the subtype of `!TypeInfo` to look for. Currently supported are `~psycopg."
-"types.range.RangeInfo` and `~psycopg.types.multirange.MultirangeInfo`."
+"the subtype of `!TypeInfo` to look for. Currently supported are "
+"`~psycopg.types.range.RangeInfo` and "
+"`~psycopg.types.multirange.MultirangeInfo`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring

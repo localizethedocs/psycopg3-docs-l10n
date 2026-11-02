@@ -82,9 +82,10 @@ msgstr ""
 msgid ""
 "Psycopg 3 sends the query and the parameters to the server separately, "
 "instead of merging them on the client side. Server-side binding works for "
-"normal :sql:`SELECT` and data manipulation statements (:sql:`INSERT`, :sql:"
-"`UPDATE`, :sql:`DELETE`), but it doesn't work with many other statements. "
-"For instance, it doesn't work with :sql:`SET` or with :sql:`NOTIFY`::"
+"normal :sql:`SELECT` and data manipulation statements "
+"(:sql:`INSERT`, :sql:`UPDATE`, :sql:`DELETE`), but it doesn't work with many "
+"other statements. For instance, it doesn't work with :sql:`SET` or "
+"with :sql:`NOTIFY`::"
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:60
@@ -159,9 +160,10 @@ msgstr ""
 
 #: ../../../basic/from_pg2.rst:110
 msgid ""
-"If you need `!ClientCursor` often, you can set the `Connection."
-"cursor_factory` to have them created by default by `Connection.cursor()`. "
-"This way, Psycopg 3 will behave largely the same way of Psycopg 2."
+"If you need `!ClientCursor` often, you can set the "
+"`Connection.cursor_factory` to have them created by default by "
+"`Connection.cursor()`. This way, Psycopg 3 will behave largely the same way "
+"of Psycopg 2."
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:114
@@ -240,8 +242,8 @@ msgstr ""
 msgid ""
 ">>> from psycopg import sql\n"
 ">>> conn.execute(\n"
-"...     sql.SQL(\"INSERT INTO foo VALUES ({}); INSERT INTO foo values "
-"({})\")\n"
+"...     sql.SQL(\"INSERT INTO foo VALUES ({}); INSERT INTO foo values ({})"
+"\")\n"
 "...     .format(10, 20))"
 msgstr ""
 
@@ -263,8 +265,8 @@ msgstr ""
 
 #: ../../../basic/from_pg2.rst:188
 msgid ""
-"when retrieving a :ref:`binary result <binary-data>` (such as using ``."
-"execute(..., binary=True)``;"
+"when retrieving a :ref:`binary result <binary-data>` (such as using "
+"``.execute(..., binary=True)``;"
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:190
@@ -291,9 +293,9 @@ msgstr ""
 #: ../../../basic/from_pg2.rst:204
 msgid ""
 "This happens because PostgreSQL itself will wrap multiple statements in a "
-"transaction. Note that you will experience a different behaviour in :program:"
-"`psql` (:program:`psql` will split the queries on semicolons and send them "
-"to the server separately)."
+"transaction. Note that you will experience a different behaviour "
+"in :program:`psql` (:program:`psql` will split the queries on semicolons and "
+"send them to the server separately)."
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:209
@@ -324,8 +326,8 @@ msgid ""
 "In Psycopg 3 instead, all the results are available. After running the "
 "query, the first result will be readily available in the cursor and can be "
 "consumed using the usual `!fetch*()` methods. In order to access the "
-"following results, you can use the `Cursor.results()` method (or `~Cursor."
-"nextset()` before Psycopg 3.3)::"
+"following results, you can use the `Cursor.results()` method (or "
+"`~Cursor.nextset()` before Psycopg 3.3)::"
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:231
@@ -450,9 +452,9 @@ msgstr ""
 
 #: ../../../basic/from_pg2.rst:315
 msgid ""
-"What you can do is to use `IS [NOT] DISTINCT FROM`__ predicate instead: :sql:"
-"`IS NOT DISTINCT FROM %s` can be used in place of :sql:`IS %s` (please pay "
-"attention to the awkwardly reversed :sql:`NOT`)::"
+"What you can do is to use `IS [NOT] DISTINCT FROM`__ predicate "
+"instead: :sql:`IS NOT DISTINCT FROM %s` can be used in place of :sql:`IS %s` "
+"(please pay attention to the awkwardly reversed :sql:`NOT`)::"
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:319
@@ -474,20 +476,20 @@ msgstr ""
 #: ../../../basic/from_pg2.rst:332
 msgid ""
 "In `!psycopg2`, a few cursor subclasses allowed to return data in different "
-"form than tuples. In Psycopg 3 the same can be achieved by setting a :ref:"
-"`row factory <row-factories>`:"
+"form than tuples. In Psycopg 3 the same can be achieved by setting "
+"a :ref:`row factory <row-factories>`:"
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:336
 msgid ""
-"instead of `~psycopg2.extras.RealDictCursor` you can use `~psycopg.rows."
-"dict_row`;"
+"instead of `~psycopg2.extras.RealDictCursor` you can use "
+"`~psycopg.rows.dict_row`;"
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:339
 msgid ""
-"instead of `~psycopg2.extras.NamedTupleCursor` you can use `~psycopg.rows."
-"namedtuple_row`."
+"instead of `~psycopg2.extras.NamedTupleCursor` you can use "
+"`~psycopg.rows.namedtuple_row`."
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:342
@@ -523,8 +525,8 @@ msgstr ""
 msgid ""
 "The default behaviour with builtin data should be :ref:`what you would "
 "expect <types-adaptation>`. If you have customised the way to adapt data, or "
-"if you are managing your own extension types, you should look at the :ref:"
-"`new adaptation system <adaptation>`."
+"if you are managing your own extension types, you should look at "
+"the :ref:`new adaptation system <adaptation>`."
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:373
@@ -580,9 +582,9 @@ msgstr ""
 
 #: ../../../basic/from_pg2.rst:408
 msgid ""
-"In order to manage transactions as blocks you can use the `Connection."
-"transaction()` method, which allows for finer control, for instance to use "
-"nested transactions."
+"In order to manage transactions as blocks you can use the "
+"`Connection.transaction()` method, which allows for finer control, for "
+"instance to use nested transactions."
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:412
@@ -624,8 +626,9 @@ msgid ""
 ":ref:`Transactions characteristics attributes <transaction-characteristics>` "
 "such as `~Connection.read_only` don't affect automatically autocommit "
 "sessions: they only affect the implicit transactions started by non-"
-"autocommit sessions and the transactions created by the `~Connection."
-"transaction()` block (for both autocommit and non-autocommit connections)."
+"autocommit sessions and the transactions created by the "
+"`~Connection.transaction()` block (for both autocommit and non-autocommit "
+"connections)."
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:450
@@ -643,10 +646,10 @@ msgstr ""
 msgid ""
 "PostgreSQL can represent a much wider range of dates and timestamps than "
 "Python. While Python dates are limited to the years between 1 and 9999 "
-"(represented by constants such as `datetime.date.min` and `~datetime.date."
-"max`), PostgreSQL dates extend to BC dates and past the year 10K. "
-"Furthermore PostgreSQL can also represent symbolic dates \"infinity\", in "
-"both directions."
+"(represented by constants such as `datetime.date.min` and "
+"`~datetime.date.max`), PostgreSQL dates extend to BC dates and past the year "
+"10K. Furthermore PostgreSQL can also represent symbolic dates \"infinity\", "
+"in both directions."
 msgstr ""
 
 #: ../../../basic/from_pg2.rst:470
@@ -698,7 +701,7 @@ msgstr ""
 
 #: ../../../basic/from_pg2.rst:497
 msgid ":ref:`A redesigned connection pool <connection-pools>`"
-msgstr ""
+msgstr ":ref:`重新設計的連接池 <connection-pools>`"
 
 #: ../../../basic/from_pg2.rst:498
 msgid ":ref:`Direct access to the libpq functionalities <psycopg.pq>`"

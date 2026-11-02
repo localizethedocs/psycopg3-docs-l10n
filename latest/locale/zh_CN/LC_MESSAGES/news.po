@@ -62,8 +62,8 @@ msgstr ""
 #: ../../../news.rst:31
 msgid ""
 "Don't wait forever for a query to terminate after interrupting it, for "
-"instance if the server is unresponsive. The fix requires libpq 17 or newer (:"
-"ticket:`#1371`)."
+"instance if the server is unresponsive. The fix requires libpq 17 or newer "
+"(:ticket:`#1371`)."
 msgstr ""
 
 #: ../../../news.rst:34
@@ -72,8 +72,8 @@ msgstr ""
 
 #: ../../../news.rst:35
 msgid ""
-"Report `!None` instead of ``65535`` as the `Column.precision` of an :sql:"
-"`interval` column declared with a fields restriction and no explicit "
+"Report `!None` instead of ``65535`` as the `Column.precision` of "
+"an :sql:`interval` column declared with a fields restriction and no explicit "
 "precision, such as e.g. :sql:`interval day to second` (:ticket:`#1397`)."
 msgstr ""
 
@@ -88,8 +88,8 @@ msgstr ""
 
 #: ../../../news.rst:40
 msgid ""
-"Better guards dumping large Python `!int` to binary numeric (:ticket:"
-"`#1414`)."
+"Better guards dumping large Python `!int` to binary numeric "
+"(:ticket:`#1414`)."
 msgstr ""
 
 #: ../../../news.rst:44
@@ -98,8 +98,8 @@ msgstr ""
 
 #: ../../../news.rst:46
 msgid ""
-"Discard prepared statements upon :sql:`ALTER *` or `DISCARD *` (:ticket:"
-"`#1307`)."
+"Discard prepared statements upon :sql:`ALTER *` or `DISCARD *` "
+"(:ticket:`#1307`)."
 msgstr ""
 
 #: ../../../news.rst:48
@@ -110,8 +110,8 @@ msgstr ""
 
 #: ../../../news.rst:50
 msgid ""
-"Fix `!wait_selector` wait function to not raise `!KeyError` (:ticket:"
-"`#1327`)."
+"Fix `!wait_selector` wait function to not raise `!KeyError` "
+"(:ticket:`#1327`)."
 msgstr ""
 
 #: ../../../news.rst:52
@@ -123,8 +123,9 @@ msgstr ""
 
 #: ../../../news.rst:55
 msgid ""
-"Raise `!DataError` instead of `!ValueError` when `~psycopg.rows."
-"namedtuple_row` receives duplicate column names (:ticket:`#1348`)."
+"Raise `!DataError` instead of `!ValueError` when "
+"`~psycopg.rows.namedtuple_row` receives duplicate column names "
+"(:ticket:`#1348`)."
 msgstr ""
 
 #: ../../../news.rst:57
@@ -151,8 +152,8 @@ msgstr ""
 
 #: ../../../news.rst:67
 msgid ""
-"Fix client-side adaptation of enums whose name require quotes (:ticket:"
-"`#1298`)."
+"Fix client-side adaptation of enums whose name require quotes "
+"(:ticket:`#1298`)."
 msgstr ""
 
 #: ../../../news.rst:69
@@ -210,8 +211,8 @@ msgstr ""
 msgid ""
 "More flexible :ref:`composite adaptation<adapt-composite>`: it is now "
 "possible to adapt Python objects to PostgreSQL composites and back even if "
-"they are not sequences or if they take keyword arguments (:ticket:`#932`, :"
-"ticket:`#1202`)."
+"they are not sequences or if they take keyword arguments "
+"(:ticket:`#932`, :ticket:`#1202`)."
 msgstr ""
 
 #: ../../../news.rst:103
@@ -224,8 +225,8 @@ msgstr ""
 #: ../../../news.rst:106
 msgid ""
 "Add `Cursor.set_result()` and `Cursor.results()` to move across the result "
-"sets of queries executed though `~Cursor.executemany()` or `~Cursor."
-"execute()` with multiple statements (:tickets:`#1080, #1170`)."
+"sets of queries executed though `~Cursor.executemany()` or "
+"`~Cursor.execute()` with multiple statements (:tickets:`#1080, #1170`)."
 msgstr ""
 
 #: ../../../news.rst:109
@@ -237,8 +238,8 @@ msgstr ""
 #: ../../../news.rst:111
 msgid ""
 "Allow to change loaders using `~adapt.AdaptersMap.register_loader()` on "
-"`Cursor.adapters` after a query result has been already returned (:ticket:"
-"`#884`)."
+"`Cursor.adapters` after a query result has been already returned "
+"(:ticket:`#884`)."
 msgstr ""
 
 #: ../../../news.rst:116 ../../../news.rst:340
@@ -253,8 +254,8 @@ msgstr ""
 
 #: ../../../news.rst:119
 msgid ""
-"Add `ConnectionInfo.full_protocol_version` attribute, `Capabilities."
-"has_full_protocol_version()` function (:ticket:`#1079`)."
+"Add `ConnectionInfo.full_protocol_version` attribute, "
+"`Capabilities.has_full_protocol_version()` function (:ticket:`#1079`)."
 msgstr ""
 
 #: ../../../news.rst:123 ../../../news.rst:351
@@ -263,14 +264,15 @@ msgstr ""
 
 #: ../../../news.rst:124
 msgid ""
-"Disable default GSSAPI preferential connection in the binary package (:"
-"ticket:`#1136`)."
+"Disable default GSSAPI preferential connection in the binary package "
+"(:ticket:`#1136`)."
 msgstr ""
 
 #: ../../../news.rst:129
 msgid ""
-"Please explicitly set the gssencmode_ connection parameter or the :envvar:"
-"`PGGSSENCMODE` environment variable to interact reliably with the GSSAPI."
+"Please explicitly set the gssencmode_ connection parameter or "
+"the :envvar:`PGGSSENCMODE` environment variable to interact reliably with "
+"the GSSAPI."
 msgstr ""
 
 #: ../../../news.rst:133
@@ -283,8 +285,8 @@ msgstr ""
 
 #: ../../../news.rst:142
 msgid ""
-"Show the host name in the error message in case of name resolution error (:"
-"ticket:`#1205`)."
+"Show the host name in the error message in case of name resolution error "
+"(:ticket:`#1205`)."
 msgstr ""
 
 #: ../../../news.rst:144
@@ -340,8 +342,8 @@ msgstr ""
 
 #: ../../../news.rst:166
 msgid ""
-"Improve performance of Python conversion on results loading (:ticket:"
-"`#1155`)."
+"Improve performance of Python conversion on results loading "
+"(:ticket:`#1155`)."
 msgstr ""
 
 #: ../../../news.rst:172
@@ -356,9 +358,9 @@ msgstr ""
 
 #: ../../../news.rst:176
 msgid ""
-"Fix memory leak when lambda/local functions are used as argument for `~."
-"psycopg.types.json.set_json_dumps()`, `~.psycopg.types.json."
-"set_json_loads()` (:ticket:`#1108`)."
+"Fix memory leak when lambda/local functions are used as argument for "
+"`~.psycopg.types.json.set_json_dumps()`, "
+"`~.psycopg.types.json.set_json_loads()` (:ticket:`#1108`)."
 msgstr ""
 
 #: ../../../news.rst:179
@@ -381,11 +383,11 @@ msgstr ""
 
 #: ../../../news.rst:189
 msgid ""
-"If a notification is received when a handler is registered via `~Connection."
-"add_notify_handler()` and the `~Connection.notifies()` generator is not "
-"running the notification will not be yielded by the generator. This is a "
-"behaviour similar to before `Psycopg 3.2.4`_, but *notifications are not "
-"lost if no handler is registered*."
+"If a notification is received when a handler is registered via "
+"`~Connection.add_notify_handler()` and the `~Connection.notifies()` "
+"generator is not running the notification will not be yielded by the "
+"generator. This is a behaviour similar to before `Psycopg 3.2.4`_, but "
+"*notifications are not lost if no handler is registered*."
 msgstr ""
 
 #: ../../../news.rst:195
@@ -463,8 +465,8 @@ msgstr ""
 
 #: ../../../news.rst:236
 msgid ""
-"Fix `ConnectionInfo.port` when the port is specified as an empty string (:"
-"ticket:`#1078`)."
+"Fix `ConnectionInfo.port` when the port is specified as an empty string "
+"(:ticket:`#1078`)."
 msgstr ""
 
 #: ../../../news.rst:238
@@ -499,8 +501,8 @@ msgstr ""
 
 #: ../../../news.rst:254
 msgid ""
-"Fix connection semantic when using ``target_session_attrs=prefer-standby`` (:"
-"ticket:`#1021`)."
+"Fix connection semantic when using ``target_session_attrs=prefer-standby`` "
+"(:ticket:`#1021`)."
 msgstr ""
 
 #: ../../../news.rst:259
@@ -539,8 +541,8 @@ msgstr ""
 msgid ""
 "Raise the correct error returned by the database (such as `!AdminShutdown` "
 "or `!IdleInTransactionSessionTimeout`) instead of a generic "
-"`OperationalError` when a server error causes a client disconnection (:"
-"ticket:`#988`)."
+"`OperationalError` when a server error causes a client disconnection "
+"(:ticket:`#988`)."
 msgstr ""
 
 #: ../../../news.rst:284
@@ -555,8 +557,8 @@ msgstr ""
 
 #: ../../../news.rst:287
 msgid ""
-"Bump libpq to 16.4 in Windows binary packages, using the `vcpkg library`__ (:"
-"ticket:`#966`)."
+"Bump libpq to 16.4 in Windows binary packages, using the `vcpkg library`__ "
+"(:ticket:`#966`)."
 msgstr ""
 
 #: ../../../news.rst:294
@@ -587,8 +589,8 @@ msgstr ""
 
 #: ../../../news.rst:310
 msgid ""
-"Fix packaging metadata breaking ``[c]``, ``[binary]`` dependencies (:ticket:"
-"`#853`)."
+"Fix packaging metadata breaking ``[c]``, ``[binary]`` dependencies "
+"(:ticket:`#853`)."
 msgstr ""
 
 #: ../../../news.rst:315
@@ -597,14 +599,14 @@ msgstr ""
 
 #: ../../../news.rst:319
 msgid ""
-"Add support for integer, floating point, boolean `NumPy scalar types`__ (:"
-"ticket:`#332`)."
+"Add support for integer, floating point, boolean `NumPy scalar types`__ "
+"(:ticket:`#332`)."
 msgstr ""
 
 #: ../../../news.rst:321
 msgid ""
-"Add `!timeout` and `!stop_after` parameters to `Connection.notifies()` (:"
-"ticket:`340`)."
+"Add `!timeout` and `!stop_after` parameters to `Connection.notifies()` "
+"(:ticket:`340`)."
 msgstr ""
 
 #: ../../../news.rst:323
@@ -684,8 +686,8 @@ msgstr ""
 
 #: ../../../news.rst:353
 msgid ""
-"Prepared statements are now :ref:`compatible with PgBouncer <pgbouncer>`. (:"
-"ticket:`#589`)."
+"Prepared statements are now :ref:`compatible with PgBouncer <pgbouncer>`. "
+"(:ticket:`#589`)."
 msgstr ""
 
 #: ../../../news.rst:355
@@ -709,8 +711,8 @@ msgstr ""
 
 #: ../../../news.rst:370
 msgid ""
-"Avoid unneeded escaping checks and memory over-allocation in text copy (:"
-"ticket:`#829`)."
+"Avoid unneeded escaping checks and memory over-allocation in text copy "
+"(:ticket:`#829`)."
 msgstr ""
 
 #: ../../../news.rst:372
@@ -720,8 +722,8 @@ msgstr ""
 #: ../../../news.rst:373
 msgid ""
 "Drop macOS ARM64 binary packages for macOS versions before 14.0 and Python "
-"before 3.10 (not for our choice but for the lack of available CI runners; :"
-"ticket:`#858`)"
+"before 3.10 (not for our choice but for the lack of available CI "
+"runners; :ticket:`#858`)"
 msgstr ""
 
 #: ../../../news.rst:379
@@ -739,8 +741,8 @@ msgstr ""
 
 #: ../../../news.rst:383
 msgid ""
-"Allow to specify the ``connect_timeout`` connection parameter as float (:"
-"ticket:`#796`)."
+"Allow to specify the ``connect_timeout`` connection parameter as float "
+"(:ticket:`#796`)."
 msgstr ""
 
 #: ../../../news.rst:385
@@ -787,8 +789,8 @@ msgstr ""
 
 #: ../../../news.rst:411
 msgid ""
-"Fix empty ports handling in async multiple connection attempts (:ticket:"
-"`#703`)."
+"Fix empty ports handling in async multiple connection attempts "
+"(:ticket:`#703`)."
 msgstr ""
 
 #: ../../../news.rst:416
@@ -797,8 +799,8 @@ msgstr ""
 
 #: ../../../news.rst:418
 msgid ""
-"Fix use of ``service`` in connection string (regression in 3.1.13, :ticket:"
-"`#694`)."
+"Fix use of ``service`` in connection string (regression in "
+"3.1.13, :ticket:`#694`)."
 msgstr ""
 
 #: ../../../news.rst:420
@@ -832,8 +834,8 @@ msgstr ""
 #: ../../../news.rst:438
 msgid ""
 "Raise `DataError` instead of whatever internal failure trying to dump a "
-"`~datetime.time` object with with a `!tzinfo` specified as `~zoneinfo."
-"ZoneInfo` (ambiguous offset, see :ticket:`#652`)."
+"`~datetime.time` object with with a `!tzinfo` specified as "
+"`~zoneinfo.ZoneInfo` (ambiguous offset, see :ticket:`#652`)."
 msgstr ""
 
 #: ../../../news.rst:441
@@ -850,8 +852,8 @@ msgstr ""
 
 #: ../../../news.rst:445
 msgid ""
-"Fix memory leak receiving notifications in Python implementation (:ticket:"
-"`#679`)."
+"Fix memory leak receiving notifications in Python implementation "
+"(:ticket:`#679`)."
 msgstr ""
 
 #: ../../../news.rst:450
@@ -860,14 +862,14 @@ msgstr ""
 
 #: ../../../news.rst:452
 msgid ""
-"Fix possible hanging if a connection is closed while querying (:ticket:"
-"`#608`)."
+"Fix possible hanging if a connection is closed while querying "
+"(:ticket:`#608`)."
 msgstr ""
 
 #: ../../../news.rst:453
 msgid ""
-"Fix memory leak when `~register_*()` functions are called repeatedly (:"
-"ticket:`#647`)."
+"Fix memory leak when `~register_*()` functions are called repeatedly "
+"(:ticket:`#647`)."
 msgstr ""
 
 #: ../../../news.rst:455
@@ -905,8 +907,8 @@ msgstr ""
 
 #: ../../../news.rst:467
 msgid ""
-"Fix possible lack of critical section guard in async `~AsyncCursor."
-"executemany()`."
+"Fix possible lack of critical section guard in async "
+"`~AsyncCursor.executemany()`."
 msgstr ""
 
 #: ../../../news.rst:469
@@ -932,8 +934,8 @@ msgstr ""
 #: ../../../news.rst:480
 msgid ""
 "Fix prepared statement cache validation when exiting pipeline mode (or "
-"`~Cursor.executemany()`) in case an error occurred within the pipeline (:"
-"ticket:`#585`)."
+"`~Cursor.executemany()`) in case an error occurred within the pipeline "
+"(:ticket:`#585`)."
 msgstr ""
 
 #: ../../../news.rst:483
@@ -970,8 +972,8 @@ msgstr ""
 
 #: ../../../news.rst:498
 msgid ""
-"Fix `TypeInfo.fetch()` using a connection in `!sql_ascii` encoding (:ticket:"
-"`#503`)."
+"Fix `TypeInfo.fetch()` using a connection in `!sql_ascii` encoding "
+"(:ticket:`#503`)."
 msgstr ""
 
 #: ../../../news.rst:500
@@ -988,8 +990,8 @@ msgstr ""
 
 #: ../../../news.rst:504
 msgid ""
-"Fix canceling running queries on process interruption in async connections (:"
-"ticket:`#543`)."
+"Fix canceling running queries on process interruption in async connections "
+"(:ticket:`#543`)."
 msgstr ""
 
 #: ../../../news.rst:506
@@ -1014,8 +1016,8 @@ msgstr ""
 
 #: ../../../news.rst:516
 msgid ""
-"Set `Cursor.rowcount` to the number of rows of each result set from `~Cursor."
-"executemany()` when called with `!returning=True` (:ticket:`#479`)."
+"Set `Cursor.rowcount` to the number of rows of each result set from "
+"`~Cursor.executemany()` when called with `!returning=True` (:ticket:`#479`)."
 msgstr ""
 
 #: ../../../news.rst:518
@@ -1052,8 +1054,8 @@ msgstr ""
 
 #: ../../../news.rst:538
 msgid ""
-"Return `!bytes` instead of `!memoryview` from `pq.Encoding` methods (:ticket:"
-"`#422`)."
+"Return `!bytes` instead of `!memoryview` from `pq.Encoding` methods "
+"(:ticket:`#422`)."
 msgstr ""
 
 #: ../../../news.rst:540
@@ -1117,8 +1119,8 @@ msgstr ""
 
 #: ../../../news.rst:564
 msgid ""
-"Fix possible duplicated BEGIN statements emitted in pipeline mode (:ticket:"
-"`#401`)."
+"Fix possible duplicated BEGIN statements emitted in pipeline mode "
+"(:ticket:`#401`)."
 msgstr ""
 
 #: ../../../news.rst:569
@@ -1127,8 +1129,8 @@ msgstr ""
 
 #: ../../../news.rst:571
 msgid ""
-"Fix handling of certain invalid time zones causing problems on Windows (:"
-"ticket:`#371`)."
+"Fix handling of certain invalid time zones causing problems on Windows "
+"(:ticket:`#371`)."
 msgstr ""
 
 #: ../../../news.rst:573
@@ -1144,8 +1146,8 @@ msgstr ""
 
 #: ../../../news.rst:576
 msgid ""
-"Fix queries with repeated named parameters in `ClientCursor` (:ticket:"
-"`#378`)."
+"Fix queries with repeated named parameters in `ClientCursor` "
+"(:ticket:`#378`)."
 msgstr ""
 
 #: ../../../news.rst:577
@@ -1182,8 +1184,8 @@ msgstr ""
 
 #: ../../../news.rst:594
 msgid ""
-"Add `CockroachDB <https://www.cockroachlabs.com/>`__ support in `psycopg."
-"crdb` (:ticket:`#313`)."
+"Add `CockroachDB <https://www.cockroachlabs.com/>`__ support in "
+"`psycopg.crdb` (:ticket:`#313`)."
 msgstr ""
 
 #: ../../../news.rst:596
@@ -1216,8 +1218,8 @@ msgstr ""
 
 #: ../../../news.rst:604
 msgid ""
-"Resolve domain names asynchronously in `AsyncConnection.connect()` (:ticket:"
-"`#259`)."
+"Resolve domain names asynchronously in `AsyncConnection.connect()` "
+"(:ticket:`#259`)."
 msgstr ""
 
 #: ../../../news.rst:606
@@ -1239,8 +1241,8 @@ msgstr ""
 
 #: ../../../news.rst:610
 msgid ""
-"Restrict queries to be `~typing.LiteralString` as per :pep:`675` (:ticket:"
-"`#323`)."
+"Restrict queries to be `~typing.LiteralString` as per :pep:`675` "
+"(:ticket:`#323`)."
 msgstr ""
 
 #: ../../../news.rst:612
@@ -1258,8 +1260,8 @@ msgstr ""
 
 #: ../../../news.rst:619
 msgid ""
-"Fix segfaults on fork on some Linux systems using `ctypes` implementation (:"
-"ticket:`#300`)."
+"Fix segfaults on fork on some Linux systems using `ctypes` implementation "
+"(:ticket:`#300`)."
 msgstr ""
 
 #: ../../../news.rst:621
@@ -1313,8 +1315,8 @@ msgstr ""
 
 #: ../../../news.rst:646
 msgid ""
-"Fix handling of incorrect server results, with blank sqlstate (:ticket:"
-"`#303`)."
+"Fix handling of incorrect server results, with blank sqlstate "
+"(:ticket:`#303`)."
 msgstr ""
 
 #: ../../../news.rst:647
@@ -1347,8 +1349,8 @@ msgstr ""
 
 #: ../../../news.rst:663
 msgid ""
-"Allow `bytearray`/`memoryview` data too as `Copy.write()` input (:ticket:"
-"`#254`)."
+"Allow `bytearray`/`memoryview` data too as `Copy.write()` input "
+"(:ticket:`#254`)."
 msgstr ""
 
 #: ../../../news.rst:665
@@ -1385,8 +1387,8 @@ msgstr ""
 
 #: ../../../news.rst:681
 msgid ""
-"Fix `Cursor.description` after a COPY ... TO STDOUT operation (:ticket:"
-"`#235`)."
+"Fix `Cursor.description` after a COPY ... TO STDOUT operation "
+"(:ticket:`#235`)."
 msgstr ""
 
 #: ../../../news.rst:683
@@ -1419,8 +1421,8 @@ msgstr ""
 
 #: ../../../news.rst:699
 msgid ""
-"Fix possible warnings in objects deletion on interpreter shutdown (:ticket:"
-"`#198`)."
+"Fix possible warnings in objects deletion on interpreter shutdown "
+"(:ticket:`#198`)."
 msgstr ""
 
 #: ../../../news.rst:701
@@ -1450,8 +1452,8 @@ msgstr ""
 
 #: ../../../news.rst:717
 msgid ""
-"Allow to use `Cursor.description` if the connection is closed (:ticket:"
-"`#172`)."
+"Allow to use `Cursor.description` if the connection is closed "
+"(:ticket:`#172`)."
 msgstr ""
 
 #: ../../../news.rst:719
@@ -1510,8 +1512,8 @@ msgstr ""
 #: ../../../news.rst:743
 msgid ""
 "Build binary package with libpq versions not affected by `CVE-2021-23222 "
-"<https://www.postgresql.org/support/security/CVE-2021-23222/>`__ (:ticket:"
-"`#149`)."
+"<https://www.postgresql.org/support/security/CVE-2021-23222/>`__ "
+"(:ticket:`#149`)."
 msgstr ""
 
 #: ../../../news.rst:749
@@ -1520,8 +1522,8 @@ msgstr ""
 
 #: ../../../news.rst:751
 msgid ""
-"Release musllinux binary packages, compatible with Alpine Linux (:ticket:"
-"`#141`)."
+"Release musllinux binary packages, compatible with Alpine Linux "
+"(:ticket:`#141`)."
 msgstr ""
 
 #: ../../../news.rst:753

@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../advanced/pool.rst:6
 msgid "Connection pools"
-msgstr ""
+msgstr "連接池"
 
 #: ../../../advanced/pool.rst:8
 msgid ""
@@ -40,8 +40,8 @@ msgstr ""
 msgid ""
 "The connection pool objects are distributed in a package separate from the "
 "main `psycopg` package: use ``pip install \"psycopg[pool]\"`` or ``pip "
-"install psycopg_pool`` to make the `psycopg_pool` package available. See :"
-"ref:`pool-installation`."
+"install psycopg_pool`` to make the `psycopg_pool` package available. "
+"See :ref:`pool-installation`."
 msgstr ""
 
 #: ../../../advanced/pool.rst:25
@@ -170,8 +170,8 @@ msgstr ""
 
 #: ../../../advanced/pool.rst:103
 msgid ""
-"When a client asks for a connection (typically entering a `~ConnectionPool."
-"connection()` context):"
+"When a client asks for a connection (typically entering a "
+"`~ConnectionPool.connection()` context):"
 msgstr ""
 
 #: ../../../advanced/pool.rst:106
@@ -310,13 +310,13 @@ msgstr ""
 #: ../../../advanced/pool.rst:192
 msgid ""
 "Opening an async pool in the constructor is deprecated and will be removed "
-"in the future. When using `AsyncConnectionPool` you should call `await pool."
-"open()` or `async with ... as pool` explicitly."
+"in the future. When using `AsyncConnectionPool` you should call `await "
+"pool.open()` or `async with ... as pool` explicitly."
 msgstr ""
 
 #: ../../../advanced/pool.rst:200
 msgid "Null connection pools"
-msgstr ""
+msgstr "空連接池"
 
 #: ../../../advanced/pool.rst:204
 msgid ""
@@ -332,10 +332,11 @@ msgstr ""
 #: ../../../advanced/pool.rst:211
 msgid ""
 "Switching between using or not using a pool requires some code change, "
-"because the `ConnectionPool` API is different from the normal `~psycopg."
-"connect()` function and because the pool can perform additional connection "
-"configuration (in the `!configure` parameter) that, if the pool is removed, "
-"should be performed in some different code path of your application."
+"because the `ConnectionPool` API is different from the normal "
+"`~psycopg.connect()` function and because the pool can perform additional "
+"connection configuration (in the `!configure` parameter) that, if the pool "
+"is removed, should be performed in some different code path of your "
+"application."
 msgstr ""
 
 #: ../../../advanced/pool.rst:217
@@ -427,10 +428,10 @@ msgstr ""
 
 #: ../../../advanced/pool.rst:284
 msgid ""
-"Something useful you can do is probably to use the `~ConnectionPool."
-"get_stats()` method and monitor the behaviour of your program to tune the "
-"configuration parameters. The size of the pool can also be changed at "
-"runtime using the `~ConnectionPool.resize()` method."
+"Something useful you can do is probably to use the "
+"`~ConnectionPool.get_stats()` method and monitor the behaviour of your "
+"program to tune the configuration parameters. The size of the pool can also "
+"be changed at runtime using the `~ConnectionPool.resize()` method."
 msgstr ""
 
 #: ../../../advanced/pool.rst:291
@@ -458,8 +459,8 @@ msgstr ""
 
 #: ../../../advanced/pool.rst:310
 msgid ""
-"A simple implementation is available as the static method `ConnectionPool."
-"check_connection`, which can be used as::"
+"A simple implementation is available as the static method "
+"`ConnectionPool.check_connection`, which can be used as::"
 msgstr ""
 
 #: ../../../advanced/pool.rst:313
@@ -493,8 +494,8 @@ msgid ""
 "from psycopg_pool import ConnectionPool\n"
 "\n"
 "logging.basicConfig(\n"
-"    level=logging.INFO, format=\"%(asctime)s %(levelname)s %(name)s: "
-"%(message)s\"\n"
+"    level=logging.INFO, format=\"%(asctime)s %(levelname)s %(name)s: %"
+"(message)s\"\n"
 ")\n"
 "logging.getLogger(\"psycopg.pool\").setLevel(logging.INFO)\n"
 "\n"
@@ -717,10 +718,10 @@ msgstr ""
 #: ../../../advanced/pool.rst:441
 msgid ""
 "If you want to use SQLAlchemy__ with psycopg's connection pool you can use "
-"the SQLAlchemy's NullPool__ feature, using the pool's `~ConnectionPool."
-"getconn` as `!creator` function. However, SQLAlchemy expects that calling "
-"`~psycopg.Connection.close()` on the connection will return the connection "
-"to the pool, which is not Psycopg's default behaviour."
+"the SQLAlchemy's NullPool__ feature, using the pool's "
+"`~ConnectionPool.getconn` as `!creator` function. However, SQLAlchemy "
+"expects that calling `~psycopg.Connection.close()` on the connection will "
+"return the connection to the pool, which is not Psycopg's default behaviour."
 msgstr ""
 
 #: ../../../advanced/pool.rst:450

@@ -70,8 +70,8 @@ msgstr ""
 msgid ""
 "The connection is subject to the usual transaction behaviour, so, unless the "
 "connection is in autocommit, at the end of the COPY operation you will still "
-"have to commit the pending changes and you can still roll them back. See :"
-"ref:`transactions` for details."
+"have to commit the pending changes and you can still roll them back. "
+"See :ref:`transactions` for details."
 msgstr ""
 
 #: ../../../basic/copy.rst:54
@@ -83,9 +83,9 @@ msgid ""
 "Using a copy operation you can load data into the database from any Python "
 "iterable (a list of tuples, or any iterable of sequences): the Python values "
 "are adapted as they would be in normal querying. To perform such operation "
-"use a :sql:`COPY ... FROM STDIN` with `Cursor.copy()` and use `~Copy."
-"write_row()` on the resulting object in a `!with` block. On exiting the "
-"block the operation will be concluded:"
+"use a :sql:`COPY ... FROM STDIN` with `Cursor.copy()` and use "
+"`~Copy.write_row()` on the resulting object in a `!with` block. On exiting "
+"the block the operation will be concluded:"
 msgstr ""
 
 #: ../../../basic/copy.rst:63
@@ -105,9 +105,10 @@ msgstr ""
 
 #: ../../../basic/copy.rst:74
 msgid ""
-"In order to read or write from `!Copy` row-by-row you must not specify :sql:"
-"`COPY` options such as :sql:`FORMAT CSV`, :sql:`DELIMITER`, :sql:`NULL`: "
-"please leave these details alone, thank you :)"
+"In order to read or write from `!Copy` row-by-row you must not "
+"specify :sql:`COPY` options such as :sql:`FORMAT "
+"CSV`, :sql:`DELIMITER`, :sql:`NULL`: please leave these details alone, thank "
+"you :)"
 msgstr ""
 
 #: ../../../basic/copy.rst:82
@@ -198,11 +199,11 @@ msgstr ""
 
 #: ../../../basic/copy.rst:148
 msgid ""
-"Binary copy is supported by specifying :sql:`FORMAT BINARY` in the :sql:"
-"`COPY` statement. In order to import binary data using `~Copy.write_row()`, "
-"all the types passed to the database must have a binary dumper registered; "
-"this is not necessary if the data is copied :ref:`block-by-block <copy-"
-"block>` using `~Copy.write()`."
+"Binary copy is supported by specifying :sql:`FORMAT BINARY` in "
+"the :sql:`COPY` statement. In order to import binary data using "
+"`~Copy.write_row()`, all the types passed to the database must have a binary "
+"dumper registered; this is not necessary if the data is copied :ref:`block-"
+"by-block <copy-block>` using `~Copy.write()`."
 msgstr ""
 
 #: ../../../basic/copy.rst:156
@@ -279,10 +280,10 @@ msgstr ""
 msgid ""
 "Using :sql:`FORMAT BINARY` usually gives a performance boost, but it only "
 "works if the source and target schema are *perfectly identical*. If the "
-"tables are only *compatible* (for example, if you are copying an :sql:"
-"`integer` field into a :sql:`bigint` destination field) you should omit the "
-"`BINARY` option and perform a text-based copy. See :ref:`copy-binary` for "
-"details."
+"tables are only *compatible* (for example, if you are copying "
+"an :sql:`integer` field into a :sql:`bigint` destination field) you should "
+"omit the `BINARY` option and perform a text-based copy. See :ref:`copy-"
+"binary` for details."
 msgstr ""
 
 #: ../../../basic/copy.rst:211

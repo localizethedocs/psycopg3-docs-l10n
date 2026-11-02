@@ -54,8 +54,8 @@ msgstr ""
 #: ../../../basic/pgtypes.rst:40
 msgid ""
 "`!CompositeInfo` is a `~psycopg.types.TypeInfo` subclass: check its "
-"documentation for the general usage, especially the `~psycopg.types.TypeInfo."
-"fetch()` method."
+"documentation for the general usage, especially the "
+"`~psycopg.types.TypeInfo.fetch()` method."
 msgstr ""
 
 #: ../../../basic/pgtypes.rst:47
@@ -138,9 +138,9 @@ msgstr ""
 msgid ""
 "After registering the `CompositeInfo`, fetching data of the registered "
 "composite type will invoke `!factory` to create corresponding Python "
-"objects. If no factory is specified, Psycopg will generate a `~collection."
-"namedtuple` with the same fields of the composite type, and use it to return "
-"fetched data. The factory will be made available on `!info.`\\ "
+"objects. If no factory is specified, Psycopg will generate a "
+"`~collection.namedtuple` with the same fields of the composite type, and use "
+"it to return fetched data. The factory will be made available on `!info.`\\ "
 "`~CompositeInfo.python_type`."
 msgstr ""
 
@@ -151,8 +151,8 @@ msgid ""
 "type to a query will adapt them to the registered composite type. This "
 "assumes that the `!factory` type is a sequence; if this is not the case you "
 "can specify the `!make_sequence` parameter: a function taking the object to "
-"dump and the composite info and returning a sequence of values. See :ref:"
-"`composite-non-sequence`."
+"dump and the composite info and returning a sequence of values. "
+"See :ref:`composite-non-sequence`."
 msgstr ""
 
 #: ../../../basic/pgtypes.rst:77
@@ -161,8 +161,8 @@ msgid ""
 "composite. If passing the sequence of positional arguments is not suitable "
 "for the `!factory` type you can specify the `!make_object` parameter: a "
 "function taking the sequence of composite values and the type info, and "
-"which should return a new instance of the object to load. See :ref:"
-"`composite-non-sequence`."
+"which should return a new instance of the object to load. "
+"See :ref:`composite-non-sequence`."
 msgstr ""
 
 #: ../../../basic/pgtypes.rst:84
@@ -256,9 +256,9 @@ msgid ""
 "The previous example only configures loaders to convert data from PostgreSQL "
 "to Python. If we are also interested in dumping Python `!Card` objects we "
 "need to specify `!Card` as the factory (to declare which object we want to "
-"dump) and, because `!Card` is not a sequence, we need to specify a :samp:"
-"`make_sequence({object}, {info})` function to convert objects attributes "
-"into a sequence matching the composite fields::"
+"dump) and, because `!Card` is not a sequence, we need to specify "
+"a :samp:`make_sequence({object}, {info})` function to convert objects "
+"attributes into a sequence matching the composite fields::"
 msgstr ""
 
 #: ../../../basic/pgtypes.rst:163
@@ -291,9 +291,9 @@ msgstr ""
 
 #: ../../../basic/pgtypes.rst:192
 msgid ""
-"All the PostgreSQL range types are loaded as the `~psycopg.types.range."
-"Range` Python type, which is a `~typing.Generic` type and can hold bounds of "
-"different types."
+"All the PostgreSQL range types are loaded as the "
+"`~psycopg.types.range.Range` Python type, which is a `~typing.Generic` type "
+"and can hold bounds of different types."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
@@ -394,9 +394,10 @@ msgstr ""
 
 #: ../../../basic/pgtypes.rst:228
 msgid ""
-"If you create your own range type you can use `~psycopg.types.range."
-"RangeInfo` and `~psycopg.types.range.register_range()` to associate the "
-"range type with its subtype and make it work like the builtin ones."
+"If you create your own range type you can use "
+"`~psycopg.types.range.RangeInfo` and `~psycopg.types.range.register_range()` "
+"to associate the range type with its subtype and make it work like the "
+"builtin ones."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
@@ -407,8 +408,8 @@ msgstr ""
 #: ../../../basic/pgtypes.rst:234
 msgid ""
 "`!RangeInfo` is a `~psycopg.types.TypeInfo` subclass: check its "
-"documentation for generic details, especially the `~psycopg.types.TypeInfo."
-"fetch()` method."
+"documentation for generic details, especially the "
+"`~psycopg.types.TypeInfo.fetch()` method."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/range.py:docstring
@@ -466,9 +467,9 @@ msgstr ""
 
 #: ../../../basic/pgtypes.rst:269
 msgid ""
-"All the PostgreSQL range types are loaded as the `~psycopg.types.multirange."
-"Multirange` Python type, which is a mutable sequence of `~psycopg.types."
-"range.Range` elements."
+"All the PostgreSQL range types are loaded as the "
+"`~psycopg.types.multirange.Multirange` Python type, which is a mutable "
+"sequence of `~psycopg.types.range.Range` elements."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
@@ -516,10 +517,10 @@ msgstr ""
 
 #: ../../../basic/pgtypes.rst:298
 msgid ""
-"If you have created your own range type you can use `~psycopg.types."
-"multirange.MultirangeInfo` and `~psycopg.types.multirange."
-"register_multirange()` to associate the resulting multirange type with its "
-"subtype and make it work like the builtin ones."
+"If you have created your own range type you can use "
+"`~psycopg.types.multirange.MultirangeInfo` and "
+"`~psycopg.types.multirange.register_multirange()` to associate the resulting "
+"multirange type with its subtype and make it work like the builtin ones."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
@@ -530,8 +531,8 @@ msgstr ""
 #: ../../../basic/pgtypes.rst:305
 msgid ""
 "`!MultirangeInfo` is a `~psycopg.types.TypeInfo` subclass: check its "
-"documentation for general details, especially the `~psycopg.types.TypeInfo."
-"fetch()` method."
+"documentation for general details, especially the "
+"`~psycopg.types.TypeInfo.fetch()` method."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/multirange.py:docstring
@@ -551,8 +552,8 @@ msgid ""
 "\n"
 ">>> rec = conn.execute(\n"
 "...     \"SELECT pg_typeof(%(mr)s), %(mr)s\",\n"
-"...     {\"mr\": Multirange([Range(\"a\", \"q\"), Range(\"l\", \"z\")])})."
-"fetchone()\n"
+"...     {\"mr\": Multirange([Range(\"a\", \"q\"), Range(\"l\", "
+"\"z\")])}).fetchone()\n"
 "\n"
 ">>> rec[0]\n"
 "'strmultirange'\n"
@@ -591,11 +592,11 @@ msgstr ""
 #: ../../../basic/pgtypes.rst:358
 msgid ""
 "Because |hstore| is distributed as a contrib module, its oid is not well "
-"known, so it is necessary to use `!TypeInfo`\\. `~psycopg.types.TypeInfo."
-"fetch()` to query the database and get its oid. The resulting object can be "
-"passed to `~psycopg.types.hstore.register_hstore()` to configure dumping `!"
-"dict` to |hstore| and parsing |hstore| back to `!dict`, in the context where "
-"the adapter is registered."
+"known, so it is necessary to use `!TypeInfo`\\. "
+"`~psycopg.types.TypeInfo.fetch()` to query the database and get its oid. The "
+"resulting object can be passed to `~psycopg.types.hstore.register_hstore()` "
+"to configure dumping `!dict` to |hstore| and parsing |hstore| back to `!"
+"dict`, in the context where the adapter is registered."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/types/hstore.py:docstring
@@ -650,12 +651,12 @@ msgstr ""
 #: ../../../basic/pgtypes.rst:410
 msgid ""
 "Since PostgGIS is an extension, the :sql:`geometry` type oid is not well "
-"known, so it is necessary to use `!TypeInfo`\\. `~psycopg.types.TypeInfo."
-"fetch()` to query the database and find it. The resulting object can be "
-"passed to `~psycopg.types.shapely.register_shapely()` to configure dumping "
-"`shape`_ instances to :sql:`geometry` columns and parsing :sql:`geometry` "
-"data back to `!shape` instances, in the context where the adapters are "
-"registered."
+"known, so it is necessary to use `!TypeInfo`\\. "
+"`~psycopg.types.TypeInfo.fetch()` to query the database and find it. The "
+"resulting object can be passed to "
+"`~psycopg.types.shapely.register_shapely()` to configure dumping `shape`_ "
+"instances to :sql:`geometry` columns and parsing :sql:`geometry` data back "
+"to `!shape` instances, in the context where the adapters are registered."
 msgstr ""
 
 #: ../../../basic/pgtypes.rst:420

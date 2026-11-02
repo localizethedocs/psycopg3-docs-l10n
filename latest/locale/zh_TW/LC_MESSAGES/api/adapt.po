@@ -51,9 +51,9 @@ msgstr ""
 
 #: ../../../api/adapt.rst:25
 msgid ""
-"This is an `abstract base class`_, partially implementing the `~psycopg.abc."
-"Dumper` protocol. Subclasses *must* at least implement the `.dump()` method "
-"and optionally override other members."
+"This is an `abstract base class`_, partially implementing the "
+"`~psycopg.abc.Dumper` protocol. Subclasses *must* at least implement the "
+"`.dump()` method and optionally override other members."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
@@ -128,9 +128,9 @@ msgstr ""
 
 #: ../../../api/adapt.rst:52
 msgid ""
-"This is an `abstract base class`_, partially implementing the `~psycopg.abc."
-"Loader` protocol. Subclasses *must* at least implement the `.load()` method "
-"and optionally override other members."
+"This is an `abstract base class`_, partially implementing the "
+"`~psycopg.abc.Loader` protocol. Subclasses *must* at least implement the "
+"`.load()` method and optionally override other members."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring
@@ -180,9 +180,9 @@ msgstr ""
 #: of psycopg.adapt.AdaptersMap:9
 msgid ""
 "Every `!AdaptContext` object has an underlying `!AdaptersMap` defining how "
-"types are converted in that context, exposed as the `~psycopg.abc."
-"AdaptContext.adapters` attribute: changing such map allows to customise "
-"adaptation in a context without changing separated contexts."
+"types are converted in that context, exposed as the "
+"`~psycopg.abc.AdaptContext.adapters` attribute: changing such map allows to "
+"customise adaptation in a context without changing separated contexts."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/adapt.py:docstring

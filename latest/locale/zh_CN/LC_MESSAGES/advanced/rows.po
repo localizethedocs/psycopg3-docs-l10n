@@ -49,8 +49,9 @@ msgstr ""
 msgid ""
 "The `!row_factory` parameter is supported by the `~Connection.connect()` "
 "method and the `~Connection.cursor()` method. Later usage of `!row_factory` "
-"overrides a previous one. It is also possible to change the `Connection."
-"row_factory` or `Cursor.row_factory` attributes to change what they return::"
+"overrides a previous one. It is also possible to change the "
+"`Connection.row_factory` or `Cursor.row_factory` attributes to change what "
+"they return::"
 msgstr ""
 
 #: ../../../advanced/rows.rst:31
@@ -68,9 +69,9 @@ msgstr ""
 #: ../../../advanced/rows.rst:40
 msgid ""
 "If you want to return objects of your choice you can use a row factory "
-"*generator*, for instance `~psycopg.rows.class_row` or `~psycopg.rows."
-"args_row`, or you can :ref:`write your own row factory <row-factory-"
-"create>`::"
+"*generator*, for instance `~psycopg.rows.class_row` or "
+"`~psycopg.rows.args_row`, or you can :ref:`write your own row factory <row-"
+"factory-create>`::"
 msgstr ""
 
 #: ../../../advanced/rows.rst:45
@@ -166,9 +167,9 @@ msgstr ""
 
 #: ../../../advanced/rows.rst:118
 msgid ""
-"These can then be used by specifying a `row_factory` argument in `Connection."
-"connect()`, `Connection.cursor()`, or by setting the `Connection."
-"row_factory` attribute."
+"These can then be used by specifying a `row_factory` argument in "
+"`Connection.connect()`, `Connection.cursor()`, or by setting the "
+"`Connection.row_factory` attribute."
 msgstr ""
 
 #: ../../../advanced/rows.rst:122

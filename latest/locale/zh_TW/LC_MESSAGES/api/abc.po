@@ -65,8 +65,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/sphinx/ext/autodoc/_sentinels.py:docstring
 #: of psycopg.abc.Dumper.format:1
 msgid ""
-"The format that this class `dump()` method produces, `~psycopg.pq.Format."
-"TEXT` or `~psycopg.pq.Format.BINARY`."
+"The format that this class `dump()` method produces, "
+"`~psycopg.pq.Format.TEXT` or `~psycopg.pq.Format.BINARY`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/sphinx/ext/autodoc/_sentinels.py:docstring
@@ -126,9 +126,10 @@ msgstr ""
 
 #: ../../../api/abc.rst:57
 msgid ""
-"You can use the `psycopg.adapters`\\ ``.`` `~psycopg.adapt.AdaptersMap."
-"types` registry to find the OID of builtin types, and you can use `~psycopg."
-"types.TypeInfo` to extend the registry to custom types."
+"You can use the `psycopg.adapters`\\ ``.`` "
+"`~psycopg.adapt.AdaptersMap.types` registry to find the OID of builtin "
+"types, and you can use `~psycopg.types.TypeInfo` to extend the registry to "
+"custom types."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring
@@ -225,8 +226,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/sphinx/ext/autodoc/_sentinels.py:docstring
 #: of psycopg.abc.Loader.format:1
 msgid ""
-"The format that this class `load()` method can convert, `~psycopg.pq.Format."
-"TEXT` or `~psycopg.pq.Format.BINARY`."
+"The format that this class `load()` method can convert, "
+"`~psycopg.pq.Format.TEXT` or `~psycopg.pq.Format.BINARY`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/abc.py:docstring

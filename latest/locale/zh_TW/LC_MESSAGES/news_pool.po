@@ -23,7 +23,7 @@ msgstr "``psycopg_pool`` 發行備註"
 
 #: ../../../news_pool.rst:11
 msgid "Future releases"
-msgstr ""
+msgstr "未來的發行版"
 
 #: ../../../news_pool.rst:14
 msgid "psycopg_pool 3.3.4 (unreleased)"
@@ -56,8 +56,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:29
 msgid ""
-"Fix sync pool workers terminating after 24 hours with no task to run (:"
-"ticket:`#1419`)."
+"Fix sync pool workers terminating after 24 hours with no task to run "
+"(:ticket:`#1419`)."
 msgstr ""
 
 #: ../../../news_pool.rst:34
@@ -82,8 +82,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:45
 msgid ""
-"Fix race condition constructing the lock that makes sync `~ConnectionPool."
-"open()` thread-safe (:ticket:`#1300`)."
+"Fix race condition constructing the lock that makes sync "
+"`~ConnectionPool.open()` thread-safe (:ticket:`#1300`)."
 msgstr ""
 
 #: ../../../news_pool.rst:50
@@ -122,8 +122,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:69
 msgid ""
-"Fix infinite loop with connections modified to return on close (:ticket:"
-"`#1124`)."
+"Fix infinite loop with connections modified to return on close "
+"(:ticket:`#1124`)."
 msgstr ""
 
 #: ../../../news_pool.rst:71
@@ -184,8 +184,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:107
 msgid ""
-"Use an empty query instead of ``SELECT 1`` to check connections (:ticket:"
-"`#790`)."
+"Use an empty query instead of ``SELECT 1`` to check connections "
+"(:ticket:`#790`)."
 msgstr ""
 
 #: ../../../news_pool.rst:112
@@ -217,8 +217,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:126
 msgid ""
-"Add `!check` parameter to the pool constructor and `~ConnectionPool."
-"check_connection()` method. (:ticket:`#656`)."
+"Add `!check` parameter to the pool constructor and "
+"`~ConnectionPool.check_connection()` method. (:ticket:`#656`)."
 msgstr ""
 
 #: ../../../news_pool.rst:128
@@ -229,8 +229,8 @@ msgstr ""
 #: ../../../news_pool.rst:129
 msgid ""
 "Raise a warning if sync pools rely an implicit `!open=True` and the pool "
-"context is not used. In the future the default will become `!False` (:ticket:"
-"`#659`)."
+"context is not used. In the future the default will become `!False` "
+"(:ticket:`#659`)."
 msgstr ""
 
 #: ../../../news_pool.rst:132
@@ -245,8 +245,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:139
 msgid ""
-"Fix the return type annotation of `!NullConnectionPool.__enter__()` (:ticket:"
-"`#540`)."
+"Fix the return type annotation of `!NullConnectionPool.__enter__()` "
+"(:ticket:`#540`)."
 msgstr ""
 
 #: ../../../news_pool.rst:144
@@ -255,8 +255,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:146
 msgid ""
-"Enforce connections' ``max_lifetime`` on `~ConnectionPool.check()` (:ticket:"
-"`#482`)."
+"Enforce connections' ``max_lifetime`` on `~ConnectionPool.check()` "
+"(:ticket:`#482`)."
 msgstr ""
 
 #: ../../../news_pool.rst:151
@@ -265,8 +265,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:153
 msgid ""
-"Fix handling of tasks cancelled while waiting in async pool queue (:ticket:"
-"`#503`)."
+"Fix handling of tasks cancelled while waiting in async pool queue "
+"(:ticket:`#503`)."
 msgstr ""
 
 #: ../../../news_pool.rst:158
@@ -275,8 +275,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:160
 msgid ""
-"Declare all parameters in pools constructors, instead of using `!**kwargs` (:"
-"ticket:`#493`)."
+"Declare all parameters in pools constructors, instead of using `!**kwargs` "
+"(:ticket:`#493`)."
 msgstr ""
 
 #: ../../../news_pool.rst:165
@@ -285,8 +285,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:167
 msgid ""
-"Make sure that `!ConnectionPool.check()` refills an empty pool (:ticket:"
-"`#438`)."
+"Make sure that `!ConnectionPool.check()` refills an empty pool "
+"(:ticket:`#438`)."
 msgstr ""
 
 #: ../../../news_pool.rst:169
@@ -318,8 +318,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:188
 msgid ""
-"Fix possible failure to reconnect after losing connection from the server (:"
-"ticket:`#370`)."
+"Fix possible failure to reconnect after losing connection from the server "
+"(:ticket:`#370`)."
 msgstr ""
 
 #: ../../../news_pool.rst:193
@@ -342,8 +342,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:203
 msgid ""
-"Add `ConnectionPool.open()` and `!open` parameter to the pool constructor (:"
-"ticket:`#151`)."
+"Add `ConnectionPool.open()` and `!open` parameter to the pool constructor "
+"(:ticket:`#151`)."
 msgstr ""
 
 #: ../../../news_pool.rst:205
@@ -378,8 +378,8 @@ msgstr ""
 
 #: ../../../news_pool.rst:225
 msgid ""
-"Don't leave connections idle in transaction after calling `~ConnectionPool."
-"check()` (:ticket:`#144`)."
+"Don't leave connections idle in transaction after calling "
+"`~ConnectionPool.check()` (:ticket:`#144`)."
 msgstr ""
 
 #: ../../../news_pool.rst:230

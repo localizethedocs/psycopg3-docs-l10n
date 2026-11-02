@@ -102,9 +102,9 @@ msgstr ""
 msgid ""
 "It has been closed and will be in `~psycopg.pq.ConnStatus.BAD` state; "
 "however it might be useful to verify precisely what went wrong, for instance "
-"checking the `~psycopg.pq.PGconn.needs_password` and `~psycopg.pq.PGconn."
-"used_password` attributes. Attempting to operate this connection will raise "
-"an :exc:`OperationalError`."
+"checking the `~psycopg.pq.PGconn.needs_password` and "
+"`~psycopg.pq.PGconn.used_password` attributes. Attempting to operate this "
+"connection will raise an :exc:`OperationalError`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
@@ -200,7 +200,7 @@ msgstr ""
 
 #: ../../../api/errors.rst:79
 msgid "Other Psycopg errors"
-msgstr ""
+msgstr "其他 Psycopg 錯誤"
 
 #: ../../../api/errors.rst:84
 msgid ""
@@ -230,8 +230,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
 #: of psycopg.errors.CancellationTimeout:1
 msgid ""
-"Exception raised on timeout of connection's `~psycopg.Connection."
-"cancel_safe()` method."
+"Exception raised on timeout of connection's "
+"`~psycopg.Connection.cancel_safe()` method."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
@@ -243,7 +243,7 @@ msgstr ""
 
 #: ../../../api/errors.rst:97
 msgid "Error diagnostics"
-msgstr ""
+msgstr "錯誤診斷"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
 #: of psycopg.errors.Diagnostic:1
@@ -253,8 +253,8 @@ msgstr ""
 #: ../../../api/errors.rst:101
 msgid ""
 "The object is available as the `~psycopg.Error`.\\ `~psycopg.Error.diag` "
-"attribute and is passed to the callback functions registered with `~psycopg."
-"Connection.add_notice_handler()`."
+"attribute and is passed to the callback functions registered with "
+"`~psycopg.Connection.add_notice_handler()`."
 msgstr ""
 
 #: ../../../api/errors.rst:105
@@ -351,6 +351,12 @@ msgid ""
 "except psycopg.errors.lookup(\"55P03\"):\n"
 "    locked = True"
 msgstr ""
+"try:\n"
+"    cur.execute(\"LOCK TABLE mytable IN ACCESS EXCLUSIVE MODE NOWAIT\")\n"
+"except psycopg.errors.lookup(\"UNDEFINED_TABLE\"):\n"
+"    missing = True\n"
+"except psycopg.errors.lookup(\"55P03\"):\n"
+"    locked = True"
 
 #: ../../../api/errors.rst:194
 msgid "List of known exceptions"
@@ -423,11 +429,11 @@ msgstr ""
 
 #: ../../../api/errors.rst:213
 msgid "``08000``"
-msgstr ""
+msgstr "``08000``"
 
 #: ../../../api/errors.rst:213
 msgid "`!ConnectionException`"
-msgstr ""
+msgstr "`!ConnectionException`"
 
 #: ../../../api/errors.rst:213 ../../../api/errors.rst:214
 #: ../../../api/errors.rst:215 ../../../api/errors.rst:216
@@ -474,11 +480,11 @@ msgstr ""
 #: ../../../api/errors.rst:526 ../../../api/errors.rst:527
 #: ../../../api/errors.rst:528 ../../../api/errors.rst:529
 msgid "`!OperationalError`"
-msgstr ""
+msgstr "`!OperationalError`"
 
 #: ../../../api/errors.rst:214
 msgid "``08001``"
-msgstr ""
+msgstr "``08001``"
 
 #: ../../../api/errors.rst:214
 msgid "`!SqlclientUnableToEstablishSqlconnection`"
@@ -510,19 +516,19 @@ msgstr ""
 
 #: ../../../api/errors.rst:218
 msgid "``08007``"
-msgstr ""
+msgstr "``08007``"
 
 #: ../../../api/errors.rst:218
 msgid "`!TransactionResolutionUnknown`"
-msgstr ""
+msgstr "`!TransactionResolutionUnknown`"
 
 #: ../../../api/errors.rst:219
 msgid "``08P01``"
-msgstr ""
+msgstr "``08P01``"
 
 #: ../../../api/errors.rst:219
 msgid "`!ProtocolViolation`"
-msgstr ""
+msgstr "`!ProtocolViolation`"
 
 #: ../../../api/errors.rst:220
 msgid "**Class 09** - Triggered Action Exception"
@@ -787,83 +793,83 @@ msgstr ""
 
 #: ../../../api/errors.rst:260
 msgid "``22005``"
-msgstr ""
+msgstr "``22005``"
 
 #: ../../../api/errors.rst:260
 msgid "`!ErrorInAssignment`"
-msgstr ""
+msgstr "`!ErrorInAssignment`"
 
 #: ../../../api/errors.rst:261
 msgid "``22007``"
-msgstr ""
+msgstr "``22007``"
 
 #: ../../../api/errors.rst:261
 msgid "`!InvalidDatetimeFormat`"
-msgstr ""
+msgstr "`!InvalidDatetimeFormat`"
 
 #: ../../../api/errors.rst:262
 msgid "``22008``"
-msgstr ""
+msgstr "``22008``"
 
 #: ../../../api/errors.rst:262
 msgid "`!DatetimeFieldOverflow`"
-msgstr ""
+msgstr "`!DatetimeFieldOverflow`"
 
 #: ../../../api/errors.rst:263
 msgid "``22009``"
-msgstr ""
+msgstr "``22009``"
 
 #: ../../../api/errors.rst:263
 msgid "`!InvalidTimeZoneDisplacementValue`"
-msgstr ""
+msgstr "`!InvalidTimeZoneDisplacementValue`"
 
 #: ../../../api/errors.rst:264
 msgid "``2200B``"
-msgstr ""
+msgstr "``2200B``"
 
 #: ../../../api/errors.rst:264
 msgid "`!EscapeCharacterConflict`"
-msgstr ""
+msgstr "`!EscapeCharacterConflict`"
 
 #: ../../../api/errors.rst:265
 msgid "``2200C``"
-msgstr ""
+msgstr "``2200C``"
 
 #: ../../../api/errors.rst:265
 msgid "`!InvalidUseOfEscapeCharacter`"
-msgstr ""
+msgstr "`!InvalidUseOfEscapeCharacter`"
 
 #: ../../../api/errors.rst:266
 msgid "``2200D``"
-msgstr ""
+msgstr "``2200D``"
 
 #: ../../../api/errors.rst:266
 msgid "`!InvalidEscapeOctet`"
-msgstr ""
+msgstr "`!InvalidEscapeOctet`"
 
 #: ../../../api/errors.rst:267
 msgid "``2200F``"
-msgstr ""
+msgstr "``2200F``"
 
 #: ../../../api/errors.rst:267
 msgid "`!ZeroLengthCharacterString`"
-msgstr ""
+msgstr "`!ZeroLengthCharacterString`"
 
 #: ../../../api/errors.rst:268
 msgid "``2200G``"
-msgstr ""
+msgstr "``2200G``"
 
 #: ../../../api/errors.rst:268
 msgid "`!MostSpecificTypeMismatch`"
-msgstr ""
+msgstr "`!MostSpecificTypeMismatch`"
 
 #: ../../../api/errors.rst:269
 msgid "``2200H``"
-msgstr ""
+msgstr "``2200H``"
 
 #: ../../../api/errors.rst:269
 msgid "`!SequenceGeneratorLimitExceeded`"
-msgstr ""
+msgstr "`!SequenceGeneratorLimitExceeded`"
 
 #: ../../../api/errors.rst:270
 msgid "``2200L``"
@@ -1267,27 +1273,27 @@ msgstr ""
 
 #: ../../../api/errors.rst:320
 msgid "``22P04``"
-msgstr ""
+msgstr "``22P04``"
 
 #: ../../../api/errors.rst:320
 msgid "`!BadCopyFileFormat`"
-msgstr ""
+msgstr "`!BadCopyFileFormat`"
 
 #: ../../../api/errors.rst:321
 msgid "``22P05``"
-msgstr ""
+msgstr "``22P05``"
 
 #: ../../../api/errors.rst:321
 msgid "`!UntranslatableCharacter`"
-msgstr ""
+msgstr "`!UntranslatableCharacter`"
 
 #: ../../../api/errors.rst:322
 msgid "``22P06``"
-msgstr ""
+msgstr "``22P06``"
 
 #: ../../../api/errors.rst:322
 msgid "`!NonstandardUseOfEscapeCharacter`"
-msgstr ""
+msgstr "`!NonstandardUseOfEscapeCharacter`"
 
 #: ../../../api/errors.rst:323
 msgid "**Class 23** - Integrity Constraint Violation"
@@ -1703,19 +1709,19 @@ msgstr ""
 
 #: ../../../api/errors.rst:390
 msgid "``39P02``"
-msgstr ""
+msgstr "``39P02``"
 
 #: ../../../api/errors.rst:390
 msgid "`!SrfProtocolViolated`"
-msgstr ""
+msgstr "`!SrfProtocolViolated`"
 
 #: ../../../api/errors.rst:391
 msgid "``39P03``"
-msgstr ""
+msgstr "``39P03``"
 
 #: ../../../api/errors.rst:391
 msgid "`!EventTriggerProtocolViolated`"
-msgstr ""
+msgstr "`!EventTriggerProtocolViolated`"
 
 #: ../../../api/errors.rst:392
 msgid "**Class 3B** - Savepoint Exception"
@@ -1851,55 +1857,55 @@ msgstr ""
 
 #: ../../../api/errors.rst:416
 msgid "``42622``"
-msgstr ""
+msgstr "``42622``"
 
 #: ../../../api/errors.rst:416
 msgid "`!NameTooLong`"
-msgstr ""
+msgstr "`!NameTooLong`"
 
 #: ../../../api/errors.rst:417
 msgid "``42701``"
-msgstr ""
+msgstr "``42701``"
 
 #: ../../../api/errors.rst:417
 msgid "`!DuplicateColumn`"
-msgstr ""
+msgstr "`!DuplicateColumn`"
 
 #: ../../../api/errors.rst:418
 msgid "``42702``"
-msgstr ""
+msgstr "``42702``"
 
 #: ../../../api/errors.rst:418
 msgid "`!AmbiguousColumn`"
-msgstr ""
+msgstr "`!AmbiguousColumn`"
 
 #: ../../../api/errors.rst:419
 msgid "``42703``"
-msgstr ""
+msgstr "``42703``"
 
 #: ../../../api/errors.rst:419
 msgid "`!UndefinedColumn`"
-msgstr ""
+msgstr "`!UndefinedColumn`"
 
 #: ../../../api/errors.rst:420
 msgid "``42704``"
-msgstr ""
+msgstr "``42704``"
 
 #: ../../../api/errors.rst:420
 msgid "`!UndefinedObject`"
-msgstr ""
+msgstr "`!UndefinedObject`"
 
 #: ../../../api/errors.rst:421
 msgid "``42710``"
-msgstr ""
+msgstr "``42710``"
 
 #: ../../../api/errors.rst:421
 msgid "`!DuplicateObject`"
-msgstr ""
+msgstr "`!DuplicateObject`"
 
 #: ../../../api/errors.rst:422
 msgid "``42712``"
-msgstr ""
+msgstr "``42712``"
 
 #: ../../../api/errors.rst:422
 msgid "`!DuplicateAlias`"
@@ -1971,19 +1977,19 @@ msgstr ""
 
 #: ../../../api/errors.rst:431
 msgid "``428C9``"
-msgstr ""
+msgstr "``428C9``"
 
 #: ../../../api/errors.rst:431
 msgid "`!GeneratedAlways`"
-msgstr ""
+msgstr "`!GeneratedAlways`"
 
 #: ../../../api/errors.rst:432
 msgid "``42939``"
-msgstr ""
+msgstr "``42939``"
 
 #: ../../../api/errors.rst:432
 msgid "`!ReservedName`"
-msgstr ""
+msgstr "`!ReservedName`"
 
 #: ../../../api/errors.rst:433
 msgid "``42P01``"

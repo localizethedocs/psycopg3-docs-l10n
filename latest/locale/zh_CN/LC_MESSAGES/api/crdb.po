@@ -100,8 +100,8 @@ msgstr ""
 
 #: ../../../api/crdb.rst:66
 msgid ""
-"If you need an asynchronous connection use the `AsyncCrdbConnection."
-"connect()` method instead."
+"If you need an asynchronous connection use the "
+"`AsyncCrdbConnection.connect()` method instead."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/crdb/__init__.py:docstring

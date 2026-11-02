@@ -88,8 +88,8 @@ msgstr ""
 #: ../../../advanced/async.rst:54
 msgid ""
 "If you want to use more than one connection at time, but still avoid to "
-"create too many connections and starve the server, you might want to use a :"
-"ref:`connection pool <connection-pools>`."
+"create too many connections and starve the server, you might want to use "
+"a :ref:`connection pool <connection-pools>`."
 msgstr ""
 
 #: ../../../advanced/async.rst:62
@@ -163,9 +163,9 @@ msgstr ""
 
 #: ../../../advanced/async.rst:123
 msgid ""
-"On Windows, Psycopg is not compatible with the default `~asyncio."
-"ProactorEventLoop`. Please use a different loop, for instance the `~asyncio."
-"SelectorEventLoop`. See `asyncio documentation`__ for details."
+"On Windows, Psycopg is not compatible with the default "
+"`~asyncio.ProactorEventLoop`. Please use a different loop, for instance the "
+"`~asyncio.SelectorEventLoop`. See `asyncio documentation`__ for details."
 msgstr ""
 
 #: ../../../advanced/async.rst:136
@@ -277,9 +277,9 @@ msgstr ""
 #: ../../../advanced/async.rst:220
 msgid ""
 "Psycopg 3 supports `gevent <https://www.gevent.org/>`__ out of the box. If "
-"the `select` module is found patched by functions such as `gevent.monkey."
-"patch_select()`__ or `patch_all()`__, psycopg will behave in a collaborative "
-"way."
+"the `select` module is found patched by functions such as "
+"`gevent.monkey.patch_select()`__ or `patch_all()`__, psycopg will behave in "
+"a collaborative way."
 msgstr ""
 
 #: ../../../advanced/async.rst:225
@@ -333,8 +333,8 @@ msgid ""
 "register a function that will be invoked whenever a message is received. The "
 "message is passed to the callback as a `~errors.Diagnostic` instance, "
 "containing all the information passed by the server, such as the message "
-"text and the severity. The object is the same found on the `~psycopg.Error."
-"diag` attribute of the errors raised by the server:"
+"text and the severity. The object is the same found on the "
+"`~psycopg.Error.diag` attribute of the errors raised by the server:"
 msgstr ""
 
 #: ../../../advanced/async.rst:280
@@ -342,8 +342,8 @@ msgid ""
 ">>> import psycopg\n"
 "\n"
 ">>> def log_notice(diag):\n"
-"...     print(f\"The server says: {diag.severity} - {diag."
-"message_primary}\")\n"
+"...     print(f\"The server says: {diag.severity} - {diag.message_primary}"
+"\")\n"
 "\n"
 ">>> conn = psycopg.connect(autocommit=True)\n"
 ">>> conn.add_notice_handler(log_notice)\n"
@@ -478,9 +478,9 @@ msgstr ""
 #: ../../../advanced/async.rst:397
 msgid ""
 "Since :ref:`psycopg-3.2.4` such notifications are captured and yielded by "
-"the generator once it is started. However this introduced a leak (:ticket:"
-"`#1091`) and, if the generator is not regularly used, some memory is "
-"allocated indefinitely."
+"the generator once it is started. However this introduced a leak "
+"(:ticket:`#1091`) and, if the generator is not regularly used, some memory "
+"is allocated indefinitely."
 msgstr ""
 
 #: ../../../advanced/async.rst:402
@@ -624,7 +624,7 @@ msgstr ""
 
 #: ../../../advanced/async.rst:238 ../../../advanced/async.rst:304
 msgid "Notifications"
-msgstr ""
+msgstr "通知"
 
 #: ../../../advanced/async.rst:238 ../../../advanced/async.rst:304
 msgid "LISTEN"

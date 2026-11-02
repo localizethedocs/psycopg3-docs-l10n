@@ -70,18 +70,19 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
 #: of psycopg.ConnectionInfo.transaction_status:1
 msgid ""
-"The current in-transaction status of the session. See :pq:"
-"`PQtransactionStatus()`."
+"The current in-transaction status of the session. "
+"See :pq:`PQtransactionStatus()`."
 msgstr ""
 
 #: ../../../api/objects.rst:29
 msgid ""
-"The status can be `~pq.TransactionStatus.IDLE` (currently idle), `~pq."
-"TransactionStatus.ACTIVE` (a command is in progress), `~pq.TransactionStatus."
-"INTRANS` (idle, in a valid transaction block), or `~pq.TransactionStatus."
-"INERROR` (idle, in a failed transaction block). `~pq.TransactionStatus."
-"UNKNOWN` is reported if the connection is bad. `!ACTIVE` is reported only "
-"when a query has been sent to the server and not yet completed."
+"The status can be `~pq.TransactionStatus.IDLE` (currently idle), "
+"`~pq.TransactionStatus.ACTIVE` (a command is in progress), "
+"`~pq.TransactionStatus.INTRANS` (idle, in a valid transaction block), or "
+"`~pq.TransactionStatus.INERROR` (idle, in a failed transaction block). "
+"`~pq.TransactionStatus.UNKNOWN` is reported if the connection is bad. `!"
+"ACTIVE` is reported only when a query has been sent to the server and not "
+"yet completed."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
@@ -93,8 +94,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
 #: of psycopg.ConnectionInfo.backend_pid:1
 msgid ""
-"The process ID (PID) of the backend process handling this connection. See :"
-"pq:`PQbackendPID()`."
+"The process ID (PID) of the backend process handling this connection. "
+"See :pq:`PQbackendPID()`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
@@ -160,9 +161,9 @@ msgstr ""
 #: of psycopg._connection_info.ConnectionInfo.get_parameters:3
 msgid ""
 "Return all the parameters set to a non-default value, which might come "
-"either from the connection string and parameters passed to `~Connection."
-"connect()` or from environment variables. The password is never returned "
-"(you can read it using the `password` attribute)."
+"either from the connection string and parameters passed to "
+"`~Connection.connect()` or from environment variables. The password is never "
+"returned (you can read it using the `password` attribute)."
 msgstr ""
 
 #: ../../../api/objects.rst:63
@@ -201,8 +202,8 @@ msgstr ""
 #: ../../../api/objects.rst:81
 msgid ""
 "Only available if the libpq used is from PostgreSQL 12 or newer. Raise "
-"`~psycopg.NotSupportedError` otherwise. You can use the `~Capabilities."
-"has_hostaddr` capability to check for its support."
+"`~psycopg.NotSupportedError` otherwise. You can use the "
+"`~Capabilities.has_hostaddr` capability to check for its support."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
@@ -228,8 +229,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
 #: of psycopg.ConnectionInfo.options:1
 msgid ""
-"The command-line options passed in the connection request. See :pq:"
-"`PQoptions`."
+"The command-line options passed in the connection request. "
+"See :pq:`PQoptions`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_connection_info.py:docstring
@@ -256,8 +257,8 @@ msgstr ""
 
 #: ../../../api/objects.rst:98
 msgid ""
-"The value returned is always normalized to the Python codec `~codecs."
-"CodecInfo.name`::"
+"The value returned is always normalized to the Python codec "
+"`~codecs.CodecInfo.name`::"
 msgstr ""
 
 #: ../../../api/objects.rst:101
@@ -271,8 +272,8 @@ msgstr ""
 msgid ""
 "A few PostgreSQL encodings are not available in Python and cannot be "
 "selected (currently ``EUC_TW``, ``MULE_INTERNAL``). The PostgreSQL "
-"``SQL_ASCII`` encoding has the special meaning of \"no encoding\": see :ref:"
-"`adapt-string` for details."
+"``SQL_ASCII`` encoding has the special meaning of \"no encoding\": "
+"see :ref:`adapt-string` for details."
 msgstr ""
 
 #: ../../../api/objects.rst:112
@@ -624,8 +625,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/transaction.py:docstring
 #: of psycopg.transaction.BaseTransaction.Status:3
 msgid ""
-"Exposed as the `~psycopg.Transaction.status` attribute of `~psycopg."
-"Transaction` and `~psycopg.AsyncTransaction` objects."
+"Exposed as the `~psycopg.Transaction.status` attribute of "
+"`~psycopg.Transaction` and `~psycopg.AsyncTransaction` objects."
 msgstr ""
 
 #: ../../../api/objects.rst:288
@@ -689,9 +690,9 @@ msgstr ""
 #: ../../../api/objects.rst:323
 msgid ""
 ":samp:`raise Rollback({tx})`: roll back any operation that happened in the "
-"`Transaction` `!tx` (returned by a statement such as :samp:`with conn."
-"transaction() as {tx}:` and all the blocks nested within. The program will "
-"continue after the `!tx` block."
+"`Transaction` `!tx` (returned by a statement such as :samp:`with "
+"conn.transaction() as {tx}:` and all the blocks nested within. The program "
+"will continue after the `!tx` block."
 msgstr ""
 
 #: ../../../api/objects.rst:330

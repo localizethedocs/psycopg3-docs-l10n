@@ -108,9 +108,9 @@ msgstr ""
 #: ../../../api/sql.rst:65
 msgid ""
 "The resulting object is meant to be passed directly to cursor methods such "
-"as `~psycopg.Cursor.execute()`, `~psycopg.Cursor.executemany()`, `~psycopg."
-"Cursor.copy()`, but can also be used to compose a query as a Python string, "
-"using the `~Composable.as_string()` method::"
+"as `~psycopg.Cursor.execute()`, `~psycopg.Cursor.executemany()`, "
+"`~psycopg.Cursor.copy()`, but can also be used to compose a query as a "
+"Python string, using the `~Composable.as_string()` method::"
 msgstr ""
 
 #: ../../../api/sql.rst:70
@@ -192,9 +192,9 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/sql.py:docstring
 #: of psycopg.sql.Composable:9
 msgid ""
-"`!SQL` and `!Composed` objects can be passed directly to `~psycopg.Cursor."
-"execute()`, `~psycopg.Cursor.executemany()`, `~psycopg.Cursor.copy()` in "
-"place of the query string."
+"`!SQL` and `!Composed` objects can be passed directly to "
+"`~psycopg.Cursor.execute()`, `~psycopg.Cursor.executemany()`, "
+"`~psycopg.Cursor.copy()` in place of the query string."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/sql.py:docstring
@@ -533,8 +533,8 @@ msgid ""
 "...     sql.SQL(', ').join(map(sql.Identifier, names)),\n"
 "...     sql.SQL(', ').join(map(sql.Placeholder, names)))\n"
 ">>> print(q2.as_string(conn))\n"
-"INSERT INTO my_table (\"foo\", \"bar\", \"baz\") VALUES (%(foo)s, %(bar)s, "
-"%(baz)s)"
+"INSERT INTO my_table (\"foo\", \"bar\", \"baz\") VALUES (%(foo)s, %(bar)s, %"
+"(baz)s)"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/sql.py:docstring
@@ -624,8 +624,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/sql.py:docstring
 #: of psycopg.sql.as_string:9
 msgid ""
-"`Composable` objects are converted according to their `~Composable."
-"as_string()` method;"
+"`Composable` objects are converted according to their "
+"`~Composable.as_string()` method;"
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/sql.py:docstring

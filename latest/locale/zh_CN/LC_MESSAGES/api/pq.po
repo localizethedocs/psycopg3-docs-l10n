@@ -108,8 +108,8 @@ msgstr ""
 
 #: ../../../api/pq.rst:66
 msgid ""
-"The choice of implementation is automatic but can be forced setting the :"
-"envvar:`PSYCOPG_IMPL` env var."
+"The choice of implementation is automatic but can be forced setting "
+"the :envvar:`PSYCOPG_IMPL` env var."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/pq/pq_ctypes.py:docstring
@@ -252,8 +252,8 @@ msgstr ""
 #: ../../../api/pq.rst:98
 msgid ""
 ">>> enc = conn.info.encoding\n"
-">>> encrypted = conn.pgconn.encrypt_password(password.encode(enc), rolename."
-"encode(enc))\n"
+">>> encrypted = conn.pgconn.encrypt_password(password.encode(enc), "
+"rolename.encode(enc))\n"
 "b'SCRAM-SHA-256$4096:..."
 msgstr ""
 
@@ -320,8 +320,8 @@ msgstr ""
 #: ../../../api/pq.rst:110
 msgid ""
 ">>> conn.pgconn.trace(sys.stderr.fileno())\n"
-">>> conn.pgconn.set_trace_flags(pq.Trace.SUPPRESS_TIMESTAMPS | pq.Trace."
-"REGRESS_MODE)\n"
+">>> conn.pgconn.set_trace_flags(pq.Trace.SUPPRESS_TIMESTAMPS | "
+"pq.Trace.REGRESS_MODE)\n"
 ">>> conn.execute(\"select now()\")\n"
 "F       13      Parse    \"\" \"BEGIN\" 0\n"
 "F       14      Bind     \"\" \"\" 0 0 1 0\n"

@@ -23,8 +23,8 @@ msgstr "模板字串查詢"
 
 #: ../../../basic/tstrings.rst:13
 msgid ""
-"Psycopg can process queries expressed as `template strings`__ defined in :"
-"pep:`750` and implemented for the first time in Python 3.14."
+"Psycopg can process queries expressed as `template strings`__ defined "
+"in :pep:`750` and implemented for the first time in Python 3.14."
 msgstr ""
 
 #: ../../../basic/tstrings.rst:18
@@ -84,8 +84,8 @@ msgstr ""
 #: ../../../basic/tstrings.rst:56
 msgid ""
 "If you want to convert the template string to a regular string, instead of "
-"executing it directly, you can use the `sql.as_string()` or `~sql."
-"as_bytes()` functions:"
+"executing it directly, you can use the `sql.as_string()` or "
+"`~sql.as_bytes()` functions:"
 msgstr ""
 
 #: ../../../basic/tstrings.rst:60
