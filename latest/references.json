@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-10-12 17:59:55 +0200",
-      "hash" : "99356800e90aa0e7b604f652d714ef0f33422b47",
-      "title" : "fix: don't poll the cancel connection if the socket is not ready"
+      "date" : "2026-11-01 20:45:35 +0100",
+      "hash" : "0e7049f778988483e0b3219b46394d6b582200e1",
+      "title" : "docs: mention resolution of ticket #1462 in news file"
     }
   },
   "type" : "branch",
