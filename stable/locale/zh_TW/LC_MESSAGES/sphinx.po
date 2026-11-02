@@ -3331,7 +3331,7 @@ msgstr ""
 
 #: ext/napoleon/docstring.py:902
 msgid "Example"
-msgstr ""
+msgstr "範例"
 
 #: ext/napoleon/docstring.py:903
 msgid "Examples"
@@ -3472,8 +3472,8 @@ msgstr ""
 
 #: ext/apidoc/_cli.py:91
 msgid ""
-"follow symbolic links. Powerful when combined with collective.recipe."
-"omelette."
+"follow symbolic links. Powerful when combined with "
+"collective.recipe.omelette."
 msgstr ""
 
 #: ext/apidoc/_cli.py:99

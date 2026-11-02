@@ -67,6 +67,8 @@ msgid ""
 ">>> conninfo_to_dict(\"postgres://jeff@example.com/db\", user=\"piro\")\n"
 "{'user': 'piro', 'dbname': 'db', 'host': 'example.com'}"
 msgstr ""
+">>> conninfo_to_dict(\"postgres://jeff@example.com/db\", user=\"piro\")\n"
+"{'user': 'piro', 'dbname': 'db', 'host': 'example.com'}"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/conninfo.py:docstring
 #: of psycopg.conninfo.make_conninfo:1
@@ -92,3 +94,5 @@ msgid ""
 ">>> make_conninfo(\"dbname=db user=jeff\", user=\"piro\", port=5432)\n"
 "'dbname=db user=piro port=5432'"
 msgstr ""
+">>> make_conninfo(\"dbname=db user=jeff\", user=\"piro\", port=5432)\n"
+"'dbname=db user=piro port=5432'"

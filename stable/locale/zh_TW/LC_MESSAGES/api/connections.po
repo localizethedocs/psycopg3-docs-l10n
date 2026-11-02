@@ -24,8 +24,8 @@ msgstr "Connection 類別"
 #: ../../../api/connections.rst:6
 msgid ""
 "The `Connection` and `AsyncConnection` classes are the main wrappers for a "
-"PostgreSQL database session. You can imagine them similar to a :program:"
-"`psql` session."
+"PostgreSQL database session. You can imagine them similar to "
+"a :program:`psql` session."
 msgstr ""
 
 #: ../../../api/connections.rst:10
@@ -163,8 +163,8 @@ msgstr ""
 
 #: ../../../api/connections.rst:88
 msgid ""
-"to close the connection automatically when the block is exited. See :ref:"
-"`with-connection`."
+"to close the connection automatically when the block is exited. "
+"See :ref:`with-connection`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
@@ -799,8 +799,8 @@ msgstr ""
 #: ../../../api/connections.rst:383
 msgid ""
 "This method should be called outside of a transaction (i.e. nothing may have "
-"executed since the last `commit()` or `rollback()` and `~ConnectionInfo."
-"transaction_status` is `~pq.TransactionStatus.IDLE`)."
+"executed since the last `commit()` or `rollback()` and "
+"`~ConnectionInfo.transaction_status` is `~pq.TransactionStatus.IDLE`)."
 msgstr ""
 
 #: ../../../api/connections.rst:387
@@ -909,18 +909,18 @@ msgstr ""
 #: ../../../api/connections.rst:463
 msgid ""
 "If a transaction was not initiated by Psycopg, the returned Xids will have "
-"attributes `~Xid.format_id` and `~Xid.bqual` set to `!None` and the `~Xid."
-"gtrid` set to the PostgreSQL transaction ID: such Xids are still usable for "
-"recovery.  Psycopg uses the same algorithm of the `PostgreSQL JDBC driver`__ "
-"to encode a XA triple in a string, so transactions initiated by a program "
-"using such driver should be unpacked correctly."
+"attributes `~Xid.format_id` and `~Xid.bqual` set to `!None` and the "
+"`~Xid.gtrid` set to the PostgreSQL transaction ID: such Xids are still "
+"usable for recovery.  Psycopg uses the same algorithm of the `PostgreSQL "
+"JDBC driver`__ to encode a XA triple in a string, so transactions initiated "
+"by a program using such driver should be unpacked correctly."
 msgstr ""
 
 #: ../../../api/connections.rst:473
 msgid ""
-"Xids returned by `!tpc_recover()` also have extra attributes `~Xid."
-"prepared`, `~Xid.owner`, `~Xid.database` populated with the values read from "
-"the server."
+"Xids returned by `!tpc_recover()` also have extra attributes "
+"`~Xid.prepared`, `~Xid.owner`, `~Xid.database` populated with the values "
+"read from the server."
 msgstr ""
 
 #: ../../../api/connections.rst:477

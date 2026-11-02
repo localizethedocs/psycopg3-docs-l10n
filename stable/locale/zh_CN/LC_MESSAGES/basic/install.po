@@ -247,15 +247,15 @@ msgstr ""
 
 #: ../../../basic/install.rst:125
 msgid ""
-"For further information about the differences between the packages see :ref:"
-"`pq-impl`."
+"For further information about the differences between the packages "
+"see :ref:`pq-impl`."
 msgstr ""
 
 #: ../../../basic/install.rst:128
 msgid ""
 "If your platform is not supported, or if the libpq packaged is not suitable, "
-"you should proceed to a :ref:`local installation <local-installation>` or a :"
-"ref:`pure Python installation <pure-python-installation>`."
+"you should proceed to a :ref:`local installation <local-installation>` or "
+"a :ref:`pure Python installation <pure-python-installation>`."
 msgstr ""
 
 #: ../../../basic/install.rst:134
@@ -458,6 +458,6 @@ msgstr ""
 msgid ""
 "If you want to make sure that a specific implementation is used you can "
 "specify the :envvar:`PSYCOPG_IMPL` environment variable: importing the "
-"library will fail if the implementation specified is not available. See :ref:"
-"`pq-impl`."
+"library will fail if the implementation specified is not available. "
+"See :ref:`pq-impl`."
 msgstr ""

@@ -53,9 +53,9 @@ msgstr ""
 
 #: ../../../advanced/cursors.rst:29
 msgid ""
-"Are queries manipulated by Python (to handle placeholders in ``%s`` and "
-"``%(name)s`` Python-style) or sent as they are to the PostgreSQL server "
-"(which only supports ``$1``, ``$2`` parameters)?"
+"Are queries manipulated by Python (to handle placeholders in ``%s`` and ``%"
+"(name)s`` Python-style) or sent as they are to the PostgreSQL server (which "
+"only supports ``$1``, ``$2`` parameters)?"
 msgstr ""
 
 #: ../../../advanced/cursors.rst:33
@@ -188,8 +188,8 @@ msgid ""
 "send the query and the parameters separately to the server. This is the most "
 "efficient way to process parametrised queries and allows to build several "
 "features and optimizations. However, not all types of queries can be bound "
-"server-side; in particular no Data Definition Language query can. See :ref:"
-"`server-side-binding` for the description of these problems."
+"server-side; in particular no Data Definition Language query can. "
+"See :ref:`server-side-binding` for the description of these problems."
 msgstr ""
 
 #: ../../../advanced/cursors.rst:95
@@ -197,8 +197,8 @@ msgid ""
 "The `ClientCursor` (and its `AsyncClientCursor` async counterpart) merge the "
 "query on the client and send the query and the parameters merged together to "
 "the server. This allows to parametrize any type of PostgreSQL statement, not "
-"only queries (:sql:`SELECT`) and Data Manipulation statements (:sql:"
-"`INSERT`, :sql:`UPDATE`, :sql:`DELETE`)."
+"only queries (:sql:`SELECT`) and Data Manipulation statements "
+"(:sql:`INSERT`, :sql:`UPDATE`, :sql:`DELETE`)."
 msgstr ""
 
 #: ../../../advanced/cursors.rst:101

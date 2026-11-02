@@ -3472,8 +3472,8 @@ msgstr ""
 
 #: ext/apidoc/_cli.py:91
 msgid ""
-"follow symbolic links. Powerful when combined with collective.recipe."
-"omelette."
+"follow symbolic links. Powerful when combined with "
+"collective.recipe.omelette."
 msgstr ""
 
 #: ext/apidoc/_cli.py:99

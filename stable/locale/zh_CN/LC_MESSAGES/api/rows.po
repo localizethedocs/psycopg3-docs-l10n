@@ -160,8 +160,8 @@ msgid ""
 "conn = psycopg.connect()\n"
 "cur = conn.cursor(row_factory=class_row(Person))\n"
 "\n"
-"cur.execute(\"select 'John' as first_name, 'Smith' as last_name\")."
-"fetchone()\n"
+"cur.execute(\"select 'John' as first_name, 'Smith' as "
+"last_name\").fetchone()\n"
 "# Person(first_name='John', last_name='Smith', age=None)"
 msgstr ""
 
@@ -235,8 +235,9 @@ msgstr ""
 #: of psycopg.rows.RowFactory:3
 msgid ""
 "A `!RowFactory` is typically called when a `!Cursor` receives a result. This "
-"way it can inspect the cursor state (for instance the `~psycopg.Cursor."
-"description` attribute) and help a `!RowMaker` to create a complete object."
+"way it can inspect the cursor state (for instance the "
+"`~psycopg.Cursor.description` attribute) and help a `!RowMaker` to create a "
+"complete object."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/rows.py:docstring

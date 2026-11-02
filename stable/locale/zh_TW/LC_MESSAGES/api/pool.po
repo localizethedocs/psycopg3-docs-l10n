@@ -36,15 +36,15 @@ msgstr ""
 
 #: ../../../api/pool.rst:17
 msgid ""
-"`ConnectionPool` is a synchronous connection pool yielding `~psycopg."
-"Connection` objects and can be used by multithread applications."
+"`ConnectionPool` is a synchronous connection pool yielding "
+"`~psycopg.Connection` objects and can be used by multithread applications."
 msgstr ""
 
 #: ../../../api/pool.rst:20
 msgid ""
 "`AsyncConnectionPool` has an interface similar to `!ConnectionPool`, but "
-"with `asyncio` functions replacing blocking functions, and yields `~psycopg."
-"AsyncConnection` instances."
+"with `asyncio` functions replacing blocking functions, and yields "
+"`~psycopg.AsyncConnection` instances."
 msgstr ""
 
 #: ../../../api/pool.rst:24
@@ -289,10 +289,10 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool_async.py:docstring
 #: psycopg_pool.pool_async.AsyncConnectionPool.connection:7
 msgid ""
-"Upon context exit, return the connection to the pool. Apply the normal :ref:"
-"`connection context behaviour <with-connection>` (commit/rollback the "
-"transaction in case of success/error). If the connection is no more in "
-"working state, replace it with a new one."
+"Upon context exit, return the connection to the pool. Apply the "
+"normal :ref:`connection context behaviour <with-connection>` (commit/"
+"rollback the transaction in case of success/error). If the connection is no "
+"more in working state, replace it with a new one."
 msgstr ""
 
 #: ../../../api/pool.rst:203
@@ -305,8 +305,8 @@ msgstr ""
 
 #: ../../../api/pool.rst:210
 msgid ""
-"The connection returned is annotated as defined in `!connection_class`. See :"
-"ref:`pool-generic`."
+"The connection returned is annotated as defined in `!connection_class`. "
+"See :ref:`pool-generic`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg_pool/pool.py:docstring
@@ -700,7 +700,7 @@ msgstr ""
 
 #: ../../../api/pool.rst:396
 msgid "Null connection pools"
-msgstr ""
+msgstr "空連接池"
 
 #: ../../../api/pool.rst:400
 msgid ""

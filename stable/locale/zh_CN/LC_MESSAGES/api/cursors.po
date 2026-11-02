@@ -198,17 +198,17 @@ msgstr ""
 #: ../../../api/cursors.rst:111
 msgid ""
 "This is more efficient than performing separate queries, but in case of "
-"several :sql:`INSERT` (and with some SQL creativity for massive :sql:"
-"`UPDATE` too) you may consider using `copy()`."
+"several :sql:`INSERT` (and with some SQL creativity for "
+"massive :sql:`UPDATE` too) you may consider using `copy()`."
 msgstr ""
 
 #: ../../../api/cursors.rst:115
 msgid ""
-"If the queries return data you want to read (e.g. when executing an :sql:"
-"`INSERT ... RETURNING` or a :sql:`SELECT` with a side-effect), you can "
-"specify `!returning=True`. This is equivalent of calling `~Cursor.execute()` "
-"as many times as the number of items in `!params_seq`, and to store all the "
-"results in the cursor's state."
+"If the queries return data you want to read (e.g. when executing "
+"an :sql:`INSERT ... RETURNING` or a :sql:`SELECT` with a side-effect), you "
+"can specify `!returning=True`. This is equivalent of calling "
+"`~Cursor.execute()` as many times as the number of items in `!params_seq`, "
+"and to store all the results in the cursor's state."
 msgstr ""
 
 #: ../../../api/cursors.rst:123
@@ -223,10 +223,10 @@ msgstr ""
 msgid ""
 "A typical use case for `!executemany(returning=True)` might be to insert a "
 "bunch of records and to retrieve the primary keys inserted, taken from a "
-"PostgreSQL sequence. In order to do so, you may execute a query such as :sql:"
-"`INSERT INTO table VALUES (...) RETURNING id`. Because every :sql:`INSERT` "
-"is guaranteed to insert exactly a single record, you can obtain the list of "
-"the new ids using a pattern such as::"
+"PostgreSQL sequence. In order to do so, you may execute a query such "
+"as :sql:`INSERT INTO table VALUES (...) RETURNING id`. Because "
+"every :sql:`INSERT` is guaranteed to insert exactly a single record, you can "
+"obtain the list of the new ids using a pattern such as::"
 msgstr ""
 
 #: ../../../api/cursors.rst:137
@@ -403,8 +403,8 @@ msgstr ""
 msgid ""
 "Fetch methods are only available if the current result set contains results, "
 "e.g. a :sql:`SELECT` or a command with :sql:`RETURNING`. They will raise an "
-"exception if used with operations that don't return result, such as an :sql:"
-"`INSERT` with no :sql:`RETURNING` or an :sql:`ALTER TABLE`."
+"exception if used with operations that don't return result, such as "
+"an :sql:`INSERT` with no :sql:`RETURNING` or an :sql:`ALTER TABLE`."
 msgstr ""
 
 #: ../../../api/cursors.rst:251
@@ -865,8 +865,8 @@ msgstr ""
 
 #: ../../../api/cursors.rst:415
 msgid ""
-"The PostgreSQL DECLARE_ statement documentation for the description of :sql:"
-"`[NO] SCROLL`."
+"The PostgreSQL DECLARE_ statement documentation for the description "
+"of :sql:`[NO] SCROLL`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
@@ -876,8 +876,8 @@ msgstr ""
 
 #: ../../../api/cursors.rst:420
 msgid ""
-"The PostgreSQL DECLARE_ statement documentation for the description of :sql:"
-"`{WITH|WITHOUT} HOLD`."
+"The PostgreSQL DECLARE_ statement documentation for the description "
+"of :sql:`{WITH|WITHOUT} HOLD`."
 msgstr ""
 
 #: ../../../api/cursors.rst:428
@@ -1060,8 +1060,8 @@ msgstr ""
 
 #: ../../../api/cursors.rst:597
 msgid ""
-"This class is the `!async` equivalent of `ClientCursor`. The differences w.r."
-"t. the sync counterpart are the same described in `AsyncCursor`."
+"This class is the `!async` equivalent of `ClientCursor`. The differences "
+"w.r.t. the sync counterpart are the same described in `AsyncCursor`."
 msgstr ""
 
 #: ../../../api/cursors.rst:606

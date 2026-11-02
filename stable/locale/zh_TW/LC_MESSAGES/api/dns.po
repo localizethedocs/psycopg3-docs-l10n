@@ -55,8 +55,8 @@ msgstr "參數"
 
 #: ../../../api/dns.rst:30 ../../../api/dns.rst:106
 msgid ""
-"The input parameters, for instance as returned by `~psycopg.conninfo."
-"conninfo_to_dict()`."
+"The input parameters, for instance as returned by "
+"`~psycopg.conninfo.conninfo_to_dict()`."
 msgstr ""
 
 #: ../../../api/dns.rst:0
@@ -94,9 +94,9 @@ msgstr ""
 
 #: ../../../api/dns.rst:51
 msgid ""
-"One possible way to use this function automatically is to subclass `~psycopg."
-"Connection`, extending the `~psycopg.Connection._get_connection_params()` "
-"method::"
+"One possible way to use this function automatically is to subclass "
+"`~psycopg.Connection`, extending the "
+"`~psycopg.Connection._get_connection_params()` method::"
 msgstr ""
 
 #: ../../../api/dns.rst:55
@@ -151,8 +151,8 @@ msgstr ""
 
 #: ../../../api/dns.rst:101
 msgid ""
-"The use of this function is not necessary anymore, because `psycopg."
-"AsyncConnection.connect()` performs non-blocking name resolution "
+"The use of this function is not necessary anymore, because "
+"`psycopg.AsyncConnection.connect()` performs non-blocking name resolution "
 "automatically."
 msgstr ""
 
@@ -195,8 +195,8 @@ msgstr ""
 #: ../../../api/dns.rst:134
 msgid ""
 "In psycopg 3.0, one possible way to use this function automatically is to "
-"subclass `~psycopg.AsyncConnection`, extending the `~psycopg.AsyncConnection."
-"_get_connection_params()` method::"
+"subclass `~psycopg.AsyncConnection`, extending the "
+"`~psycopg.AsyncConnection._get_connection_params()` method::"
 msgstr ""
 
 #: ../../../api/dns.rst:138

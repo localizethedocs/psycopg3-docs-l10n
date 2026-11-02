@@ -30,8 +30,8 @@ msgstr ""
 
 #: ../../../release.rst:14
 msgid ""
-"Check if there is a new `cibuildwheel release`__; if so, upgrade it in ``."
-"github/workflows/packages-bin.yml``."
+"Check if there is a new `cibuildwheel release`__; if so, upgrade it in "
+"``.github/workflows/packages-bin.yml``."
 msgstr ""
 
 #: ../../../release.rst:19
@@ -64,8 +64,8 @@ msgstr ""
 
 #: ../../../release.rst:37
 msgid ""
-"If all packages were built ok, push the new tag created by ``bump_version."
-"py``::"
+"If all packages were built ok, push the new tag created by "
+"``bump_version.py``::"
 msgstr ""
 
 #: ../../../release.rst:39
@@ -193,11 +193,11 @@ msgstr ""
 
 #: ../../../release.rst:104
 msgid ""
-"It is polite to add new top-level objects interfaces (such as ``connection."
-"info`` or ``Capabilities`` only on minor releases (3.x), but if we need to "
-"add a libpq function wrapper to solve an issue we can do it in a bugfix "
-"release, without documenting it (e.g. ``PQconnectionUsedGSSAPI`` was added "
-"in 3.2.10 but only advertised in 3.3)."
+"It is polite to add new top-level objects interfaces (such as "
+"``connection.info`` or ``Capabilities`` only on minor releases (3.x), but if "
+"we need to add a libpq function wrapper to solve an issue we can do it in a "
+"bugfix release, without documenting it (e.g. ``PQconnectionUsedGSSAPI`` was "
+"added in 3.2.10 but only advertised in 3.3)."
 msgstr ""
 
 #: ../../../release.rst:110
@@ -233,8 +233,8 @@ msgstr ""
 #: ../../../release.rst:130
 msgid ""
 "Add the ``Programming Language :: Python :: 3.<X>`` classifier to ``psycopg/"
-"pyproject.toml``, ``psycopg_c/pyproject.toml``, and ``psycopg_pool/pyproject."
-"toml``."
+"pyproject.toml``, ``psycopg_c/pyproject.toml``, and ``psycopg_pool/"
+"pyproject.toml``."
 msgstr ""
 
 #: ../../../release.rst:136
@@ -251,8 +251,8 @@ msgstr ""
 #: ../../../release.rst:141
 msgid ""
 "Update GitHub Actions workflow files in the ``.github/workflows/`` "
-"directory, e.g., ``tests.yml``, ``.3rd-party-tests.yml``, ``packages-bin."
-"yml``."
+"directory, e.g., ``tests.yml``, ``.3rd-party-tests.yml``, ``packages-"
+"bin.yml``."
 msgstr ""
 
 #: ../../../release.rst:144

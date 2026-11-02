@@ -87,8 +87,8 @@ msgstr ""
 
 #: ../../../api/copy.rst:24
 msgid ""
-"The data in the tuple will be converted as configured on the cursor; see :"
-"ref:`adaptation` for details."
+"The data in the tuple will be converted as configured on the cursor; "
+"see :ref:`adaptation` for details."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
@@ -171,8 +171,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_base.py:docstring
 #: of psycopg._copy_base.BaseCopy.set_types:3
 msgid ""
-"The types must be specified as a sequence of oid or PostgreSQL type names (e."
-"g. ``int4``, ``timestamptz[]``)."
+"The types must be specified as a sequence of oid or PostgreSQL type names "
+"(e.g. ``int4``, ``timestamptz[]``)."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_base.py:docstring
@@ -230,9 +230,9 @@ msgstr ""
 
 #: ../../../api/copy.rst:76
 msgid ""
-"Writers instances can be used passing them to the cursor `~psycopg.Cursor."
-"copy()` method or to the `~psycopg.Copy` constructor, as the `!writer` "
-"argument."
+"Writers instances can be used passing them to the cursor "
+"`~psycopg.Cursor.copy()` method or to the `~psycopg.Copy` constructor, as "
+"the `!writer` argument."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring

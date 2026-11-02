@@ -102,9 +102,9 @@ msgstr ""
 msgid ""
 "It has been closed and will be in `~psycopg.pq.ConnStatus.BAD` state; "
 "however it might be useful to verify precisely what went wrong, for instance "
-"checking the `~psycopg.pq.PGconn.needs_password` and `~psycopg.pq.PGconn."
-"used_password` attributes. Attempting to operate this connection will raise "
-"an :exc:`OperationalError`."
+"checking the `~psycopg.pq.PGconn.needs_password` and "
+"`~psycopg.pq.PGconn.used_password` attributes. Attempting to operate this "
+"connection will raise an :exc:`OperationalError`."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/__init__.py:docstring
@@ -230,8 +230,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
 #: of psycopg.errors.CancellationTimeout:1
 msgid ""
-"Exception raised on timeout of connection's `~psycopg.Connection."
-"cancel_safe()` method."
+"Exception raised on timeout of connection's "
+"`~psycopg.Connection.cancel_safe()` method."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/errors.py:docstring
@@ -253,8 +253,8 @@ msgstr ""
 #: ../../../api/errors.rst:101
 msgid ""
 "The object is available as the `~psycopg.Error`.\\ `~psycopg.Error.diag` "
-"attribute and is passed to the callback functions registered with `~psycopg."
-"Connection.add_notice_handler()`."
+"attribute and is passed to the callback functions registered with "
+"`~psycopg.Connection.add_notice_handler()`."
 msgstr ""
 
 #: ../../../api/errors.rst:105
