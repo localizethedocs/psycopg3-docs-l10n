@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-10-12 17:59:55 +0200",
-      "hash" : "99356800e90aa0e7b604f652d714ef0f33422b47",
-      "title" : "fix: don't poll the cancel connection if the socket is not ready"
+      "date" : "2026-11-08 12:11:48 +0000",
+      "hash" : "dc5c502db9d92cc3d1c816e2aac6dcaf56716db2",
+      "title" : "ci: retry downloading the libpq build dependencies"
     }
   },
   "type" : "branch",

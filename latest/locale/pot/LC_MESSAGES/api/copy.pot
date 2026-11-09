@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: psycopg latest\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-20 10:46+0000\n"
+"POT-Creation-Date: 2026-11-09 18:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,8 +87,8 @@ msgstr ""
 
 #: ../../../api/copy.rst:24
 msgid ""
-"The data in the tuple will be converted as configured on the cursor; see :"
-"ref:`adaptation` for details."
+"The data in the tuple will be converted as configured on the cursor; "
+"see :ref:`adaptation` for details."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
@@ -171,8 +171,8 @@ msgstr ""
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_base.py:docstring
 #: of psycopg._copy_base.BaseCopy.set_types:3
 msgid ""
-"The types must be specified as a sequence of oid or PostgreSQL type names (e."
-"g. ``int4``, ``timestamptz[]``)."
+"The types must be specified as a sequence of oid or PostgreSQL type names "
+"(e.g. ``int4``, ``timestamptz[]``)."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy_base.py:docstring
@@ -230,9 +230,9 @@ msgstr ""
 
 #: ../../../api/copy.rst:76
 msgid ""
-"Writers instances can be used passing them to the cursor `~psycopg.Cursor."
-"copy()` method or to the `~psycopg.Copy` constructor, as the `!writer` "
-"argument."
+"Writers instances can be used passing them to the cursor "
+"`~psycopg.Cursor.copy()` method or to the `~psycopg.Copy` constructor, as "
+"the `!writer` argument."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_copy.py:docstring
@@ -274,8 +274,26 @@ msgstr ""
 msgid "An `Writer` to write copy data to a Postgres database."
 msgstr ""
 
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/copy.py:docstring
+#: of psycopg.copy.AsyncLibpqWriter:3 psycopg.copy.LibpqWriter:3
+msgid "the cursor where the copy operation is performed."
+msgstr ""
+
+#: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/copy.py:docstring
+#: of psycopg.copy.AsyncLibpqWriter:4 psycopg.copy.LibpqWriter:4
+msgid ""
+"number of bytes to send to the libpq before waiting for them to be flushed "
+"to the server. A lower value limits the memory used if the server consumes "
+"data slower than it is produced. If 0, wait for every block of data to be "
+"flushed."
+msgstr ""
+
 #: ../../../api/copy.rst:91
 msgid "This is the writer used by default if none is specified."
+msgstr ""
+
+#: ../../../api/copy.rst:93
+msgid "added the `!flush_threshold` parameter."
 msgstr ""
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/copy.py:docstring
@@ -290,14 +308,14 @@ msgid ""
 "mode."
 msgstr ""
 
-#: ../../../api/copy.rst:96
+#: ../../../api/copy.rst:99
 msgid ""
 "This writer should be used without executing a :sql:`COPY` operation on the "
 "database. For example, if `records` is a list of tuples containing data to "
 "save in COPY format to a file (e.g. for later import), it can be used as:"
 msgstr ""
 
-#: ../../../api/copy.rst:101
+#: ../../../api/copy.rst:104
 msgid ""
 "with open(\"target-file.pgcopy\", \"wb\") as f:\n"
 "    with Copy(cur, writer=FileWriter(f)) as copy:\n"
@@ -305,7 +323,7 @@ msgid ""
 "            copy.write_row(record)"
 msgstr ""
 
-#: ../../../api/copy.rst:111
+#: ../../../api/copy.rst:114
 msgid ""
 "This class methods have the same semantics of the ones of `Writer`, but "
 "offer an async interface."
