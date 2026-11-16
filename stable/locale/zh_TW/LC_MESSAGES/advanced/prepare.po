@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../../advanced/prepare.rst:3 ../../../advanced/prepare.rst:9
 msgid "Prepared statements"
-msgstr ""
+msgstr "預備陳述句"
 
 #: ../../../advanced/prepare.rst:11
 msgid ""

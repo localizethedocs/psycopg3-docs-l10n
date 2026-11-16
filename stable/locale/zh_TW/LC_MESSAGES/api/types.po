@@ -264,6 +264,8 @@ msgid ""
 ">>> psycopg.adapters.types.get_oid(\"text[]\")\n"
 "1009"
 msgstr ""
+">>> psycopg.adapters.types.get_oid(\"text[]\")\n"
+"1009"
 
 #: ../../../../../../.conda/lib/python3.14/site-packages/psycopg/_typeinfo.py:docstring
 #: of psycopg._typeinfo.TypesRegistry.get_by_subtype:1
@@ -296,7 +298,7 @@ msgstr ""
 
 #: ../../../api/types.rst:152
 msgid "See :ref:`adapt-json` for details."
-msgstr ""
+msgstr "詳情請參見 :ref:`adapt-json`\\ 。"
 
 #: ../../../api/types.rst:159
 msgid ""

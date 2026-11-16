@@ -685,7 +685,7 @@ msgstr ":ref:`伺服端參數綁定 <server-side-binding>`"
 
 #: ../../../basic/from_pg2.rst:493
 msgid ":ref:`Prepared statements <prepared-statements>`"
-msgstr ""
+msgstr ":ref:`預備陳述句 <prepared-statements>`"
 
 #: ../../../basic/from_pg2.rst:494
 msgid ":ref:`Binary communication <binary-data>`"

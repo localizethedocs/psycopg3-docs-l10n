@@ -59,7 +59,7 @@ msgstr ":ref:`伺服端參數綁定 <server-side-binding>`"
 
 #: ../../../index.rst:17
 msgid ":ref:`Prepared statements <prepared-statements>`"
-msgstr ""
+msgstr ":ref:`預備陳述句 <prepared-statements>`"
 
 #: ../../../index.rst:18
 msgid ":ref:`Statements pipeline <pipeline-mode>`"
