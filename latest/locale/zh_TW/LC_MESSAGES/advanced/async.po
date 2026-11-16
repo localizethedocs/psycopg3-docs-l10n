@@ -317,6 +317,10 @@ msgid ""
 "WARNING:  there is no transaction in progress\n"
 "ROLLBACK"
 msgstr ""
+"$ psql\n"
+"=# ROLLBACK;\n"
+"WARNING:  there is no transaction in progress\n"
+"ROLLBACK"
 
 #: ../../../advanced/async.rst:262
 msgid ""

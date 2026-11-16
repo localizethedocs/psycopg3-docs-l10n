@@ -107,7 +107,7 @@ msgstr ""
 
 #: ../../../advanced/cursors.rst:41
 msgid ":ref:`client-side-cursors`"
-msgstr ""
+msgstr ":ref:`client-side-cursors`"
 
 #: ../../../advanced/cursors.rst:42
 msgid "`ClientCursor`"
@@ -123,15 +123,15 @@ msgstr ""
 
 #: ../../../advanced/cursors.rst:43
 msgid ":ref:`server-side-cursors`"
-msgstr ""
+msgstr ":ref:`server-side-cursors`"
 
 #: ../../../advanced/cursors.rst:44
 msgid "`RawCursor`"
-msgstr ""
+msgstr "`RawCursor`"
 
 #: ../../../advanced/cursors.rst:44 ../../../advanced/cursors.rst:45
 msgid "``$1``"
-msgstr ""
+msgstr "``$1``"
 
 #: ../../../advanced/cursors.rst:44 ../../../advanced/cursors.rst:45
 msgid ":ref:`raw-query-cursors`"
@@ -484,7 +484,7 @@ msgstr ""
 
 #: ../../../advanced/cursors.rst:148
 msgid "Query protocol"
-msgstr ""
+msgstr "查詢協定"
 
 #: ../../../advanced/cursors.rst:148
 msgid "simple"
