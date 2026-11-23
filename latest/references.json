@@ -37,9 +37,9 @@
     "branch" : "master",
     "commit" : 
     {
-      "date" : "2026-10-12 17:59:55 +0200",
-      "hash" : "99356800e90aa0e7b604f652d714ef0f33422b47",
-      "title" : "fix: don't poll the cancel connection if the socket is not ready"
+      "date" : "2026-11-11 23:50:29 +0100",
+      "hash" : "bced8a8993064a378d5ca852215d99f73f4c6cae",
+      "title" : "chore: bump psycopg package version to 3.3.9"
     }
   },
   "type" : "branch",
